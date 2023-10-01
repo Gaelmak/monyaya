@@ -10,10 +10,10 @@ export const BestProfil = () => {
     {id:4, nom: 'Nathan Boke', domains: [{id: 1, name: '1'}, {id:3, name: '2'}, {id: 4, name: '3'}]},
   ]
   return (
-    <Container className="bg-white_powder block overflow-hidden p-4 md:p-16">
+    <Container className="bg-white_powder block overflow-hidden py-8 px-4 md:px-16 md:py-16">
       <Container>
         <Typography variant="title-base" component="h2">Nos meilleurs formateurs</Typography>
-        <Typography variant="body-base" component="p">
+        <Typography variant="body-sm" component="p">
           Vous voulez apprendre de la meilleure façon ?<br/>
           Nos formateurs experts vous guideront vers la réussite.<br/>
           Découvrez leurs profils et choisissez celui qui vous convient.

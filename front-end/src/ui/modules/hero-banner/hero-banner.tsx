@@ -10,7 +10,7 @@ export const HeroBanner = () => {
 
   return(
     <Container className="flex flex-col md:flex-row px-4 md:px-16 h-[90vh] gap-4">
-      <Container className="basis-1/4 flex flex-col justify-center gap-4 md:gap-8">
+      <Container className="basis-4/5 md:basis-1/4 flex flex-col justify-center gap-4 md:gap-8">
         <Typography component="h1" variant="title-lg">
           Apprenez<br/>ce que vous voulez,<br/>où vous voulez
         </Typography>
@@ -52,7 +52,7 @@ export const HeroBanner = () => {
           <Buttons>Commencer</Buttons>
         </Container>
       </Container>
-      <Container className="basis-3/4 flex">
+      <Container className="basis-1/5 md:basis-3/4 flex">
         <Image src={Cover} alt='cover' priority/>
       </Container>
     </Container>
