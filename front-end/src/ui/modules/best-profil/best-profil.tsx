@@ -10,7 +10,7 @@ export const BestProfil = () => {
     {id:4, nom: 'Nathan Boke', domains: [{id: 1, name: '1'}, {id:3, name: '2'}, {id: 4, name: '3'}]},
   ]
   return (
-    <Container className="bg-white_powder p-16">
+    <Container className="bg-white_powder block overflow-hidden p-4 md:p-16">
       <Container>
         <Typography variant="title-base" component="h2">Nos meilleurs formateurs</Typography>
         <Typography variant="body-base" component="p">
@@ -20,7 +20,7 @@ export const BestProfil = () => {
         </Typography>
       </Container>
       <br/>
-      <Container className="flex flex-row gap-8">
+      <Container className="overflow-auto flex flex-row gap-4 md:gap-8">
       {
         t.map(x => 
           <Container key={x.id} className="basis-1/4 flex flex-col p-4 bg-white gap-4 items-center rounded">
