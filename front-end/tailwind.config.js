@@ -91,19 +91,19 @@ module.exports = {
 
         }],
         'body-lg': ['2em', {
-          lineHeight: '0.9em',
+          lineHeight: '1.1em',
           letterSpacing: '0em',
           fontWeight: '400'
 
         }],
         'body-base': ['1em', {
-          lineHeight: '1em',
+          lineHeight: '1.1em',
           letterSpacing: '0em',
           fontWeight: '400'
 
         }],
         'body-sm': ['0.8em', {
-          lineHeight: '1em',
+          lineHeight: '1.1em',
           letterSpacing: '0em',
           fontWeight: '400'
         }],

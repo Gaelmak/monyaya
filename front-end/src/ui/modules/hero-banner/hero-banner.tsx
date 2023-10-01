@@ -10,7 +10,7 @@ export const HeroBanner = () => {
 
   return(
     <Container className="flex flex-col md:flex-row px-4 md:px-16 md:h-[90vh] gap-4">
-      <Container className="md:basis-1/4 flex flex-col justify-center gap-3 md:gap-8">
+      <Container className="md:basis-1/4 flex flex-col justify-center gap-4 md:gap-8">
         <Typography component="h1" variant="title-lg">
           Apprenez<br/>ce que vous voulez,<br/>où vous voulez
         </Typography>
