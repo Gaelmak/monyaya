@@ -1,6 +1,6 @@
 'use client'
 
-import { Buttons } from "@/ui/components/buttons/button";
+import { Buttons } from "@/ui/components/buttons/buttons";
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 

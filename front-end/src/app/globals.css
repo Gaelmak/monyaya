@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply mt-[8vh] md:mt-[10vh]
+  @apply mt-[10vh] md:mt-[10vh]
 }
 
 .animate{

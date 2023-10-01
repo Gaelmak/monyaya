@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 
 import { Typography } from "@/ui/components/typography/typography"
-import { Buttons } from "@/ui/components/buttons/button"
+import { Buttons } from "@/ui/components/buttons/buttons"
 import MonYayaLogo from '../../public/Monyaya.png'
 import Link from "next/link"
 import { ActiveLink } from "./active-link"
@@ -29,7 +29,7 @@ export const MobileNavigation = ({ className }: Props) => {
         )
       }
     >
-      <Container className="flex flex-row items-center px-4 py-2 gap-4">
+      <Container className="flex flex-row items-center px-4 py-2 gap-4 h-[10vh]">
         {/* Burger Button Menu */}
         <button
           className='md:hidden'
@@ -59,7 +59,7 @@ export const MobileNavigation = ({ className }: Props) => {
         className={
           clsx(
             navbarOpen ? 'right-0' : ' right-[-80vw] ',
-            'md:hidden border-l-[1px] border-slate-50 px-4 absolute block h-[90vh] w-[80vw] z-[100] pt-6 top-[8vh] bg-white animate'
+            'md:hidden border-l-[1px] border-slate-50 px-4 absolute block h-[90vh] w-[80vw] z-[100] pt-6 top-[10vh] bg-white animate'
           )
         }
       >
@@ -73,8 +73,8 @@ export const MobileNavigation = ({ className }: Props) => {
               </Typography>  
             )
           }
-          <Buttons>Connexion</Buttons>
-          <Buttons variant="ghost">Inscription</Buttons>  
+          <Buttons variant="ghost">Connexion</Buttons>
+          <Buttons>Inscription</Buttons>  
         </nav>
       </div>
     </header>

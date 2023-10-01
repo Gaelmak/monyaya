@@ -1,7 +1,7 @@
 'use client'
 
 import { Typography } from "@/ui/components/typography/typography"
-import { Buttons } from "@/ui/components/buttons/button"
+import { Buttons } from "@/ui/components/buttons/buttons"
 import MonYayaLogo from '../../public/Monyaya.png'
 import Link from "next/link"
 import { ActiveLink } from "./active-link"
@@ -39,8 +39,8 @@ export const Navigation = ({ className }: Props) => {
               </Typography>  
             )
           }
-          <Buttons>Connexion</Buttons>
-          <Buttons variant="ghost">Inscription</Buttons>
+          <Buttons variant="ghost">Connexion</Buttons>
+          <Buttons>Inscription</Buttons>
         </nav>
       </Container>
     </header>
