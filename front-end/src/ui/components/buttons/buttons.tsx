@@ -1,36 +1,40 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
+import { Button as _Button } from "@/components/ui/button"
 import clsx from "clsx"
 import Link from "next/link"
-import { Typography } from "../typography/typography"
+import { Loader2 } from "lucide-react"
 
 interface Props {
   action?: Function
   baseUrl?: string
-  variant? : 
+  variant?: 
     'primary'                  |
     'secondary'                |
     'accent'                   |
     'ghost'
   className?: string
-  children: React.ReactNode
+  children?: React.ReactNode
   disabled?: boolean
   buttonType?: 'link' | 'anchor' | 'action' | undefined
   outline?: 'outline' | 'default'
-  width? : 'large' | 'regular' | 'small'
+  width?: 'lg' | 'default' | 'sm' | 'icon'
+  Icon?: React.ElementType
+  isloading?: boolean
 }
 
 export const  Buttons = ({
-  outline = 'default',
-  disabled = false,
-  width = 'regular',
-  variant = 'primary',
-  className,
-  children,
+  action = () => {},
   baseUrl,
   buttonType = undefined,
-  action = () => {}
+  children,
+  className,
+  disabled = false,
+  Icon,
+  isloading = false,
+  outline = 'default',
+  variant = 'primary',
+  width = 'default',
 }: Props) => {
 
   let colorStyles: string = ''
@@ -42,7 +46,7 @@ export const  Buttons = ({
       txt_colorStyles = 'text-white'
       break;  
     case 'ghost':
-      colorStyles = 'bg-white_powder hover:bg-white'
+      colorStyles = 'bg-gray-50 hover:bg-gray-100'
       txt_colorStyles = 'text-primary-Default'
   }
 
@@ -104,61 +108,107 @@ export const  Buttons = ({
   
   const buttonLink = (
     <>
-      <Button
+      <_Button
         variant={outline}
         className={
           clsx(
-            'rounded',
+            children? "rounded" : "rounded-full",
             colorStyles,
             txt_colorStyles,
             className
           )
         }
-        disabled={disabled}
+        size={
+          children ?
+            width
+            :
+            'icon'
+        }
+        disabled= {isloading ? isloading : disabled}
+        asChild
       >
         <Link href={baseUrl!}>
+          {
+            isloading ? 
+            <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+            :
+              Icon ?
+              <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+              :
+              null
+          }
           {children}
         </Link>
-      </Button>
+      </_Button>
     </>
   )
 
   const buttonAction = (
     <>
-      <Button
+      <_Button
         variant={outline}
         className={
           clsx(
-            'rounded',
+            children? "rounded" : "rounded-full",
             txt_colorStyles,
             colorStyles,
             className
           )
         }
-        disabled={disabled}
+        size={
+          children ?
+            width
+            :
+            'icon'
+        }
+        disabled= {isloading ? isloading : disabled}
         onClick={handleClick}
       >
+        {
+          isloading ? 
+          <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+          :
+            Icon ?
+            <Icon className= {children? "mr-2 h-5 w-5" : "h-5 w-5"}/>
+            :
+            null
+        }
         {children}
-      </Button>
+      </_Button>
     </>
   )
 
-  const buttonUndefined = (
+  const buttonDefault = (
     <>
-      <Button
+      <_Button
         variant={outline}
         className={
           clsx(
-            'rounded',
+            children? "rounded" : "rounded-full",
             txt_colorStyles,
             colorStyles,
             className
           )
         }
-        disabled={disabled}
+        size={
+          children ?
+            width
+            :
+            'icon'
+        }
+        disabled= {isloading ? isloading : disabled}
       >
+        {
+          isloading ? 
+          <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+          :
+            Icon ?
+            <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+            :
+            null
+        }
         {children}
-      </Button>
+      </_Button>
     </>
   )
 
@@ -169,7 +219,7 @@ export const  Buttons = ({
           buttonLink
           : buttonType === 'action' ?
             buttonAction
-            : buttonUndefined
+            : buttonDefault
 
       }
     </>

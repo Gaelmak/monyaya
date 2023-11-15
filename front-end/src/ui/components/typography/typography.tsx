@@ -1,11 +1,10 @@
 import { clsx } from "clsx"
 
-interface Props {
-  color?: 'destructive' | 'black' | 'white' | 'secondary' | 'primary' | 'accent'
-  children: React.ReactNode
+interface Props {children: React.ReactNode
   className?: string
-  component: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p'
-  variant: 
+  component?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'span'
+  variant?: 
+    'display'     |
     'title-lg'    | 
     'title-base'  | 
     'title-sm'    | 
@@ -15,41 +14,20 @@ interface Props {
     'body-sm'     
 }
 
+
 export const Typography = ({
   variant = 'body-base',
-  color = 'black',
   children, 
   className,
   component : Component  = 'p'
 }: Props) => {
-
-  let variantStyles: string = ''
-  let colorStyles: string = ''
   
-
-
-  switch (color) {
-    case "black": // Default
-      colorStyles = 'text-black'
-      break;
-    case "primary":
-      colorStyles = 'text-primary-Default'
-      break;
-    case "secondary":
-      colorStyles = 'text-secondary-Default'
-      break;
-    case "white":
-      colorStyles = 'text-white'
-      break;
-    case "accent":
-      colorStyles = 'text-accent'
-      break;
-    case "destructive":
-      colorStyles = 'text-destructive'
-      break;
-  }
-
+  let variantStyles: string = ''
+  
   switch (variant) {
+    case "display":
+      variantStyles = 'text-display'
+      break;
     case "title-lg":
       variantStyles = 'text-title-lg'
       break;
@@ -78,7 +56,6 @@ export const Typography = ({
       className={
         clsx(
           variantStyles,
-          colorStyles,
           className
         )
       }

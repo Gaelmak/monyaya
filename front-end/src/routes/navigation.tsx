@@ -25,11 +25,11 @@ export const Navigation = ({ className }: Props) => {
         )
       }
     >
-      <Container className="flex flex-row items-center justify-between px-16 py-2 h-[10vh]">
+      <Container className="flex flex-row items-center justify-between px-8 h-[10vh]">
         <Link href="/">
           <Image src={MonYayaLogo} alt='Logo MonYaya' priority/>
         </Link>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-4">
           {
             MainRoutes.map(route => 
               <Typography key={route.label} variant="body-base" component="p">
@@ -39,8 +39,8 @@ export const Navigation = ({ className }: Props) => {
               </Typography>  
             )
           }
-          <Buttons variant="ghost">Connexion</Buttons>
-          <Buttons>Inscription</Buttons>
+          <Buttons variant="primary">Connexion</Buttons>
+          <Buttons variant="secondary">Inscription</Buttons>
         </nav>
       </Container>
     </header>
