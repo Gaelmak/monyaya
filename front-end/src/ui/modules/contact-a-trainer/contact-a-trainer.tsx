@@ -38,8 +38,8 @@ export const ContactATrainer = () => {
     <Container className="p-6 border-[1px] border-gray-100 rounded">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <Container className='flex flex-row gap-4 justify-between items-end'>
-          <Container className="basis-1/5">
+        <Container className='grid grid-cols-2 md:flex md:flex-row gap-4 md:justify-between md:items-end'>
+          <Container className="md:basis-1/5">
             <InputFieldSelect
               control={form.control}
               name='course'
@@ -49,7 +49,7 @@ export const ContactATrainer = () => {
               description={''}
             />
           </Container>
-          <Container className="basis-1/5">
+          <Container className="md:basis-1/5">
             <InputFieldSelect
               control={form.control}
               name='budget'
@@ -59,7 +59,7 @@ export const ContactATrainer = () => {
               description={''}
             />
           </Container>
-          <Container className="basis-2/5">
+          <Container className="col-span-2 md:basis-2/5">
             <InputField
               control={form.control}
               name="name"
@@ -67,9 +67,9 @@ export const ContactATrainer = () => {
               placeholder="Recherchez un formateur par son nom"
             />
           </Container>
-          <Container className="basis-1/5 flex flex-row gap-4">
+          <Container className="col-span-2 md:basis-1/5 flex flex-row gap-4">
             <Buttons Icon={Filter} className="mb-2">Filtrer</Buttons>
-            <Buttons variant="secondary" Icon={Eye} className="mb-2">Tout voir</Buttons>
+            <Buttons variant="secondary" className="mb-2">Tout voir</Buttons>
           </Container>
         </Container>
         </form>

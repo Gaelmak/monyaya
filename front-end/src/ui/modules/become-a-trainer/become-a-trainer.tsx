@@ -6,25 +6,25 @@ import { Buttons } from "@/ui/components/buttons/buttons"
 
 export const BecomeATrainer = () => {
   return (
-    <Container className="md:mt-8 bg-primary-Default flex flex-col-reverse px-4 py-0 md:px-8 md:flex-row items-center md:items-end md:h-[450px]">
-      <Container className="md:basis-1/4">
+    <Container className="bg-primary-Default flex flex-col-reverse px-4 py-0 md:px-8 md:flex-row items-center md:items-end md:h-[450px]">
+      <Container className="md:basis-1/3">
         <Image 
           src={Young} 
           alt="young man"
         />
       </Container>
-      <Container className="flex flex-col gap-8 md:gap-4 h-full py-10 md:py-0 justify-center md:basis-3/4">
-        <Typography component="h1" variant="display" className="text-white">
+      <Container className="flex flex-col gap-8 md:gap-4 h-full py-10 md:py-0 justify-center md:basis-2/3">
+        <Typography component="h2" variant="title-lg" className="text-white">
           Devenez formateur et partagez vos connaissances
         </Typography>
         <Container>
-          <Typography component="p" variant="body-base" className="text-white">
+          <Typography component="p" variant="body-lg" className="text-white">
             Vous avez des connaissances et des compétences que vous souhaitez partager ?
           </Typography>
-          <Typography component="p" variant="body-base" className="text-white">
+          <Typography component="p" variant="body-lg" className="text-white">
             Notre plateforme vous permet de proposer vos cours à domicile et de générer des revenus.
           </Typography>
-          <Typography component="p" variant="body-base" className="text-white">
+          <Typography component="p" variant="body-lg" className="text-white">
             Inscrivez-vous dès aujourd'hui et commencez à partager vos connaissances !
           </Typography>
         </Container>

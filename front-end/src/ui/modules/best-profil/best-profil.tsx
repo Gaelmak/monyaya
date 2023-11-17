@@ -12,18 +12,17 @@ export const BestProfil = () => {
     {id:4, nom: 'Nathan Boke', domains: [{id: 1, name: '1'}, {id:3, name: '2'}, {id: 4, name: '3'}]},
   ]
   return (
-    <Container className="block overflow-hidden py-8 px-4 md:px-8 md:py-8">
+    <Container className="block overflow-hidden py-8 px-4 md:px-8 md:py-8 bg-[#fdfdfd]">
       <Container className="">
-        <Typography variant="display" component="h1">Nos meilleurs formateurs</Typography>
-        <Typography variant="body-lg" component="p">
+        <Typography variant="title-lg" component="h2">Nos meilleurs formateurs</Typography>
+        <Typography variant="body-base" component="p">
           Vous voulez apprendre de la meilleure façon ?<br/>
           Nos formateurs experts vous guideront vers la réussite.<br/>
           Découvrez leurs profils et choisissez celui qui vous convient.
         </Typography>
       </Container>
       <br/>
-      <br/>
-      <Container className="overflow-auto flex flex-row gap-4 md:gap-8">
+      <Container className="overflow-auto flex flex-row gap-4 md:gap-4">
       {
         t.map(x => 
           <Container key={x.id} className="basis-1/4 flex flex-col px-8 py-4 md:px-4 md:py-4 bg-white gap-4 items-center rounded border-secondary-100 border-[1px]">
