@@ -1,11 +1,11 @@
 import { Container } from "@/ui/components/container/container"
-import { ContactATrainer } from "../contact-a-trainer/contact-a-trainer"
+import { FilterCourses } from "../filter-courses/filter-courses"
 
 export const Profils = () => {
   return(
     <Container className="px-8">
       <Container>
-        <ContactATrainer/>
+        <FilterCourses/>
       </Container>
     </Container>
   )

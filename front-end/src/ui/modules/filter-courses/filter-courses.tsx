@@ -7,18 +7,13 @@ import { useForm } from "react-hook-form"
 import { CourseSearchFormFieldsType } from "@/types/forms"
 import { Buttons } from "@/ui/components/buttons/buttons"
 import { Container } from "@/ui/components/container/container"
-import { Typography } from "@/ui/components/typography/typography"
-import { InputFieldDate } from '@/ui/components/input-field-date/input-field-date'
 import { InputFieldSelect } from '@/ui/components/input-field-select/input-field-select'
-import { ToastAction } from "@/components/ui/toast"
-import { useToast } from "@/components/ui/use-toast"
 import { CourseList } from "@/lib/course-list/course-list"
 import { InputField } from "@/ui/components/input-field/input-field"
 import { PriceCategory } from "@/lib/price-category/price-category"
-import { Eye, Filter } from "lucide-react"
+import { Filter } from "lucide-react"
 
-export const ContactATrainer = () => {
-  const { toast } = useToast()
+export const FilterCourses = () => {
 
   const form = useForm<z.infer<typeof CourseSearchFormFieldsType>>({
     resolver: zodResolver(CourseSearchFormFieldsType),
@@ -34,8 +29,7 @@ export const ContactATrainer = () => {
   }
   
   return(
-    
-    <Container className="p-6 border-[1px] border-gray-100 rounded">
+    <Container className="p-6 border-[1px] border-gray-100 rounded bg-[#fdfdfd]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <Container className='grid grid-cols-2 md:flex md:flex-row gap-4 md:justify-between md:items-end'>

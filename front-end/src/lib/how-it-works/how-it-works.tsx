@@ -1,5 +1,5 @@
 import { SliderContents } from "@/types/slider-contents";
-import { CheckCircle, FormInput, HelpCircle } from "lucide-react";
+import { CheckCircle, HelpCircle } from "lucide-react";
 
 export const HowItWorks : SliderContents[] = [
   {

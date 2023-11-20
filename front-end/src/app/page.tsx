@@ -1,7 +1,7 @@
 import { AppMobile } from '@/ui/modules/app-mobile/app-mobile'
 import { BecomeATrainer } from '@/ui/modules/become-a-trainer/become-a-trainer'
 import { BestProfil } from '@/ui/modules/best-profil/best-profil'
-import { CourseSearchForm } from '@/ui/modules/course-search-form/course-search-form'
+import { HowItWorks } from '@/ui/modules/how-it-works/how-it-works'
 import { HeroBanner } from '@/ui/modules/hero-banner/hero-banner'
 import { Profils } from '@/ui/modules/profils/profils'
 import { Testimonials } from '@/ui/modules/testimonials/testimonials'
@@ -12,7 +12,7 @@ export default function Home() {
       <HeroBanner/>
       <BestProfil/>
       <BecomeATrainer/>
-      <CourseSearchForm/>
+      <HowItWorks/>
       <Profils/>
       <AppMobile/>
       <Testimonials/>

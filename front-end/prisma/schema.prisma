@@ -12,9 +12,50 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  image     String
-  createdAt DateTime @default(now())
+  id          Int       @id @default(autoincrement())
+  courses     Course[]
+  createdAt   DateTime  @default(now())
+  email       String    @unique
+  firstName   String
+  image       String
+  lastName    String
+  phoneNumber String    @unique
+}
+
+model Trainer {
+  id          Int       @id @default(autoincrement())
+  Courses     Course[]
+  createdAt   DateTime  @default(now())
+  email       String    @unique
+  firstName   String
+  image       String
+  lastName    String
+  phoneNumber String    @unique
+  subCategory SubCategory[]
+}
+
+model SubCategory {
+  id          Int       @id @default(autoincrement())
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  createdAt   DateTime  @default(now())
+  name        String    @unique
+  trainers    Trainer[]
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  courses     SubCategory[]
+  createdAt   DateTime  @default(now())
+  name        String    @unique
+}
+
+model Course {
+  id          Int       @id @default(autoincrement())
+  authorId    Int       
+  createdAt   DateTime  @default(now())
+  custormers  User[]
+  description String
+  price       Float
+  trainer     Trainer   @relation(fields:[authorId], references: [id])
 }
