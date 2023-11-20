@@ -14,7 +14,7 @@ export const BecomeATrainer = () => {
         />
       </Container>
       <Container className="flex flex-col gap-8 md:gap-4 h-full py-10 md:py-0 justify-center md:basis-2/3">
-        <Typography component="h2" variant="title-lg" className="text-white">
+        <Typography component="h1" variant="display" className="text-white">
           Devenez formateur et partagez vos connaissances
         </Typography>
         <Container>

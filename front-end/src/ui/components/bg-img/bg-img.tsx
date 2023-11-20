@@ -27,7 +27,7 @@ export const BgImg = ({
     >
       <Container 
         className={clsx(
-          "h-full overflow-auto relative",
+          "w-full h-full overflow-auto relative",
           classNameImg
         )}
       >
