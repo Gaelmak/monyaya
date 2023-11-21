@@ -37,7 +37,6 @@ export const FilterCourses = () => {
             <InputFieldSelect
               control={form.control}
               name='course'
-              label="Formation"
               placeholder="Formations"
               options={CourseList} 
               description={''}
@@ -47,7 +46,6 @@ export const FilterCourses = () => {
             <InputFieldSelect
               control={form.control}
               name='budget'
-              label="Budget"
               placeholder="Budget"
               options={PriceCategory} 
               description={''}
@@ -57,13 +55,11 @@ export const FilterCourses = () => {
             <InputField
               control={form.control}
               name="name"
-              label="Nom"
               placeholder="Recherchez un formateur par son nom"
             />
           </Container>
           <Container className="col-span-2 md:basis-1/5 flex flex-row gap-4">
-            <Buttons Icon={Filter} className="mb-2">Filtrer</Buttons>
-            <Buttons variant="secondary" className="mb-2">Tout voir</Buttons>
+            <Buttons Icon={Filter} variant="accent" className="mb-2 w-full">Filtrer</Buttons>
           </Container>
         </Container>
         </form>

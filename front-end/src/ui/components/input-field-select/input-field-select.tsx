@@ -22,7 +22,7 @@ import { Options } from "@/types/options"
 interface Props {
   control: any,
   name: string,
-  label: string,
+  label?: string,
   placeholder: string,
   description?: string,
   options: Options[]
@@ -42,7 +42,12 @@ export const InputFieldSelect = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          {
+            label ?
+            <FormLabel>{label}</FormLabel>
+            :
+            null
+          }
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger className="rounded focus:ring-primary-Default">
