@@ -5,7 +5,7 @@ import clsx from "clsx"
 interface Props {
   children?: React.ReactNode
   className?: string
-  src: StaticImageData
+  src: StaticImageData | string
   alt: string
   classNameImg?: string
 }

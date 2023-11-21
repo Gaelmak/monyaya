@@ -11,6 +11,7 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+
 model User {
   id          Int       @id @default(autoincrement())
   courses     Course[]
@@ -58,4 +59,15 @@ model Course {
   description String
   price       Float
   trainer     Trainer   @relation(fields:[authorId], references: [id])
+}
+
+model NewsletterSubscribers {
+  id                    Int     @id @default(autoincrement())
+  email                 String   @unique
+  subscriptionStatus    Status     @default(active)
+}
+
+enum Status {
+  active
+  inactive
 }

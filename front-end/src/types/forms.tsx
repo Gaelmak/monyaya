@@ -22,3 +22,7 @@ export const CourseSearchFormFieldsType = z.object({
   budget: z.string(),
   name: z.string(),
 })
+
+export const NewsletterRegisterFormFieldsType = z.object({
+  email: z.string().email("Veuillez entrer une adresse mail valide")
+})

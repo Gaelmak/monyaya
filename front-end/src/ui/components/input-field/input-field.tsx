@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 interface Props {
   control: any,
   name: string,
-  label: string,
+  label?: string,
   placeholder: string,
   description? : string,
   type?: 
@@ -35,7 +35,12 @@ export const InputField = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          {
+            label ?
+            <FormLabel>{label}</FormLabel>
+            :
+            null
+          }
           <FormControl>
             <Input className="rounded focus:ring-primary-Default" placeholder={placeholder} {...field} type={type}/>
           </FormControl>
