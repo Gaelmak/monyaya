@@ -27,7 +27,7 @@ export const AppMobile = () => {
   }
 
   return (
-    <Container className="w-full flex flex-row px-6 py-20">
+    <Container className="w-full flex flex-col md:flex-row px-4 md:px-6 py-10 md:py-20">
       <Container className="basis-1/2">
         <Image
           src={Mobile} 
@@ -41,10 +41,10 @@ export const AppMobile = () => {
         <Typography variant="display" component="h1" className="text-secondary-950">
           L'application mobile bientôt disponible !
         </Typography>
-        <Container className="flex flex-row gap-4">
-          <Buttons disabled={true} Icon={Download}>Play Store</Buttons>
-          <Buttons disabled={true} Icon={Download}>App Store</Buttons>
-          <Buttons disabled={true} Icon={Download}>Fichier .Apk</Buttons>
+        <Container className="flex flex-col md:flex-row gap-4">
+          <Buttons disabled={true} Icon={Download} className="w-full md:w-auto">Play Store</Buttons>
+          <Buttons disabled={true} Icon={Download} className="w-full md:w-auto">App Store</Buttons>
+          <Buttons disabled={true} Icon={Download} className="w-full md:w-auto">Fichier .Apk</Buttons>
         </Container>
         <Container className="rounded bg-secondary-950 text-white p-4 flex flex-col justify-center gap-4">
           <Container>

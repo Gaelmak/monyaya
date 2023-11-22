@@ -3,7 +3,7 @@ import { FilterCourses } from "../filter-courses/filter-courses"
 
 export const Profils = () => {
   return(
-    <Container className="px-8">
+    <Container className="px-4 md:px-8">
       <Container>
         <FilterCourses/>
       </Container>

@@ -1,5 +1,4 @@
-import { ListOfTestimonials } from "@/lib/list-of-testimonials/list-of-testimonials"
-import { BgImg } from "@/ui/components/bg-img/bg-img"
+import { ListOfTestimonials } from "@/lib/testimonials-list/list-of-testimonials"
 import { Container } from "@/ui/components/container/container"
 import { Typography } from "@/ui/components/typography/typography"
 import DefaultImage from '../../../../public/rekreatioon.jpg'
@@ -7,14 +6,14 @@ import Image from "next/image"
 
 export const Testimonials = () => {
   return (
-    <Container className="px-6 flex flex-col gap-8">
+    <Container className="px-4 md:px-6 flex flex-col gap-8">
       <Container className="w-full text-center">
         <Typography variant="display" component="h2">Ce qu'ils pensent de nous :</Typography>
       </Container>
       {
         ListOfTestimonials.map(({id, name, position, company, message, imgUrl}) => 
           <Container key={id} className="w-full flex flex-col items-center">
-            <Container className="w-[80%] hover:drop-shadow-md hover:cursor-pointer p-8 flex flex-row items-center border-gray-100 rounded bg-[#fdfdfd] gap-8 animate">
+            <Container className="w-full md:w-[80%] hover:drop-shadow-md hover:cursor-pointer p-4 md:p-8 flex flex-col md:flex-row items-center border-gray-100 rounded bg-[#fdfdfd] gap-8 animate">
               <Container className="basis-1/6 flex justify-center items-center">
                 {
                   imgUrl ?

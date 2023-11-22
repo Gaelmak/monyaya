@@ -26,7 +26,7 @@ export const Typography = ({
   
   switch (variant) {
     case "display":
-      variantStyles = 'text-display'
+      variantStyles = 'text-title-lg md:text-display'
       break;
     case "title-lg":
       variantStyles = 'text-title-lg'
@@ -41,7 +41,7 @@ export const Typography = ({
       variantStyles = 'text-title-xs'
       break;
     case "body-lg":
-      variantStyles = 'text-body-lg'
+      variantStyles = 'text-body-base md:text-body-lg'
       break;
     case "body-base": // Default
       variantStyles = 'text-body-base'

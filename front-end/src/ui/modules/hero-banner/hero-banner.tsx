@@ -10,8 +10,8 @@ import { BgImg } from "@/ui/components/bg-img/bg-img"
 export const HeroBanner = () => {
 
   return(
-    <Container className="flex flex-col md:flex-row px-4 md:px-8 h-[90vh]">
-      <Container className="basis-3/4 md:basis-3/5 flex flex-col justify-center gap-4 md:gap-8">
+    <Container className="flex flex-col md:flex-row px-4 py-4 md:py-0 md:px-8 h-[92vh] gap-4 md:gap-0">
+      <Container className="basis-1/2 md:basis-3/5 flex flex-col justify-center gap-4 md:gap-8">
         <Typography component="h1" variant="display">
           Apprenez<br/>ce que vous voulez,<br/>où vous voulez
         </Typography>
@@ -19,7 +19,7 @@ export const HeroBanner = () => {
           <Typography component="p" variant="body-lg">
             Que vous soyez intéressé par
           </Typography>
-          <span className="text-[1.5rem] font-bold text-primary-Default">
+          <span className="text-[1rem] md:text-[1.5rem] font-bold text-primary-Default">
             <Typewriter
               options={{
                 autoStart: true,
@@ -53,7 +53,7 @@ export const HeroBanner = () => {
           <Buttons width="lg">Commencer</Buttons>
         </Container>
       </Container>
-      <Container className="basis-1/4 md:basis-2/5 flex md:justify-end md:items-center md:my-8">
+      <Container className="basis-1/2 md:basis-2/5 flex md:justify-end md:items-center md:my-8">
         <BgImg src={Cover} alt={"cover"} className="w-full h-full md:rounded-full md:overflow-hidden" classNameImg="w-full h-full"/>
       </Container>
     </Container>

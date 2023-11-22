@@ -29,8 +29,12 @@ export const MobileNavigation = ({ className }: Props) => {
         )
       }
     >
-      <Container className="flex flex-row items-center px-4 py-2 gap-4 h-[10vh]">
+      <Container className="flex flex-row items-center justify-between px-4 py-2 gap-4 h-[8vh]">
         {/* Burger Button Menu */}
+        <Link href="/">
+          {/* <Image src={MonYayaLogo} alt='Logo MonYaya' priority/> */}
+          Mon Yaya
+        </Link>
         <button
           className='md:hidden'
           onClick={() => {
@@ -48,22 +52,19 @@ export const MobileNavigation = ({ className }: Props) => {
             </svg>
           </div>
         </button>
-        <Link href="/">
-          {/* <Image src={MonYayaLogo} alt='Logo MonYaya' priority/> */}
-          Mon Yaya
-        </Link>
       </Container>
       
       {/* Mobile Menu */}
-      <div 
+      <Container 
         className={
           clsx(
-            navbarOpen ? 'right-0' : ' right-[-80vw] ',
-            'md:hidden border-l-[1px] border-slate-50 px-4 absolute block h-[90vh] w-[80vw] z-[100] pt-6 top-[10vh] bg-white animate'
+            navbarOpen ? 'right-0' : ' right-[-90vw] ',
+            'md:hidden border-l-[1px] border-slate-50 px-4 absolute block h-[92vh] w-[90vw] z-[100] py-6 top-[8vh] bg-white animate'
           )
         }
       >
-        <nav className="flex flex-col items-start gap-6">
+        <nav className="flex flex-col items-center gap-4 justify-between h-full">
+          <Container className='w-full flex flex-col gap-4'>
           {
             MainRoutes.map(route => 
               <Typography key={route.label} variant="body-base" component="p">
@@ -73,10 +74,13 @@ export const MobileNavigation = ({ className }: Props) => {
               </Typography>  
             )
           }
-          <Buttons variant="ghost">Connexion</Buttons>
-          <Buttons>Inscription</Buttons>  
+          </Container>
+          <Container className='w-full flex flex-col gap-4'>
+            <Buttons className='w-full'>Connexion</Buttons>
+            <Buttons variant="secondary" className='w-full'>Inscription</Buttons>  
+          </Container>
         </nav>
-      </div>
+      </Container>
     </header>
   )
 }

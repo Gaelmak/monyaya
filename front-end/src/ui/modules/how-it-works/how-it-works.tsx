@@ -6,8 +6,8 @@ import { Scroll } from "@/ui/components/scroll/scroll"
 
 export const HowItWorks = () => {
   return(
-    <Container className="flex p-8">
-      <Container className="h-[380px] w-full rounded flex flex-col justify-center items-center text-center">
+    <Container className="flex p-4 md:p-8">
+      <Container className="h-[500px] md:h-[380px] w-full rounded flex flex-col justify-center items-center text-center">
         <Scroll className="w-full" contents={informaton}/>
       </Container>
     </Container>
