@@ -32,7 +32,7 @@ export const FilterCourses = () => {
     <Container className="p-4 border-[1px] drop-shadow-md border-gray-100 rounded bg-[#fdfdfd]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 md:space-y-4">
-        <Container className='grid grid-cols-2 md:flex md:flex-row gap-2 md:gap-4 md:justify-between md:items-end'>
+        <Container className='grid grid-cols-2 md:flex md:flex-row gap-2 md:justify-between md:items-end'>
           <Container className="md:basis-1/5">
             <InputFieldSelect
               control={form.control}

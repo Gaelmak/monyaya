@@ -40,7 +40,7 @@ export const Scroll = ({
         {
           contents?.map(({title, id, description, Icon, bgColor, color}) =>
             <Container key={id} className={clsx("w-full h-full rounded", bgColor ? bgColor : 'bg-white', color ? color : 'text-black')}>
-              <Container className='h-full flex flex-col gap-8 justify-center items-center'>
+              <Container className='h-full flex flex-col p-4 gap-4 md:gap-8 justify-center items-center'>
                 <Container>
                   {
                     title ?

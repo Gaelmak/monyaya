@@ -10,12 +10,12 @@ import { BgImg } from "@/ui/components/bg-img/bg-img"
 export const HeroBanner = () => {
 
   return(
-    <Container className="flex flex-col md:flex-row px-4 py-4 md:py-0 md:px-8 h-[92vh] gap-4 md:gap-0">
-      <Container className="basis-1/2 md:basis-3/5 flex flex-col justify-center gap-4 md:gap-8">
-        <Typography component="h1" variant="display">
+    <Container className="flex flex-col md:flex-row px-4 md:py-0 md:px-8 h-[92vh] gap-4 md:gap-0">
+      <Container className="basis-1/2 md:basis-3/5 flex flex-col justify-center items-center md:items-start gap-4 md:gap-8">
+        <Typography component="h1" variant="display" className="text-center md:text-left">
           Apprenez<br/>ce que vous voulez,<br/>où vous voulez
         </Typography>
-        <Container>
+        <Container className="flex flex-col items-center md:items-start">
           <Typography component="p" variant="body-lg">
             Que vous soyez intéressé par
           </Typography>
@@ -44,7 +44,7 @@ export const HeroBanner = () => {
               }}
             />
           </span>
-          <Typography component="p" variant="body-lg">
+          <Typography component="p" variant="body-lg" className="text-center md:text-left">
             nous avons le formateur parfait pour vous.<br/>
             Découvrez notre sélection de formateurs dès aujourd'hui !
           </Typography>
@@ -53,8 +53,8 @@ export const HeroBanner = () => {
           <Buttons width="lg">Commencer</Buttons>
         </Container>
       </Container>
-      <Container className="basis-1/2 md:basis-2/5 flex md:justify-end md:items-center md:my-8">
-        <BgImg src={Cover} alt={"cover"} className="w-full h-full md:rounded-full md:overflow-hidden" classNameImg="w-full h-full"/>
+      <Container className="basis-1/2 md:basis-2/5 flex justify-center md:justify-end items-center md:my-8">
+        <BgImg src={Cover} alt={"cover"} className="w-[20rem] h-[20rem] md:w-[35rem] md:h-[35rem] rounded-full overflow-hidden" classNameImg="w-full h-full"/>
       </Container>
     </Container>
   )
