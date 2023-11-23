@@ -64,7 +64,7 @@ export const MobileNavigation = ({ className }: Props) => {
         }
       >
         <nav className="flex flex-col items-center gap-4 justify-between h-full">
-          <Container className='w-full flex flex-col gap-4'>
+          <Container className='w-full flex flex-col gap-2 md:gap-4'>
           {
             MainRoutes.map(route => 
               <Typography key={route.label} variant="body-base" component="p">
@@ -75,7 +75,7 @@ export const MobileNavigation = ({ className }: Props) => {
             )
           }
           </Container>
-          <Container className='w-full flex flex-col gap-4'>
+          <Container className='w-full flex flex-col gap-2 md:gap-4 mb-4 '>
             <Buttons className='w-full'>Connexion</Buttons>
             <Buttons variant="secondary" className='w-full'>Inscription</Buttons>  
           </Container>

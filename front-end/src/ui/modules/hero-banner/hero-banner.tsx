@@ -10,8 +10,8 @@ import { BgImg } from "@/ui/components/bg-img/bg-img"
 export const HeroBanner = () => {
 
   return(
-    <Container className="flex flex-col md:flex-row px-4 md:py-0 md:px-8 h-[92vh] gap-4 md:gap-0">
-      <Container className="basis-1/2 md:basis-3/5 flex flex-col justify-center items-center md:items-start gap-4 md:gap-8">
+    <Container className="flex flex-col md:flex-row px-4 md:py-0 md:px-8 h-[91vh] gap-4 md:gap-0">
+      <Container className="basis-1/3 md:basis-3/5 flex flex-col justify-center items-center md:items-start gap-4 md:gap-8">
         <Typography component="h1" variant="display" className="text-center md:text-left">
           Apprenez<br/>ce que vous voulez,<br/>où vous voulez
         </Typography>
@@ -53,7 +53,7 @@ export const HeroBanner = () => {
           <Buttons width="lg">Commencer</Buttons>
         </Container>
       </Container>
-      <Container className="basis-1/2 md:basis-2/5 flex justify-center md:justify-end items-center md:my-8">
+      <Container className="basis-1/3 md:basis-2/5 flex justify-center md:justify-end items-center md:my-8">
         <BgImg src={Cover} alt={"cover"} className="w-[20rem] h-[20rem] md:w-[35rem] md:h-[35rem] rounded-full overflow-hidden" classNameImg="w-full h-full"/>
       </Container>
     </Container>
