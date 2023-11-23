@@ -13,23 +13,24 @@ export const Testimonials = () => {
       {
         ListOfTestimonials.map(({id, name, position, company, message, imgUrl}) => 
           <Container key={id} className="w-full flex flex-col items-center">
-            <Container className="w-full md:w-[80%] hover:drop-shadow-md hover:cursor-pointer p-4 md:p-8 flex flex-col md:flex-row items-center border-gray-100 rounded bg-[#fdfdfd] gap-8 animate">
-              <Container className="basis-1/6 flex justify-center items-center">
+            <Container className="w-full md:w-[60%] hover:shadow-md hover:cursor-pointer p-4 md:p-8 flex flex-col border-gray-100 rounded bg-primary-50 gap-8 animate">
+              <Container>
+                <Typography>{message}</Typography>
+              </Container>
+              <Container className="flex gap-4 flex-row items-center">
+                <Container className="flex justify-center items-center">
                 {
                   imgUrl ?
-                  <Container className="w-[150px] h-[150px] flex items-center justify-center rounded-full overflow-hidden">
+                  <Container className="w-[80px] h-[80px] flex rounded-full overflow-hidden">
                     <Image src={imgUrl} alt="Default image" className="h-full"/>
                   </Container>
                   :
-                  <Container className="w-[150px] h-[150px] flex items-center justify-center rounded-full overflow-hidden">
+                  <Container className="w-[80px] h-[80px] flex rounded-full overflow-hidden">
                     <Image src={DefaultImage} alt="Default image" className="h-full"/>
                   </Container>
                 }
-              </Container>
-              <Container className="basis-5/6 flex flex-col gap-4">
-                <Container>
-                  <Typography>{message}</Typography>
                 </Container>
+
                 <Container>
                   <Typography variant="title-base" component="h3">{name}</Typography>
                   <Typography className="text-secondary-Default">{position} | {company}</Typography>
