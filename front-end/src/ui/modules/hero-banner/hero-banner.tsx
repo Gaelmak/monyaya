@@ -10,7 +10,7 @@ import { BgImg } from "@/ui/components/bg-img/bg-img"
 export const HeroBanner = () => {
 
   return(
-    <Container className="flex flex-col md:flex-row px-4 md:py-0 md:px-8 h-[91vh] gap-4 md:gap-0">
+    <Container className="flex flex-col md:flex-row px-4 md:py-0 md:px-8 h-[92vh] gap-6 md:gap-0">
       <Container className="basis-1/3 md:basis-3/5 flex flex-col justify-center items-center md:items-start gap-4 md:gap-8">
         <Typography component="h1" variant="display" className="text-center md:text-left">
           Apprenez<br/>ce que vous voulez,<br/>où vous voulez
