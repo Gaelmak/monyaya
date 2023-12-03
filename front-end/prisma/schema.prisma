@@ -82,11 +82,11 @@ model Trainer {
   courses       Course[]
   accounts      Account[]
   sessions      Session[]
-  subCategory SubCategory[]
+  subCategory   SubCategory[]
 }
 
 model SubCategory {
-  id          String       @id @default(cuid())
+  id          String    @id @default(cuid())
   category    Category  @relation(fields: [categoryId], references: [id])
   categoryId  String
   createdAt   DateTime  @default(now())
@@ -95,14 +95,14 @@ model SubCategory {
 }
 
 model Category {
-  id          String       @id @default(cuid())
+  id          String        @id @default(cuid())
   courses     SubCategory[]
-  createdAt   DateTime  @default(now())
-  name        String    @unique
+  createdAt   DateTime      @default(now())
+  name        String        @unique
 }
 
 model Course {
-  id          String       @id @default(cuid())
+  id          String    @id @default(cuid())
   authorId    String       
   createdAt   DateTime  @default(now())
   custormers  User[]
