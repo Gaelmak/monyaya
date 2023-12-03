@@ -13,7 +13,7 @@ export const Testimonials = () => {
       {
         ListOfTestimonials.map(({id, name, position, company, message, imgUrl}) => 
           <Container key={id} className="w-full flex flex-col items-center">
-            <Container className="w-full md:w-[60%] hover:shadow-md hover:cursor-pointer p-4 md:p-8 flex flex-col border-gray-100 rounded bg-primary-50 gap-8 animate">
+            <Container className="w-full md:w-[60%] hover:shadow-md hover:cursor-pointer p-4 md:p-8 flex flex-col border-gray-100 rounded bg-white_powder gap-8 animate">
               <Container>
                 <Typography>{message}</Typography>
               </Container>

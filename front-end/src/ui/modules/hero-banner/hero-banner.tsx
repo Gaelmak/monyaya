@@ -48,8 +48,8 @@ export const HeroBanner = () => {
             Découvrez notre sélection de formateurs dès aujourd'hui !
           </Typography>
         </Container>
-        <Container>
-          <Buttons width="lg">Commencer</Buttons>
+        <Container className="w-full md:w-auto">
+          <Buttons width="lg" className="w-full md:w-auto">Commencer</Buttons>
         </Container>
       </Container>
       <Container className="basis-1/3 md:basis-2/5 flex justify-center md:justify-end items-center md:my-0">
