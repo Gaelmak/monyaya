@@ -6,14 +6,14 @@ import { Buttons } from "@/ui/components/buttons/buttons"
 
 export const BecomeATrainer = () => {
   return (
-    <Container className="bg-primary-950 mx-4 md:mx-8 rounded flex flex-col px-4 py-0 md:px-8 md:flex-row items-center md:items-end md:h-[450px]">
+    <Container className="bg-gradient-to-r from-primary-800 to-primary-400 mx-4 md:mx-8 rounded flex flex-col px-4 py-0 md:px-8 md:flex-row items-center md:items-end md:h-[450px]">
       <Container className="hidden md:block md:basis-1/3">
         <Image 
           src={Young} 
           alt="young man"
         />
       </Container>
-      <Container className="flex flex-col gap-4 md:gap-4 h-full py-10 md:py-0 justify-center md:basis-2/3">
+      <Container className="flex flex-col gap-8 md:gap-4 h-full py-10 md:py-0 justify-center md:basis-2/3">
         <Typography component="h1" variant="display" className="text-white">
           Devenez formateur et partagez vos connaissances
         </Typography>
@@ -29,7 +29,7 @@ export const BecomeATrainer = () => {
           </Typography>
         </Container>
         <Container>
-          <Buttons variant="primary" className="w-full md:w-auto">Inscription</Buttons>
+          <Buttons variant="ghost" className="w-full md:w-auto">Inscription</Buttons>
         </Container>
       </Container>
     </Container>

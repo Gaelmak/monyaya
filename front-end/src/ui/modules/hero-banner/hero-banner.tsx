@@ -5,6 +5,8 @@ import { Typography } from "@/ui/components/typography/typography"
 import Typewriter from 'typewriter-effect'
 import Cover from '../../../../public/cover.jpg'
 import { BgImg } from "@/ui/components/bg-img/bg-img"
+import { FilterCourses } from "../filter-courses/filter-courses"
+import { SearchCourses } from "../search/search-courses"
 
 export const HeroBanner = () => {
 
@@ -48,12 +50,13 @@ export const HeroBanner = () => {
             Découvrez notre sélection de formateurs dès aujourd'hui !
           </Typography>
         </Container>
-        <Container className="w-full md:w-auto">
-          <Buttons width="lg" className="w-full md:w-auto">Commencer</Buttons>
+        <Container className="w-full">
+          {/* <Buttons width="lg" className="w-full md:w-auto">Commencer</Buttons> */}
+          <SearchCourses/>
         </Container>
       </Container>
       <Container className="basis-1/3 md:basis-2/5 flex justify-center md:justify-end items-center md:my-0">
-        <BgImg src={Cover} alt={"cover"} className="w-[18rem] h-[18rem] md:w-[35rem] md:h-[35rem] rounded-full overflow-hidden" classNameImg="w-full h-full"/>
+        <BgImg src={Cover} alt={"cover"} className="w-[18rem] h-[18rem] md:w-[30rem] md:h-[30rem] rounded-full overflow-hidden" classNameImg="w-full h-full"/>
       </Container>
     </Container>
   )

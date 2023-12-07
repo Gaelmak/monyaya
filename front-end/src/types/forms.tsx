@@ -20,7 +20,11 @@ export const RegisterFormFieldsType = z.object({
 export const CourseSearchFormFieldsType = z.object({
   course: z.string(),
   budget: z.string(),
-  name: z.string(),
+  formation_or_name: z.string(),
+})
+
+export const SearchFormFieldsType = z.object({
+  formation_or_name: z.string(),
 })
 
 export const NewsletterRegisterFormFieldsType = z.object({

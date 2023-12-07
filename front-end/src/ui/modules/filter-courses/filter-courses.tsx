@@ -20,7 +20,7 @@ export const FilterCourses = () => {
     defaultValues: {
       course: '',
       budget: '',
-      name: ''
+      formation_or_name: ''
     },
   })
  
@@ -54,8 +54,8 @@ export const FilterCourses = () => {
           <Container className="col-span-2 md:basis-2/5">
             <InputField
               control={form.control}
-              name="name"
-              placeholder="Recherchez un formateur par son nom"
+              name="formation_or_name"
+              placeholder="Recherchez une formation ou un formateur"
             />
           </Container>
           <Container className="col-span-2 md:basis-1/5 flex flex-row gap-4">

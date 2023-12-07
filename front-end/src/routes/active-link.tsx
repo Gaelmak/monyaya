@@ -22,7 +22,7 @@ export const ActiveLink = ({href, children, className}: Props) => {
       className={
         clsx(
           isActive ? 'text-primary-Default bg-primary-50' : '',
-          'hover:text-primary-Default font-semibold animate p-4 w-full block rounded hover:bg-primary-50 ',
+          'hover:text-primary-Default font-semibold animate p-3 w-full block rounded hover:bg-primary-50 ',
           className
         )
       }
