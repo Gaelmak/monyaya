@@ -1,6 +1,4 @@
 import { getProviders } from "next-auth/react"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "../api/auth/[...nextauth]/auth-otions"
 import { ProvidersList } from "./providers-list"
 import { Container } from "@/ui/components/container/container"
 import { Typography } from "@/ui/components/typography/typography"
@@ -8,7 +6,8 @@ import { Aside } from "./aside"
 import { SigninForm } from "./signin-form"
 
 export default async function SignIn() {
-  const providerslist = (await GetProvidersFromRoute()).props?.providers
+
+  const providerslist = await getProviders()
 
   return (
     <Container className="h-[100dvh] flex flex-row">
@@ -34,20 +33,4 @@ export default async function SignIn() {
       </Container>
     </Container>
   )
-}
-
-export async function GetProvidersFromRoute() {
-  const session = await getServerSession(authOptions)
-
-  if (session) {
-    return { 
-      redirect: { destination: "/" }
-    }
-  }
-
-  const providers = await getProviders()
-  
-  return {
-    props: { providers: providers ?? [] },
-  }
 }
