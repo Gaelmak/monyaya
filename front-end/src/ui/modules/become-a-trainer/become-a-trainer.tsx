@@ -6,7 +6,7 @@ import { Buttons } from "@/ui/components/buttons/buttons"
 
 export const BecomeATrainer = () => {
   return (
-    <Container className="bg-gradient-to-r from-primary-800 to-primary-400 mx-4 md:mx-8 rounded flex flex-col px-4 py-0 md:px-8 md:flex-row items-center md:items-end md:h-[450px]">
+    <Container className="bg-gradient-to-br from-primary-800 to-primary-400 mx-4 md:mx-8 rounded flex flex-col px-4 py-0 md:px-8 md:flex-row items-center md:items-end md:h-[450px]">
       <Container className="hidden md:block md:basis-1/3">
         <Image 
           src={Young} 

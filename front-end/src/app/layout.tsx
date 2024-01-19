@@ -3,6 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter  } from 'next/font/google'
 import { MobileNavigation } from '@/routes/mobile-navigation'
+import { AuthProvider } from './auth-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,11 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navigation className='hidden md:block'/>
-        <MobileNavigation className='md:hidden'/>
-        {children}
-      </body>
+      <AuthProvider>
+        <body className={inter.className}>
+          {children}
+        </body>
+      </AuthProvider>
     </html>
   )
 }

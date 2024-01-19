@@ -1,7 +1,4 @@
-'use client'
-
 import { Typography } from "@/ui/components/typography/typography"
-import { Buttons } from "@/ui/components/buttons/buttons"
 import MonYayaLogo from '../../public/Monyaya.png'
 import Link from "next/link"
 import { ActiveLink } from "./active-link"
@@ -9,18 +6,21 @@ import clsx from 'clsx'
 import Image from "next/image"
 import { MainRoutes } from "@/lib/page-routes/page-routes"
 import { Container } from "@/ui/components/container/container"
-
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
+import { ProfileButton, SignInButton, SignOutButton } from "./auth-buttons"
 interface Props {
-  className: string
+  className?: string
 }
 
-export const Navigation = ({ className }: Props) => {
-
+export const Navigation = async ({ className }: Props) => {
+  const session = await getServerSession(authOptions)
+  console.log(session)
   return(
     <header 
       className={
         clsx(
-          "z-[100] fixed top-0 left-0 right-0 border-b-[1px] border-slate-50 bg-white",
+          "z-40 fixed top-0 left-0 right-0 border-b-[1px] border-slate-50 bg-white",
           className
         )
       }
@@ -32,15 +32,22 @@ export const Navigation = ({ className }: Props) => {
         <nav className="flex items-center gap-4">
           {
             MainRoutes.map(route => 
-              <Typography key={route.label} variant="body-base" component="p">
-                <ActiveLink href={route.baseUrl}>
-                  {route.label}
+              <Typography key={route.title} variant="body-base" component="p">
+                <ActiveLink href={route.baseUrl!}>
+                  {route.title}
                 </ActiveLink>
               </Typography>  
             )
           }
-          <Buttons variant="primary">Connexion</Buttons>
-          <Buttons variant="secondary">Inscription</Buttons>
+          {
+            session ?
+              session.user ?
+                <ProfileButton profileImg={ session.user.image ? session.user.image : undefined }/>
+              :
+              <SignInButton/>
+            :
+            <SignInButton/>
+          }
         </nav>
       </Container>
     </header>

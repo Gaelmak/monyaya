@@ -1,12 +1,10 @@
 'use client'
 
-import { Buttons } from "@/ui/components/buttons/buttons"
 import { Container } from "@/ui/components/container/container"
 import { Typography } from "@/ui/components/typography/typography"
 import Rekreation from '../../../../public/rekreatioon.jpg'
 import Image from "next/image"
 import RekreationPaysage from '../../../../public/rekreatioonPaysage.png'
-import { BgImg } from "@/ui/components/bg-img/bg-img"
 
 export const BestTrainingCourses = () => {
   let t = [
@@ -24,9 +22,9 @@ export const BestTrainingCourses = () => {
       <Container className="overflow-auto flex flex-row gap-4 no-scrollbar">
         {
           t.map(x => 
-            <Container key={x.id} className="cursor-pointer flex flex-col md:basis-1/4 bg-white gap-2 rounded relative">
+            <Container key={x.id} className="cursor-pointer flex flex-col md:basis-1/4 bg-white gap-2 rounded relative group">
               <Container className="w-[80vw] md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
-                <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full"/>
+                <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
               </Container>
               <Container variant="Glass-Effect" className="hidden md:block absolute top-4 left-4 p-2 rounded bg-secondary-Default">
                 <Typography variant="body-sm" component="p" className="text-white">Anglais</Typography>

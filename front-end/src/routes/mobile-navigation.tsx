@@ -24,7 +24,7 @@ export const MobileNavigation = ({ className }: Props) => {
     <header
       className={
         clsx(
-          "z-[100] fixed top-0 left-0 right-0 border-b-[1px] bg-white border-slate-50",
+          "z-40 fixed top-0 left-0 right-0 border-b-[1px] bg-white border-slate-50",
           className
         )
       }

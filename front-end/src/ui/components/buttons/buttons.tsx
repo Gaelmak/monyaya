@@ -1,9 +1,9 @@
 'use client'
-
 import { Button as _Button } from "@/components/ui/button"
 import clsx from "clsx"
 import Link from "next/link"
 import { Loader2 } from "lucide-react"
+import Image, { StaticImageData } from "next/image"
 
 interface Props {
   action?: Function
@@ -16,11 +16,13 @@ interface Props {
   className?: string
   children?: React.ReactNode
   disabled?: boolean
+  isLoading?: boolean
   buttonType?: 'link' | 'anchor' | 'action' | undefined
   outline?: 'outline' | 'default'
   width?: 'lg' | 'default' | 'sm' | 'icon'
-  Icon?: React.ElementType
-  isloading?: boolean
+  Icon?: React.ElementType 
+  CustomIcon?: StaticImageData
+  type?: 'submit' | 'reset' | 'button'
 }
 
 export const  Buttons = ({
@@ -30,13 +32,14 @@ export const  Buttons = ({
   children,
   className,
   disabled = false,
+  isLoading = false,
   Icon,
-  isloading = false,
+  CustomIcon,
   outline = 'default',
   variant = 'primary',
   width = 'default',
+  type = 'button'
 }: Props) => {
-
   let colorStyles: string = ''
   let txt_colorStyles: string = ''
 
@@ -46,7 +49,7 @@ export const  Buttons = ({
       txt_colorStyles = 'text-white'
       break;  
     case 'ghost':
-      colorStyles = 'bg-gray-50 hover:bg-gray-100'
+      colorStyles = 'bg-white hover:bg-gray-50'
       txt_colorStyles = 'text-primary-Default'
   }
 
@@ -124,18 +127,22 @@ export const  Buttons = ({
             :
             'icon'
         }
-        disabled= {isloading ? isloading : disabled}
+        disabled = {isLoading ? isLoading : disabled}
         asChild
+        type={type}
       >
         <Link href={baseUrl!}>
           {
-            isloading ? 
+            isLoading ? 
             <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
             :
               Icon ?
               <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
               :
-              null
+              CustomIcon ?
+              <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+              :
+            null
           }
           {children}
         </Link>
@@ -161,17 +168,21 @@ export const  Buttons = ({
             :
             'icon'
         }
-        disabled= {isloading ? isloading : disabled}
+        disabled = {isLoading ? isLoading : disabled}
         onClick={handleClick}
+        type={type}
       >
         {
-          isloading ? 
+          isLoading ? 
           <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
           :
             Icon ?
-            <Icon className= {children? "mr-2 h-5 w-5" : "h-5 w-5"}/>
+            <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
             :
-            null
+            CustomIcon ?
+            <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+            :
+          null
         }
         {children}
       </_Button>
@@ -196,16 +207,20 @@ export const  Buttons = ({
             :
             'icon'
         }
-        disabled= {isloading ? isloading : disabled}
+        disabled = {isLoading ? isLoading : disabled}
+        type={type}
       >
         {
-          isloading ? 
+          isLoading ? 
           <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
           :
             Icon ?
             <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
             :
-            null
+            CustomIcon ?
+            <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+            :
+          null
         }
         {children}
       </_Button>

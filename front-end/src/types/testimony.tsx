@@ -5,4 +5,5 @@ export interface Testimony {
   position? : string
   company? : string
   message : string
+  stars : number
 }

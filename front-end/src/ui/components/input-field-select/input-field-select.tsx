@@ -48,7 +48,7 @@ export const InputFieldSelect = ({
             :
             null
           }
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select onValueChange={field.onChange} defaultValue={field.value} name={name}>
             <FormControl>
               <SelectTrigger className="rounded focus:ring-primary-Default">
                 <SelectValue placeholder={placeholder}/>
