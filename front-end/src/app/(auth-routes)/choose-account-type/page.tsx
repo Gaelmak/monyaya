@@ -28,7 +28,7 @@ export default function Home() {
           <Container className="">
             <Typography variant="title-lg" component="h2" className="text-white">Compte formateur</Typography>
             <Typography variant="body-base" component="p" className="text-white">Inscrivez vous, creez des cours sur des sujets que vous maîtrisez et gagnez des sous en les publiants sur notre plateforme.</Typography>
-            <Buttons className="w-full" buttonType="link" baseUrl="/new-trainer" Icon={MoveRight}>Continuer</Buttons>
+            <Buttons className="w-full" Icon={MoveRight}>Continuer</Buttons>
           </Container>
         </Container>
         <Container className="text-center w-[30%] flex flex-col justify-center items-center">
