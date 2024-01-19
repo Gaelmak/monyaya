@@ -75,6 +75,10 @@ export const MobileNavigation = ({ className }: Props) => {
             )
           }
           </Container>
+          <Container className='w-full flex flex-col gap-2 mb-4'>
+            <Buttons className='w-full'>Connexion</Buttons>
+            <Buttons variant="secondary" className='w-full'>Inscription</Buttons>  
+          </Container>
         </nav>
       </Container>
     </header>
