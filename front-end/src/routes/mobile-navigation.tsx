@@ -67,9 +67,9 @@ export const MobileNavigation = ({ className }: Props) => {
           <Container className='w-full flex flex-col gap-2'>
           {
             MainRoutes.map(route => 
-              <Typography key={route.label} variant="body-base" component="p">
-                <ActiveLink href={route.baseUrl}>
-                  {route.label}
+              <Typography key={route.title!} variant="body-base" component="p">
+                <ActiveLink href={route.baseUrl!}>
+                  {route.title}
                 </ActiveLink>
               </Typography>  
             )
