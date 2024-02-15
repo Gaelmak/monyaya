@@ -17,7 +17,6 @@ export default function Home() {
       <Profils/>
       <AppMobile/>
       <Testimonials/>
-      <Container className='p-32'>Footer</Container>
     </main>
   )
 }

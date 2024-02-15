@@ -8,12 +8,16 @@ import { CourseSearchFormFieldsType } from "@/types/forms"
 import { Buttons } from "@/ui/components/buttons/buttons"
 import { Container } from "@/ui/components/container/container"
 import { InputFieldSelect } from '@/ui/components/input-field-select/input-field-select'
-import { CourseList } from "@/lib/course-list/course-list"
 import { InputField } from "@/ui/components/input-field/input-field"
 import { PriceCategory } from "@/lib/price-category/price-category"
 import { Filter } from "lucide-react"
+import { Options } from "@/types/options"
 
-export const FilterCourses = () => {
+interface Props {
+  CourseList : Options[]
+}
+
+export const FilterCourses = ({CourseList}: Props) => {
 
   const form = useForm<z.infer<typeof CourseSearchFormFieldsType>>({
     resolver: zodResolver(CourseSearchFormFieldsType),
