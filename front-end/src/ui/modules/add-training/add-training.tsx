@@ -69,6 +69,7 @@ export const AddTraining = ({ options, userId } : Props) => {
       stopLoading()
       router.push("/my-trainings")
     } else {
+      console.log(addTraining)
       toast({
         variant: "destructive",
         title: "Erreur !",
