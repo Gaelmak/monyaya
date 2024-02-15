@@ -7,13 +7,14 @@ import * as z from "zod"
 import { InputField } from "@/ui/components/input-field/input-field"
 import { Container } from "@/ui/components/container/container"
 import { Buttons } from "@/ui/components/buttons/buttons"
-import { Eye, EyeOff, Lock, Mail, MoveRight, Phone, User } from "lucide-react"
+import { Eye, EyeOff, Lock, LogIn, Mail, MoveRight, Phone, User } from "lucide-react"
 import { useState } from "react"
 import { saltPassword } from "@/lib/password-to-salt"
 import UseLoading from "@/hooks/use-loading"
 import { useToast } from "@/components/ui/use-toast"
 import { Typography } from "@/ui/components/typography/typography"
 import { useRouter } from "next/navigation"
+import clsx from "clsx"
 
 export const RegisterForm = () => { 
   const router = useRouter()
@@ -113,93 +114,97 @@ export const RegisterForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
-        <Container className="flex flex-col gap-2">
-          <Container>
-            <InputField
-              placeholder="Prénom"
-              control={form.control}
-              name="firstname"
-            >
-              {UserIcon()}
-            </InputField>
-          </Container>
-          <Container>
-            <InputField
-              placeholder="Nom"
-              control={form.control}
-              name="lastname"
-            >
-              {UserIcon()}
-            </InputField>
-          </Container>
-          <Container>
-            <InputField
-              placeholder="Numéro de téléphone"
-              control={form.control}
-              name="phonenumber"
-            >
-              {PhoneIcon()}
-            </InputField>
-          </Container>
-          <Container>
-            <InputField
-              placeholder="Nom d'utilisateur"
-              control={form.control}
-              name="name"
-              description={
-                <>
-                  <span className="text-body-sm flex flex-row gap-1">
-                    <span>*</span>
-                    <span>
-                      Votre nom d'utilisateur est le nom que vous utiliserez pour vous connecter à notre site
+        <Container 
+          className={clsx(
+            "flex flex-col gap-2 pt-8"
+          )}
+        >
+            <Container>
+              <InputField
+                placeholder="Prénom"
+                control={form.control}
+                name="firstname"
+              >
+                {UserIcon()}
+              </InputField>
+            </Container>
+            <Container>
+              <InputField
+                placeholder="Nom"
+                control={form.control}
+                name="lastname"
+              >
+                {UserIcon()}
+              </InputField>
+            </Container>
+            <Container>
+              <InputField
+                placeholder="Nom d'utilisateur"
+                control={form.control}
+                name="name"
+                description={
+                  <>
+                    <span className="text-body-sm flex flex-row gap-1">
+                      <span>*</span>
+                      <span>
+                        Votre nom d'utilisateur est le nom que vous utiliserez pour vous connecter à notre site
+                      </span>
                     </span>
-                  </span>
-                  <span className="text-body-sm flex flex-row gap-1">
-                    <span>*</span>
-                    <span>
-                    Il doit avoir au moins 2 caractères et peut contenir des lettres, des chiffres et des symboles.
+                    <span className="text-body-sm flex flex-row gap-1">
+                      <span>*</span>
+                      <span>
+                      Il doit avoir au moins 2 caractères et peut contenir des lettres, des chiffres et des symboles.
+                      </span>
                     </span>
-                  </span>
-                </>
-              }
-            >
-              {UserIcon()}
-            </InputField>
+                  </>
+                }
+              >
+                {UserIcon()}
+              </InputField>
+            </Container>
+            <Container>
+              <InputField
+                placeholder="Adresse mail"
+                control={form.control}
+                name="email"
+                type="email"
+              >
+                {MailIcon()}
+              </InputField>
+            </Container>
+            <Container>
+              <InputField
+                placeholder="Numéro de téléphone"
+                control={form.control}
+                name="phonenumber"
+              >
+                {PhoneIcon()}
+              </InputField>
+            </Container>
+            <Container>
+              <InputField
+                placeholder="Mot de passe"
+                control={form.control}
+                name="password"
+                type={showPassword ? "text" : "password"}
+              >
+                {PasswordIcon()}
+                {ShowPasswordButton(showPassword)}
+              </InputField>
+            </Container>
+            <Container>
+              <InputField
+                placeholder="Confirmer le mot de passe"
+                control={form.control}
+                name="confirmpassword"
+                type={showPassword ? "text" : "password"}
+              >
+                {PasswordIcon()}
+              </InputField>
+            </Container>
           </Container>
-          <Container>
-            <InputField
-              placeholder="Adresse mail"
-              control={form.control}
-              name="email"
-              type="email"
-            >
-              {MailIcon()}
-            </InputField>
-          </Container>
-          <Container>
-            <InputField
-              placeholder="Mot de passe"
-              control={form.control}
-              name="password"
-              type={showPassword ? "text" : "password"}
-            >
-              {PasswordIcon()}
-              {ShowPasswordButton(showPassword)}
-            </InputField>
-          </Container>
-          <Container>
-            <InputField
-              placeholder="Confirmer le mot de passe"
-              control={form.control}
-              name="confirmpassword"
-              type={showPassword ? "text" : "password"}
-            >
-              {PasswordIcon()}
-            </InputField>
-          </Container>
-        </Container>
         <Container className="flex flex-row justify-between items-center">
-          <Buttons type='submit' isLoading={isLoading} Icon={MoveRight}>Suivant</Buttons>
+          <Buttons type='submit' isLoading={isLoading} Icon={LogIn}>Enrégistrer et se connecter</Buttons>
         </Container>
       </form>
     </Form>

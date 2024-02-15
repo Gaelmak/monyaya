@@ -17,12 +17,14 @@ export default async function RootLayout({
   }
 
   return (
-    <div className='mt-[-8vh] md:mt-[-10vh] z-50'>
-      <Container className='h-[100vh] flex flex-row'>
-        <Container className='basis-1/5 overflow-hidden'>
-          <AsideNav/>
+    <div className='mt-[-8vh] md:mt-[-10vh] z-50 block'>
+      <Container className='flex flex-row min-h-[100dvh] '>
+        <Container className='w-[20%] relative h-[100dvh]'>
+          <div className='fixed w-[20%] h-[100dvh]'>
+            <AsideNav className='h-[100dvh] w-full' />
+          </div>
         </Container>
-        <Container className='basis-4/5 overflow-auto bg-secondary-50'>
+        <Container className='w-[80%] bg-secondary-50'>
           {children}
         </Container>
       </Container>

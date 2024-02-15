@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const MobileNavigation = ({ className }: Props) => {
-
+  
   const [navbarOpen, setNavbarOpen] = useState(false)
 
   return(

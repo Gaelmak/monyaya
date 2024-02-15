@@ -6,7 +6,6 @@ import { Aside } from "./aside"
 import { SigninForm } from "./signin-form"
 
 export default async function SignIn() {
-
   const providerslist = await getProviders()
 
   return (

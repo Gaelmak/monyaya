@@ -63,3 +63,72 @@ export const SearchFormFieldsType = z.object({
 export const NewsletterRegisterFormFieldsType = z.object({
   email: z.string().email("Veuillez entrer une adresse mail valide")
 })
+
+export const BecomeATrainerFormFieldsType = z.object({
+  bio: z.string()
+    .min(10, {
+      message: "Votre description doit avoir au moins 10 caracteres.",
+    })
+    .max(500),
+  municipality: z.string()
+    .min(3, {
+      message: "Entrez le nom de votre commune de residence",
+    })
+    .max(50),
+  district: z.string()
+    .min(3, {
+      message: "Entrez le nom de votre quartier de residence",
+    })
+    .max(50),
+  avenue: z.string()
+    .min(3, {
+      message: "Entrez le nom de votre avenue de residence",
+    })
+    .max(50),
+  number: z.string()
+    .min(1, {
+      message: "Entrez le numero de votre residence",
+    })
+    .max(50),
+  payment_number: z.string()
+    .regex(new RegExp('^0(8|9)[0-9]{8}$'), {
+      message: "Veuillez entrer un numero de telephone valide"
+    }),
+  terms_and_conditions: z.boolean()
+    .refine(value => value === true, {
+      message: "Veuillez accepter les termes et conditions pour continuer."
+    })
+    .default(false),
+})
+
+export const NewTrainingFormFieldsType = z.object({
+  training_name: z.string()
+    .min(1, {
+      message: "Le nom de la formation est requis."
+    }),
+  training_description: z.string()
+    .min(1, {
+      message: "La description de la formation est requise."
+    }),
+  chapters: z.array(
+    z.object({
+      title: z.string()
+        .min(1, {
+          message: "Le titre du chapitre est requis."
+        }),
+      description: z.string()
+        .min(1, {
+          message: "La description du chapitre est requise."
+        })
+      })).min(1, {
+      message: "Au moins un chapitre est requis."
+    }),
+  price: z.preprocess(
+    (a) => parseFloat(z.string().parse(a)), 
+    z.number().gte(1, 'Le montant doit commencer à partir de 1$')
+    ),
+  category: z.string()
+    .min(1, {
+      message: "Veuillez choisir branche pour votre formation"
+    })
+})

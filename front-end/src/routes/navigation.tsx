@@ -2,13 +2,13 @@ import { Typography } from "@/ui/components/typography/typography"
 import MonYayaLogo from '../../public/Monyaya.png'
 import Link from "next/link"
 import { ActiveLink } from "./active-link"
-import clsx from 'clsx'
 import Image from "next/image"
 import { MainRoutes } from "@/lib/page-routes/page-routes"
 import { Container } from "@/ui/components/container/container"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { ProfileButton, SignInButton } from "./auth-buttons"
+import clsx from "clsx"
 interface Props {
   className?: string
 }

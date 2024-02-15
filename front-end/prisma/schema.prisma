@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -40,19 +41,29 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String    @unique
-  email         String    @unique
-  emailVerified DateTime?
-  image         String?
-  firstName     String?
-  lastName      String?
-  phoneNumber   String?
-  createdAt     DateTime  @default(now())
-  password      String?
-  salt          String?
-  accounts      Account[]
-  sessions      Session[]
+  id              String    @id @default(cuid())
+  name            String    @unique
+  email           String    @unique
+  emailVerified   DateTime?
+  image           String?
+  firstName       String?
+  lastName        String?
+  phoneNumber     String?
+  createdAt       DateTime  @default(now())
+  password        String?
+  salt            String?
+  bio             String?
+  municipality    String?
+  district        String?
+  avenue          String?
+  number          String?
+  paymentNumber   String?
+  terms_accepted  Boolean?  @default(false)
+  role            Role      @default(USER)
+  accounts        Account[]
+  sessions        Session[]
+  trainings       Trainings[]
+  learners        Learners[]
 }
 
 model VerificationToken {
@@ -63,3 +74,54 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  courses   Courses[]
+}
+
+model Courses {
+  id            String   @id @default(cuid())
+  name          String
+  categoryId    String
+  category      Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  trainings     Trainings[]
+}
+
+
+model Trainings {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  userId      String
+  price       Float
+  coursesId   String   
+  createdAt   DateTime    @default(now())
+  modules     Modules[]
+  learners    Learners[]
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courses     Courses     @relation(fields: [coursesId], references: [id], onDelete: Cascade)
+}
+
+model Learners {
+  id          String      @id @default(cuid())
+  trainingId  String
+  userId      String
+  createdAt   DateTime    @default(now())
+  training    Trainings   @relation(fields: [trainingId], references: [id], onDelete: Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Modules {
+  id            String    @id @default(cuid())
+  title         String
+  description   String
+  trainingId    String
+  trainings     Trainings @relation(fields: [trainingId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  TRAINER
+  ADMIN
+}

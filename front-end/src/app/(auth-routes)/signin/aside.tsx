@@ -17,7 +17,7 @@ export const Aside = () => {
           Découvrez les formations qui vous correspondent auprès de formateurs passionnés !
         </Typography>
         <Container>
-          <Buttons buttonType="link" baseUrl="/choose-account-type" Icon={UserPlus} variant="ghost" className="text-secondary-Default">S'inscrire</Buttons>
+          <Buttons buttonType="link" baseUrl="/registration" Icon={UserPlus} variant="ghost" className="text-secondary-Default">S'inscrire</Buttons>
         </Container>
       </Container>
     </BgImg>

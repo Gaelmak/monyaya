@@ -83,11 +83,11 @@ module.exports = {
         }],
         'title-sm': ['1rem', {
           lineHeight: '100%',
-          fontWeight: '600'
+          fontWeight: '800'
         }],
         'title-xs': ['0.75rem', {
           lineHeight: '100%',
-          fontWeight: '600'
+          fontWeight: '800'
         }],
         'body-lg': ['1.5rem', {
           lineHeight: '100%',

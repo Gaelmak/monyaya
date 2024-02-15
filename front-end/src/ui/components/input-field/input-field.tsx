@@ -6,23 +6,28 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Container } from "../container/container"
 import clsx from "clsx"
+import { Typography } from "../typography/typography"
 
 interface Props {
-  control: any,
-  name: string,
-  label?: string,
-  placeholder?: string,
-  description? : string | React.ReactNode,
+  control: any
+  name: string
+  label?: string | React.ReactNode
+  placeholder?: string
+  description? : string | React.ReactNode
   type?: 
     'text'      | 
     'email'     |
     'file'      |
-    'password',
+    'password'  |
+    'textarea'  |
+    'number'
   autocompletion? : boolean
   children? : React.ReactNode
+  required? : boolean
 }
 
 export const InputField = ({
@@ -33,7 +38,8 @@ export const InputField = ({
   description,
   type = 'text',
   autocompletion = true,
-  children
+  children,
+  required = true,
 }: Props) => {
   return (
     <FormField
@@ -43,19 +49,42 @@ export const InputField = ({
         <FormItem>
           {
             label ?
-            <FormLabel>{label}</FormLabel>
+                required ?
+                <FormLabel>
+                  <Typography variant="title-sm" component="h4" className="">
+                    {label}{' '}<span className="text-red-500">*</span>
+                  </Typography>
+                </FormLabel>
+                :
+                <FormLabel>
+                  <Typography variant="title-sm" component="h4" className="">
+                    {label}
+                  </Typography>
+                </FormLabel>
             :
             null
           }
           <FormControl>
             <Container className="relative flex justify-center items-center">
-              <Input 
-                className={clsx(
-                  "rounded focus:ring-primary-Default border-secondary-300",
-                  children? "px-12" : "",
-                  )}
-                placeholder={placeholder} {...field} type={type} name={name} id={name} autoComplete={"'" + {autocompletion} +"'"}
+              {
+                type === "textarea" ?
+                <Textarea
+                  placeholder={placeholder}
+                  className={clsx(
+                    "resize-none rounded h-48 focus:ring-primary-Default border-secondary-300",
+                    children? "px-12" : "",
+                    )}
+                  {...field}
                 />
+                :
+                <Input 
+                  className={clsx(
+                    "rounded focus:ring-primary-Default border-secondary-300",
+                    children? "px-12" : "",
+                    )}
+                  placeholder={placeholder} {...field} type={type} name={name} id={name} autoComplete={"'" + {autocompletion} +"'"}
+                />
+              }
               {
                 children?
                   children

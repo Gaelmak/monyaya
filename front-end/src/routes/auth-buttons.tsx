@@ -32,8 +32,8 @@ export const SignInButton = () => {
   return(
     <Buttons 
       variant="primary"
-      buttonType="action"
-      action = {() => { signIn() } }
+      buttonType="link"
+      baseUrl="/signin"
     >
       Connexion
     </Buttons>

@@ -56,20 +56,20 @@ export const InputFieldSelect = ({
             </FormControl>
             <SelectContent className="max-h-[40vh] overflow-auto rounded bg-white">
               {
-                options.map(({id, title, children, label, Icon}) => 
-                  label ?
-                    <SelectItem key={id} value={label} className="focus:bg-primary-50">{label}</SelectItem>
+                options.map(({id, courses, name, Icon}) => 
+                  !courses ?
+                    <SelectItem key={id} value={id!} className="focus:bg-primary-50">{name}</SelectItem>
                   :
-                  <SelectGroup key={id}>
-                    {
-                      Icon ? <SelectLabel className="flex flex-row items-center"><Icon className='w-4 h-4 mr-2'/> {title}</SelectLabel> : <SelectLabel> {title}</SelectLabel>
-                    }
-                    {
-                      children?.map(({id, label}) =>
-                        <SelectItem key={id} value={label!} className="focus:bg-primary-50">{label}</SelectItem>
-                      )
-                    }
-                  </SelectGroup>
+                    <SelectGroup key={id}>
+                      {
+                        Icon ? <SelectLabel className="flex flex-row items-center"><Icon className='w-4 h-4 mr-2'/> {name}</SelectLabel> : <SelectLabel> {name}</SelectLabel>
+                      }
+                      {
+                        courses?.map(({id, name}) =>
+                          <SelectItem key={id} value={id!} className="focus:bg-primary-50">{name}</SelectItem>
+                        )
+                      }
+                    </SelectGroup>
                 )
               }
             </SelectContent>

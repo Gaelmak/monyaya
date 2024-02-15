@@ -1,13 +1,12 @@
 import React from "react"
 
 export interface Options {
-  id: string | number
-  label?: string
+  id: string 
   Icon?: React.ElementType
-  title?: string
-  children?: {
-    id?: string | number
-    label?: string
+  name?: string
+  courses?: {
+    id?: string
+    name?: string
     Icon?: React.ElementType
   }[]
 }

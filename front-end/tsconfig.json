@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(auth-routes)/[...nextauth]/route.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(auth-routes)/[...nextauth]/route.ts", "src/ui/modules/process-to-become-a-trainer"],
   "exclude": ["node_modules"]
 }

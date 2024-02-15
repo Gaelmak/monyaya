@@ -1,6 +1,5 @@
 import { AppLinks } from "@/types/app-links"
-import { Presentation, Home, LogOut } from "lucide-react"
-import { signOut } from "next-auth/react"
+import { Presentation, Home, Settings2, LibraryBig } from "lucide-react"
 
 export const MainRoutes: AppLinks[] = [
   {
@@ -22,40 +21,28 @@ export const AsideRoutes: AppLinks[] = [
     title: 'Dashboard',
     children: [
       {
-        title: 'Tableau de bord',
+        title: 'Profil',
         baseUrl: '/dashboard',
         Icon: Presentation
       }
     ]
   },
-  // {
-  //   title: 'Historique',
-  //   children: [
-  //     {
-  //       title: 'Commandes',
-  //       baseUrl: '/Orders',
-  //       Icon: Coins
-  //     },
-  //     {
-  //       title: 'Vente cash',
-  //       baseUrl: '/Cash-sale',
-  //       Icon: Zap
-  //     },
-  //     {
-  //       title: 'Livraison',
-  //       baseUrl: '/Delivery',
-  //       Icon: PackageCheck
-  //     },
-  //   ]
-  // },
-  
+  {
+    title: 'Setting',
+    children: [
+      {
+        title: 'Paramètres',
+        baseUrl: '/setting',
+        Icon: Settings2
+      },
+    ]
+  },
 ]
 
 export const HomeRoute: AppLinks[] = [
   {
     title: "Retourner à l'acceuil",
     baseUrl: '/',
-    Icon: Home
-      
+    Icon: Home 
   },
 ]
