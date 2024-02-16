@@ -44,6 +44,7 @@ export const AddTraining = ({ options, userId } : Props) => {
   async function onSubmit(values: z.infer<typeof NewTrainingFormFieldsType>) {
     startLoading()
     const {training_name, training_description, chapters, price, category} = values
+    
     const addTraining = await fetch(`/api/training`, {
       method: "POST",
       credentials: "include",
@@ -69,7 +70,6 @@ export const AddTraining = ({ options, userId } : Props) => {
       stopLoading()
       router.push("/my-trainings")
     } else {
-      console.log(addTraining)
       toast({
         variant: "destructive",
         title: "Erreur !",
@@ -80,8 +80,6 @@ export const AddTraining = ({ options, userId } : Props) => {
       })
       stopLoading()
     }
-
-    stopLoading()
 
   }
   
@@ -158,7 +156,7 @@ export const AddTraining = ({ options, userId } : Props) => {
                 type="number"
               />
             </Container>
-            <Buttons type="submit" isLoading={isLoading} >Créer la formation</Buttons>
+            <Buttons type="submit" isLoading={isLoading}>Créer la formation</Buttons>
           </Container>
         </form>
       </Form>

@@ -18,7 +18,7 @@ export async function POST (
       price: price,
       coursesId: category,
       modules: {
-        createMany: chapters
+        create: chapters
       }
     }
   })
