@@ -21,7 +21,7 @@ export async function POST (
       }
     }
   })
-  
-  return NextResponse.json({ status: 200 })
+
+  return NextResponse.json({ status: 200 });
 
 }

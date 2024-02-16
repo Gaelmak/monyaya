@@ -73,7 +73,11 @@ export const AddTraining = ({ options, userId } : Props) => {
       toast({
         variant: "destructive",
         title: "Erreur !",
-        description: <Typography component="p" variant="body-sm">Une erreur est survenue durant l'enregistrement de votre formation. Veuillez recommencer l'opération.</Typography>,
+        description: 
+        <Typography component="p" variant="body-sm">
+          {/* Une erreur est survenue durant l'enregistrement de votre formation. Veuillez recommencer l'opération. */}
+          {JSON.stringify(addTraining)}
+        </Typography>,
       })
       stopLoading()
     }
