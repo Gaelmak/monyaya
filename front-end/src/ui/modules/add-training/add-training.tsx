@@ -75,8 +75,7 @@ export const AddTraining = ({ options, userId } : Props) => {
         title: "Erreur !",
         description: 
         <Typography component="p" variant="body-sm">
-          {/* Une erreur est survenue durant l'enregistrement de votre formation. Veuillez recommencer l'opération. */}
-          {JSON.stringify(addTraining)}
+          Une erreur est survenue durant l'enregistrement de votre formation. Veuillez recommencer l'opération.
         </Typography>,
       })
       stopLoading()

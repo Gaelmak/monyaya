@@ -1,5 +1,6 @@
 import prisma from '@/lib/prisma'
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server"
+
 
 export async function POST (
   req: Request
@@ -17,7 +18,7 @@ export async function POST (
       price: price,
       coursesId: category,
       modules: {
-        create: chapters
+        createMany: chapters
       }
     }
   })
