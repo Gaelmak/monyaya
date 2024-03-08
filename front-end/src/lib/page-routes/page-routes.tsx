@@ -21,20 +21,10 @@ export const AsideRoutes: AppLinks[] = [
     title: 'Dashboard',
     children: [
       {
-        title: 'Profil',
+        title: 'Tableau de bord',
         baseUrl: '/dashboard',
         Icon: Presentation
       }
-    ]
-  },
-  {
-    title: 'Setting',
-    children: [
-      {
-        title: 'Paramètres',
-        baseUrl: '/setting',
-        Icon: Settings2
-      },
     ]
   },
 ]

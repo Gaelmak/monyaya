@@ -56,7 +56,7 @@ export const HeroBanner = () => {
         </Container>
       </Container>
       <Container className="basis-1/3 md:basis-2/5 flex justify-center md:justify-end items-center md:my-0">
-        <BgImg src={Cover} alt={"cover"} className="w-[18rem] h-[18rem] md:w-[30rem] md:h-[30rem] rounded-full overflow-hidden" classNameImg="w-full h-full"/>
+        <BgImg src={Cover} alt={"cover"} className="w-[18rem] h-[18rem] md:w-[33rem] md:h-[33rem] rounded-full overflow-hidden" classNameImg="w-full h-full"/>
       </Container>
     </Container>
   )

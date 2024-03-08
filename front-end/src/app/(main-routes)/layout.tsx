@@ -1,6 +1,7 @@
 import { Navigation } from '@/routes/navigation'
 import { MobileNavigation } from '@/routes/mobile-navigation'
 import { Toaster } from '@/components/ui/toaster'
+import { Breadcrumbs } from '@/ui/components/breadcrumbs/breadcrumbs'
 
 export default function MainRoutesLayout({
   children,

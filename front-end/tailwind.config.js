@@ -91,7 +91,7 @@ module.exports = {
         }],
         'body-lg': ['1.5rem', {
           lineHeight: '100%',
-          fontWeight: '400'
+          fontWeight: '600'
         }],
         'body-base': ['1rem', {
           lineHeight: '100%',
