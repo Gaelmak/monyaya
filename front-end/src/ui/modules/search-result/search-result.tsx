@@ -3,8 +3,6 @@ import { Container } from "@/ui/components/container/container";
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { TrainingsView } from "@/ui/components/trainings-view/trainings-view";
-import { pusherServer } from "@/lib/pusher";
-
 
 interface Props {
   results?: any;

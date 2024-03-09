@@ -58,7 +58,7 @@ interface Props {
 export const TrainingsView = ({data, userId, sessionName, myLearnings, className}: Props) => {
   const [learnings, setLearnings] = useState(myLearnings ? myLearnings : [])
 
-  const channel = pusherClient.subscribe("myLearnings");
+  const channel = pusherClient.subscribe(userId!);
   channel.bind("add", function (data: any) { 
     const parsedLearnings = JSON.parse(data.result);
     setLearnings((prev) => [...prev, parsedLearnings]);

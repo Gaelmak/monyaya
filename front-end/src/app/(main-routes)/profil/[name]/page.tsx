@@ -1,16 +1,11 @@
-import { Typography } from "@/ui/components/typography/typography"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil"
 import { Container } from "@/ui/components/container/container"
-import { truncateText } from "@/lib/truncate-text"
-import { List, Map } from "lucide-react"
-import { SearchResultButtons } from "@/ui/modules/search-result/search-result-buttons"
 import { TrainingsView } from "@/ui/components/trainings-view/trainings-view"
-
+import { pusherServer } from "@/lib/pusher"
 
 export default async function Home({ params } : { params: { name: string } }) {
-  // const bedroom = Bedrooms.filter((object) => { return object.id === parseInt(params.id)})
   const name = decodeURIComponent(params.name)
   const session = await getServerSession(authOptions)
   const userId = 
@@ -92,6 +87,10 @@ export default async function Home({ params } : { params: { name: string } }) {
         }
       }
     },
+  })
+
+  pusherServer.trigger("myLearnings", "add", {
+    result: `${JSON.stringify(myLearnings)}\n\n`
   })
 
   return (

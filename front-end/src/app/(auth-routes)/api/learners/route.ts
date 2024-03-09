@@ -14,7 +14,7 @@ export async function POST (
     },
   });
 
-  pusherServer.trigger("myLearnings", "add", {
+  pusherServer.trigger(userId, "add", {
     result: `${JSON.stringify(data)}\n\n`
   })
 
