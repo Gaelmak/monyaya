@@ -75,10 +75,8 @@ export const SearchResultButtons = ({status, trainingId, userId, isMyAccount = f
       {
       children ?
       <Sheet>
-        <SheetTrigger className="bg-gray-100 p-2 flex flex-row text-white items-center rounded-full">
-          {/* <Buttons Icon={Eye} variant="ghost" outline="outline" className="text-black"/> */}
+        <SheetTrigger className="bg-secondary-900 p-2 flex flex-row text-white items-center rounded-full hover:bg-secondary-950">
           <Eye className="h-6 w-6"/>
-
         </SheetTrigger>
         {children}
       </Sheet>
