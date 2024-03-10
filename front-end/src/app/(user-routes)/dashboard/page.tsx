@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { TrainingsView } from "@/ui/components/trainings-view/trainings-view"
 import { Container } from "@/ui/components/container/container"
+import prisma from "@/lib/prisma"
 
 export default async function Home()  {
   const session = await getServerSession(authOptions)

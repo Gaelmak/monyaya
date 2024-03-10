@@ -3,6 +3,7 @@ import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-oti
 import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil"
 import { Container } from "@/ui/components/container/container"
 import { TrainingsView } from "@/ui/components/trainings-view/trainings-view"
+import prisma from "@/lib/prisma"
 
 export default async function Home({ params } : { params: { name: string } }) {
   const name = decodeURIComponent(params.name)
