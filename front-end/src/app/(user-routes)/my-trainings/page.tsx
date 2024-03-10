@@ -58,9 +58,6 @@ export default async function Home()  {
     }
   })
 
-  console.log(data);
-  
-
   if(userRole!.role === 'USER') {
     redirect('/become-a-trainer')
   }
