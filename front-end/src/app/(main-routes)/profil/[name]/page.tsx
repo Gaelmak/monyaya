@@ -3,7 +3,6 @@ import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-oti
 import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil"
 import { Container } from "@/ui/components/container/container"
 import { TrainingsView } from "@/ui/components/trainings-view/trainings-view"
-import { pusherServer } from "@/lib/pusher"
 
 export default async function Home({ params } : { params: { name: string } }) {
   const name = decodeURIComponent(params.name)
@@ -87,10 +86,6 @@ export default async function Home({ params } : { params: { name: string } }) {
         }
       }
     },
-  })
-
-  pusherServer.trigger("myLearnings", "add", {
-    result: `${JSON.stringify(myLearnings)}\n\n`
   })
 
   return (
