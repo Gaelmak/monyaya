@@ -5,13 +5,18 @@ import { useState } from "react"
 import { Container } from "../container/container"
 import { Typography } from "../typography/typography"
 import { SearchResultButtons, SearchResultTrainer } from "@/ui/modules/search-result/search-result-buttons"
-import { List, Map, } from "lucide-react"
+import { Calendar, List, Map, } from "lucide-react"
 import DefaultAvatar from '../../../../public/default_avatar.jpg'
 import { truncateText } from "@/lib/truncate-text"
 import clsx from "clsx"
 import { SheetContent, SheetDescription, SheetFooter, SheetTitle } from "@/components/ui/sheet"
 import { Accordion,AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil"
+import { usePathname } from "next/navigation"
+import { format } from 'date-fns'
+import { fr } from 'date-fns/locale'
+import RekreationPaysage from '../../../../public/rekreatioonPaysage.png'
+import Image from "next/image"
 
 interface Props {
   data: {
@@ -57,6 +62,7 @@ interface Props {
 
 export const TrainingsView = ({data, userId, sessionName, myLearnings, className}: Props) => {
   const [learnings, setLearnings] = useState(myLearnings ? myLearnings : [])
+  const pathname = usePathname()
 
   if(userId) {
     const channel = pusherClient.subscribe(userId!);
@@ -69,31 +75,42 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
   return (
     <Container className={clsx(className)}>
         {
-          data.map(({id, modules, name, description, price,_count, user, courses}) => (
-            <Container key={id} className="group p-4 hover:cursor-pointer rounded flex flex-col gap-2 justify-between bg-white shadow hover:shadow-lg animate">
-              <Container className="flex flex-row justify-between">
-                <Typography variant="body-sm" className="bg-secondary-50 p-2 text-[0.6rem] rounded">{courses.category.name} /<br/>{courses.name}</Typography>
-                {
-                  user && <SearchResultTrainer name={user.name} image={user!.image ? user!.image : DefaultAvatar} isMyAccount={sessionName === user.name}/>
-                }              
+          data.map(({id, modules, createdAt, name, description, price,_count, user, courses}) => (
+            <Container key={id} className="group hover:cursor-pointer rounded flex flex-col gap-2 justify-between bg-white animate">
+              <Container className="w-full relative md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
+                <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
               </Container>
-              <Container className="flex flex-col p-2 rounded group-hover:bg-primary-Default animate bg-primary-300">
-                <Typography variant="title-sm" className="text-white">{truncateText(name, 65)}</Typography>
-              </Container>
-              <Container className="flex flex-col gap-1">
-                <Typography variant="body-sm" className="text-secondary-Default">{truncateText(description, 100)}</Typography>
+              <Container className="gap-4 flex flex-row justify-between">
                 <Container className="flex flex-row gap-1 items-center">
-                  <List width={16} height={16} className="text-secondary-Default"/>
-                  <Typography variant="body-sm" className="text-secondary-Default">{_count.modules}</Typography>
+                  <Typography variant="body-sm">{courses.name}</Typography>
                 </Container>
                 <Container className="flex flex-row gap-1 items-center">
-                  <Map width={16} height={16} className="text-secondary-Default"/>
+                  <Calendar width={14} height={14}/>
+                  <Typography variant="body-sm">{format(createdAt, 'dd MMMM yyyy', { locale: fr })}</Typography>
+                </Container>
+              </Container>
+              <Container className="flex flex-row w-full gap-4">
+                <Typography variant="title-sm" className="w-[85%]">{truncateText(name, 65)}</Typography>
+                <Container className="flex flex-row justify-end w-[15%]">
+                  {
+                    pathname != `/profil/${user.name}` ? <SearchResultTrainer name={user.name} image={user!.image ? user!.image : DefaultAvatar} isMyAccount={sessionName === user.name}/> : null
+                  }              
+                </Container>
+              </Container>
+              <Container className="flex flex-col">
+                <Typography variant="body-sm" className="text-secondary-Default">{truncateText(description, 90)}</Typography>
+                <Container className="flex flex-row gap-1 items-center">
+                  <List width={14} height={14} className="text-secondary-Default"/>
+                  <Typography variant="body-sm" className="text-secondary-Default">{_count.modules} {_count.modules > 1 ? "Modules" : "Module"}</Typography>
+                </Container>
+                <Container className="flex flex-row gap-1 items-center">
+                  <Map width={14} height={14} className="text-secondary-Default"/>
                   <Typography variant="body-sm" className="text-secondary-Default">{user && user.municipality} - {user && user.district}</Typography>
                 </Container>
               </Container>
               <Container className="flex flex-row justify-between">
                 <Container className="flex flex-row gap-1 items-center">
-                  <Typography variant="body-lg" className="text-primary-Default">${price}</Typography>
+                  <Typography variant="title-base" className="text-primary-Default">${price}</Typography>
                 </Container>  
                 <SearchResultButtons 
                   userId={userId ? userId : null} 
@@ -102,10 +119,22 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
                   amLearner={learnings.some(objet => objet.trainingId === id)} 
                   status={learnings.find(obj => obj!.trainingId === id)?.status}  
                 >
-                  <SheetContent className="bg-white w-[40%] py-12 gap-4 flex flex-col overflow-y-scroll">
-                    <SheetTitle>
-                      <Container className="flex flex-col p-2 rounded group-hover:bg-primary-Default animate bg-primary-300">
-                        <Typography variant="title-base" className="text-white">{name}</Typography>
+                  <SheetContent className="bg-white w-full md:w-[40%] py-12 gap-4 flex flex-col overflow-y-scroll">
+                    <SheetTitle className="flex flex-col gap-4">
+                      <Container className="w-full relative md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
+                        <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
+                      </Container>
+                      <Container className="gap-4 flex flex-row justify-between">
+                        <Container className="flex flex-row gap-1 items-center">
+                          <Typography variant="body-sm">{courses.name}</Typography>
+                        </Container>
+                        <Container className="flex flex-row gap-1 items-center">
+                          <Calendar width={14} height={14}/>
+                          <Typography variant="body-sm">{format(createdAt, 'dd MMMM yyyy', { locale: fr })}</Typography>
+                        </Container>
+                      </Container>
+                      <Container className="flex flex-col">
+                        <Typography variant="title-base">{name}</Typography>
                       </Container>
                     </SheetTitle>
                     <SheetDescription className="flex flex-col gap-2">
@@ -157,7 +186,6 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
                       </Container>
                     </SheetDescription>
                     <SheetFooter>
-
                     </SheetFooter>
                   </SheetContent>
                 </SearchResultButtons>

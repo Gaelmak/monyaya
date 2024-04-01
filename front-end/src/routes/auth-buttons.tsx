@@ -11,6 +11,7 @@ import DefaultAvatar from "../../public/default_avatar.jpg"
 interface Props {
   profileImg? : StaticImageData | undefined | string
   className?: string
+  children?: React.ReactNode
 }
 
 export const HomeButton = ({className}: Props) => {
@@ -28,14 +29,28 @@ export const HomeButton = ({className}: Props) => {
   )
 }
  
+export const ServiceButton = ({children} : Props) => {
+  return(
+    <Buttons 
+      variant="primary"
+      buttonType="link"
+      baseUrl="/services"
+      className="w-full"
+    >
+      {children ? children : 'Services'}
+    </Buttons>
+  )
+}
+
 export const SignInButton = () => {
   return(
     <Buttons 
       variant="primary"
       buttonType="link"
       baseUrl="/signin"
+      className="w-full md:w-auto"
     >
-      Connexion
+      Se connecter
     </Buttons>
   )
 }

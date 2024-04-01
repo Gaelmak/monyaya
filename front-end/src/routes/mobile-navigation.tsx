@@ -59,7 +59,7 @@ export const MobileNavigation = ({ className }: Props) => {
         className={
           clsx(
             navbarOpen ? 'right-0' : ' right-[-90vw] ',
-            'md:hidden border-l-[1px] border-slate-50 px-4 absolute block h-[92vh] w-[90vw] z-[100] py-6 top-[8vh] bg-white animate'
+            'shaddow md:hidden border-l-[1px] border-slate-50 px-4 absolute block h-[92vh] w-[90vw] z-[100] py-6 top-[8vh] bg-white animate'
           )
         }
       >

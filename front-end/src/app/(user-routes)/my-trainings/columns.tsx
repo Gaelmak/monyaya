@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -99,14 +100,14 @@ export const columns: ColumnDef<Training>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="bg-white rounded">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(training.id)}
-            >
-              Copy payment ID
+            <DropdownMenuItem>
+              <Link href={`/my-trainings/${training.id}`}>
+                Voir les apprenants
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Modifier la formation</DropdownMenuItem>
+            <DropdownMenuItem>Supprimer la formation</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         

@@ -1,7 +1,6 @@
 'use client'
 import { ListOfTestimonials } from "@/lib/testimonials-list/list-of-testimonials"
 import { Container } from "@/ui/components/container/container"
-import { TestimonialsCarousel } from "@/ui/components/testimonials-carousel/testimonials-carousel"
 
 export const Testimonials = () => {
 
@@ -10,9 +9,6 @@ export const Testimonials = () => {
       {/* <Container className="w-full p-4 md:p-0 basis-1/4 text-center">
         <Typography variant="display" component="h2">Ce qu'ils pensent de nous</Typography>
       </Container> */}
-      <Container className="basis-3/4 md:p-4">
-        <TestimonialsCarousel data={ListOfTestimonials} />
-      </Container>
     </Container>
   )
 }

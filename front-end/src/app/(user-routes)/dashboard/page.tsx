@@ -3,6 +3,8 @@ import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-oti
 import { TrainingsView } from "@/ui/components/trainings-view/trainings-view"
 import { Container } from "@/ui/components/container/container"
 import prisma from "@/lib/prisma"
+import { Typography } from "@/ui/components/typography/typography"
+import Link from "next/link"
 
 export default async function Home()  {
   const session = await getServerSession(authOptions)
@@ -74,13 +76,21 @@ export default async function Home()  {
 
   return (
     <Container className="p-4">
-      <TrainingsView 
-        className="grid grid-cols-3 gap-4"
-        data={trainings} 
-        userId={userId!.id!} 
-        myLearnings={myLearnings!} 
-        sessionName={session!.user!.name!}
-      />
+      {
+        trainings.length > 1 ?
+        <TrainingsView 
+          className="grid grid-cols-3 gap-4"
+          data={trainings} 
+          userId={userId!.id!} 
+          myLearnings={myLearnings!} 
+          sessionName={session!.user!.name!}
+        />
+        :
+        <Container className="h-[100vh] flex flex-col justify-center items-center">
+          <Typography variant="title-lg">Aucune formation trouvée</Typography>
+          <Typography className="w-[50%] text-center">Vous pouvez découvrir la formation qui vous convient et commencer votre apprentissage en consultant notre page des <Link href={"/services"} className="text-primary-Default underline">services</Link>.</Typography>
+        </Container>
+      }
     </Container>
   )
 }

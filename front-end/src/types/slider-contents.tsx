@@ -1,5 +1,5 @@
 export interface SliderContents {
-  id: number
+  id?: number
   title?: string
   description?: string
   Icon?: React.ElementType

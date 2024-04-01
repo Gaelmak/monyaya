@@ -29,18 +29,20 @@ export const AsideNav = async ({ className }: Props) => {
   return (
     <Container className={clsx("h-full w-full flex flex-col justify-between", className)}>
       <Container className="w-full p-4">
-        <Container className="w-full p-4 flex flex-row items-center bg-primary-50 gap-2 rounded">
-          <Container className="flex items-center justify-center rounded-full w-[40px] h-[40px] overflow-hidden">
-            <Image 
-              width={40} 
-              height={40} 
-              src={session!.user!.image ? session!.user!.image : DefaultAvatar}
-              alt="User profile image"
-            /> 
-          </Container>
+        <Container className="w-full p-4 flex flex-row items-start bg-secondary-950 gap-2 rounded">
           <Container>
+            <Container className="flex items-center justify-center rounded-full w-[40px] h-[40px] overflow-hidden">
+              <Image 
+                width={40} 
+                height={40} 
+                src={session!.user!.image ? session!.user!.image : DefaultAvatar}
+                alt="User profile image"
+              /> 
+            </Container>
+          </Container>
+          <Container className="text-white flex flex-col gap-1">
             <Typography variant="title-sm" component="h4" className="">{session!.user!.name!}</Typography>
-            <Typography variant="body-sm" className="text-black/20">{session!.user!.email!}</Typography>
+            <Typography variant="body-sm" className="">{session!.user!.email!}</Typography>
           </Container>
         </Container>
         <Container className="pt-4">

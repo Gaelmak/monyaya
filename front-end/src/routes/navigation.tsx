@@ -26,7 +26,7 @@ export const Navigation = async ({ className }: Props) => {
     >
       <Container className="flex flex-row items-center justify-between px-8 h-[10vh]">
         <Link href="/">
-          <Image src={MonYayaLogo} alt='Logo MonYaya' priority/>
+          <Image src={MonYayaLogo} alt='Logo MonYaya' width={120} height={120} priority/>
         </Link>
         <nav className="flex items-center gap-4">
           {

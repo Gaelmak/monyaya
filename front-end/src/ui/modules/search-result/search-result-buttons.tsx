@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useToast } from "@/components/ui/use-toast"
 import UseLoading from "@/hooks/use-loading"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 
 interface Props {
@@ -75,7 +76,7 @@ export const SearchResultButtons = ({status, trainingId, userId, isMyAccount = f
       {
       children ?
       <Sheet>
-        <SheetTrigger className="bg-secondary-900 p-2 flex flex-row text-white items-center rounded-full hover:bg-secondary-950">
+        <SheetTrigger className="bg-secondary-Default p-2 flex flex-row text-white items-center rounded-full hover:bg-secondary-950">
           <Eye className="h-6 w-6"/>
         </SheetTrigger>
         {children}
@@ -97,9 +98,9 @@ export const SearchResultButtons = ({status, trainingId, userId, isMyAccount = f
         </Container>
         :
         userId ?
-        <Buttons Icon={Plus} disabled={isMyAccount} variant="ghost" outline="outline" className="text-black" isLoading={isLoading} buttonType="action" action={() => addLearners(trainingId!, userId!)}/>
+        <Buttons Icon={Plus} disabled={isMyAccount} isLoading={isLoading} buttonType="action" action={() => addLearners(trainingId!, userId!)}/>
         :
-        <Buttons Icon={Plus} disabled={isMyAccount} variant="ghost" outline="outline" className="text-black" isLoading={isLoading} buttonType="action" action={() => logIn()}/>
+        <Buttons Icon={Plus} disabled={isMyAccount} isLoading={isLoading} buttonType="action" action={() => logIn()}/>
       }
     </Container>
   )
@@ -107,21 +108,43 @@ export const SearchResultButtons = ({status, trainingId, userId, isMyAccount = f
 
 export const SearchResultTrainer = ({ image = DefaultAvatar, name, isMyAccount = false }: Props) => {
   return(
-    <Link href={isMyAccount ? '/dashboard' : `/profil/${name}`}>
-      <Container className="flex flex-row justify-end gap-2">
-        <Container className="flex flex-col gap-1 w-28 items-end">
-          <Typography variant="title-xs" className="text-right hover:underline">{truncateText(name!, 25)}</Typography>
-        </Container>
-        <Container className="flex items-center justify-center rounded-full w-[30px] h-[30px] overflow-hidden">
-          <Image 
-            width={30} 
-            height={30} 
-            src={image}
-            alt="User profile image"
-            className="rounded-full"
-          />
-        </Container>
-      </Container>
-    </Link>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Link href={isMyAccount ? '/dashboard' : `/profil/${name}`}>
+            <Container className="flex flex-row justify-end gap-2">
+              <Container className="flex items-center justify-center rounded-full w-[36px] h-[36px] overflow-hidden">
+                <Image 
+                  width={36} 
+                  height={36} 
+                  src={image}
+                  alt="User profile image"
+                  className="rounded-full"
+                />
+              </Container>
+            </Container>
+          </Link>
+        </TooltipTrigger>
+        <TooltipContent className="bg-white rounded">
+          <Link href={isMyAccount ? '/dashboard' : `/profil/${name}`}>
+            <Container className="flex flex-col items-center gap-2 p-2 rounded">
+              <Container className="flex items-center justify-center rounded-full w-[36px] h-[36px] overflow-hidden">
+                <Image 
+                  width={36} 
+                  height={36} 
+                  src={image}
+                  alt="User profile image"
+                  className="rounded-full"
+                />
+              </Container>
+              <Container className="flex flex-col gap-1 w-28 items-center">
+                <Typography variant="title-xs" className="text-center underline">{truncateText(name!, 25)}</Typography>
+              </Container>
+            </Container>
+          </Link>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+    
   )
 }
