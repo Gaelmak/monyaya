@@ -1,7 +1,7 @@
 'use client'
 import { Buttons } from "@/ui/components/buttons/buttons";
 import { Container } from "@/ui/components/container/container";
-import { CalendarCheck, CalendarClock, CalendarX, Eye, Plus, Trash2 } from "lucide-react";
+import { CalendarCheck, CalendarClock, CalendarX, Plus, Trash2 } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import DefaultAvatar from '../../../../public/default_avatar.jpg'
 import { Typography } from "@/ui/components/typography/typography";
@@ -9,7 +9,6 @@ import { truncateText } from "@/lib/truncate-text";
 import Link from "next/link";
 import { useToast } from "@/components/ui/use-toast"
 import UseLoading from "@/hooks/use-loading"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 
@@ -73,16 +72,6 @@ export const SearchResultButtons = ({status, trainingId, userId, isMyAccount = f
 
   return(
     <Container className="flex flex-row gap-2">
-      {
-      children ?
-      <Sheet>
-        <SheetTrigger className="bg-secondary-Default p-2 flex flex-row text-white items-center rounded-full hover:bg-secondary-950">
-          <Eye className="h-6 w-6"/>
-        </SheetTrigger>
-        {children}
-      </Sheet>
-      : null
-      }
       {
         amLearner ?
         <Container className="flex flex-row gap-2">

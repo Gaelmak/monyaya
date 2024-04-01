@@ -7,8 +7,8 @@ export const MainRoutes: AppLinks[] = [
     baseUrl: '/'
   },
   {
-    title: 'Services',
-    baseUrl: '/services'
+    title: 'Formations',
+    baseUrl: '/trainings'
   },
   {
     title: 'A propos',

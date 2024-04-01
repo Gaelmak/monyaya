@@ -5,15 +5,15 @@ import { Typography } from "@/ui/components/typography/typography"
 
 export const Benefits = () => {
   return(
-    <Container className="px-4 md:px-8 py-24 flex flex-col gap-20 bg-primary-50">
+    <Container className="px-6 md:px-8 py-24 flex flex-col gap-20 bg-primary-50">
       <Container className="flex flex-col items-center">
         <Typography variant="title-lg" className="md:w-[60%] text-center">Découvrez les nombreux avantages de notre plateforme de formation !</Typography>
         <Typography className="md:w-[60%] text-center">Nous mettons tout en œuvre pour vous offrir une expérience d'apprentissage unique et enrichissante.</Typography>
       </Container>
-      <Container className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <Container className="grid grid-cols-2 md:grid-cols-3 gap-8">
         {
           OurBenefits.map(({Icon, title, description}) => (
-            <Container key={title} className="flex flex-row gap-4">
+            <Container key={title} className="flex flex-col md:flex-row gap-4">
               <Container className="basis-1/6">
                 <Icon className="text-primary-Default" size={40}/>
               </Container>

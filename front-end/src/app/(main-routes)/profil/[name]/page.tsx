@@ -4,6 +4,7 @@ import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil"
 import { Container } from "@/ui/components/container/container"
 import { TrainingsView } from "@/ui/components/trainings-view/trainings-view"
 import prisma from "@/lib/prisma"
+import { Typography } from "@/ui/components/typography/typography"
 
 export default async function Home({ params } : { params: { name: string } }) {
   const name = decodeURIComponent(params.name)
@@ -90,7 +91,7 @@ export default async function Home({ params } : { params: { name: string } }) {
   })
 
   return (
-    <main className="flex flex-row gap-4 p-4">
+    <main className="flex flex-col md:flex-row gap-4 p-4 w-full">
       {
         user ?
         <>
@@ -111,13 +112,15 @@ export default async function Home({ params } : { params: { name: string } }) {
               number : user.number!
               }]
             }
-            className="w-[20%]"
+            className="w-full md:w-[25%]"
           />
-          <Container className="w-[80%]">
+          <Container className="w-full md:w-[70%]">
+            <Typography variant="title-lg">Formations</Typography>
+            <br/>
             {
               session || myLearnings ?
               <TrainingsView
-                className="grid grid-cols-3 gap-4 "
+                className="grid grid-cols-1 md:grid-cols-3 gap-4 "
                 data={user.trainings} 
                 userId={userId!.id!} 
                 myLearnings={myLearnings!} 
@@ -125,7 +128,7 @@ export default async function Home({ params } : { params: { name: string } }) {
               />
               :
               <TrainingsView
-                className="grid grid-cols-3 gap-4 "
+                className="grid grid-cols-1 md:grid-cols-3 gap-4 "
                 data={user.trainings} 
               />
             }
