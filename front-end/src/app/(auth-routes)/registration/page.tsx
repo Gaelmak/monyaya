@@ -1,4 +1,5 @@
 'use client'
+import { BackButton } from "@/ui/components/back-button/back-button";
 import { Buttons } from "@/ui/components/buttons/buttons";
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
@@ -8,8 +9,9 @@ import Link from "next/link";
 export default function Home() {
   return (
     <Container className="h-[100dvh] w-full flex flex-row relative">
-       <Container className="absolute top-8 left-8">
-        <Buttons Icon={MoveLeft} variant="secondary" buttonType="link" baseUrl="/" className="">Retourner à l'écran d'acceuil</Buttons>
+      <Container className="absolute top-8 right-8">
+        <BackButton icon="home" backTo="/" className="md:hidden"/>
+        <BackButton icon="home" backTo="/" className="hidden md:flex">Retourner à l'écran d'acceuil</BackButton>
       </Container>
       <Container className="w-full flex flex-col justify-center items-center gap-8 bg-secondary-100">
         <Container 

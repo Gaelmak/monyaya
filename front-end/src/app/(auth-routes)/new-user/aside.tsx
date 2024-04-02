@@ -9,9 +9,6 @@ import Student from "../../../../public/HowItWork.jpg"
 export const Aside = () => {
   return (
     <BgImg src={Student} alt={"student"} className="w-full h-full relative">
-      <Container className="absolute top-8 left-8">
-        <Buttons Icon={Home} variant="secondary" buttonType="link" baseUrl="/" className="">Retourner à l'écran d'acceuil</Buttons>
-      </Container>
       <Container className="text-center flex flex-col gap-8 px-4 bg-secondary-Default h-full justify-center items-center bg-opacity-50">
         <Typography variant="title-lg" component="h2" className="text-white">
           J'ai deja un compte !

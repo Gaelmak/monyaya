@@ -1,15 +1,25 @@
 'use client'
 import { Buttons } from "@/ui/components/buttons/buttons"
-import { MoveLeft } from "lucide-react"
+import { MoveLeft, Home } from "lucide-react"
 
 interface Props {
-  backTo : string,
+  backTo : string
+  icon? : "default" | "home"
+  children? : React.ReactNode
+  className?: string
 }
 
-export const BackButton = ({backTo} : Props) => {
+export const BackButton = ({backTo, icon = "default", children, className} : Props) => {
   return(
     <>
-      <Buttons Icon={MoveLeft} variant="secondary" buttonType="link" baseUrl={backTo} className=""/>
+    { 
+      children ?
+      <Buttons Icon={icon == "default" ? MoveLeft : Home} variant="secondary" buttonType="link" baseUrl={backTo} className={className}>
+        {children}
+      </Buttons>
+      : 
+      <Buttons Icon={icon == "default" ? MoveLeft : Home} variant="secondary" buttonType="link" baseUrl={backTo} className={className}/>
+    }
     </>
   )
 }
