@@ -17,7 +17,7 @@ interface Props {
   children?: React.ReactNode
   disabled?: boolean
   isLoading?: boolean
-  buttonType?: 'link' | 'anchor' | 'action' | undefined
+  buttonType?: 'link' | 'action' | 'default'
   outline?: 'outline' | 'default'
   width?: 'lg' | 'default' | 'sm' | 'icon'
   Icon?: React.ElementType 
@@ -28,7 +28,7 @@ interface Props {
 export const  Buttons = ({
   action = () => {},
   baseUrl,
-  buttonType = undefined,
+  buttonType = 'default',
   children,
   className,
   disabled = false,
@@ -110,121 +110,115 @@ export const  Buttons = ({
   }
   
   const buttonLink = (
-    <>
-      <_Button
-        variant={outline}
-        className={
-          clsx(
-            children? "rounded" : "rounded-full",
-            colorStyles,
-            txt_colorStyles,
-            className
-          )
-        }
-        size={
-          children ?
-            width
+    <_Button
+      variant={outline}
+      className={
+        clsx(
+          children? "rounded" : "rounded-full",
+          colorStyles,
+          txt_colorStyles,
+          className
+        )
+      }
+      size={
+        children ?
+          width
+          :
+          'icon'
+      }
+      disabled = {isLoading ? isLoading : disabled}
+      asChild
+      type={type}
+    >
+      <Link href={baseUrl!}>
+        {
+          isLoading ? 
+          <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+          :
+            Icon ?
+            <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
             :
-            'icon'
-        }
-        disabled = {isLoading ? isLoading : disabled}
-        asChild
-        type={type}
-      >
-        <Link href={baseUrl!}>
-          {
-            isLoading ? 
-            <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+            CustomIcon ?
+            <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
             :
-              Icon ?
-              <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
-              :
-              CustomIcon ?
-              <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
-              :
-            null
-          }
-          {children}
-        </Link>
-      </_Button>
-    </>
+          null
+        }
+        {children}
+      </Link>
+    </_Button>
   )
 
   const buttonAction = (
-    <>
-      <_Button
-        variant={outline}
-        className={
-          clsx(
-            children? "rounded" : "rounded-full",
-            txt_colorStyles,
-            colorStyles,
-            className
-          )
-        }
-        size={
-          children ?
-            width
-            :
-            'icon'
-        }
-        disabled = {isLoading ? isLoading : disabled}
-        onClick={handleClick}
-        type={type}
-      >
-        {
-          isLoading ? 
-          <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+    <_Button
+      variant={outline}
+      className={
+        clsx(
+          children? "rounded" : "rounded-full",
+          txt_colorStyles,
+          colorStyles,
+          className
+        )
+      }
+      size={
+        children ?
+          width
           :
-            Icon ?
-            <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
-            :
-            CustomIcon ?
-            <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
-            :
-          null
-        }
-        {children}
-      </_Button>
-    </>
+          'icon'
+      }
+      disabled = {isLoading ? isLoading : disabled}
+      onClick={handleClick}
+      type={type}
+    >
+      {
+        isLoading ? 
+        <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+        :
+          Icon ?
+          <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+          :
+          CustomIcon ?
+          <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+          :
+        null
+      }
+      {children}
+    </_Button>
   )
 
   const buttonDefault = (
-    <>
-      <_Button
-        variant={outline}
-        className={
-          clsx(
-            children? "rounded" : "rounded-full",
-            txt_colorStyles,
-            colorStyles,
-            className
-          )
-        }
-        size={
-          children ?
-            width
-            :
-            'icon'
-        }
-        disabled = {isLoading ? isLoading : disabled}
-        type={type}
-      >
-        {
-          isLoading ? 
-          <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+    <_Button
+      variant={outline}
+      className={
+        clsx(
+          children? "rounded" : "rounded-full",
+          txt_colorStyles,
+          colorStyles,
+          className
+        )
+      }
+      size={
+        children ?
+          width
           :
-            Icon ?
-            <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
-            :
-            CustomIcon ?
-            <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
-            :
-          null
-        }
-        {children}
-      </_Button>
-    </>
+          'icon'
+      }
+      disabled = {isLoading ? isLoading : disabled}
+      type={type}
+    >
+      {
+        isLoading ? 
+        <Loader2 className= {children? "mr-2 h-5 w-5 animate-spin":"h-5 w-5 animate-spin"}/>
+        :
+          Icon ?
+          <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+          :
+          CustomIcon ?
+          <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+          :
+        null
+      }
+      {children}
+    </_Button>
   )
 
   const buttonElement = (

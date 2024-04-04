@@ -43,7 +43,8 @@ export const ProvidersList = ({
               } 
             buttonType="action" 
             isLoading={isLoading}
-            action={() => signInWithProvider(provider.id)}>
+            action={() => signInWithProvider(provider.id)}
+          >
             Se connecter avec {provider.name}
           </Buttons>
         </Container>

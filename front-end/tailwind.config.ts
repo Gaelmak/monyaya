@@ -74,23 +74,23 @@ const config: Config = {
       fontSize: {
         'display': ['4rem', {
           lineHeight: '120%',
-          fontWeight: '800'
+          fontWeight: '700'
         }],
         'title-lg': ['2rem', {
           lineHeight: '120%',
-          fontWeight: '800'
+          fontWeight: '700'
         }],
         'title-base': ['1.5rem', {
           lineHeight: '120%',
-          fontWeight: '800'
+          fontWeight: '700'
         }],
         'title-sm': ['1rem', {
           lineHeight: '120%',
-          fontWeight: '800'
+          fontWeight: '600'
         }],
         'title-xs': ['0.75rem', {
           lineHeight: '120%',
-          fontWeight: '800'
+          fontWeight: '600'
         }],
         'body-lg': ['1.5rem', {
           lineHeight: '120%',

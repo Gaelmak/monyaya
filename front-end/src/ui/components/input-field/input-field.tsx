@@ -39,7 +39,7 @@ export const InputField = ({
   type = 'text',
   autocompletion = true,
   children,
-  required = true,
+  required = false,
 }: Props) => {
   return (
     <FormField

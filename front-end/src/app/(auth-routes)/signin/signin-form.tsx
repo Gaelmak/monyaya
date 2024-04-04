@@ -8,7 +8,7 @@ import * as z from "zod"
 import { InputField } from "@/ui/components/input-field/input-field"
 import { Container } from "@/ui/components/container/container"
 import { Buttons } from "@/ui/components/buttons/buttons"
-import { Eye, EyeOff, Lock, LogIn, User } from "lucide-react"
+import { Eye, EyeOff, Lock, LogIn, User, UserPlus } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
 import UseLoading from "@/hooks/use-loading"
@@ -103,8 +103,12 @@ export const SigninForm = () => {
             </InputField>
           </Container>
         </Container>
-        <Container className="flex flex-row justify-between items-center">
-          <Buttons type="submit" Icon={LogIn} isLoading={isLoading}>Se connecter</Buttons>
+        <Container className="flex flex-col justify-between items-center gap-2">
+          <Buttons type="submit" Icon={LogIn} isLoading={isLoading} className="w-full">Se connecter</Buttons>
+          <Typography variant="body-sm" className="pt-8">
+            Vous n'avez pas de compte ? Enregistrez vous.
+          </Typography>
+          <Buttons buttonType="link" baseUrl="/new-user" Icon={UserPlus} variant="ghost" outline="outline" className="text-secondary-Default w-full">S'enregistrer</Buttons>
         </Container>
       </form>
     </Form>

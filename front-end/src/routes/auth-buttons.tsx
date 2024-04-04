@@ -74,24 +74,44 @@ export const ProfileButton = ({ profileImg }: Props) => {
     {
       profileImg ?
         <Link href="/dashboard">
-          <Container className="flex items-center justify-center rounded-full w-[40px] h-[40px] overflow-hidden">
-            <Image 
-              width={40} 
-              height={40} 
-              src={profileImg}
-              alt="User profile image"
-            /> 
+          <Container className="items-center w-full pt-12 border-t flex flex-col md:flex-row md:items-start gap-2 rounded">
+            <Container className="flex items-center justify-center rounded-full w-[120px] md:w-[40px] h-[120px] md:h-[40px] overflow-hidden">
+              <Image 
+                width={40} 
+                height={40} 
+                src={profileImg}
+                alt="User profile image"
+                className="hidden md:block"
+              /> 
+              <Image 
+                width={120} 
+                height={120} 
+                src={profileImg}
+                alt="User profile image"
+                className="md:hidden"
+              /> 
+            </Container>
           </Container>
         </Link>  
       :
         <Link href="/dashboard">
-          <Container className="flex items-center justify-center rounded-full w-[40px] h-[40px] overflow-hidden">
-            <Image 
-              width={40} 
-              height={40} 
-              src={DefaultAvatar}
-              alt="User profile image"
-            /> 
+          <Container className="items-center w-full pt-12 border-t flex flex-col md:flex-row md:items-start gap-2 rounded">
+            <Container className="flex items-center justify-center rounded-full w-[120px] md:w-[40px] h-[120px] md:h-[40px] overflow-hidden">
+              <Image 
+                width={40} 
+                height={40} 
+                src={DefaultAvatar}
+                alt="User profile image"
+                className="hidden md:block"
+              /> 
+              <Image 
+                width={120} 
+                height={120} 
+                src={DefaultAvatar}
+                alt="User profile image"
+                className="md:hidden"
+              /> 
+            </Container>
           </Container>
         </Link>  
     }

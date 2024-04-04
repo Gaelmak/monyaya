@@ -11,20 +11,19 @@ export default async function SignIn() {
 
   return (
     <Container className="relative md:h-[100dvh] flex flex-col-reverse md:flex-row">
-      <Container className="absolute top-8 right-8">
-        <BackButton icon="home" backTo="/" className="md:hidden"/>
-        <BackButton icon="home" backTo="/" className="hidden md:flex">Retourner à l'écran d'acceuil</BackButton>
+      <Container className="absolute top-8 left-8 z-10">
+        <BackButton icon="home" backTo="/"/>
       </Container>
-      <Container className="h-[60vh] md:h-full md:basis-2/5">
+      <Container className="h-80 md:h-full md:basis-2/5">
         <Aside/>
       </Container>
-      <Container className="py-32  md:py-0 md:basis-3/5 flex flex-col justify-center items-center md:px-16">
-        <Container className="w-[80vw] md:w-[30vw] flex flex-col gap-6 justify-center items-center">
-          <Container className="flex flex-col items-center gap-2">
+      <Container className="py-32 px-8 md:py-0 md:basis-3/5 flex flex-col justify-center items-center md:px-16">
+        <Container className="md:w-[30vw] flex flex-col gap-8">
+          <Container className="flex flex-col gap-2 ">
             <Typography variant="title-lg" component="h2">Heureux de vous revoir !</Typography>
-            <Typography variant="body-sm" component="p" className="text-secondary-300">Veuillez selectionner un mode de connexion</Typography>
+            <Typography variant="body-base" component="p">Veuillez selectionner un mode de connexion</Typography>
           </Container>
-          <Container>
+          <Container className="w-full">
             <ProvidersList providers={Object.values(providerslist!)}/>
           </Container>
           <Container className="w-full flex items-center after:basis-1/2 after:content-[''] after:p-[0.5px] after:m-2 after:bg-secondary-100 before:basis-1/2 before:content-[''] before:p-[0.5px] before:m-2 before:bg-secondary-100">
