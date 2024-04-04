@@ -5,6 +5,7 @@ import { Container } from "@/ui/components/container/container"
 import prisma from "@/lib/prisma"
 import { Typography } from "@/ui/components/typography/typography"
 import Link from "next/link"
+import clsx from "clsx"
 
 export default async function Home()  {
   const session = await getServerSession(authOptions)
@@ -75,11 +76,11 @@ export default async function Home()  {
   })
 
   return (
-    <Container className="p-4">
+    <Container className={clsx("p-4", trainings.length > 1 ? "pt-24 md:pt-4": "")}>
       {
         trainings.length > 1 ?
         <TrainingsView 
-          className="grid grid-cols-3 gap-4"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4"
           data={trainings} 
           userId={userId!.id!} 
           myLearnings={myLearnings!} 
@@ -87,8 +88,8 @@ export default async function Home()  {
         />
         :
         <Container className="h-[100vh] flex flex-col justify-center items-center">
-          <Typography variant="title-lg">Aucune formation trouvée</Typography>
-          <Typography className="w-[50%] text-center">Vous pouvez découvrir la formation qui vous convient et commencer votre apprentissage en consultant notre page des <Link href={"/services"} className="text-primary-Default underline">services</Link>.</Typography>
+          <Typography variant="title-lg" className="w-full text-center">Aucune formation trouvée</Typography>
+          <Typography className="w-full md:w-[50%] text-center">Vous pouvez découvrir la formation qui vous convient et commencer votre apprentissage en consultant notre page "<Link href={"/trainings"} className="text-primary-Default underline">Formations</Link>".</Typography>
         </Container>
       }
     </Container>

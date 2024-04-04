@@ -74,7 +74,7 @@ export const ProfileButton = ({ profileImg }: Props) => {
     {
       profileImg ?
         <Link href="/dashboard">
-          <Container className="items-center w-full pt-12 border-t flex flex-col md:flex-row md:items-start gap-2 rounded">
+          <Container className="items-center w-full md:flex-row md:items-start gap-2 rounded">
             <Container className="flex items-center justify-center rounded-full w-[120px] md:w-[40px] h-[120px] md:h-[40px] overflow-hidden">
               <Image 
                 width={40} 
@@ -95,7 +95,7 @@ export const ProfileButton = ({ profileImg }: Props) => {
         </Link>  
       :
         <Link href="/dashboard">
-          <Container className="items-center w-full pt-12 border-t flex flex-col md:flex-row md:items-start gap-2 rounded">
+          <Container className="items-center w-full flex flex-col md:flex-row md:items-start gap-2 rounded">
             <Container className="flex items-center justify-center rounded-full w-[120px] md:w-[40px] h-[120px] md:h-[40px] overflow-hidden">
               <Image 
                 width={40} 

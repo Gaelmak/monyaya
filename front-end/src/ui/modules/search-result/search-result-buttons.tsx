@@ -102,10 +102,10 @@ export const SearchResultTrainer = ({ image = DefaultAvatar, name, isMyAccount =
         <TooltipTrigger>
           <Link href={isMyAccount ? '/dashboard' : `/profil/${name}`}>
             <Container className="flex flex-row justify-end gap-2">
-              <Container className="flex items-center justify-center rounded-full w-[36px] h-[36px] overflow-hidden">
+              <Container className="flex items-center justify-center rounded-full w-[40px] h-[40px] overflow-hidden">
                 <Image 
-                  width={36} 
-                  height={36} 
+                  width={40} 
+                  height={40} 
                   src={image}
                   alt="User profile image"
                   className="rounded-full"
@@ -117,10 +117,10 @@ export const SearchResultTrainer = ({ image = DefaultAvatar, name, isMyAccount =
         <TooltipContent className="bg-white rounded">
           <Link href={isMyAccount ? '/dashboard' : `/profil/${name}`}>
             <Container className="flex flex-col items-center gap-2 p-2 rounded">
-              <Container className="flex items-center justify-center rounded-full w-[36px] h-[36px] overflow-hidden">
+              <Container className="flex items-center justify-center rounded-full w-[80px] h-[80px] overflow-hidden">
                 <Image 
-                  width={36} 
-                  height={36} 
+                  width={80} 
+                  height={80} 
                   src={image}
                   alt="User profile image"
                   className="rounded-full"

@@ -62,7 +62,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4 flex-row justify-between">
+      <div className="flex items-center py-4 flex-col gap-4 md:flex-row justify-between">
         <Input
           placeholder="Filtrez par titre ..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
@@ -71,7 +71,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm rounded focus:ring-primary-Default border-secondary-300"
         />
-        <Buttons buttonType="link" baseUrl="/my-trainings/add" Icon={Plus}>
+        <Buttons buttonType="link" baseUrl="/my-trainings/add" Icon={Plus} className="w-full md:w-auto">
           Ajouter une formation
         </Buttons>
       </div>

@@ -10,7 +10,7 @@ export const ProcessToBecomeATrainer = async() => {
   const session = await getServerSession(authOptions)
   
   return (
-    <Container className="flex flex-col gap-4">
+    <Container className="flex flex-col gap-4 pt-20 pb-16 md:pt-0">
       <Container className="bg-gradient-to-br from-primary-800 to-primary-400 rounded flex flex-col px-4 py-0 md:px-16 md:flex-row items-center md:items-end md:h-[240px]">
         <Container className="hidden md:block md:basis-1/4">
           <Image 

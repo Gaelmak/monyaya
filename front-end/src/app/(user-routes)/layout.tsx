@@ -26,7 +26,7 @@ export default async function RootLayout({
             <AsideNav className='h-[100dvh] w-full'/>
           </div>
         </Container>
-        <Container className='w-full md:w-[80%] bg-secondary-50'>
+        <Container className='w-full md:w-[80%] '>
           {children}
         </Container>
       </Container>

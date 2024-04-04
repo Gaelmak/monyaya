@@ -37,7 +37,7 @@ export const MobileAsideNav = async ({ className }: Props) => {
               <Image src={session!.user!.image ? session!.user!.image : Default } alt='Profil image' priority width={40} height={40}/>
             </Container>
           </SheetTrigger>
-          <SheetContent className="w-[90vw] bg-white">
+          <SheetContent className="w-[90vw] bg-white pt-8">
             <AsideNav/>
           </SheetContent>
         </Sheet>

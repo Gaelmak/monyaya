@@ -22,35 +22,27 @@ export const AsideNav = async ({ className }: Props) => {
       name: session!.user!.name!
     },
     select: {
-      role: true
+      role: true,
     }
   })
 
   return (
-    <Container className={clsx("h-full w-full flex flex-col justify-between", className)}>
-      <Container className="w-full p-2 md:p-4">
-        <Container className="items-center w-full p-4 flex flex-col md:flex-row md:items-start bg-secondary-950 gap-2 rounded">
+    <Container className={clsx("h-full w-full flex flex-col justify-between bg-white md:bg-slate-50 ", className)}>
+      <Container className="w-full md:p-4">
+        <Container className="items-center w-full flex flex-row gap-2 rounded">
           <Container>
-            <Container className="flex items-center justify-center rounded-full w-[120px] md:w-[40px] h-[120px] md:h-[40px] overflow-hidden">
+            <Container className="flex items-start rounded-full w-[40px] h-[40px] overflow-hidden">
               <Image 
                 width={40} 
                 height={40} 
                 src={session!.user!.image ? session!.user!.image : DefaultAvatar}
                 alt="User profile image"
-                className="hidden md:block"
-              /> 
-              <Image 
-                width={120} 
-                height={120} 
-                src={session!.user!.image ? session!.user!.image : DefaultAvatar}
-                alt="User profile image"
-                className="md:hidden"
               /> 
             </Container>
           </Container>
-          <Container className="text-white flex flex-col gap-1">
-            <Typography variant="title-sm" component="h4" className="">{session!.user!.name!}</Typography>
-            <Typography variant="body-sm" className="">{session!.user!.email!}</Typography>
+          
+          <Container className="flex flex-col">
+            <Typography variant="title-sm" component="h4">{session!.user!.name!}</Typography>
           </Container>
         </Container>
         <Container className="pt-4">
@@ -78,6 +70,8 @@ export const AsideNav = async ({ className }: Props) => {
           ))
         }
         </Container>
+      </Container>
+      <Container className="md:p-4">
         {
           userRole!.role === 'USER' ?
           <Container>
@@ -100,8 +94,6 @@ export const AsideNav = async ({ className }: Props) => {
             </Typography>
           </Container>
         }
-      </Container>
-      <Container className="p-4">
         {
           HomeRoute.map(({title, baseUrl, Icon}) => (
             <Container key={title}>
@@ -123,7 +115,7 @@ export const AsideNav = async ({ className }: Props) => {
             </Container>
           ))
         }
-        <SignOutButton className="bg-white text-red-400 hover:bg-white hover:text-red-500 justify-start p-2 w-full"/>
+        <SignOutButton className="bg-white md:bg-slate-50 text-red-400 hover:bg-white md:hover:bg-slate-50 hover:text-red-500 justify-start p-2 w-full"/>
       </Container>
     </Container>
   )

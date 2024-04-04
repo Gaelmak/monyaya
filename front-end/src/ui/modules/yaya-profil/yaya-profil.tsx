@@ -3,7 +3,6 @@ import Image from 'next/image'
 import DefaultAvatar from '../../../../public/default_avatar.jpg'
 import { Typography } from "@/ui/components/typography/typography"
 import clsx from "clsx";
-import { Buttons } from "@/ui/components/buttons/buttons";
 
 interface Props {
   data : [{
@@ -33,19 +32,19 @@ export const YayaProfil = ({
       <Container className="border p-4 rounded sticky top-[12vh]">
       {
         data.map(({name, image, email}) => (
-        <Container key={name} className="flex flex-col gap-8 relative">
-          <Container className="flex flex-col gap-4 items-center">
-            <Container className="flex items-center justify-center rounded-full w-[160px] h-[160px] overflow-hidden">
+        <Container key={name} className="flex flex-col gap-4 relative">
+          <Container className="flex flex-row gap-4 items-start">
+            <Container className="flex flex-row rounded-full w-[80px] h-[80px] overflow-hidden">
               <Image 
-                width={160} 
-                height={160} 
+                width={80} 
+                height={80} 
                 src={image ? image : DefaultAvatar}
                 alt="User profile image"
               />
             </Container>
-            <Container className="flex flex-col gap-1">
-              <Typography variant="title-base" className="text-center">{name}</Typography>
-              <Typography variant="body-sm" className="text-center text-primary-600">{email}</Typography>
+            <Container className="flex flex-col">
+              <Typography variant="title-sm">Yaya</Typography>
+              <Typography variant="title-base">{name}</Typography>
             </Container>
           </Container>
           {

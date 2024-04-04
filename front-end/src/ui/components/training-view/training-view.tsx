@@ -77,12 +77,10 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
       {
         data.map(({id, modules, createdAt, name, description, price, user, courses}) => (
           <Container className="bg-white w-full gap-4 md:gap-8 flex flex-col md:flex-row rounded" key={id}>
-            <Container className="md:basis-3/5 flex flex-col gap-4 ">
+            <Container className="md:basis-2/6 flex flex-col gap-4 ">
               <Container className="md:sticky md:top-24 w-full relative md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
                 <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
               </Container>
-            </Container>
-            <Container className="md:basis-2/5 flex flex-col gap-4 md:gap-8">
               <Container className="gap-4 flex flex-row justify-between">
                 <Container className="flex flex-row gap-1 items-center">
                   <Typography variant="body-sm">{courses.name}</Typography>
@@ -92,6 +90,42 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
                   <Typography variant="body-sm">{format(createdAt, 'dd MMMM yyyy', { locale: fr })}</Typography>
                 </Container>
               </Container>
+              <Container className="flex flex-row items-center justify-between w-full">
+                <Container className="flex flex-row gap-1 items-center">
+                  <Typography variant="title-lg" className="text-primary-Default">${price}</Typography>
+                </Container> 
+                <SearchResultButtons 
+                  userId={userId ? userId : null} 
+                  trainingId={id} 
+                  isMyAccount={sessionName === user!.name} 
+                  amLearner={learnings.some(objet => objet.trainingId === id)} 
+                  status={learnings.find(obj => obj!.trainingId === id)?.status}  
+                />
+              </Container>
+              <Container className="hidden md:block">
+                {
+                  user &&
+                    <YayaProfil 
+                      data = {
+                        [{
+                        name : user.name,
+                        image : user.image!,
+                        email : user.email!,
+                        createdAt: user.createdAt,
+                        municipality : user.municipality!,
+                        district : user.district!,
+                        avenue : user.avenue!,
+                        number : user.number!
+                        }]
+                      }
+                      className="w-full"
+                    >
+                    <Buttons buttonType="link" baseUrl={sessionName === user!.name ? `/dashboard` : `/profil/${user.name}`}>Voir profil</Buttons>
+                  </YayaProfil> 
+                }
+              </Container>
+            </Container>
+            <Container className="md:basis-2/6 flex flex-col gap-4 md:gap-8">
               <Container className="flex flex-col">
                 <Typography variant="title-base">{name}</Typography>
               </Container>
@@ -112,23 +146,8 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
                   }
                 </Accordion>
               </Container>
-              <Container className="my-8 flex flex-row items-center justify-between w-full">
-                <Container className="flex flex-row gap-1 items-center">
-                  <Typography variant="title-lg" className="text-primary-Default">${price}</Typography>
-                </Container> 
-                <SearchResultButtons 
-                  userId={userId ? userId : null} 
-                  trainingId={id} 
-                  isMyAccount={sessionName === user!.name} 
-                  amLearner={learnings.some(objet => objet.trainingId === id)} 
-                  status={learnings.find(obj => obj!.trainingId === id)?.status}  
-                />
-              </Container>
-              <Container>
+              <Container className="md:hidden">
                 {
-                  sessionName === user!.name ?
-                  null
-                  :
                   user &&
                     <YayaProfil 
                       data = {
@@ -143,12 +162,15 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
                         number : user.number!
                         }]
                       }
-                      className="w-full md:40%"
+                      className="w-full"
                     >
-                    <Buttons buttonType="link" baseUrl={`/profil/${name}`}>Voir profil</Buttons>
+                    <Buttons buttonType="link" baseUrl={sessionName === user!.name ? `/profil/${name}` : `/dashboard`}>Voir profil</Buttons>
                   </YayaProfil> 
                 }
               </Container>
+            </Container>
+            <Container className="hidden md:flex md:basis-2/6 flex-col gap-4 md:gap-8">
+
             </Container>
           </Container>
         ))
