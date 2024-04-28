@@ -1,7 +1,7 @@
 import { Navigation } from '@/routes/navigation'
 import { MobileNavigation } from '@/routes/mobile-navigation'
 import { Toaster } from '@/components/ui/toaster'
-import { Breadcrumbs } from '@/ui/components/breadcrumbs/breadcrumbs'
+import { Footer } from '@/ui/modules/footer/footer'
 
 export default function MainRoutesLayout({
   children,
@@ -13,6 +13,7 @@ export default function MainRoutesLayout({
       <Navigation className='hidden md:block'/>
       <MobileNavigation className='md:hidden'/>
       {children}
+      <Footer/>
       <Toaster/>
     </div>
   )

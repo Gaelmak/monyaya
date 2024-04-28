@@ -78,10 +78,12 @@ export const Recommandations = async () => {
   const recommandations = selectRandomObjects(trainings, 8)
 
   return (
-    <Container className="flex py-8 px-4 md:px-8 md:py-8 flex-col gap-8">
-      <Container className="">
+    <Container className="flex py-8 px-4 md:px-8 md:py-32  flex-col gap-8">
+      <Container className="flex justify-between">
         <Typography variant="title-lg" component="h2">Récommandations</Typography>
-        
+        <Container className="hidden md:flex">
+          <ServiceButton>Voir tous les cours</ServiceButton>
+        </Container>
       </Container>
       <br/>
       <Container className="overflow-auto flex flex-row gap-4 no-scrollbar">
@@ -102,9 +104,6 @@ export const Recommandations = async () => {
       }
       </Container>
       <br/>
-      <Container className="w-full">
-        <ServiceButton>Aller à la page des services</ServiceButton>
-      </Container>
     </Container>
     
   )

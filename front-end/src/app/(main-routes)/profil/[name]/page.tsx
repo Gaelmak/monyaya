@@ -112,9 +112,9 @@ export default async function Home({ params } : { params: { name: string } }) {
               number : user.number!
               }]
             }
-            className="w-full md:w-[20%]"
+            className="w-full md:w-[25%]"
           />
-          <Container className="w-full md:w-[80%]">
+          <Container className="w-full md:w-[75%]">
             <Typography variant="title-lg">Formations</Typography>
             <br/>
             {

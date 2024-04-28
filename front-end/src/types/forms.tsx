@@ -64,6 +64,13 @@ export const NewsletterRegisterFormFieldsType = z.object({
   email: z.string().email("Veuillez entrer une adresse mail valide")
 })
 
+export const ContactFormFieldsType = z.object({
+  email: z.string().email("Veuillez entrer une adresse mail valide"),
+  message: z.string().min(3, {
+    message: "Veuillez remplir ce champ avant d'envoyer votre message",
+  })
+})
+
 export const BecomeATrainerFormFieldsType = z.object({
   bio: z.string()
     .min(10, {

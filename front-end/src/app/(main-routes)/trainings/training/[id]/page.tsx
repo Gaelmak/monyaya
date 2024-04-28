@@ -45,6 +45,7 @@ export default async function Home({ params } : { params: { id: string } }) {
       user: {
         select: {
           name: true,
+          bio: true,
           email: true,
           municipality: true,
           createdAt: true,
@@ -52,6 +53,11 @@ export default async function Home({ params } : { params: { id: string } }) {
           avenue: true,
           number: true,
           image: true,
+          _count: {
+            select: {
+              trainings: true
+            }
+          }
         },
       },
       courses: {

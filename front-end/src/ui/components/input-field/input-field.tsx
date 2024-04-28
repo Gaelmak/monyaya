@@ -28,6 +28,7 @@ interface Props {
   autocompletion? : boolean
   children? : React.ReactNode
   required? : boolean
+  className? : string
 }
 
 export const InputField = ({
@@ -40,6 +41,7 @@ export const InputField = ({
   autocompletion = true,
   children,
   required = false,
+  className
 }: Props) => {
   return (
     <FormField
@@ -73,6 +75,7 @@ export const InputField = ({
                   className={clsx(
                     "resize-none rounded h-48 focus:ring-primary-Default border-secondary-300",
                     children? "px-12" : "",
+                    className
                     )}
                   {...field}
                 />
@@ -81,6 +84,7 @@ export const InputField = ({
                   className={clsx(
                     "rounded focus:ring-primary-Default border-secondary-300",
                     children? "px-12" : "",
+                    className
                     )}
                   placeholder={placeholder} {...field} type={type} name={name} id={name} autoComplete={"'" + {autocompletion} +"'"}
                 />

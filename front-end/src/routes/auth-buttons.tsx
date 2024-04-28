@@ -7,11 +7,13 @@ import { signIn, signOut } from "next-auth/react"
 import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
 import DefaultAvatar from "../../public/default_avatar.jpg"
+import { Typography } from "@/ui/components/typography/typography"
 
 interface Props {
   profileImg? : StaticImageData | undefined | string
   className?: string
   children?: React.ReactNode
+  name?: string
 }
 
 export const HomeButton = ({className}: Props) => {
@@ -68,14 +70,14 @@ export const SignOutButton = ({className}: Props) => {
   )
 }
 
-export const ProfileButton = ({ profileImg }: Props) => {
+export const ProfileButton = ({ profileImg, name }: Props) => {
   return(
     <>
     {
       profileImg ?
         <Link href="/dashboard">
-          <Container className="items-center w-full md:flex-row md:items-start gap-2 rounded">
-            <Container className="flex items-center justify-center rounded-full w-[120px] md:w-[40px] h-[120px] md:h-[40px] overflow-hidden">
+          <Container className="items-start w-full flex flex-row gap-4 rounded p-4 md:p-0 md:bg-white bg-secondary-100">
+            <Container className="flex items-center justify-center rounded-full w-[60px] md:w-[40px] h-[60px] md:h-[40px] overflow-hidden">
               <Image 
                 width={40} 
                 height={40} 
@@ -84,19 +86,22 @@ export const ProfileButton = ({ profileImg }: Props) => {
                 className="hidden md:block"
               /> 
               <Image 
-                width={120} 
-                height={120} 
+                width={60} 
+                height={60} 
                 src={profileImg}
                 alt="User profile image"
                 className="md:hidden"
               /> 
             </Container>
+            <Container className="md:hidden">
+              <Typography variant="title-sm">{name}</Typography>
+            </Container>
           </Container>
         </Link>  
       :
         <Link href="/dashboard">
-          <Container className="items-center w-full flex flex-col md:flex-row md:items-start gap-2 rounded">
-            <Container className="flex items-center justify-center rounded-full w-[120px] md:w-[40px] h-[120px] md:h-[40px] overflow-hidden">
+          <Container className="items-start w-full flex flex-row gap-4 rounded p-4 md:p-0 md:bg-white bg-secondary-100">
+            <Container className="flex items-center justify-center rounded-full w-[60px] md:w-[40px] h-[60px] md:h-[40px] overflow-hidden">
               <Image 
                 width={40} 
                 height={40} 
@@ -105,12 +110,15 @@ export const ProfileButton = ({ profileImg }: Props) => {
                 className="hidden md:block"
               /> 
               <Image 
-                width={120} 
-                height={120} 
+                width={60} 
+                height={60} 
                 src={DefaultAvatar}
                 alt="User profile image"
                 className="md:hidden"
               /> 
+            </Container>
+            <Container className="md:hidden">
+              <Typography variant="title-sm">{name}</Typography>
             </Container>
           </Container>
         </Link>  

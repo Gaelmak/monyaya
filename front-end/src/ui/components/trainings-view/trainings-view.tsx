@@ -9,9 +9,6 @@ import { Calendar, List, Map, } from "lucide-react"
 import DefaultAvatar from '../../../../public/default_avatar.jpg'
 import { truncateText } from "@/lib/truncate-text"
 import clsx from "clsx"
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { Accordion,AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil"
 import { usePathname } from "next/navigation"
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'

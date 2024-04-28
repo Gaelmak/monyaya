@@ -53,7 +53,7 @@ export const MobileNavigation = async ({ className }: Props) => {
                 {
                   session ?
                     session.user ?
-                      <ProfileButton profileImg={ session.user.image ? session.user.image : undefined }/>
+                      <ProfileButton profileImg={ session.user.image ? session.user.image : undefined } name={session!.user!.name!}/>
                     :
                     <SignInButton/>
                   :

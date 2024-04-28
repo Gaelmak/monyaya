@@ -8,12 +8,12 @@ import { HowItWorks_BecomeATrainer, HowItWorks_SuscribeToTraining } from '@/lib/
 
 export const HowItWorks = () => {
   return(
-    <Container className="flex flex-col md:flex-row gap-8 px-4 md:px-8 py-16 bg-secondary-Default">
+    <Container className="flex flex-col md:flex-row gap-8 px-4 md:px-8 py-16 bg-secondary-950">
       <Container className="basis-1/3">
         <Typography variant="title-lg" className="text-white text-center md:text-left">Découvrez comment ça marche ?</Typography>
       </Container>
       <Container className="basis-2/3">
-        <Tabs defaultValue='suscribe-to-training' className='w-full bg-white rounded p-4 md:p-8'>
+        <Tabs defaultValue='suscribe-to-training' className='w-full bg-white rounded p-4 md:p-8 shadow-lg'>
           <TabsList className='w-full grid grid-cols-2'>
             <TabsTrigger value='suscribe-to-training' className='basis-1/2 rounded'>
               <Typography className="flex-wrap hidden md:block">Souscrire à une formation</Typography>

@@ -87,7 +87,7 @@ const config: Config = {
         'title-sm': ['1rem', {
           lineHeight: '120%',
           fontWeight: '600'
-        }],
+        }], 
         'title-xs': ['0.75rem', {
           lineHeight: '120%',
           fontWeight: '600'
