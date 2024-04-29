@@ -115,8 +115,7 @@ export default async function Home({ params } : { params: { name: string } }) {
             className="w-full md:w-[25%]"
           />
           <Container className="w-full md:w-[75%]">
-            <Typography variant="title-lg">Formations</Typography>
-            <br/>
+            <Typography variant="title-lg" className="pb-4">Formations</Typography>
             {
               session || myLearnings ?
               <TrainingsView

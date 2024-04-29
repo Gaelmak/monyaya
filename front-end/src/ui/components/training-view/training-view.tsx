@@ -80,9 +80,9 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
     <Container className={clsx("", className)}>
       {
         data.map(({id, modules, createdAt, name, description, price, user, courses}) => (
-          <Container className="bg-white w-full gap-4 md:gap-8 flex flex-col md:flex-row rounded" key={id}>
+          <Container className="bg-white w-full gap-4 md:gap-8 flex flex-col md:flex-row rounded md:justify-between md:px-40" key={id}>
             <Container className="md:basis-2/3 flex flex-col gap-4 ">
-              <Container className="md:sticky md:top-24 flex flex-col gap-8">
+              <Container className="md:sticky md:top-24 flex flex-col gap-4">
                 <Container className="w-full relative md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
                   <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
                 </Container>
@@ -130,7 +130,7 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
                   }
                 </Accordion>
               </Container>
-              <Container>
+              <Container className="flex flex-col gap-4 md:gap-4">
                 {
                   user &&
                     <YayaProfil 
@@ -149,7 +149,7 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
                       }
                       className="w-full"
                     >
-                    <Buttons buttonType="link" baseUrl={sessionName === user!.name ? `/dashboard` : `/profil/${user.name}`}>{sessionName === user!.name ? "Profil" : "Voir plus de formation"}</Buttons>
+                    <Buttons buttonType="link" baseUrl={sessionName === user!.name ? `/dashboard` : `/profil/${user.name}`}>Profil</Buttons>
                   </YayaProfil> 
                 }
               </Container>

@@ -32,20 +32,32 @@ export const YayaProfil = ({
 } : Props) => {
   return(
     <Container className={clsx(className, "relative")}>
-      <Container className="rounded border sticky top-[12vh]">
+      <Container className="rounded shadow-md sticky top-[12vh]">
       {
         data.map(({name, image, bio, municipality, createdAt}) => (
-          <Container key={name} className={clsx("p-4 md:p-8 flex flex-col gap-4 relative", children?'':'md:h-[76vh]')}>
+          <Container key={name} className={clsx("p-4 flex flex-col gap-4 relative")}>
             <Container className="flex flex-col gap-4">
               <Container className="flex flex-row justify-between">
-                <Container className="rounded-full w-[160px] h-[160px] overflow-hidden">
+                <Container className="rounded-full w-[100px] h-[100px] overflow-hidden">
                   <Image 
-                    width={160} 
-                    height={160} 
+                    width={100} 
+                    height={100} 
                     src={image ? image : DefaultAvatar}
                     alt="User profile image"
                   />
                 </Container>
+              </Container>
+              
+
+              <Container className="flex flex-col w-full">
+                <Typography variant="title-sm">{name}</Typography>
+                <Typography variant="body-sm">{bio}</Typography>
+              </Container>
+              <Container className="flex flex-col w-full">
+                <Typography variant="body-sm">Commune de résidence : {municipality}</Typography>
+                <Typography variant="body-sm">A réjoins mon yaya le {format(createdAt!, 'dd MMMM yyyy', { locale: fr })}</Typography>
+              </Container>
+              <Container className="flex flex-col w-full">
                 {
                   children ?
                   <Container className="flex flex-col gap-2">
@@ -53,16 +65,6 @@ export const YayaProfil = ({
                   </Container>
                   : null
                 }
-              </Container>
-              
-
-              <Container className="flex flex-col w-full">
-                <Typography variant="title-base">{name}</Typography>
-                <Typography>{bio}</Typography>
-              </Container>
-              <Container className="flex flex-col w-full">
-                <Typography variant="body-sm">Commune de résidence : {municipality}</Typography>
-                <Typography variant="body-sm">A réjoins mon yaya le {format(createdAt!, 'dd MMMM yyyy', { locale: fr })}</Typography>
               </Container>
             </Container>
           </Container>

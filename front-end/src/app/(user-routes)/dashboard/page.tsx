@@ -78,7 +78,7 @@ export default async function Home()  {
   return (
     <Container className={clsx("p-4", trainings.length > 1 ? "pt-24 md:pt-4": "")}>
       {
-        trainings.length > 1 ?
+        trainings.length > 0 ?
         <TrainingsView 
           className="grid grid-cols-1 md:grid-cols-3 gap-4"
           data={trainings} 
