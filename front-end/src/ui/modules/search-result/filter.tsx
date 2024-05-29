@@ -4,7 +4,6 @@ import useFilterTypeStore from "@/store/filter-type-store";
 import { Container } from "@/ui/components/container/container"
 import { Typography } from "@/ui/components/typography/typography"
 import clsx from "clsx";
-import { useState } from "react";
 
 export const Filter = () => {
   const branch = [{name: "Tous"}, {name: "Anglais"}, {name: "Français"}, {name: "Guitare"}, {name: "Piano"}, {name: "Coach sportif"}]

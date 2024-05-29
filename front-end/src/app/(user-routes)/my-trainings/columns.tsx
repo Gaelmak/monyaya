@@ -101,13 +101,13 @@ export const columns: ColumnDef<Training>[] = [
           <DropdownMenuContent align="end" className="bg-white rounded">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem>
-              <Link href={`/trainings/training/${training.id}`}>
+              <Link href={`/my-trainings/${training.id}`}>
                 Voir les apprenants
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Modifier la formation</DropdownMenuItem>
-            <DropdownMenuItem>Supprimer la formation</DropdownMenuItem>
+            {/* <DropdownMenuItem>Modifier la formation</DropdownMenuItem>
+            <DropdownMenuItem>Supprimer la formation</DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
         

@@ -36,7 +36,7 @@ export const ServiceButton = ({children} : Props) => {
     <Buttons 
       variant="primary"
       buttonType="link"
-      baseUrl="/services"
+      baseUrl="/trainings"
       className="w-full"
     >
       {children ? children : 'Services'}

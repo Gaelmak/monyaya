@@ -88,7 +88,7 @@ const config: Config = {
           lineHeight: '120%',
           fontWeight: '600'
         }], 
-        'title-xs': ['0.75rem', {
+        'title-xs': ['0.85rem', {
           lineHeight: '120%',
           fontWeight: '600'
         }],
@@ -101,7 +101,7 @@ const config: Config = {
           fontWeight: '400'
 
         }],
-        'body-sm': ['0.75rem', {
+        'body-sm': ['0.85rem', {
           lineHeight: '120%',
           fontWeight: '400'
         }],

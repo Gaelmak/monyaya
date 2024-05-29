@@ -139,3 +139,58 @@ export const NewTrainingFormFieldsType = z.object({
       message: "Veuillez choisir branche pour votre formation"
     })
 })
+
+export const EditUsersFormFieldsType = z.object({
+  firstname: z.string()
+    .min(2, {
+      message: "Votre prénom doit avoir au moin 2 caracteres.",
+    })
+    .max(50),
+  lastname: z.string()
+    .min(2, {
+      message: "Votre nom doit avoir au moin 2 caracteres.",
+    })
+    .max(50),
+  phonenumber: z.string()
+    .regex(new RegExp('^0(8|9)[0-9]{8}$'), {
+      message: "Veuillez entrer un numero de telephone valide"
+    }),
+  email: z.string().email()
+    .min(5, {
+      message: "Votre adresse est trop court.",
+    })
+    .max(50),
+  municipality: z.string()
+    .min(3, {
+      message: "Entrez le nom de votre commune de residence",
+    })
+    .max(50),
+  district: z.string()
+    .min(3, {
+      message: "Entrez le nom de votre quartier de residence",
+    })
+    .max(50),
+  avenue: z.string()
+    .min(3, {
+      message: "Entrez le nom de votre avenue de residence",
+    })
+    .max(50),
+  number: z.string()
+    .min(1, {
+      message: "Entrez le numero de votre residence",
+    })
+    .max(50),
+})
+
+const MAX_FILE_SIZE = 5000000;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+
+export const EditAccountFormFieldsType = z.object({
+  image: z
+    .any()
+    .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
+})

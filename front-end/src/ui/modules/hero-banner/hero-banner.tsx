@@ -51,9 +51,9 @@ export const HeroBanner = () => {
             </span>
           </Typography>
         </Container>
-        <Container className="w-full">
+        {/* <Container className="w-full">
           <SearchCourses/>
-        </Container>
+        </Container> */}
       </Container>
       <Container className="basis-1/3 md:basis-2/5 flex justify-center md:justify-end items-center md:my-0">
         <BgImg src={Cover} alt={"cover"} className="w-[16rem] h-[16rem] md:w-[32rem] md:h-[32rem] rounded-full overflow-hidden" classNameImg="w-full h-full"/>

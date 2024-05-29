@@ -5,7 +5,6 @@ import { Typography } from "@/ui/components/typography/typography"
 import clsx from "clsx";
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { BgImg } from "@/ui/components/bg-img/bg-img";
 
 interface Props {
   data : [{
@@ -37,26 +36,29 @@ export const YayaProfil = ({
         data.map(({name, image, bio, municipality, createdAt}) => (
           <Container key={name} className={clsx("p-4 flex flex-col gap-4 relative")}>
             <Container className="flex flex-col gap-4">
-              <Container className="flex flex-row justify-between">
-                <Container className="rounded-full w-[100px] h-[100px] overflow-hidden">
-                  <Image 
-                    width={100} 
-                    height={100} 
-                    src={image ? image : DefaultAvatar}
-                    alt="User profile image"
-                  />
+              <Container className="flex flex-row justify-between gap-4">
+                <Container className="basis-1/4">
+                  <Container className="rounded-full w-[120px] h-[120px] lg:w-[100px] lg:h-[100px] overflow-hidden">
+                    <Image 
+                      src={image ? image : DefaultAvatar}
+                      alt="User profile image"
+                      className="w-[120px] h-[120px] lg:w-[100px] lg:h-[100px]"
+                    />
+                  </Container>
+                </Container>
+                <Container className="basis-3/4 flex flex-col w-full">
+                  <Typography className="text-title-base">{name}</Typography>
+                  <Container className="flex flex-col w-full">
+                    <Typography variant="body-sm">Résidence : {municipality}</Typography>
+                    <Typography variant="body-sm">Yaya depuis le {format(createdAt!, 'dd MMMM yyyy', { locale: fr })}</Typography>
+                  </Container>
                 </Container>
               </Container>
+              <Container className="flex flex-col w-full">
+                <Typography variant="title-xs">Bio</Typography>
+                <Typography variant="body-base">{bio}</Typography>
+              </Container>
               
-
-              <Container className="flex flex-col w-full">
-                <Typography variant="title-sm">{name}</Typography>
-                <Typography variant="body-sm">{bio}</Typography>
-              </Container>
-              <Container className="flex flex-col w-full">
-                <Typography variant="body-sm">Commune de résidence : {municipality}</Typography>
-                <Typography variant="body-sm">A réjoins mon yaya le {format(createdAt!, 'dd MMMM yyyy', { locale: fr })}</Typography>
-              </Container>
               <Container className="flex flex-col w-full">
                 {
                   children ?

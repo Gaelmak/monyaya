@@ -58,7 +58,7 @@ export const InputField = ({
                   </Typography>
                 </FormLabel>
                 :
-                <FormLabel>
+                <FormLabel htmlFor={name}>
                   <Typography variant="title-sm" component="h4" className="">
                     {label}
                   </Typography>
@@ -74,18 +74,35 @@ export const InputField = ({
                   placeholder={placeholder}
                   className={clsx(
                     "resize-none rounded h-48 focus:ring-primary-Default border-secondary-300",
-                    children? "px-12" : "",
+                    children? "pl-12" : "",
                     className
                     )}
                   {...field}
                 />
                 :
+                type === "file" ?
+                <Input
+                  id={name}
+                  placeholder={placeholder}
+                  type="file"
+                  className={clsx(
+                    "rounded focus:ring-primary-Default border-secondary-300",
+                    children? "pl-12" : "",
+                  className
+                  )}
+                  {...field}
+                  onChange={(event) => {
+                    field.onChange(event.target?.files?.[0] ?? undefined);
+                  }}
+                  value={undefined}
+                />
+                :
                 <Input 
                   className={clsx(
                     "rounded focus:ring-primary-Default border-secondary-300",
-                    children? "px-12" : "",
+                    children? "pl-12" : "",
                     className
-                    )}
+                  )}
                   placeholder={placeholder} {...field} type={type} name={name} id={name} autoComplete={"'" + {autocompletion} +"'"}
                 />
               }

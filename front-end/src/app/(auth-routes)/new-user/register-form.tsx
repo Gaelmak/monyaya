@@ -193,6 +193,7 @@ export const RegisterForm = () => {
                   name="password"
                   type={showPassword ? "text" : "password"}
                   label='Mot de passe'
+                  className="pr-12"
                 >
                   {PasswordIcon()}
                   {ShowPasswordButton(showPassword)}
