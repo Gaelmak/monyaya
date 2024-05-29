@@ -21,14 +21,14 @@ export default async function SignIn() {
         <Container className="md:w-[30vw] flex flex-col gap-8">
           <Container className="flex flex-col gap-2 ">
             <Typography variant="title-lg" component="h2">Heureux de vous revoir !</Typography>
-            <Typography variant="body-base" component="p">Veuillez selectionner un mode de connexion</Typography>
+            {/* <Typography variant="body-base" component="p">Veuillez selectionner un mode de connexion</Typography> */}
           </Container>
-          <Container className="w-full">
+          {/* <Container className="w-full">
             <ProvidersList providers={Object.values(providerslist!)}/>
-          </Container>
-          <Container className="w-full flex items-center after:basis-1/2 after:content-[''] after:p-[0.5px] after:m-2 after:bg-secondary-100 before:basis-1/2 before:content-[''] before:p-[0.5px] before:m-2 before:bg-secondary-100">
+          </Container> */}
+          {/* <Container className="w-full flex items-center after:basis-1/2 after:content-[''] after:p-[0.5px] after:m-2 after:bg-secondary-100 before:basis-1/2 before:content-[''] before:p-[0.5px] before:m-2 before:bg-secondary-100">
             <Typography variant="body-sm" component="p" className="text-secondary-300">Ou</Typography>
-          </Container>
+          </Container> */}
           <Container className="w-full px-2">
             <SigninForm/>
           </Container>
