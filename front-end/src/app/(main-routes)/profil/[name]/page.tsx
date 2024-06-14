@@ -63,6 +63,8 @@ export default async function Home({ params } : { params: { name: string } }) {
           user: {
             select: {
               name: true,
+              firstName: true,
+              lastName: true,
               email: true,
               createdAt: true,
               municipality: true,
