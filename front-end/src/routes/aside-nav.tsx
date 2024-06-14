@@ -17,32 +17,32 @@ interface Props {
 
 export const AsideNav = async ({ className }: Props) => {
   const session = await getServerSession(authOptions)
-  const userRole = await prisma?.user.findUnique({
+  const user = await prisma?.user.findUnique({
     where: {
       name: session!.user!.name!
     },
     select: {
       role: true,
+      name: true,
+      image: true,
     }
   })
 
   return (
-    <Container className={clsx("h-full w-full flex flex-col justify-between bg-white md:bg-slate-50 ", className)}>
+    <Container className={clsx("h-full w-full flex flex-col justify-between bg-white", className)}>
       <Container className="w-full md:p-4">
-        <Container className="items-center w-full flex flex-row gap-2 rounded">
+        <Container className="items-center w-full flex justify-center flex-row gap-2 pb-4">
           <Container>
-            <Container className="flex items-start rounded-full w-[40px] h-[40px] overflow-hidden">
+            <Container className="flex items-start rounded-full w-[180px] h-[180px] overflow-hidden">
               <Image 
-                width={40} 
-                height={40} 
-                src={session!.user!.image ? session!.user!.image : DefaultAvatar}
+                width={240}
+                height={240}
+                className="w-full h-full object-cover"
+                src={user!.image ? user!.image : DefaultAvatar}
                 alt="User profile image"
+
               /> 
             </Container>
-          </Container>
-          
-          <Container className="flex flex-col">
-            <Typography variant="title-sm" component="h4">{session!.user!.name!}</Typography>
           </Container>
         </Container>
         <Container className="pt-4">
@@ -73,7 +73,7 @@ export const AsideNav = async ({ className }: Props) => {
       </Container>
       <Container className="md:p-4">
         {
-          userRole!.role === 'USER' ?
+          user!.role === 'USER' ?
           <Container>
             <Typography variant="body-base" component="p" className="w-full text-black/60">
               <AsideActiveLink href={'/become-a-trainer'}>

@@ -73,56 +73,21 @@ export const SignOutButton = ({className}: Props) => {
 export const ProfileButton = ({ profileImg, name }: Props) => {
   return(
     <>
-    {
-      profileImg ?
-        <Link href="/dashboard">
-          <Container className="items-start w-full flex flex-row gap-4 rounded p-4 md:p-0 md:bg-white bg-secondary-100">
-            <Container className="flex items-center justify-center rounded-full w-[60px] md:w-[40px] h-[60px] md:h-[40px] overflow-hidden">
+      <Link href="/dashboard">
+        <Container className="items-center w-full flex justify-center flex-row gap-2 pb-4 lg:pb-0">
+          <Container>
+            <Container className="flex items-start rounded-full w-[180px] h-[180px] lg:w-[50px] lg:h-[50px] overflow-hidden">
               <Image 
-                width={40} 
-                height={40} 
-                src={profileImg}
+                width={240}
+                height={240}
+                className="w-full h-full object-cover"
+                src={profileImg ? profileImg : DefaultAvatar}
                 alt="User profile image"
-                className="hidden md:block"
               /> 
-              <Image 
-                width={60} 
-                height={60} 
-                src={profileImg}
-                alt="User profile image"
-                className="md:hidden"
-              /> 
-            </Container>
-            <Container className="md:hidden">
-              <Typography variant="title-sm">{name}</Typography>
             </Container>
           </Container>
-        </Link>  
-      :
-        <Link href="/dashboard">
-          <Container className="items-start w-full flex flex-row gap-4 rounded p-4 md:p-0 md:bg-white bg-secondary-100">
-            <Container className="flex items-center justify-center rounded-full w-[60px] md:w-[40px] h-[60px] md:h-[40px] overflow-hidden">
-              <Image 
-                width={40} 
-                height={40} 
-                src={DefaultAvatar}
-                alt="User profile image"
-                className="hidden md:block"
-              /> 
-              <Image 
-                width={60} 
-                height={60} 
-                src={DefaultAvatar}
-                alt="User profile image"
-                className="md:hidden"
-              /> 
-            </Container>
-            <Container className="md:hidden">
-              <Typography variant="title-sm">{name}</Typography>
-            </Container>
-          </Container>
-        </Link>  
-    }
+        </Container>
+      </Link> 
     </>
   )
 }

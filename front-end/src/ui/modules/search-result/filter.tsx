@@ -17,7 +17,7 @@ export const Filter = () => {
           <div 
             onClick={() => setFilter(item.name)}
             key={item.name}
-            className={clsx("inline-block cursor-pointer p-4 rounded animate hover:bg-primary-Default hover:text-white", filter === item.name? "bg-primary-Default text-white" : "bg-primary-100")}
+            className={clsx("inline-block cursor-pointer px-4 py-2 rounded animate hover:bg-primary-Default hover:text-white", filter === item.name? "bg-primary-Default text-white" : "bg-primary-100")}
           >
             <Typography>{item.name}</Typography>
           </div>

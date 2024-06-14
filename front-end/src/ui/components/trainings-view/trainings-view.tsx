@@ -34,6 +34,8 @@ interface Props {
     }[]
     user: {
       name: string
+      firstName: string | null
+      lastName: string | null
       municipality: string | null
       email: string | null
       createdAt?: Date
@@ -74,10 +76,10 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
     <Container className={clsx(className)}>
       {
         data.map(({id, createdAt, name, description, price,_count, user, courses}) => (
-          <Container key={id} className="group hover:cursor-pointer rounded flex flex-col gap-2 justify-between bg-white animate">
-            <Container className="w-full relative md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
+          <Container key={id} className="group p-4 hover:cursor-pointer rounded overflow-hidden flex flex-col gap-2 justify-between bg-white animate">
+            <Container className="rounded w-full relative md:w-auto aspect-video overflow-hidden flex justify-center items-center">
               <Link href={`/trainings/training/${id}`}>
-                <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
+                <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-full w-full object-cover group-hover:scale-150 animate"/>
               </Link>
             </Container>
             <Container className="gap-4 flex flex-row justify-between">
@@ -90,25 +92,22 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
               </Container>
             </Container>
             <Container className="flex flex-row w-full gap-4">
-              <Link href={`/trainings/training/${id}`}  className="w-[85%]">
+              <Link href={`/trainings/training/${id}`}  className="w-full">
                 <Typography variant="title-sm">{truncateText(name, 65)}</Typography>
               </Link>
-              <Container className="flex flex-row justify-end w-[15%]">
-                {
-                  pathname != `/profil/${user.name}` ? <SearchResultTrainer name={user.name} image={user!.image ? user!.image : DefaultAvatar} isMyAccount={sessionName === user.name}/> : null
-                }              
-              </Container>
             </Container>
             <Link href={`/trainings/training/${id}`}>
               <Container className="flex flex-col">
                 <Typography variant="body-sm" className="text-secondary-Default">{truncateText(description, 90)}</Typography>
-                <Container className="flex flex-row gap-1 items-center">
-                  <List width={14} height={14} className="text-secondary-Default"/>
-                  <Typography variant="body-sm" className="text-secondary-Default">{_count.modules} {_count.modules > 1 ? "Modules" : "Module"}</Typography>
-                </Container>
-                <Container className="flex flex-row gap-1 items-center">
-                  <Map width={14} height={14} className="text-secondary-Default"/>
-                  <Typography variant="body-sm" className="text-secondary-Default">{user && user.municipality} - {user && user.district}</Typography>
+                <Container className="flex flex-row gap-2">
+                  <Container className="flex flex-row gap-1 items-center">
+                    <List width={14} height={14} className="text-secondary-Default"/>
+                    <Typography variant="body-sm" className="text-secondary-Default">{_count.modules} {_count.modules > 1 ? "Modules" : "Module"}</Typography>
+                  </Container>
+                  <Container className="flex flex-row gap-1 items-center">
+                    <Map width={14} height={14} className="text-secondary-Default"/>
+                    <Typography variant="body-sm" className="text-secondary-Default">{user && user.municipality}</Typography>
+                  </Container>
                 </Container>
               </Container>
             </Link>
@@ -117,14 +116,21 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
                 <Link href={`/trainings/training/${id}`}>
                   <Typography variant="title-base" className="text-primary-Default">${price}</Typography>
                 </Link>
-              </Container>  
-              <SearchResultButtons 
-                userId={userId ? userId : null} 
-                trainingId={id} 
-                isMyAccount={sessionName === user!.name} 
-                amLearner={learnings.some(objet => objet.trainingId === id)} 
-                status={learnings.find(obj => obj!.trainingId === id)?.status}  
-              />
+              </Container>
+              <Container className="flex flex-row gap-2 items-center justify-center">
+                <SearchResultButtons 
+                  userId={userId ? userId : null} 
+                  trainingId={id} 
+                  isMyAccount={sessionName === user!.name} 
+                  amLearner={learnings.some(objet => objet.trainingId === id)} 
+                  status={learnings.find(obj => obj!.trainingId === id)?.status}  
+                />
+                <Container className="flex justify-center items-center">
+                  {
+                    pathname != `/profil/${user.name}` ? <SearchResultTrainer name={user.name} fullName={user.firstName + " " + user.lastName} image={user!.image ? user!.image : DefaultAvatar} isMyAccount={sessionName === user.name}/> : null
+                  }              
+                </Container>
+              </Container>
             </Container>
           </Container>
         ))

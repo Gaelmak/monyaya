@@ -11,6 +11,7 @@ import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-oti
 import { ProfileButton, SignInButton } from "./auth-buttons"
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
+import prisma from '@/lib/prisma'
 
 interface Props {
   className: string
@@ -18,6 +19,18 @@ interface Props {
 
 export const MobileNavigation = async ({ className }: Props) => {
   const session = await getServerSession(authOptions)
+
+  const user = session ? await prisma?.user.findUnique({
+    where: {
+      name: session!.user!.name!
+    },
+    select: {
+      firstName: true,
+      lastName: true,
+      image: true,
+    }
+  }) : null
+
   return(
     <header
       className={
@@ -37,7 +50,7 @@ export const MobileNavigation = async ({ className }: Props) => {
           </SheetTrigger>
           <SheetContent className="w-[90vw] bg-white">
             <SheetDescription className="h-full">
-              <nav className="h-full flex flex-col justify-between">
+              <nav className="h-full pt-8 flex flex-col justify-between">
                 <Container className='w-full flex flex-col pt-4'>
                 {
                   MainRoutes.map(route => 
@@ -52,8 +65,8 @@ export const MobileNavigation = async ({ className }: Props) => {
                 <Container className='w-full flex flex-col gap-2 mb-4'>
                 {
                   session ?
-                    session.user ?
-                      <ProfileButton profileImg={ session.user.image ? session.user.image : undefined } name={session!.user!.name!}/>
+                    user ?
+                      <ProfileButton profileImg={ user.image ? user.image : undefined } name={user!.firstName! + " " + '' + user!.lastName!}/>
                     :
                     <SignInButton/>
                   :

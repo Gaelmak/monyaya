@@ -78,7 +78,7 @@ export const Recommandations = async () => {
   const recommandations = selectRandomObjects(trainings, 8)
 
   return (
-    <Container className="flex py-8 px-4 md:px-8 md:py-32  flex-col gap-8">
+    <Container className="flex py-8 px-4 md:px-8 md:py-32 bg-[#fdfdfd] flex-col gap-8">
       <Container className="flex justify-between">
         <Typography variant="title-lg" component="h2">Récommandations</Typography>
         <Container className="hidden md:flex">
@@ -90,7 +90,7 @@ export const Recommandations = async () => {
       {
         session || myLearnings ?
         <TrainingsView 
-          className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-4 gap-4"
           data={recommandations} 
           userId={userId!.id!} 
           myLearnings={myLearnings!} 
@@ -98,7 +98,7 @@ export const Recommandations = async () => {
         />
         :
         <TrainingsView 
-          className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-4 gap-4"
           data={recommandations} 
         />
       }

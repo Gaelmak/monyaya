@@ -39,7 +39,6 @@ export const RegisterForm = () => {
     defaultValues: {
       firstname: '',
       lastname: '',
-      phonenumber: '',
       name: '',
       email: '',
       password: '',
@@ -54,15 +53,15 @@ export const RegisterForm = () => {
   }, [form.getValues()])
 
   useEffect(() => {
-    const { name, phonenumber} = form.getValues();
-    const isFilled = name.trim() !== '' && phonenumber.trim() !== '';
+    const { name } = form.getValues();
+    const isFilled = name.trim() !== '';
     setIsFormAddFilled(isFilled)
   }, [form.getValues()])
 
   async function onSubmit(values: z.infer<typeof RegisterFormFieldsType>) {
     startLoading();
     
-    const { firstname, lastname, phonenumber, name, email, password, confirmpassword } = values
+    const { firstname, lastname, name, email, password, confirmpassword } = values
     if(password !== confirmpassword) {
       toast({
         title: "Mot de passe ne correspondent pas",
@@ -81,8 +80,7 @@ export const RegisterForm = () => {
         },
         body: JSON.stringify({
           firstname,
-          lastname, 
-          phonenumber,
+          lastname,
           name,
           email, 
           hash,
@@ -219,12 +217,11 @@ export const RegisterForm = () => {
               </Button>
             </DialogTrigger>
             <DialogContent className="w-[86vw] lg:w-[40vw] bg-white rounded">
-              <DialogDescription className="flex flex-col gap-8">
+              <Container className="flex flex-col gap-8">
                 <Container className="flex flex-col gap-2 ">
                   <Typography variant="title-lg" component="h2">Informations complémentaires</Typography>
-                  <Typography variant="body-base" component="p">Inscrivez vous et accédez à une variété de cours proposés sur notre plateforme.</Typography>
                 </Container>
-                <Container className="flex flex-col gap-2">
+                <Container className="flex flex-col gap-2 py-16">
                   <Container className="">
                     <InputField
                       placeholder="@JohnD12"
@@ -244,27 +241,8 @@ export const RegisterForm = () => {
                       {UserIcon()}
                     </InputField>
                   </Container>
-                  <Container className="">
-                    <InputField
-                      placeholder="0*********"
-                      control={form.control}
-                      name="phonenumber"
-                      label='Numéro de téléphone'
-                      description={
-                        <>
-                          <span className="text-body-sm flex flex-row gap-1">
-                            <span>
-                              Le numéro doit comporter 10 chiffres et commencer par le chiffre 0
-                            </span>
-                          </span>
-                        </>
-                      }
-                    >
-                      {PhoneIcon()}
-                    </InputField>
-                  </Container>
                 </Container>
-              </DialogDescription>
+              </Container>
               <DialogFooter>
                 <DialogClose asChild>
                   <Button className="w-full bg-primary-Default hover:bg-primary-600 rounded"> 

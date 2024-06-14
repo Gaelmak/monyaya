@@ -52,6 +52,8 @@ export default async function Home()  {
       user: {
         select: {
           name: true,
+          firstName: true,
+          lastName: true,
           email: true,
           createdAt: true,
           municipality: true,
@@ -76,7 +78,7 @@ export default async function Home()  {
   })
 
   return (
-    <Container className={clsx("p-4", trainings.length > 1 ? "pt-24 md:pt-4": "")}>
+    <Container className={clsx("p-4 rounded", trainings ? "pt-24 md:pt-4": "")}>
       {
         trainings.length > 0 ?
         <TrainingsView 

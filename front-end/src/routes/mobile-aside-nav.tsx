@@ -12,12 +12,24 @@ import { ProfileButton, SignInButton } from "./auth-buttons"
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTrigger } from "@/components/ui/sheet"
 import Default from "../../public/default_avatar.jpg"
 import { AsideNav } from "./aside-nav"
+import prisma from '@/lib/prisma'
+
+
 interface Props {
   className: string
 }
 
 export const MobileAsideNav = async ({ className }: Props) => {
   const session = await getServerSession(authOptions)
+  
+  const user = await prisma?.user.findUnique({
+    where: {
+      name: session!.user!.name!
+    },
+    select: {
+      image: true,
+    }
+  })
   return(
     <header
       className={
@@ -34,7 +46,7 @@ export const MobileAsideNav = async ({ className }: Props) => {
         <Sheet>
           <SheetTrigger>
             <Container className="flex items-center justify-center rounded-full w-[40px] h-[40px] overflow-hidden">
-              <Image src={session!.user!.image ? session!.user!.image : Default } alt='Profil image' priority width={40} height={40}/>
+              <Image src={user!.image ? user!.image : Default } alt='Profil image' priority width={40} height={40}/>
             </Container>
           </SheetTrigger>
           <SheetContent className="w-[90vw] bg-white pt-8">

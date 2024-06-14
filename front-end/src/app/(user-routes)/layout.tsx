@@ -15,7 +15,7 @@ export default async function RootLayout({
  
   if (!session) {
     redirect('/signin')
-  }
+  } 
 
   return (
     <div className='mt-[-8vh] md:mt-[-10vh] z-50 block'>
@@ -26,7 +26,7 @@ export default async function RootLayout({
             <AsideNav className='h-[100dvh] w-full'/>
           </div>
         </Container>
-        <Container className='w-full md:w-[80%] '>
+        <Container className='w-full md:w-[80%] bg-[#fdfdfd]'>
           {children}
         </Container>
       </Container>

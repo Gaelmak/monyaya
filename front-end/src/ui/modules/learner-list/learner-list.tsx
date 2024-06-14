@@ -32,11 +32,11 @@ export const LearnerList = ({ learners }: Props) => {
       <Container>
         <Typography variant="title-base">Apprenants</Typography>
       </Container>
-      <ScrollArea className="h-[40vh] overflow-hidden">
+      <Container className="overflow-hidden">
         <Container className="flex flex-col gap-4">
           {
             learners.map(({id, status, user, userId}) => (
-              <Container key={user.id}>
+              <Container key={user.id} className="p-4 bg-white rounded">
                 <Container className="flex flex-row gap-2">
                   <Container>
                     <Container className="flex items-center justify-center rounded-full w-[100px] h-[100px] overflow-hidden">
@@ -45,7 +45,7 @@ export const LearnerList = ({ learners }: Props) => {
                         height={40} 
                         src={user.image ? user.image : DefaultAvatar}
                         alt="User profile image"
-                        className="rounded-full w-[100px] h-[100px]"
+                        className="rounded-full object-cover w-full h-full"
                       />
                     </Container>
                   </Container>
@@ -67,7 +67,7 @@ export const LearnerList = ({ learners }: Props) => {
             ))
           }
         </Container>
-      </ScrollArea>
+      </Container>
     </Container>
   )
 }

@@ -64,7 +64,7 @@ export default async function Home()  {
   
   return (
     <main className="w-full min-h-[100vh] pt-24 md:pt-0 pb-8 flex flex-col p-4">
-      <Container className="w-full h-full p-4 flex flex-col gap-4 bg-white rounded">
+      <Container className="w-full h-full p-4 flex flex-col gap-4 rounded">
         <Typography variant="title-base" component="h3">Mes formations</Typography>
         <DataTable columns={columns} data={data} />
       </Container>

@@ -8,7 +8,7 @@ import { HowItWorks_BecomeATrainer, HowItWorks_SuscribeToTraining } from '@/lib/
 
 export const HowItWorks = () => {
   return(
-    <Container className="flex flex-col md:flex-row gap-8 px-4 md:px-8 py-16 bg-secondary-950">
+    <Container className="flex flex-col gap-8 px-4 md:px-8 py-16 bg-secondary-950">
       <Container className="basis-1/3">
         <Typography variant="title-lg" className="text-white text-center md:text-left">Découvrez comment ça marche ?</Typography>
       </Container>

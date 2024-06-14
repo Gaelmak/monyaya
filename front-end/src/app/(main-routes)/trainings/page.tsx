@@ -42,6 +42,8 @@ export default async function Home() {
       user: {
         select: {
           name: true,
+          firstName: true,
+          lastName: true,
           email: true,
           municipality: true,
           createdAt: true,

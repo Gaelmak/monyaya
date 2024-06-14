@@ -18,6 +18,7 @@ interface Props {
   isMyAccount?: boolean
   image?: StaticImageData | string
   name?: string
+  fullName?: string
   amLearner?: boolean
   status?: "PENDING" | "APPROVED" | "REJECTED" 
   seeDetails?: Function
@@ -95,7 +96,7 @@ export const SearchResultButtons = ({status, trainingId, userId, isMyAccount = f
   )
 }
 
-export const SearchResultTrainer = ({ image = DefaultAvatar, name, isMyAccount = false }: Props) => {
+export const SearchResultTrainer = ({ image = DefaultAvatar, name, fullName, isMyAccount = false }: Props) => {
   return(
     <TooltipProvider>
       <Tooltip>
@@ -108,7 +109,7 @@ export const SearchResultTrainer = ({ image = DefaultAvatar, name, isMyAccount =
                   height={40} 
                   src={image}
                   alt="User profile image"
-                  className="rounded-full"
+                  className="w-full h-full object-cover"
                 />
               </Container>
             </Container>
@@ -123,11 +124,11 @@ export const SearchResultTrainer = ({ image = DefaultAvatar, name, isMyAccount =
                   height={80} 
                   src={image}
                   alt="User profile image"
-                  className="rounded-full"
+                  className="w-full h-full object-cover"
                 />
               </Container>
               <Container className="flex flex-col gap-1 w-28 items-center">
-                <Typography variant="title-xs" className="text-center underline">{truncateText(name!, 25)}</Typography>
+                <Typography variant="title-xs" className="text-center underline">{truncateText(fullName!, 50)}</Typography>
               </Container>
             </Container>
           </Link>

@@ -41,8 +41,8 @@ export default async function Home({ params } : { params: { id: string } }) {
     }
   })
   return(
-    <Container className="p-4 flex flex-col gap-16 pt-[10vh] md:pt-4">
-      <Container className="bg-primary-50 p-4 gap-2 rounded flex flex-col md:flex-row">
+    <Container className="p-4 flex flex-col gap-8 pt-[10vh] md:pt-4">
+      <Container className="bg-white p-4 gap-2 rounded flex flex-col md:flex-row">
         <Container className="basis-1/3">
           <Container className="w-full relative md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
             <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>

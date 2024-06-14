@@ -9,12 +9,25 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { ProfileButton, SignInButton } from "./auth-buttons"
 import clsx from "clsx"
+import prisma from '@/lib/prisma'
+
 interface Props {
   className?: string
 }
 
 export const Navigation = async ({ className }: Props) => {
   const session = await getServerSession(authOptions)
+  const user = session ? await prisma?.user.findUnique({
+    where: {
+      name: session!.user!.name!
+    },
+    select: {
+      name: true,
+      image: true,
+    }
+  })
+  : null
+
   return(
     <header 
       className={
@@ -28,7 +41,7 @@ export const Navigation = async ({ className }: Props) => {
         <Link href="/">
           <Image src={MonYayaLogo} alt='Logo MonYaya' width={120} height={120} priority/>
         </Link>
-        <nav className="flex items-center gap-4">
+        <nav className="flex items-center gap-4 justify-center">
           {
             MainRoutes.map(route => 
               <Typography key={route.title} variant="body-base" component="p">
@@ -40,8 +53,8 @@ export const Navigation = async ({ className }: Props) => {
           }
           {
             session ?
-              session.user ?
-                <ProfileButton profileImg={ session.user.image ? session.user.image : undefined }/>
+              user ?
+                <ProfileButton profileImg={ user.image ? user.image : undefined }/>
               :
               <SignInButton/>
             :
