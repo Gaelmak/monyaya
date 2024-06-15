@@ -14,10 +14,10 @@ export const MainRoutes: AppLinks[] = [
     title: 'Formations',
     baseUrl: '/trainings'
   },
-  // {
-  //   title: 'A propos',
-  //   baseUrl: '/about'
-  // },
+  {
+    title: 'A propos',
+    baseUrl: '/about'
+  },
 ]
 
 export const SocialNetworks: AppLinks[] = [
