@@ -10,10 +10,10 @@ export default function Home() {
   return (
     <main>
       <Container className=''>
-        <Container className='container flex justify-between flex-col md:flex-row  items-center  '>
+        <Container className='container flex justify-between flex-col lg:flex-row  items-center  '>
           <Container className="py-4">
             <Typography className='text-[#737373]' component='span' variant='title-sm'>A propos de nous</Typography>
-            <Typography className="md:w-2/3" component="h3" variant='title-lg'> 
+            <Typography className="md:w-2/3 py-2" component="h3" variant='title-lg'> 
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Voluptatum nemo.
             </Typography>
@@ -30,26 +30,26 @@ export default function Home() {
             iste vero!
             </Typography>
           </Container>
-          <Container>
-            <BgImg src={aboutImage} alt={"aboutUs"} className="w-[40rem] h-[30rem] md:w-[32rem] md:h-[32rem] " classNameImg="w-full h-full"/>
+          <Container className="">
+            <BgImg src={aboutImage} alt={"aboutUs"} className="w-[25rem] h-[30rem] lg:w-[32rem] lg:h-[32rem] overflow-hidden" classNameImg="w-full h-full"/>
           </Container>
         </Container>
-        <Container className='px-8  py-24 flex flex-col md:flex-row gap-20 bg-secondary-50'>
-          <Container className='flex justify-center items-center md:w-1/3  flex-col bg-white rounded-2xl  shadow-2xl  animate transition-all p-4' >
+        <Container className='px-8 md:px-3  py-24 flex flex-col  md:flex-wrap lg:flex-nowrap  md:justify-center md:items-center lg:flex-row gap-20 bg-secondary-50'>
+          <Container className='flex justify-center items-center  lg:w-1/3 md:w-full flex-col bg-white rounded-2xl  lg:shadow-2xl  p-4' >
               <Typography className='text-[#39ae44] p-4 ' variant='title-base' component='h4'>
                 Notre Mission
               </Typography>
-              <Typography component='p' variant='body-base' className='px-3 py-8 text-justify  md:text-center tracking-wide leading-relaxed'>
+              <Typography component='p' variant='body-base' className='px-3 py-8 text-justify  lg:text-center tracking-wide leading-relaxed'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. 
               Voluptatum nemo sit maxime perferendis unde vero aliquam! 
               Ab deserunt, architecto ratione porro nostrum distinctio.
               </Typography>
           </Container>
-          <Container className='flex justify-center md:w-1/3 items-center  flex-col bg-white rounded-2xl  shadow-2xl  animate transition-all p-4 md:p-2'>
+          <Container className='flex justify-center items-center  md:w-full lg:w-1/3  flex-col bg-white rounded-2xl  lg:shadow-2xl   p-4 md:p-2'>
             <Typography className='text-[#39ae44]' variant="title-base" component='h4'>
               Notre Vision
             </Typography>
-            <Typography variant="body-base" component='p' className='text-justify px-3 py-8 md:text-center tracking-wide leading-relaxed'>
+            <Typography variant="body-base" component='p' className='text-justify px-3 py-8 lg:text-center tracking-wide leading-relaxed'>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
               Accusamus molestiae, incidunt dolores iste numquam ipsum 
               nostrum repudiandae voluptates earum deserunt, doloribus 
@@ -57,11 +57,11 @@ export default function Home() {
               nostrum!
             </Typography>
           </Container>
-          <Container className='flex justify-center items-center md:w-1/3   flex-col bg-white rounded-2xl  shadow-2xl   p-4 hover:transition duration-700 ease-in-out'>
+          <Container className='flex justify-center items-center   md:w-full lg:w-1/3  flex-col bg-white rounded-2xl  lg:shadow-2xl md:p-2   p-4 '>
             <Typography className='text-[#39ae44]' variant="title-base" component='h4'>
               Notre Vision
             </Typography>
-            <Typography variant="body-base" component='p' className='text-justify px-3 py-8  md:text-center tracking-wide leading-relaxed'>
+            <Typography variant="body-base" component='p' className='text-justify px-3 py-8  lg:text-center tracking-wide leading-relaxed'>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
               Accusamus molestiae, incidunt dolores iste numquam ipsum 
               nostrum repudiandae voluptates earum deserunt, doloribus 
