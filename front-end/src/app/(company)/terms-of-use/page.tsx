@@ -54,7 +54,7 @@ export default function TermOfUse() {
             ))}
           </ul>
       </Container>
-      <Container className="flex flex-col   items-start ml-4 md:ml-52 lg:ml-80 ">
+      <Container className="flex flex-col   items-start ml-4 md:ml-52 lg:ml-80 lg:pr-5 ">
         <Container className=' leading-relaxed mb-6 flex flex-col gap-4'>
           <Typography className='leading-relaxed text-[#39ae44]' component='h3' variant='title-lg'>Contrats</Typography>
           <Typography className='text-[#424242]' component='h5' variant='title-sm'>Pour Clients,</Typography>
