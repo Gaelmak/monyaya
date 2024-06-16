@@ -10,8 +10,9 @@ export default function ValueSection(){
               <Typography className='text-[#39ae44] md:p-4 ' variant='title-base' component='h4'>
                 Partage
               </Typography>
-              <Typography component='p' variant='body-base' className='md:px-3 md:py-8 text-justify py-3   tracking-wide leading-relaxed'>
-                <span className="font-semibold hover:text-[#39ae44]">{"Il y'a plus de bonheur à donner qu'à recevoir "}</span> : Nous croyons que le véritable bénéfice réside dans le partage des 
+              <Typography component='p' variant='body-base' className='md:px-3 md:py-8  py-3 leading-relaxed'>
+                <span className="font-semibold hover:text-[#39ae44]">{"Il y'a plus de bonheur à donner qu'à recevoir "}</span> :<br/>
+                 Nous croyons que le véritable bénéfice réside dans le partage des 
                 connaissances et l'acte de donner. En offrant nos compétences et notre expertise, nous contribuons au bonheur des 
                 autres et à notre propre épanouissement.
               </Typography>
