@@ -8,7 +8,7 @@ export default function HowItWorks(){
         <Container className=" flex flex-col justify-center items-center pt-10 " variant="Glass-Effect">
             <Typography className="text-[#39ae44]" component="h4" variant='title-lg'>Comment ca marche?</Typography>
             <Container className=" container flex flex-col lg:flex-row justify-between items-center py-10 ">
-                <ul className="md:w-4/5 flex flex-col gap-8 font-medium text-lg text-justify ">
+                <ul className="md:w-4/5 flex flex-col gap-8 font-medium text-lg text-justify cursor-pointer ">
                     <li className="hover:text-[#39ae44] flex justify-start items-center gap-2 before:bg-slate-700 before:content-['✓'] before:text-green-500 before:font-bold before:border-2 before:rounded-full before:px-2 before:py-[0.10rem] ">
                         Inscrivez-vous sur notre site internet et Choisissez le yaya qui propose 
                         un programme de cours adapté à vos besoins et à votre budget.
