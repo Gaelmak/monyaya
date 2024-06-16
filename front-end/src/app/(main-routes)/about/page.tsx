@@ -4,7 +4,7 @@ import ValueSection from '@/ui/modules/about-components/valueSection';
 import CompanyOverview from '@/ui/modules/about-components/companyOverview';
 import MissionSection from '@/ui/modules/about-components/mission';
 import VisionSection from '@/ui/modules/about-components/visionSection';
-import HowItWorks from '@/ui/modules/about-components/howItWorks';
+import { HowItWorks } from '@/ui/modules/how-it-works/how-it-works'
 
 
 export default function Home() {
@@ -15,7 +15,8 @@ export default function Home() {
         <MissionSection />
         <VisionSection />
         <ValueSection />
-        <HowItWorks />
+        <HowItWorks/>
+        {/* <HowItWorks /> */}
         <Newsletter/>
       </Container>
     </main>
