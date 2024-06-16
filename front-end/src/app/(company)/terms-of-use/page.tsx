@@ -44,7 +44,7 @@ export default function TermOfUse() {
           ))}
         </ul>
       </Container>
-      <Container className="flex flex-col sticky justify-end items-center ml-4 md:ml-52 lg:ml-80   overflow-y-auto leading-relaxed">
+      <Container className="flex flex-col sticky justify-end items-start ml-4 md:ml-52 lg:ml-80   overflow-y-auto leading-relaxed">
         <Container className=' leading-relaxed'>
           <Typography className='leading-relaxed' component='h3' variant='title-lg'>Contrats</Typography>
           <Typography>Pour Clients,</Typography>
