@@ -37,7 +37,7 @@ export default function TermOfUse() {
         <ul>
           {termOfUse.map(section => (
             <Container>
-               <li key={section.id}>
+            <li key={section.id}>
               <Link href={`#${section.id}`} className="" >
               {section.title}
               </Link>
