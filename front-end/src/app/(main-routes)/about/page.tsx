@@ -7,7 +7,7 @@ import CompanyOverview from '@/ui/modules/about-components/companyOverview';
 import MissionSection from '@/ui/modules/about-components/mission';
 import VisionSection from '@/ui/modules/about-components/visionSection';
 import { HowItWorks } from '@/ui/modules/how-it-works/how-it-works'
-import TestimonialCarousel from '@/ui/modules/about-components/TestimonialCarousel';
+// import TestimonialCarousel from '@/ui/modules/about-components/TestimonialCarousel';
 
 
 
@@ -19,7 +19,7 @@ export default function Home() {
           <MissionSection />
               <VisionSection />
             <ValueSection />
-            <TestimonialCarousel />
+            {/* <TestimonialCarousel /> */}
           <HowItWorks/>
         <Newsletter/>
       </Container>
