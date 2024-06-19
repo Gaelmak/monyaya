@@ -5,7 +5,7 @@ export default function ValueSection(){
     return(
         <Container className='container flex flex-col  justify-center items-center bg-secondary-50 py-8'>
           <Typography className="text-[#39ae44] " component="h4" variant="title-lg">Nos Valeurs</Typography>
-          <Container className='lg:px-8 md:px-3 lg:w-full py-24 flex flex-col  md:flex-wrap lg:flex-nowrap  md:justify-center md:items-center lg:flex-row gap-20'>
+          <Container className='lg:px-8 md:px-3 lg:w-full py-20 flex flex-col  md:flex-wrap lg:flex-nowrap  md:justify-center md:items-center lg:flex-row gap-20'>
             <Container className='flex justify-center items-center  lg:w-1/3 md:w-full flex-col md:bg-white md:rounded-2xl  md:shadow-2xl  md:p-4 hover:shadow-none' >
               <Typography className='text-[#39ae44] md:p-4 ' variant='title-base' component='h4'>
                 Partage
