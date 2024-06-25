@@ -2,12 +2,12 @@ export const termOfUse = [
     {
         id:"article1",
         title:"Objet du Contrat",
-        content:"Le présent Contrat a pour objet la mise en relation de Monyaya avec Nom du client] afin de lui fournir des services d'apprentissage à domicile."
+        content:"Le présent Contrat a pour objet la mise en relation de Monyaya avec [Nom du client] afin de lui fournir des services d'apprentissage à domicile."
     },
     {
         id:"article2",
         title:"Définitions",
-        content:"Aux fins du présent Contrat, les termes suivants ont la signification suivante : Client : désigne Nom du bénéficiaire], bénéficiaire des services d'apprentissage à domicile.Monyaya : désigne la société Monyaya, prestataire des services d'apprentissage à domicile.  Prestataires ou yaya : désigne les intervenants qui interviennent auprès du Client pour lui fournir les services d'apprentissage à domicile"
+        content:"Aux fins du présent Contrat, les termes suivants ont la signification suivante : Client : désigne [Nom du bénéficiaire], bénéficiaire des services d'apprentissage à domicile. Monyaya :désigne la société Monyaya, prestataire des services d'apprentissage à domicile.  Prestataires ou yaya : désigne les intervenants qui interviennent auprès du Client pour lui fournir les services d'apprentissage à domicile"
     },
     {
         id:"article3",
@@ -27,12 +27,12 @@ export const termOfUse = [
     {
         id:"article6",
         title:"Durée du Contrat",
-        content:"Le présent Contrat est conclu pour une durée de [durée] mois. Le Contrat est renouvelable par tacite reconduction pour une durée de [durée] mois, sauf dénonciation par l'une ou l'autre des parties par lettre recommandée avec accusé de réception au moins [délai] mois avant l'expiration du Contrat."
+        content:"Le présent Contrat est conclu pour une durée de [durée] mois. Le Contrat est renouvelable par tacite reconduction pour une durée de [durée] mois, sauf dénonciation par l'une ou l'autre des parties par lettre recommandée avec accusé de réception au moins [délai] mois avant l'expiration du Contrat."
     },
     {
         id:"article7",
         title:"Résiliation du Contrat",
-        content:"Le Contrat peut être résilié à tout moment par l'une ou l'autre des parties, moyennant un préavis de [délai] mois. La résiliation du Contrat peut également intervenir de plein droit en cas de manquement grave à l'une des obligations des parties"
+        content:"Le Contrat peut être résilié à tout moment par l'une ou l'autre des parties, moyennant un préavis de [délai] mois. La résiliation du Contrat peut également intervenir de plein droit en cas de manquement grave à l'une des obligations des parties"
     },
     {
         id:"article8",
@@ -42,7 +42,7 @@ export const termOfUse = [
     {
         id:"article9",
         title:"Force majeure",
-        content:"Aucune des parties ne sera tenue responsable de l'inexécution de ses obligations au titre du présent Contrat en cas de survenance d'un événement de force majeure, tel que défini par la jurisprudence. Sont considérés comme des cas de force majeure tous les événements indépendants de la volonté des parties,imprévisibles, inévitables et qui ne peuvent être surmontés par ces dernières. Par exemple, sont considérés comme des cas de force majeure : Les catastrophes naturelles (inondations, séismes, etc.) ; Les guerres, les émeutes, les troubles civils; Les grèves, les lock-out, les pénuries de matières premières ou d'énergie ; Les actes de terrorisme. Lorsque l'événement de force majeure aura cessé, les parties devront prendre contact afin de déterminer les modalités de poursuite du Contrat."
+        content:"Aucune des parties ne sera tenue responsable de l'inexécution de ses obligations au titre du présent Contrat en cas de survenance d'un événement de force majeure, tel que défini par la jurisprudence. Sont considérés comme des cas de force majeure tous les événements indépendants de la volonté des parties,imprévisibles, inévitables et qui ne peuvent être surmontés par ces dernières. Par exemple, sont considérés comme des cas de force majeure : Les catastrophes naturelles (inondations,séismes, etc.) ; Les guerres, les émeutes, les troubles civils; Les grèves, les lock-out, les pénuries de matières premières ou d'énergie ; Les actes de terrorisme. Lorsque l'événement de force majeure aura cessé, les parties devront prendre contact afin de déterminer les modalités de poursuite du Contrat."
     },
     {
         id:"article10",

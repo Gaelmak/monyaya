@@ -4,7 +4,7 @@ import Image from "next/image";
 import studentImage from '../../../../public/OIP (4).jpg'
 export default function VisionSection(){
     return(
-        <Container className=" container flex flex-col-reverse lg:flex-row  lg:justify-between items-center gap-8 lg:m-auto p-8 lg:h-screen">
+        <Container className=" container flex flex-col-reverse lg:flex-row-reverse max-w-full lg:justify-between  items-center gap-8 lg:my-10 p-8 ">
              <Container className="">
                 <Image 
                 width={500}

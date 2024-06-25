@@ -4,7 +4,7 @@ import Image from "next/image";
 import studentImage from '../../../../public/OIP (4).jpg'
 export default function MissionSection(){
     return(
-        <Container className=" container flex flex-col lg:flex-row lg:justify-between md:items-center gap-8 lg:m-auto py-4 lg:h-screen bg-secondary-50">
+        <Container className=" container flex flex-col lg:flex-row-reverse lg:justify-between max-w-full md:items-center gap-8  py-4 lg:py-10 bg-secondary-50">
             <Container className="lg:w-1/2 flex flex-col justify-between items-center gap-8">
                 <Typography className="text-[#39ae44] " component="h4" variant="title-lg" >Notre Mission</Typography>
                 <Typography className="leading-relaxed text-lg" component="p" variant="body-base">
@@ -15,7 +15,7 @@ export default function MissionSection(){
                 l'accès à l'éducation et l'enrichissement personnel.
                 </Typography>
             </Container>
-            <Container className="">
+            <Container className="lg:w-1/2">
                 <Image 
                 width={500}
                 src={studentImage}

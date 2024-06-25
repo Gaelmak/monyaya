@@ -16,11 +16,11 @@ export default function Home() {
     <main>
       <Container>
         <CompanyOverview/>
-        <MissionSection />
-        <VisionSection />
-        <ValueSection />
-        <TestimonialCarousel />
-        <HowItWorks/>
+          <MissionSection />
+              <VisionSection />
+            <ValueSection />
+            <TestimonialCarousel />
+          <HowItWorks/>
         <Newsletter/>
       </Container>
     </main>
