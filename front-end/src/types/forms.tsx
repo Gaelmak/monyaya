@@ -77,30 +77,6 @@ export const BecomeATrainerFormFieldsType = z.object({
       message: "Votre description doit avoir au moins 10 caracteres.",
     })
     .max(500),
-  municipality: z.string()
-    .min(3, {
-      message: "Entrez le nom de votre commune de residence",
-    })
-    .max(50),
-  district: z.string()
-    .min(3, {
-      message: "Entrez le nom de votre quartier de residence",
-    })
-    .max(50),
-  avenue: z.string()
-    .min(3, {
-      message: "Entrez le nom de votre avenue de residence",
-    })
-    .max(50),
-  number: z.string()
-    .min(1, {
-      message: "Entrez le numero de votre residence",
-    })
-    .max(50),
-  payment_number: z.string()
-    .regex(new RegExp('^0(8|9)[0-9]{8}$'), {
-      message: "Veuillez entrer un numero de telephone valide"
-    }),
   terms_and_conditions: z.boolean()
     .refine(value => value === true, {
       message: "Veuillez accepter les termes et conditions pour continuer."

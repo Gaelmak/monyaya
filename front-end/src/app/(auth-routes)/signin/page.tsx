@@ -10,7 +10,7 @@ export default async function SignIn() {
   const providerslist = await getProviders()
 
   return (
-    <Container className="relative md:h-[100dvh] flex flex-col-reverse md:flex-row">
+    <Container className="bg-white relative md:h-[100dvh] flex flex-col-reverse md:flex-row">
       <Container className="absolute top-8 left-8 z-10">
         <BackButton icon="home" backTo="/"/>
       </Container>

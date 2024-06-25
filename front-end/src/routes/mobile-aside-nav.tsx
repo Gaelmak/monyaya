@@ -46,7 +46,7 @@ export const MobileAsideNav = async ({ className }: Props) => {
         <Sheet>
           <SheetTrigger>
             <Container className="flex items-center justify-center rounded-full w-[40px] h-[40px] overflow-hidden">
-              <Image src={user!.image ? user!.image : Default } alt='Profil image' priority width={40} height={40}/>
+              <Image src={user!.image ? user!.image : Default } alt='Profil image' priority width={40} height={40} className="w-full h-full object-cover object-center rounded-full" />
             </Container>
           </SheetTrigger>
           <SheetContent className="w-[90vw] bg-white pt-8">

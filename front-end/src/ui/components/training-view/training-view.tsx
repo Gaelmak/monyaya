@@ -14,7 +14,7 @@ import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil"
 import { usePathname } from "next/navigation"
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import RekreationPaysage from '../../../../public/rekreatioonPaysage.png'
+import RekreationPaysage from '../../../../public/rekreatioonPaysage.jpg'
 import Image from "next/image"
 import { Buttons } from "../buttons/buttons"
 
@@ -22,6 +22,7 @@ interface Props {
   data: {
     id : string
     name : string
+    image : string
     description : string
     userId : string
     price : number
@@ -79,12 +80,12 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
   return (
     <Container className={clsx("", className)}>
       {
-        data.map(({id, modules, createdAt, name, description, price, user, courses}) => (
-          <Container className="bg-white w-full gap-4 md:gap-8 flex flex-col md:flex-row rounded md:justify-between md:px-40" key={id}>
+        data.map(({id, image, modules, createdAt, name, description, price, user, courses}) => (
+          <Container className="w-full gap-4 md:gap-8 flex flex-col md:flex-row rounded md:justify-between md:px-40" key={id}>
             <Container className="md:basis-2/3 flex flex-col gap-4 ">
               <Container className="md:sticky md:top-24 flex flex-col gap-4">
                 <Container className="w-full relative md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
-                  <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
+                  <Image width={100} height={100} src={image ? image : RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
                 </Container>
               </Container>
             </Container>

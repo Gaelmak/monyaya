@@ -17,6 +17,7 @@ export const ProcessToBecomeATrainer = async() => {
             src={Young} 
             alt="young man"
             width={140}
+            
           />
         </Container>
         <Container className="flex flex-col gap-8 md:gap-4 h-full py-10 md:py-0 justify-center md:basis-3/4">

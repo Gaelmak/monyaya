@@ -12,7 +12,7 @@ import clsx from "clsx"
 import { usePathname } from "next/navigation"
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import RekreationPaysage from '../../../../public/rekreatioonPaysage.png'
+import RekreationPaysage from '../../../../public/rekreatioonPaysage.jpg'
 import Image from "next/image"
 import Link from "next/link"
 
@@ -20,6 +20,7 @@ interface Props {
   data: {
     id : string
     name : string
+    image : string
     description : string
     userId : string
     price : number
@@ -75,11 +76,11 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
   return (
     <Container className={clsx(className)}>
       {
-        data.map(({id, createdAt, name, description, price,_count, user, courses}) => (
+        data.map(({id, createdAt, image, name, description, price,_count, user, courses}) => (
           <Container key={id} className="group p-4 hover:cursor-pointer rounded overflow-hidden flex flex-col gap-2 justify-between bg-white animate">
             <Container className="rounded w-full relative md:w-auto aspect-video overflow-hidden flex justify-center items-center">
               <Link href={`/trainings/training/${id}`}>
-                <Image src={RekreationPaysage} alt="rekreatioon logo" className="h-full w-full object-cover group-hover:scale-150 animate"/>
+                <Image width={100} height={100} src={image ? image : RekreationPaysage} alt="rekreatioon logo" className="h-full w-full object-cover group-hover:scale-150 animate"/>
               </Link>
             </Container>
             <Container className="gap-4 flex flex-row justify-between">

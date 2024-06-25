@@ -7,7 +7,7 @@ import X from '../../../public/icons/TwitterX.png'
 
 export const MainRoutes: AppLinks[] = [
   {
-    title: 'Acceuil',
+    title: 'Accueil',
     baseUrl: '/'
   },
   {
@@ -15,7 +15,7 @@ export const MainRoutes: AppLinks[] = [
     baseUrl: '/trainings'
   },
   {
-    title: 'A propos',
+    title: 'À propos',
     baseUrl: '/about'
   },
 ]
@@ -45,7 +45,7 @@ export const SocialNetworks: AppLinks[] = [
 
 export const Company: AppLinks[] = [
   {
-    title: "A propos de nous",
+    title: "À propos de nous",
     baseUrl: '/about-us',
   },
   {
@@ -86,7 +86,7 @@ export const AsideRoutes: AppLinks[] = [
 
 export const HomeRoute: AppLinks[] = [
   {
-    title: "Retourner à l'acceuil",
+    title: "Retourner à l'accueil",
     baseUrl: '/',
     Icon: Home 
   },

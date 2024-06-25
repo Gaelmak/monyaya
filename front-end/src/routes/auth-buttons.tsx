@@ -26,7 +26,7 @@ export const HomeButton = ({className}: Props) => {
       baseUrl="/"
       className={className}
     >
-      Page d'acceuil
+      Page d'accueil
     </Buttons>
   )
 }

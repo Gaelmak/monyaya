@@ -35,6 +35,7 @@ export const AppMobile = () => {
           className=""
           sizes="100%"
           priority
+          width={100} height={100}
         />
       </Container>
       <Container className="basis-1/2 flex flex-col justify-center gap-8">

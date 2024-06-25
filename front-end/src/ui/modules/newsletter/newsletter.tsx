@@ -59,7 +59,7 @@ export const Newsletter = () => {
 
 
   return (
-    <Container className="px-4 py-8 md:px-8 md:py-16 flex flex-col md:flex-row gap-8 items-center">
+    <Container className="bg-white px-4 py-8 md:px-8 md:py-16 flex flex-col md:flex-row gap-8 items-center">
       <Container className="basis-1/2 flex flex-col gap-4">
         <Typography variant="display" component="h2">
           Abonnez-vous à notre newsletter

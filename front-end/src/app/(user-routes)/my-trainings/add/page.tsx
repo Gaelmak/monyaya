@@ -23,10 +23,13 @@ export default async function Home () {
   })
 
   return(
-    <main className="w-full min-h-[100vh] pt-24 md:pt-0 pb-8 flex flex-col p-4 gap-4">
+    <main className="w-full min-h-[100vh] pt-24 md:pt-4 pb-8 flex flex-col p-4 gap-4">
       <Container className="w-full h-full p-4 flex flex-col gap-4 bg-white rounded">
         <Typography variant="title-base" component="h3"> Ajouter une formation</Typography>
-        <AddTraining userId={userData!.id!} options={courses}/>
+        <AddTraining
+          userId={userData!.id!}
+          options={courses} 
+        />
       </Container>
     </main>
   )

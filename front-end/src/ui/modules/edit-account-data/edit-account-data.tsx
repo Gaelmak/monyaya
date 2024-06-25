@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import Image from "next/image";
 import DefaultAvatar from '../../../../public/default_avatar.jpg';
-import { fromJSON } from 'postcss';
 
 interface Props {
   data: {
@@ -60,7 +59,6 @@ export const EditAccountData = ({ name, data }: Props) => {
         body: formData,
       });
       const data = await response.json();
-      console.log(data.fileUrl);
       if (data.status === 200) {
         const url = data.fileUrl
         const uploadProfil = await fetch(`/api/user/userimage/${name}`, {

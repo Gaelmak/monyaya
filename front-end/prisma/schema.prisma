@@ -95,6 +95,7 @@ model Courses {
 model Trainings {
   id          String     @id @default(cuid())
   name        String
+  image       String?
   description String
   userId      String
   price       Float

@@ -2,8 +2,12 @@ import { OurBenefits } from "@/lib/our-benefits/our-benefits"
 import { SignInButton } from "@/routes/auth-buttons"
 import { Container } from "@/ui/components/container/container"
 import { Typography } from "@/ui/components/typography/typography"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 
-export const Benefits = () => {
+export const Benefits = async () => {
+  
+  const session = await getServerSession(authOptions)
   return(
     <Container className="px-6 md:px-8 py-24 flex flex-col gap-20 bg-primary-50">
       <Container className="flex flex-col items-center">
@@ -25,9 +29,12 @@ export const Benefits = () => {
           ))
         }
       </Container>
-      <Container className="w-full flex justify-center">
-        <SignInButton/>
-      </Container>
+      {
+        !session &&
+        <Container className="w-full flex justify-center">
+          <SignInButton/>
+        </Container>
+      }
     </Container>
   )
 }

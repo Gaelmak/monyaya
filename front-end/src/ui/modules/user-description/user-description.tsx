@@ -27,18 +27,13 @@ export const UserDescription = ({ name }: Props) => {
     resolver: zodResolver(BecomeATrainerFormFieldsType),
     defaultValues: {
       bio: '', 
-      district: '',
-      municipality: '',
-      avenue: '',
-      number: '',
-      payment_number : '',
       terms_and_conditions: false,
     }
   })
 
   async function onSubmit(values: z.infer<typeof BecomeATrainerFormFieldsType>) {
     startLoading();
-    const { bio, district, municipality, avenue, number, payment_number, terms_and_conditions } = values
+    const { bio, terms_and_conditions } = values
     
     const userToTrainer = await fetch(`/api/user/${name}`, {
       method: "PATCH",
@@ -47,12 +42,7 @@ export const UserDescription = ({ name }: Props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        bio, 
-        district, 
-        municipality, 
-        avenue, 
-        number, 
-        payment_number, 
+        bio,  
         terms_and_conditions
       })
     })
@@ -98,56 +88,6 @@ export const UserDescription = ({ name }: Props) => {
                   </span>
                 }
                 type="textarea"
-              />
-            </Container>
-            <Container className="flex flex-col gap-2 p-4 ">
-              <Typography variant="title-sm" component="h4" className="mb-2">Adresse{' '}<span className="text-red-500">*</span></Typography>
-              <Container className="flex flex-row gap-2">
-                <Container className="basis-1/2">
-                  <InputField
-                    control={form.control}
-                    name="municipality"
-                    placeholder="Commune"
-                  />
-                  <InputField
-                    control={form.control}
-                    name="district"
-                    placeholder="Quartier"
-                  />
-                </Container>
-                <Container className="basis-1/2">
-                  <InputField
-                    control={form.control}
-                    name="avenue"
-                    placeholder="Avenue"
-                  />
-                  <InputField
-                    control={form.control}
-                    name="number"
-                    placeholder="Numero"
-                  />
-                </Container>
-              </Container>
-            </Container>
-            <Container className="flex flex-col gap-2 p-4">
-              <Typography variant="title-sm" component="h4" className="mb-2">Paiement{' '}<span className="text-red-500">*</span></Typography>
-              <InputField
-                control={form.control}
-                name="payment_number"
-                placeholder="Numero de paiement"
-                description={
-                  <span>
-                    <span>
-                      Veuillez fournir un numéro de téléphone sur lequel nous pourrons effectuer le versement de ce qui vous est dû.
-                    </span> <br/>
-                    <span>
-                      Assurez-vous que votre numéro de téléphone est bien associé à un service de mobile money valide en RDC (Africell, Airtel, Orange ou Vodacom).
-                    </span> <br />
-                    <span>
-                      Le numéro de téléphone doit comporter 10 caractères et commencer par le chiffre 0.
-                    </span>
-                  </span>
-                }
               />
             </Container>
             <Container className="flex flex-col gap-2 p-4">

@@ -4,7 +4,7 @@ import { Typography } from "@/ui/components/typography/typography"
 import { Calendar, List, PenBox, Map } from "lucide-react"
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import RekreationPaysage from '../../../../../public/rekreatioonPaysage.png'
+import RekreationPaysage from '../../../../../public/rekreatioonPaysage.jpg'
 import Image from "next/image"
 import { truncateText } from "@/lib/truncate-text"
 import { LearnerList } from "@/ui/modules/learner-list/learner-list"

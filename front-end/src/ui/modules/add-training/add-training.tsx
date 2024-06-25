@@ -13,6 +13,9 @@ import { useRouter } from "next/navigation"
 import UseLoading from "@/hooks/use-loading"
 import { InputFieldSelect } from "@/ui/components/input-field-select/input-field-select"
 import { Options } from "@/types/options"
+import { useState, ChangeEvent, FormEvent } from 'react';
+import Image from "next/image";
+import DefaultAvatar from '../../../../public/default_avatar.jpg';
 
 interface Props {
   options: Options[],
@@ -34,6 +37,26 @@ export const AddTraining = ({ options, userId } : Props) => {
     },
   })
 
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (reader.result) {
+          setPreview(reader.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setSelectedImage(null);
+      setPreview(null);
+    }
+  };
+
   const { control } = form
 
   const {fields, append, remove } = useFieldArray({
@@ -45,41 +68,70 @@ export const AddTraining = ({ options, userId } : Props) => {
     startLoading()
     const {training_name, training_description, chapters, price, category} = values
     
-    const addTraining = await fetch(`/api/training`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId,
-        training_name,
-        training_description, 
-        chapters, 
-        price, 
-        category
-      }),
-    })
+    
+    const formData = new FormData();
+    formData.append('file', selectedImage!);
+    formData.append('name', (userId + '_' + training_name));
+    formData.append('folder', 'Trainings');
 
-    if(addTraining.status === 200) {
-      toast({
-        variant: "success",
-        title: "Youpi !",
-        description: <Typography component="p" variant="body-sm">Votre formation a été ajoutée avec succès</Typography>,
-      })
-      stopLoading()
-      router.push("/my-trainings")
-    } else {
+    try {
+      const response = await fetch('/api/upload', {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (data.status === 200) {
+        const url = data.fileUrl
+        const addTraining = await fetch(`/api/training`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId,
+            training_name,
+            training_description, 
+            chapters, 
+            price, 
+            category,
+            image: url
+          }),
+        })
+    
+        if(addTraining.status === 200) {
+          toast({
+            variant: "success",
+            title: "Youpi !",
+            description: <Typography component="p" variant="body-sm">Votre formation a été ajoutée avec succès</Typography>,
+          })
+          stopLoading()
+          router.push("/my-trainings")
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Erreur !",
+            description: 
+            <Typography component="p" variant="body-sm">
+              Une erreur est survenue durant l'enregistrement de votre formation. Veuillez recommencer l'opération.
+            </Typography>,
+          })
+          stopLoading()
+        }
+      }
+      stopLoading();
+    } catch (error) {
       toast({
         variant: "destructive",
-        title: "Erreur !",
-        description: 
-        <Typography component="p" variant="body-sm">
-          Une erreur est survenue durant l'enregistrement de votre formation. Veuillez recommencer l'opération.
-        </Typography>,
+        title: "Erreur",
+        description: <Typography component="p" variant="body-sm">Une erreur est survenue, veuillez réessayer plus tard.</Typography>,
       })
-      stopLoading()
+      setSelectedImage(null);
+      stopLoading();
     }
+
+
+    
 
   }
   
@@ -87,6 +139,27 @@ export const AddTraining = ({ options, userId } : Props) => {
     <Container>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} >
+          <Container className="flex flex-col gap-4 pb-4">
+            <Container className="relative w-full h-[24rem] gap-4 flex flex-col justify-center items-center overflow-hidden z-10">
+              <Container className="w-full h-full rounded overflow-hidden">
+                <Image 
+                  width={100}
+                  height={100}
+                  src={preview ? preview : DefaultAvatar}
+                  alt="User profile image"
+                  className="h-full w-full object-cover "
+                />
+              </Container>
+              <Container>
+                <Container className="flex flex-col gap-4 lg:flex-row justify-between items-center">
+                  <label htmlFor="profil" className='cursor-pointer text-gray-500 hover:text-primary-Default animate'>
+                    Selectionnez une photo de couverture pour votre formation <span className="text-red-500">*</span>
+                  </label>
+                  <input type="file" accept="image/*" id='profil' onChange={handleImageChange} className='hidden'/>
+                </Container>
+              </Container>
+            </Container>
+          </Container>
           <Container className="flex flex-col gap-4">
             <Container>
               <Typography variant="title-sm" component="h4" className="mb-2">Branche de la formation{' '}<span className="text-red-500">*</span></Typography>

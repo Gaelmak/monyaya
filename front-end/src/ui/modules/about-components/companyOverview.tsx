@@ -8,7 +8,7 @@ export default function CompanyOverview(){
     return(
         <Container className='container flex justify-between flex-col lg:flex-row  items-center  '>
           <Container className="py-4">
-            <Typography className='text-[#737373]' component='span' variant='title-sm'>A propos de nous</Typography>
+            <Typography className='text-[#737373]' component='span' variant='title-sm'>À propos de nous</Typography>
             <Typography className="md:w-3/4 py-2" component="h3" variant='title-lg'> 
             Cʼest quoi monyaya ?
             </Typography>

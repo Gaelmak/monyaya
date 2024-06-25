@@ -5,7 +5,7 @@ import { NextResponse } from "next/server"
 export async function POST (
   req: Request
 ) {
-  const { userId, training_name, training_description, chapters, price, category} = await req.json()
+  const { userId, training_name, training_description, chapters, price, category, image} = await req.json()
 
   await prisma.trainings.create({
     include: {
@@ -19,7 +19,8 @@ export async function POST (
       coursesId: category,
       modules: {
         create: chapters
-      }
+      },
+      image: image
     }
   })
 

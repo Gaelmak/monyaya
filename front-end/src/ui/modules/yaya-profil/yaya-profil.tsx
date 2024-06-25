@@ -31,7 +31,7 @@ export const YayaProfil = ({
 } : Props) => {
   return(
     <Container className={clsx(className, "relative")}>
-      <Container className="rounded shadow-md sticky top-[12vh]">
+      <Container className="bg-white rounded shadow-md sticky top-[12vh]">
       {
         data.map(({name, image, bio, municipality, createdAt}) => (
           <Container key={name} className={clsx("p-4 flex flex-col gap-4 relative")}>
@@ -40,9 +40,10 @@ export const YayaProfil = ({
                 <Container className="basis-1/4">
                   <Container className="rounded-full w-[120px] h-[120px] lg:w-[100px] lg:h-[100px] overflow-hidden">
                     <Image 
+                      width={100} height={100}
                       src={image ? image : DefaultAvatar}
                       alt="User profile image"
-                      className="w-[120px] h-[120px] lg:w-[100px] lg:h-[100px]"
+                      className="w-full h-full object-cover"
                     />
                   </Container>
                 </Container>

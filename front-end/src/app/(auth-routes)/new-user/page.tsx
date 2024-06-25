@@ -6,7 +6,7 @@ import { Typography } from "@/ui/components/typography/typography";
 
 export default async function NewUser() {
   return (
-    <Container className="md:h-[100dvh] flex flex-col md:flex-row relative">
+    <Container className="bg-white md:h-[100dvh] flex flex-col md:flex-row relative">
       <Container className="absolute top-8 left-8 z-10">
         <BackButton icon="home" backTo="/"/>
       </Container>

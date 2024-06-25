@@ -139,7 +139,7 @@ export const  Buttons = ({
             <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
             :
             CustomIcon ?
-            <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+            <Image width={100} height={100} src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
             :
           null
         }
@@ -177,7 +177,7 @@ export const  Buttons = ({
           <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
           :
           CustomIcon ?
-          <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+          <Image width={100} height={100} src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
           :
         null
       }
@@ -213,7 +213,7 @@ export const  Buttons = ({
           <Icon className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
           :
           CustomIcon ?
-          <Image src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
+          <Image width={100} height={100} src={CustomIcon} alt={CustomIcon + ' icon'} className= {children? "mr-2 h-5 w-5":"h-5 w-5"}/>
           :
         null
       }

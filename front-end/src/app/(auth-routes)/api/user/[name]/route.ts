@@ -7,11 +7,6 @@ export async function PATCH (
 ) {
   const {
     bio,
-    district,
-    municipality,
-    avenue,
-    number,
-    payment_number,
     terms_and_conditions
   } = await req.json();
 
@@ -21,11 +16,6 @@ export async function PATCH (
     },
     data: {
       bio : bio,
-      municipality : municipality,
-      district : district,
-      avenue : avenue,
-      number : number,
-      paymentNumber : payment_number,
       terms_accepted : terms_and_conditions,
       role : 'TRAINER'
     }
