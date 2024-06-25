@@ -78,7 +78,7 @@ export default withUt({
           lineHeight: '120%',
           fontWeight: '700'
         }],
-        'title-lg': ['2rem', {
+        'title-lg': ['2.5rem', {
           lineHeight: '120%',
           fontWeight: '700'
         }],

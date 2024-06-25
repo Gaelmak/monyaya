@@ -80,7 +80,7 @@ export const Recommandations = async () => {
   return (
     <Container className="flex py-8 px-4 md:px-8 md:py-32 bg-[#fdfdfd] flex-col gap-8">
       <Container className="flex justify-between">
-        <Typography variant="title-lg" component="h2">Récommandations</Typography>
+        <Typography variant="title-base" component="h3">Récommandations</Typography>
         <Container className="hidden md:flex">
           <ServiceButton>Voir tous les cours</ServiceButton>
         </Container>
