@@ -22,7 +22,7 @@ interface Props {
   data: {
     id : string
     name : string
-    image : string
+    image : string | null
     description : string
     userId : string
     price : number
