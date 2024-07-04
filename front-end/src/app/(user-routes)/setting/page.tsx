@@ -4,8 +4,9 @@ import prisma from "@/lib/prisma"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { EditAccountData } from "@/ui/modules/edit-account-data/edit-account-data";
-import { Typography } from "@/ui/components/typography/typography";
 import { EditAddressData } from "@/ui/modules/edit-address-data/edit-address-data";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Typography } from "@/ui/components/typography/typography";
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
@@ -52,24 +53,62 @@ export default async function Home() {
           />
         </Container>
         <Container className="lg:basis-1/2 flex flex-col gap-8 p-8 lg:p-0">
-          <EditUsersData 
-            name={user.name ? user.name : ''}
-            data={{
-              firstname: user.firstName ? user.firstName : '',
-              lastname: user.lastName ? user.lastName : '',
-              email: user.email ? user.email : '',
-              phonenumber: user.phoneNumber ? user.phoneNumber : ''
-            }}
-          />
-          <EditAddressData
-            name={user.name ? user.name : ''}
-            data={{
-              avenue: user.avenue ? user.avenue : '',
-              district: user.district ? user.district : '',
-              municipality: user.municipality ? user.municipality : '',
-              number: user.number ? user.number : '',
-            }}
-          />
+          <Accordion type="single" collapsible>
+            <AccordionItem value="Informations personnelles">
+              <AccordionTrigger>
+                <Typography variant="title-base">
+                  Informations personnelles
+                </Typography>
+              </AccordionTrigger>
+              <AccordionContent>
+                <EditUsersData 
+                  name={user.name ? user.name : ''}
+                  data={{
+                    firstname: user.firstName ? user.firstName : '',
+                    lastname: user.lastName ? user.lastName : '',
+                    email: user.email ? user.email : '',
+                    phonenumber: user.phoneNumber ? user.phoneNumber : ''
+                  }}
+                />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="Adresse physique">
+              <AccordionTrigger>
+                <Typography variant="title-base">
+                  Adresse physique
+                </Typography>
+              </AccordionTrigger>
+              <AccordionContent>
+                <EditAddressData
+                  name={user.name ? user.name : ''}
+                  data={{
+                    avenue: user.avenue ? user.avenue : '',
+                    district: user.district ? user.district : '',
+                    municipality: user.municipality ? user.municipality : '',
+                    number: user.number ? user.number : '',
+                  }}
+                />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="Securité">
+              <AccordionTrigger>
+                <Typography variant="title-base">
+                  Sécurité
+                </Typography>
+              </AccordionTrigger>
+              <AccordionContent>
+                <EditUsersData 
+                  name={user.name ? user.name : ''}
+                  data={{
+                    firstname: user.firstName ? user.firstName : '',
+                    lastname: user.lastName ? user.lastName : '',
+                    email: user.email ? user.email : '',
+                    phonenumber: user.phoneNumber ? user.phoneNumber : ''
+                  }}
+                />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </Container>
       </Container>
       }

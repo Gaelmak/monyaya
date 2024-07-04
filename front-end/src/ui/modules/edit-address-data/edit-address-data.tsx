@@ -97,11 +97,6 @@ export const EditAddressData = ({name, data}: Props) => {
     <Dialog>
       <Container>
         <Container className="flex flex-col gap-4">
-          <Container className="flex">
-            <Typography variant="title-base">
-              Adresse de résidence
-            </Typography>
-          </Container>
           <Container className="flex flex-col gap-4">
             <Container>
               <Typography variant="body-sm">Adresse</Typography>

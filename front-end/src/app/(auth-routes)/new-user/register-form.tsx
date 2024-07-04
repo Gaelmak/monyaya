@@ -15,16 +15,8 @@ import { useToast } from "@/components/ui/use-toast"
 import { Typography } from "@/ui/components/typography/typography"
 import { useRouter } from "next/navigation"
 import clsx from "clsx"
-import { Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+import { signIn } from "next-auth/react"
+
 
 export const RegisterForm = () => { 
   const router = useRouter()
@@ -37,31 +29,18 @@ export const RegisterForm = () => {
   const form = useForm<z.infer<typeof RegisterFormFieldsType>>({
     resolver: zodResolver(RegisterFormFieldsType),
     defaultValues: {
-      firstname: '',
-      lastname: '',
       name: '',
-      email: '',
       password: '',
       confirmpassword: ''
     }
   })
 
-  useEffect(() => {
-    const { firstname, lastname, email, password, confirmpassword} = form.getValues();
-    const isFilled = firstname.trim() !== '' && lastname.trim() !== '' && email.trim() !== '' && password.trim() !== '' && confirmpassword.trim() !== '';
-    setIsFormFilled(isFilled)
-  }, [form.getValues()])
 
-  useEffect(() => {
-    const { name } = form.getValues();
-    const isFilled = name.trim() !== '';
-    setIsFormAddFilled(isFilled)
-  }, [form.getValues()])
 
   async function onSubmit(values: z.infer<typeof RegisterFormFieldsType>) {
     startLoading();
     
-    const { firstname, lastname, name, email, password, confirmpassword } = values
+    const { name, password, confirmpassword } = values
     if(password !== confirmpassword) {
       toast({
         title: "Mot de passe ne correspondent pas",
@@ -79,23 +58,34 @@ export const RegisterForm = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstname,
-          lastname,
-          name,
-          email, 
+          name, 
           hash,
           salt
         }),
       });
   
       if(registration.status === 200) {
-        toast({
-          variant: "success",
-          title: "Bienvenue !",
-          description: <Typography component="p" variant="body-sm">Vos informations ont correctement été enregistré</Typography>,
-        })
-        stopLoading()
-        router.push("/signin")
+        const loginRespose = await signIn("credentials", {
+          name: name,
+          password: password,
+          redirect: false,
+        });
+        if(loginRespose?.status === 200) {
+          toast({
+            variant: "success",
+            title: "Connexion réussie",
+            description: "Content de vous revoir !",
+          })
+          stopLoading()
+          router.push('/dashboard')
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Une erreur est survenue",
+            description: <Typography component="p" variant="body-sm">Votre nom d'utilisateur ou votre mot de passe a été saisi incorrectement. Veuillez réessayer.</Typography>,
+          })
+          stopLoading()
+        }
       } else {
         toast({
           variant: "destructive",
@@ -134,7 +124,6 @@ export const RegisterForm = () => {
   }
 
   return (
-    <Dialog>
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className={clsx("flex flex-col gap-8 ")}>
         <Container 
@@ -144,39 +133,29 @@ export const RegisterForm = () => {
         > 
           <Container
             className={clsx(
-              "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
+              "w-full flex flex-col gap-2 lg:gap-4"
             )}
           >
-            <Container className="lg:basis-1/2">
+            <Container>    
               <InputField
-                placeholder="John"
+                placeholder="@JohnD12"
                 control={form.control}
-                name="firstname"
-                label='Prénom'
+                name="name"
+                label="Nom d'utilisateur"
+                description={
+                  <>
+                    <span className="text-body-sm flex flex-col gap-1">
+                      <span>
+                      * Assurez-vous de choisir un nom d'utilisateur que vous pourrez facilement mémoriser mais qui reste suffisamment unique pour être accepté par notre système.
+                      </span>
+                      <span>
+                      * Il doit avoir au moins 2 caractères et peut contenir des lettres, des chiffres et des symboles.
+                      </span>
+                    </span>
+                  </>
+                }
               >
                 {UserIcon()}
-              </InputField>
-            </Container>
-            <Container className="lg:basis-1/2">
-              <InputField
-                placeholder="Doe"
-                control={form.control}
-                name="lastname"
-                label='Nom'
-              >
-                {UserIcon()}
-              </InputField>
-            </Container>
-          </Container>
-            <Container>
-              <InputField
-                placeholder="JohnDoe12@jd.com"
-                control={form.control}
-                name="email"
-                type="email"
-                label='Adresse email'
-              >
-                {MailIcon()}
               </InputField>
             </Container>
             <Container
@@ -210,56 +189,16 @@ export const RegisterForm = () => {
               </Container>
             </Container>
           </Container>
+        </Container>
         <Container className="flex flex-col justify-between items-center gap-2">
-            <DialogTrigger asChild>
-              <Button disabled={!isFormFilled} className="w-full bg-primary-Default hover:bg-primary-600 rounded"> 
-                {isFormAddFilled ? <><Pen className="mr-2 h-5 w-5"/>Modifier</>  : <><Check className="mr-2 h-5 w-5"/>Valider</>}
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="w-[86vw] lg:w-[40vw] bg-white rounded">
-              <Container className="flex flex-col gap-8">
-                <Container className="flex flex-col gap-2 ">
-                  <Typography variant="title-lg" component="h2">Informations complémentaires</Typography>
-                </Container>
-                <Container className="flex flex-col gap-2 py-16">
-                  <Container className="">
-                    <InputField
-                      placeholder="@JohnD12"
-                      control={form.control}
-                      name="name"
-                      label="Nom d'utilisateur"
-                      description={
-                        <>
-                          <span className="text-body-sm flex flex-row gap-1">
-                            <span>
-                            Il doit avoir au moins 2 caractères et peut contenir des lettres, des chiffres et des symboles.
-                            </span>
-                          </span>
-                        </>
-                      }
-                    >
-                      {UserIcon()}
-                    </InputField>
-                  </Container>
-                </Container>
-              </Container>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button className="w-full bg-primary-Default hover:bg-primary-600 rounded"> 
-                    <Check className="mr-2 h-5 w-5"/>Enrégistrer
-                  </Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          <Buttons type='submit' isLoading={isLoading} Icon={UserPlus} className={clsx("w-full animate", isFormAddFilled ? 'flex' : 'hidden')}>S'enrégistrer</Buttons>
+          <Buttons type="submit" Icon={UserPlus} isLoading={isLoading} className="w-full">S'inscrire</Buttons>
           <Typography variant="body-sm" className="pt-8">
-            Vous avez déjà un compte ? Connectez vous.
+            Vous avez un compte ? Connectez vous.
           </Typography>
           <Buttons buttonType="link" baseUrl="/signin" Icon={LogIn} variant="ghost" outline="outline" className="text-secondary-Default w-full">Se connecter</Buttons>
         </Container>
       </form>
     </Form>
-    </Dialog>
   )
 }
 

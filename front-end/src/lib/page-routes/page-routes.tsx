@@ -25,41 +25,10 @@ export const SocialNetworks: AppLinks[] = [
     title: 'LinkedIn',
     baseUrl: 'https://www.linkedin.com/company',
     CustomIcon: Linkedin,
-  },
-  {
-    title: 'Facebook',
-    baseUrl: 'https://www.facebook.com/company',
-    CustomIcon: Facebook,
-  },
-  {
-    title: 'X',
-    baseUrl: 'https://www.x.com/company',
-    CustomIcon: X,
-  },
-  {
-    title: 'Youtube',
-    baseUrl: 'https://www.youtube.com/company',
-    CustomIcon: Youtube,
   }
 ]
 
 export const Company: AppLinks[] = [
-  {
-    title: "À propos de nous",
-    baseUrl: '/about-us',
-  },
-  {
-    title: "Nos valeurs",
-    baseUrl: '/values'
-  },
-  {
-    title: "Contact",
-    baseUrl: '/contact',
-  },
-  {
-    title: 'Mentions legales',
-    baseUrl: '/legal-notices'
-  },
   {
     title: "Termes d'utilisation",
     baseUrl: '/terms-of-use'

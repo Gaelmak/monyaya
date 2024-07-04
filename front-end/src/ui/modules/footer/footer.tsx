@@ -87,23 +87,6 @@ export const Footer = () => {
         </Form>
       </Container>
       <Container className="flex flex-col md:flex-row gap-16">
-        <Container className="flex flex-col md:flex-row gap-4">
-          <Container className="flex flex-col gap-8">
-            <Container className="flex flex-col gap-4">
-              <Typography variant="title-sm">Adresse</Typography>
-              <Container className="flex flex-col gap-1">
-                <Typography>3 Av. Kintambo C. Gombe</Typography>
-              </Container>
-            </Container>
-            <Container className="flex flex-col gap-4">
-              <Typography variant="title-sm">Contact</Typography>
-              <Container className="flex flex-col gap-1">
-                <Typography>+243 853 045 935</Typography>
-                <Typography>Info-vignette@dgrk.cd</Typography>
-              </Container>
-            </Container>
-          </Container>
-        </Container>
         <Container className="flex flex-col gap-8">
           <Container className="flex flex-col gap-4">
             <Typography variant="title-sm">
@@ -123,22 +106,6 @@ export const Footer = () => {
           </Container>
           <Container className="flex flex-col gap-4">
             <Typography variant="title-sm">
-              Réseaux sociaux
-            </Typography>
-            <Container className="flex flex-row gap-4">
-            {
-              SocialNetworks.map(({CustomIcon, baseUrl, title}) => (
-                <Link href={baseUrl!}>
-                  <Image src={CustomIcon!} alt={title} width={28} height={28} />
-                </Link>
-              ))
-            }
-            </Container>
-          </Container>
-        </Container>
-        <Container className="flex flex-col gap-8">
-          <Container className="flex flex-col gap-4">
-            <Typography variant="title-sm">
               Monyaya
             </Typography>
             <Container className="flex flex-col gap-1">
@@ -151,6 +118,33 @@ export const Footer = () => {
                 </Typography>
               ))
             }
+            </Container>
+          </Container>
+        </Container>
+        <Container className="flex flex-col md:flex-row gap-4">
+          <Container className="flex flex-col gap-8">
+            <Container className="flex flex-col gap-4">
+              <Typography variant="title-sm">Contact</Typography>
+              <Container className="flex flex-col gap-1">
+                <Typography>+243 997 724 968</Typography>
+                <Typography>+243 821 611 703</Typography>
+                <Typography>...</Typography>
+              </Container>
+            </Container>
+            
+            <Container className="flex flex-col gap-4">
+              <Typography variant="title-sm">
+                Réseaux sociaux
+              </Typography>
+              <Container className="flex flex-row gap-4">
+              {
+                SocialNetworks.map(({CustomIcon, baseUrl, title}) => (
+                  <Link href={baseUrl!}>
+                    <Image src={CustomIcon!} alt={title} width={28} height={28} />
+                  </Link>
+                ))
+              }
+              </Container>
             </Container>
           </Container>
         </Container>

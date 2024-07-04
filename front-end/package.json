@@ -47,6 +47,7 @@
     "clsx": "^2.1.0",
     "crypto-js": "^4.2.0",
     "date-fns": "^2.30.0",
+    "embla-carousel-react": "^8.1.5",
     "encoding": "^0.1.13",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",

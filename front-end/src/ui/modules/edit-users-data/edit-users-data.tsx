@@ -108,11 +108,6 @@ export const EditUsersData = ({name, data}: Props) => {
     <Dialog>
       <Container>
         <Container className="flex flex-col gap-4">
-          <Container className="flex">
-            <Typography variant="title-base">
-              Informations personnelles
-            </Typography>
-          </Container>
           <Container className="flex flex-col gap-2">
             <Container>
               <Typography variant="body-sm">Nom</Typography>

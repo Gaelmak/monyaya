@@ -106,7 +106,7 @@ export const SigninForm = () => {
         <Container className="flex flex-col justify-between items-center gap-2">
           <Buttons type="submit" Icon={LogIn} isLoading={isLoading} className="w-full">Se connecter</Buttons>
           <Typography variant="body-sm" className="pt-8">
-            Vous n'avez pas de compte ? Enregistrez vous.
+            Vous n'avez pas de compte ? Inscrivez vous.
           </Typography>
           <Buttons buttonType="link" baseUrl="/new-user" Icon={UserPlus} variant="ghost" outline="outline" className="text-secondary-Default w-full">S'enregistrer</Buttons>
         </Container>
