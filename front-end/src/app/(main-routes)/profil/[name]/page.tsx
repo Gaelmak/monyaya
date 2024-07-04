@@ -105,7 +105,7 @@ export default async function Home({ params } : { params: { name: string } }) {
               bio : user.bio!,
               createdAt : user.createdAt,
               phoneNumber : user.phoneNumber!,
-              email : user.email,
+              email : user.email!,
               firstName : user.firstName!,
               lastName : user.lastName!,
               municipality : user.municipality!,
