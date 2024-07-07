@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster'
 import { redirect } from 'next/navigation'
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
+import prisma from "@/lib/prisma"
 
 export default async function RootLayout({
   children,

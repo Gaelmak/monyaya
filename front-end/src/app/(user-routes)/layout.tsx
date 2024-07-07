@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { MobileAsideNav } from '@/routes/mobile-aside-nav'
+import prisma from "@/lib/prisma"
 
 export default async function RootLayout({
   children,

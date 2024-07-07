@@ -5,6 +5,8 @@ import { Footer } from '@/ui/modules/footer/footer'
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { redirect } from 'next/navigation'
+import prisma from "@/lib/prisma"
+
 
 export default async function MainRoutesLayout({
   children,
