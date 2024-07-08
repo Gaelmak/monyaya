@@ -1,8 +1,9 @@
+'use client'
+
 import { Container } from "@/ui/components/container/container"
 import { Typography } from "@/ui/components/typography/typography"
 import DefaultAvatar from '../../../../public/default_avatar.jpg'
 import Image from "next/image"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { ValidationButton } from "../validation-button/validation-button"
 
 interface Props {
@@ -24,9 +25,12 @@ interface Props {
       avenue: string | null
     }
   }[]
+  trainerId: string | null
 }
 
-export const LearnerList = ({ learners }: Props) => {
+export const LearnerList = ({ learners, trainerId }: Props) => {
+  
+  
   return (
     <Container className="flex flex-col gap-4">
       <Container>
@@ -58,7 +62,8 @@ export const LearnerList = ({ learners }: Props) => {
                         trainingId={id} 
                         isMyAccount={true} 
                         amLearner={true} 
-                        status={status}  
+                        status={status} 
+                        trainer={trainerId!} 
                       />
                     </Container>
                   </Container>

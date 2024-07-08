@@ -37,6 +37,8 @@ interface Props {
     }[]
     user: {
       name: string
+      firstName: string | null
+      lastName: string | null
       bio: string | null
       municipality: string | null
       email: string | null
@@ -81,15 +83,15 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
     <Container className={clsx("", className)}>
       {
         data.map(({id, image, modules, createdAt, name, description, price, user, courses}) => (
-          <Container className="w-full gap-4 md:gap-8 flex flex-col md:flex-row rounded md:justify-between md:px-40" key={id}>
-            <Container className="md:basis-2/3 flex flex-col gap-4 ">
+          <Container className="w-full gap-4 lg:gap-8 flex flex-col md:flex-row rounded md:justify-between" key={id}>
+            <Container className="md:basis-3/5 flex flex-col gap-4 ">
               <Container className="md:sticky md:top-24 flex flex-col gap-4">
-                <Container className="w-full relative md:w-auto aspect-video bg-primary-50 rounded overflow-hidden flex justify-center items-center">
+                <Container className="w-full relative md:w-auto aspect-video rounded overflow-hidden flex justify-center items-center">
                   <Image width={100} height={100} src={image ? image : RekreationPaysage} alt="rekreatioon logo" className="h-auto w-full group-hover:scale-150 animate"/>
                 </Container>
               </Container>
             </Container>
-            <Container className="md:basis-1/3 flex flex-col gap-4 md:gap-4">
+            <Container className="md:basis-2/5 flex flex-col gap-4 md:gap-4">
               <Container className="flex flex-col">
                 <Typography variant="title-base">{name}</Typography>
               </Container>
@@ -141,6 +143,8 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
                         bio : user.bio!,
                         image : user.image!,
                         email : user.email!,
+                        firstName : user.firstName!,
+                        lastName : user.lastName!,
                         createdAt: user.createdAt,
                         municipality : user.municipality!,
                         district : user.district!,

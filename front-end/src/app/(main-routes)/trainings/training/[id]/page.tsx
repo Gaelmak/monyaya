@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/(auth-routes)/api/auth/[...nextauth]/auth-otions"
 import { TrainingView } from "@/ui/components/training-view/training-view"
+import { Recommandations } from "@/ui/modules/recommandations/recommandations"
 
 export default async function Home({ params } : { params: { id: string } }) {
   const idTraining = decodeURIComponent(params.id)
@@ -44,7 +45,10 @@ export default async function Home({ params } : { params: { id: string } }) {
       },
       user: {
         select: {
+          id: true,
           name: true,
+          firstName: true,
+          lastName: true,
           bio: true,
           email: true,
           municipality: true,
@@ -80,23 +84,31 @@ export default async function Home({ params } : { params: { id: string } }) {
   })
   
   return (
-    <Container className="flex py-8 px-4 md:px-8 md:py-8 flex-col gap-8">
-      {
-        session || myLearnings ?
-        <TrainingView 
-          className="grid grid-cols-1"
-          data={training} 
-          userId={userId!.id!} 
-          myLearnings={myLearnings!} 
-          sessionName={session!.user!.name!}
-        />
-        :
-        <TrainingView 
-          className="grid grid-cols-1"
-          data={training} 
-        />
-      }
+    <Container>
+      <Container className="flex py-8 px-4 md:px-8 bg-[#eee] md:py-8 flex-col gap-8">
+        {
+          session || myLearnings ?
+          <TrainingView 
+            className="grid grid-cols-1"
+            data={training} 
+            userId={userId!.id!} 
+            myLearnings={myLearnings!} 
+            sessionName={session!.user!.name!}
+          />
+          :
+          <TrainingView 
+            className="grid grid-cols-1"
+            data={training} 
+          />
+        }
+      </Container>
+      <Container>
+        {
+          training.map(({id, courses, user}) => (
+            <Recommandations trainer={user.id} branch={courses.name} current={id}/>
+          ))  
+        }
+      </Container>
     </Container>
-    
   )
 }

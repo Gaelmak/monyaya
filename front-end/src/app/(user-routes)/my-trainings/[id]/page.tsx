@@ -59,7 +59,7 @@ export default async function Home({ params } : { params: { id: string } }) {
         </Container>
       </Container>
       <Container>
-        <LearnerList learners={training!.learners}/>
+        <LearnerList trainerId={training?.userId!} learners={training!.learners}/>
       </Container>
     </Container>
   )

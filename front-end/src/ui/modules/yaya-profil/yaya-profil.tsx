@@ -33,10 +33,10 @@ export const YayaProfil = ({
     <Container className={clsx(className, "relative")}>
       <Container className="bg-white rounded shadow-md sticky top-[12vh]">
       {
-        data.map(({name, image, bio, municipality, createdAt}) => (
+        data.map(({name, firstName, lastName, image, bio, municipality, createdAt}) => (
           <Container key={name} className={clsx("p-4 flex flex-col gap-4 relative")}>
             <Container className="flex flex-col gap-4">
-              <Container className="flex flex-row justify-between gap-4">
+              <Container className="flex flex-col justify-between gap-4">
                 <Container className="basis-1/4">
                   <Container className="rounded-full w-[120px] h-[120px] lg:w-[100px] lg:h-[100px] overflow-hidden">
                     <Image 
@@ -48,7 +48,9 @@ export const YayaProfil = ({
                   </Container>
                 </Container>
                 <Container className="basis-3/4 flex flex-col w-full">
-                  <Typography className="text-title-base">{name}</Typography>
+                  <Container className="block w-full">
+                    <Typography className="text-title-base break-words">{firstName + " " + lastName}</Typography>
+                  </Container>
                   <Container className="flex flex-col w-full">
                     <Typography variant="body-sm">Résidence : {municipality}</Typography>
                     <Typography variant="body-sm">Yaya depuis le {format(createdAt!, 'dd MMMM yyyy', { locale: fr })}</Typography>
