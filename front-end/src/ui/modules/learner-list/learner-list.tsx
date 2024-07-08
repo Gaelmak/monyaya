@@ -11,7 +11,7 @@ interface Props {
     id: string,
     trainingId: string,
     userId: string,
-    status: 'PENDING'| 'APPROVED' | 'REJECTED',
+    status: 'PENDING'| 'APPROVED' | 'REJECTED' | 'ARCHIVED',
     createdAt: Date,
     user: {
       id: string,
@@ -58,12 +58,9 @@ export const LearnerList = ({ learners, trainerId }: Props) => {
                     <Typography variant="body-sm" className="text-gray-500">{user.number}, {user.avenue} C. {user.municipality} Q. {user.district}</Typography>
                     <Container className="pt-4">
                       <ValidationButton 
-                        userId={userId} 
                         trainingId={id} 
-                        isMyAccount={true} 
                         amLearner={true} 
                         status={status} 
-                        trainer={trainerId!} 
                       />
                     </Container>
                   </Container>

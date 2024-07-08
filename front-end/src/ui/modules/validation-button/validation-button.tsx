@@ -10,11 +10,8 @@ import { useRouter } from "next/navigation"
 
 interface Props {
   trainingId?: string
-  name?: string
   amLearner?: boolean
   status?: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED"
-  seeDetails?: Function
-  children?: React.ReactNode
 }
 
 export const ValidationButton = ({status, trainingId, amLearner = false}: Props) => {
