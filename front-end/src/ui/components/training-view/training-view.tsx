@@ -61,8 +61,9 @@ interface Props {
   userId?: string
   sessionName?: string
   myLearnings?: {
+    id: string
     trainingId: string
-    status: "PENDING" | "APPROVED" | "REJECTED"
+    status: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED"
   }[]
   className?: string
 }
@@ -110,6 +111,7 @@ export const TrainingView = ({data, userId, sessionName, myLearnings, className}
                 </Container> 
                 <SearchResultButtons 
                   userId={userId ? userId : null} 
+                  id={myLearnings!.find(obj => obj!.trainingId === id)?.id!}
                   trainingId={id} 
                   isMyAccount={sessionName === user!.name} 
                   amLearner={learnings.some(objet => objet.trainingId === id)} 

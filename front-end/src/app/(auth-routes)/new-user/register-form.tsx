@@ -95,7 +95,6 @@ export const RegisterForm = () => {
         stopLoading()
       }
     }
-
     stopLoading()
   }
 

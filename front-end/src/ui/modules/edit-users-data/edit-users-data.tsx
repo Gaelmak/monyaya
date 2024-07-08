@@ -89,6 +89,7 @@ export const EditUsersData = ({name, data}: Props) => {
       stopLoading()
     }
     stopLoading()
+    router.refresh()
   }
 
   const UserIcon = () => {

@@ -86,6 +86,8 @@ export const EditAddressData = ({name, data}: Props) => {
       })
       stopLoading()
     }
+    
+    router.refresh()
     stopLoading()
   }
 

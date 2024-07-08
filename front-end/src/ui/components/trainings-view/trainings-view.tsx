@@ -55,24 +55,16 @@ interface Props {
   userId?: string
   sessionName?: string
   myLearnings?: {
+    id: string
     trainingId: string
-    status: "PENDING" | "APPROVED" | "REJECTED"
+    status: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED"
   }[]
   className?: string
 }
 
 export const TrainingsView = ({data, userId, sessionName, myLearnings, className}: Props) => {
-  const [learnings, setLearnings] = useState(myLearnings ? myLearnings : [])
   const pathname = usePathname()
 
-  if(userId) {
-    const channel = pusherClient.subscribe(userId!);
-    channel.bind("add", function (data: any) { 
-      const parsedLearnings = JSON.parse(data.result);
-      setLearnings((prev) => [...prev, parsedLearnings]);
-    })
-  }
-  
   return (
     <Container className={clsx(className)}>
       {
@@ -121,10 +113,11 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
               <Container className="flex flex-row gap-2 items-center justify-center">
                 <SearchResultButtons 
                   userId={userId ? userId : null} 
+                  id={myLearnings!.find(obj => obj!.trainingId === id)?.id!}
                   trainingId={id} 
                   isMyAccount={sessionName === user!.name} 
-                  amLearner={learnings.some(objet => objet.trainingId === id)} 
-                  status={learnings.find(obj => obj!.trainingId === id)?.status}  
+                  amLearner={myLearnings!.some(objet => objet.trainingId === id)} 
+                  status={myLearnings!.find(obj => obj!.trainingId === id)?.status}  
                 />
                 <Container className="flex justify-center items-center">
                   {

@@ -22,6 +22,7 @@ export default async function Home() {
         userId: userId!.id
       },
       select: {
+        id: true,
         trainingId: true,
         status: true,
       }

@@ -116,7 +116,7 @@ export const ValidationButton = ({status, trainingId, amLearner = false}: Props)
           }
           {
             status === "PENDING" &&
-            <Buttons Icon={Trash2} variant="ghost" outline="outline" className="text-red-500 hover:text-red-600" isLoading={isLoading} buttonType="action" action={() => rejectTraining(trainingId!)}/>
+            <Buttons Icon={Trash2} variant="ghost" className="text-red-500 hover:text-red-600" isLoading={isLoading} buttonType="action" action={() => rejectTraining(trainingId!)}/>
 
           }
         </Container>

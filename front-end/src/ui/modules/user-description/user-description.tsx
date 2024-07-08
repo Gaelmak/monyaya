@@ -63,6 +63,7 @@ export const UserDescription = ({ name }: Props) => {
         description: <Typography component="p" variant="body-sm">Une erreur est survenue. Veuillez réessayer.</Typography>,
       })
       stopLoading()
+      router.refresh()
     }
 
   }

@@ -23,6 +23,7 @@ export default async function Home({ params } : { params: { id: string } }) {
         userId: userId!.id
       },
       select: {
+        id: true,
         trainingId: true,
         status: true,
       }
