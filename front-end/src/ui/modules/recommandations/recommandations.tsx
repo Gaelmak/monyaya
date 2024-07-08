@@ -31,6 +31,7 @@ export const Recommandations = async ({trainer, branch, current}: Props) => {
         userId: userId!.id
       },
       select: {
+        id: true,
         trainingId: true,
         status: true,
       }
