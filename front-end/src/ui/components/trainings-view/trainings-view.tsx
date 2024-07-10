@@ -113,11 +113,11 @@ export const TrainingsView = ({data, userId, sessionName, myLearnings, className
               <Container className="flex flex-row gap-2 items-center justify-center">
                 <SearchResultButtons 
                   userId={userId ? userId : null} 
-                  id={myLearnings!.find(obj => obj!.trainingId === id)?.id!}
+                  id={myLearnings ? myLearnings!.find(obj => obj!.trainingId === id)?.id! : null}
                   trainingId={id} 
                   isMyAccount={sessionName === user!.name} 
-                  amLearner={myLearnings!.some(objet => objet.trainingId === id)} 
-                  status={myLearnings!.find(obj => obj!.trainingId === id)?.status}  
+                  amLearner={myLearnings ? myLearnings!.some(objet => objet.trainingId === id) : false} 
+                  status={myLearnings ? myLearnings.find(obj => obj!.trainingId === id)?.status : null}  
                 />
                 <Container className="flex justify-center items-center">
                   {

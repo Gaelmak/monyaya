@@ -21,8 +21,8 @@ interface Props {
   name?: string
   fullName?: string
   amLearner?: boolean
-  status?: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED"
-  id?: string
+  status?: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED" | null
+  id?: string | null
   children?: React.ReactNode
 }
 
