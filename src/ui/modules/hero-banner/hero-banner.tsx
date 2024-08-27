@@ -73,7 +73,7 @@ export const HeroBanner = () => {
             </Typography>
           </Container>
           <Container className="lg:flex gap-14 hidden">
-            <Buttons>Se connecter</Buttons>
+            <Buttons>S'Inscrire Maintenant</Buttons>
             <Container className="flex items-center justify-center">
               <Buttons Icon={Play} className="border-dashed border-2 border-primary-50 p-2 rounded-3xl"/>
               <ActiveLink href="/" className="hover:underline-offset-4 hover:underline">Qui sommes nous?</ActiveLink>

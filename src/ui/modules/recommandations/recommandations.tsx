@@ -245,8 +245,8 @@ export const Recommandations = async ({ trainer, branch, current }: Props) => {
         </Container>
         
       )}
-      <Container className="hidden md:flex w-[14vw] container">
-          <ServiceButton>Voir tous les cours</ServiceButton>
+      <Container className="hidden md:flex lg:w-[14vw] md:w-[20vh] ml-8">
+          <ServiceButton className="px-4 py-2">Voir tous les cours</ServiceButton>
       </Container>
     </Container>
   );

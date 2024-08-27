@@ -46,7 +46,7 @@ export const BecomeATrainer = async () => {
                 </Container>
                 </HoverCardTrigger>
                 <HoverCardContent className="bg-primary-700 rounded-xl">
-                  <Typography className="text-primary-50 text-justify leading-relaxed">{description}</Typography>
+                  <Typography className="text-primary-50  leading-relaxed">{description}</Typography>
                 </HoverCardContent>
                 </Container>
               </HoverCard>

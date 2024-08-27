@@ -30,11 +30,11 @@ export const Links: AppLinks[] = [
   },
   {
     title: 'Newsletters',
-    baseUrl: '/#Newsletters'
+    baseUrl: '/newsletters'
   },
   {
     title: 'Feedback',
-    baseUrl: '/Feedback'
+    baseUrl: '/feedback'
   },
 ]
 
