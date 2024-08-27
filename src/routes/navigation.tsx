@@ -6,6 +6,17 @@ import Image from "next/image";
 import { MainRoutes } from "@/lib/page-routes/page-routes";
 import { Container } from "@/ui/components/container/container";
 import { ProfileButton, SignInButton } from "./auth-buttons";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
+
 import clsx from "clsx";
 import prisma from "@/lib/prisma";
 import { userAuth } from "@/lib/helper";
@@ -31,7 +42,7 @@ export const Navigation = async ({ className }: Props) => {
   return (
     <header
       className={clsx(
-        "z-40 fixed top-0 left-0 right-0 border-b-[1px] border-slate-50 bg-white",
+        "z-40 fixed top-0 left-0 right-0 border-b-[1px] border-slate-50 bg-primary-50",
         className
       )}
     >
@@ -45,22 +56,31 @@ export const Navigation = async ({ className }: Props) => {
             priority
           />
         </Link>
-        <nav className="flex items-center gap-4 justify-center">
+        <nav className="flex items-center gap-4 justify-between">
           {MainRoutes.map((route) => (
-            <Typography key={route.title} variant="body-base" component="p">
-              <ActiveLink href={route.baseUrl!}>{route.title}</ActiveLink>
-            </Typography>
+            <NavigationMenu >
+              <NavigationMenuList>
+                <NavigationMenuItem >
+                  <NavigationMenuTrigger className="hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">{route.title}</NavigationMenuTrigger>
+                  <NavigationMenuContent className="bg-primary-300">
+                    <NavigationMenuLink>Link</NavigationMenuLink>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           ))}
-          {session ? (
+        </nav>
+        <Container>
+            {session ? (
             user ? (
-              <ProfileButton profileImg={user.image ? user.image : undefined} />
+                <ProfileButton profileImg={user.image ? user.image : undefined} />
+              ) : (
+                <SignInButton />
+              )
             ) : (
               <SignInButton />
-            )
-          ) : (
-            <SignInButton />
           )}
-        </nav>
+          </Container>
       </Container>
     </header>
   );

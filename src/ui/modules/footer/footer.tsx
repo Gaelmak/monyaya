@@ -72,9 +72,9 @@ export const Footer = () => {
   }
 
   return (
-    <footer className=" bg-primary-400 text-white z-10 flex flex-col justify-center items-center">
+    <footer className=" bg-primary-400 text-white z-10 flex flex-col justify-between items-center">
       <Container className="flex gap-16 flex-col md:flex-row justify-between items-start md: py-16  md:py-16">
-      <Container className="w-full md:w-[20vw]">
+      <Container className="w-full md:w-[30vw]">
         <Image src={logo} alt="logo moyaya" width={50} height={50}/>
         <Typography className="">
           Explorez une approche transformative du développement 

@@ -59,7 +59,7 @@ export const Newsletter = () => {
 
 
   return (
-    <Container className="bg-primary-400">
+    <Container className="bg-primary-400 py-8">
       <Container className="bg-white px-4 py-8 md:px-8 md:py-16 flex flex-col md:flex-row gap-8 items-center rounded-tl-full rounded-br-full">
         <Container className="text-primary-50 basis-1/2 flex flex-col items-center justify-center gap-4 bg-primary-400 rounded-xl m-auto py-8 px-4">
           <Typography variant="title-base" component="h4">
@@ -82,11 +82,6 @@ export const Newsletter = () => {
             </form>
           </Form>
         </Container>
-        {/* <Container className="basis-1/2 flex flex-col gap-4">
-          <Container className="flex justify-end">
-            <Image src={Mail} alt='newsletter' width={500} height={500} className="rounded-full"/>
-          </Container>
-        </Container> */}
       </Container>
     </Container>
   );
