@@ -60,8 +60,8 @@ export const Newsletter = () => {
 
   return (
     <Container className="bg-primary-400 py-8">
-      <Container className="bg-white px-4 py-8 md:px-8 md:py-16 flex flex-col md:flex-row gap-8 items-center rounded-tl-full rounded-br-full">
-        <Container className="text-primary-50 basis-1/2 flex flex-col items-center justify-center gap-4 bg-primary-400 rounded-xl m-auto py-8 px-4">
+      <Container className="bg-white px-4 py-8 md:px-8 md:py-16 flex flex-col md:flex-row gap-8 items-center md:rounded-tl-full md:rounded-br-full rounded-tl-3xl rounded-br-3xl">
+        <Container className="text-primary-50 basis-1/2 flex flex-col items-center justify-center gap-4 bg-primary-400 rounded-xl m-auto py-8 px-2 text-center">
           <Typography variant="title-base" component="h4">
             Abonnez-vous à notre newsletter
           </Typography>
@@ -70,12 +70,12 @@ export const Newsletter = () => {
           </Typography> 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-row justify-center items-center gap-2 w-full m-auto">
-              <Container className="flex justify-center  flex-row w-full gap-2 m-auto">
+              <Container className="flex justify-between md:justify-center flex-row w-full md:gap-2 ">
                 <InputField
                   control={form.control}
                   name="email"
                   placeholder="Entrez votre adresse email"
-                  className="w-[30vw]"
+                  className="md:w-[30vw] w-[60vw]"
                 />
                 <Buttons type='submit' isLoading={isLoading} className="">S'abonner</Buttons>
               </Container>

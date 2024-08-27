@@ -74,8 +74,8 @@ export const Footer = () => {
 
   return (
     <footer className=" bg-primary-400 text-white z-10 flex flex-col items-center w-full">
-      <Container className="flex flex-col flex-wrap gap-6 md:flex-row md:justify-between items-start md:py-16 container">
-      <Container className="w-full md:w-[20vw]">
+      <Container className="flex flex-wrap gap-6 md:flex-row justify-between items-start md:py-16 container">
+      <Container className="w-full md:w-[20vw] pb-3 md:pb-0">
         <Image src={logo} alt="logo moyaya" width={50} height={50}/>
         <Typography className="">
           Explorez une approche transformative du développement 
@@ -123,7 +123,7 @@ export const Footer = () => {
   </Container>
     <Container className="flex flex-col gap-4 w-auto">
       <Typography variant="title-sm">Réseaux sociaux</Typography>
-      <Container className="flex flex-row gap-4">
+      <Container className="flex flex-row gap-4 pb-6 md:pb-0">
         {SocialNetworks.map(({ CustomIcon, baseUrl, title }) => (
           <Link href={baseUrl!} key={title}>
             <Image

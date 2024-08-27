@@ -69,7 +69,7 @@ export const HeroBanner = () => {
               </span>
             </Typography>
           </Container>
-          <Container className="flex gap-14">
+          <Container className="md:flex gap-14 hidden">
             <Buttons>Se connecter</Buttons>
             <Container className="flex items-center justify-center">
               <Buttons Icon={Play} className="border-dashed border-2 border-primary-50 p-2 rounded-3xl"/>

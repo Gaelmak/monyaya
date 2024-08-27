@@ -15,14 +15,14 @@ import yaya from "../../../../public/yayaMonyaya.png"
 export const BecomeATrainer = async () => {
   const user = await userAuth();
   return (
-    <Container className="bg-secondary-50 flex flex-row-reverse items-center justify-between gap-8">
-      <Container className=" flex items-center m-auto">
+    <Container className="bg-secondary-50 flex flex-col-reverse md:flex-row-reverse items-center justify-between gap-8">
+      <Container className=" flex items-center m-auto pb-24 md:pb-0">
         <div className="rounded-b-full border-dashed border-2 border-primary-Default p-2 ">
           <Image src={yaya} width={300} height={300} alt="yaya" className="rounded-b-full"/>
         </div>
       </Container>
-      <Container className="px-6 md:px-8 py-24 flex flex-col w-1/2 gap-8">
-        <Container className="flex flex-col items-start gap-2">
+      <Container className="px-4 md:px-8 py-10 md:py-24 flex flex-col md:w-1/2 gap-8">
+        <Container className="flex flex-col items-start gap-2 text-center md:text-left">
           <Typography variant="title-base" className=" ">
           Vous êtes un enseignant certifié ? <br/> <span className="text-primary-Default"> devenez instructeur</span> .
           </Typography>
@@ -32,7 +32,7 @@ export const BecomeATrainer = async () => {
           inspirer, éduquer, et avoir un impact en tant qu'instructeur certifié.
           </Typography>
         </Container>
-        <Container className="grid grid-cols-3 md:grid-cols-2 ">
+        <Container className="grid grid-cols-2 md:grid-cols-2 gap-4 ">
           {OurBenefitsForTrainers.map(({ Icon, title, description }) => (
               <HoverCard key={title} >
                 <Container className="gap-4">

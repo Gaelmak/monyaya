@@ -214,9 +214,9 @@ export const Recommandations = async ({ trainer, branch, current }: Props) => {
         <Container className="flex py-8 px-4 md:px-8 md:py-32 flex-col gap-8 text-primary-50">
           <Container className="flex justify-between flex-col gap-3 items-center">
             <Typography variant="title-base" component="h3">
-              Récommandations
+              Formations Populaire
             </Typography>
-            <Typography className="text-center w-1/2"> 
+            <Typography className="text-center md:w-1/2"> 
             Découvrez les cours les plus demandés!<br/>
             choisis avec soin pour répondre aux besoins 
             des apprenants d'aujourd'hui. Profitez d'un 
