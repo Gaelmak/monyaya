@@ -18,6 +18,10 @@ export const MainRoutes: AppLinks[] = [
     title: 'À propos',
     baseUrl: '/about'
   },
+  {
+    title: 'Contact',
+    baseUrl: '/contact'
+  },
 ]
 
 export const SocialNetworks: AppLinks[] = [

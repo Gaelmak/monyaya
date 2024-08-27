@@ -24,11 +24,11 @@ export const BecomeATrainer = async () => {
       <Container className="px-6 md:px-8 py-24 flex flex-col w-1/2 gap-8">
         <Container className="flex flex-col items-start gap-2">
           <Typography variant="title-base" className=" ">
-          Vous êtes un enseignant certifié ? <br/> <span className=""> devenez instructeur</span> .
+          Vous êtes un enseignant certifié ? <br/> <span className="text-primary-Default"> devenez instructeur</span> .
           </Typography>
           <Typography className="">
           Partagez votre expertise et enrichissez votre parcours professionnel 
-          en rejoignant notre plateforme conviviale et innovante, où vous pouvez text-primary-Default
+          en rejoignant notre plateforme conviviale et innovante, où vous pouvez 
           inspirer, éduquer, et avoir un impact en tant qu'instructeur certifié.
           </Typography>
         </Container>
@@ -49,7 +49,6 @@ export const BecomeATrainer = async () => {
                 </HoverCardContent>
                 </Container>
               </HoverCard>
-            
           ))}
         </Container>
         {!user && (

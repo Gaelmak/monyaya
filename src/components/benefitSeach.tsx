@@ -5,7 +5,7 @@ import { SearchCourses } from "@/ui/modules/search/search-courses";
 import Image from "next/image";
 import imagebenef from "public/mail.jpg"
 
-export const BenefitSearch = async () => {
+export const BenefitSearch = () => {
   return (
     <Container className="px-6 md:px-8 py-16 flex flex-col gap-20 bg-primary-50">
       <Container className="flex flex-col justify-center m-auto items-center md:w-[60%] gap-4">
