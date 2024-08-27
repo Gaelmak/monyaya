@@ -5,6 +5,7 @@ interface Props {children: React.ReactNode
   component?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'span'
   variant?: 
     'display'     |
+    'large-medium'|
     'title-lg'    | 
     'title-base'  | 
     'title-sm'    | 
@@ -27,6 +28,9 @@ export const Typography = ({
   switch (variant) {
     case "display":
       variantStyles = 'text-title-lg md:text-display'
+      break;
+    case "large-medium":
+      variantStyles = 'text-title-lg md:text-large-medium'
       break;
     case "title-lg":
       variantStyles = 'text-title-lg'

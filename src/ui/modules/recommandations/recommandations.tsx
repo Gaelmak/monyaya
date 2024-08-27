@@ -211,7 +211,7 @@ export const Recommandations = async ({ trainer, branch, current }: Props) => {
           </Container>
         </Container>
       ) : (
-        <Container className="flex py-8 px-4 md:px-8 md:py-32 bg-[#fafafa] flex-col gap-8">
+        <Container className="flex py-8 px-4 md:px-8 md:py-32 bg-primary-400 flex-col gap-8 text-primary-50">
           <Container className="flex justify-between">
             <Typography variant="title-base" component="h3">
               Récommandations

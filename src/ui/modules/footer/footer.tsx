@@ -73,7 +73,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="flex gap-16 flex-col md:flex-row justify-center md:justify-between py-16 px-4 md:px-8 md:py-16 bg-black text-white z-10">
+    <footer className="flex gap-16 flex-col md:flex-row justify-center md:justify-between py-16 px-4 md:px-8 md:py-16 bg-primary-400 text-white z-10">
       <Container className="w-full md:w-[32vw]">
         <Form {...form}>
           <form

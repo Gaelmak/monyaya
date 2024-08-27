@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
+    <html lang="fr"  className="notranslate">
       <AuthProvider>
         <body className={poppins.className}>{children}</body>
       </AuthProvider>

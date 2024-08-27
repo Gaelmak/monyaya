@@ -6,6 +6,10 @@ import Typewriter from 'typewriter-effect'
 import Cover from '../../../../public/hero.png'
 import Cover_v from '../../../../public/hero_v.png'
 import { BgImg } from "@/ui/components/bg-img/bg-img"
+import { Carousel } from "@/components/ui/carousel"
+import { Sponsors } from "@/lib/sponsors-liste/sponsors-listes"
+import { SignInButton } from "@/routes/auth-buttons"
+import { userAuth } from "@/lib/helper"
 
 const BackgroundImage = ({children}: {children: React.ReactNode}) => {
   return (
@@ -19,17 +23,19 @@ const BackgroundImage = ({children}: {children: React.ReactNode}) => {
     </>
   )
 }
-export const HeroBanner = () => {
+export const HeroBanner = async () => {
+  const user = await userAuth();
 
   return(
+    <Container>
     <BackgroundImage>
-      <Container className="flex flex-col md:flex-row px-4 py-8 md:py-0 md:px-8 h-full gap-8">
-        <Container className="basis-1/3 md:basis-3/5 flex flex-col justify-center items-center md:items-start gap-4 md:gap-8">
-          <Typography component="h1" variant="display" className="text-center md:text-left">
-            Apprenez<br/>ce que vous voulez,<br/>où vous voulez
+      <Container className="flex flex-col md:flex-row px-6 py-8 md:py-0 md:px-8 h-full gap-6">
+        <Container className="basis-1/3 md:basis-3/6 flex flex-col justify-center items-center md:items-start gap-4 md:gap-8">
+          <Typography component="h1" variant="large-medium" className="text-center md:text-left">
+            Apprenez ce que <br/> vous voulez,<br/>où vous voulez
           </Typography>
           <Container className="flex flex-col items-center md:items-start">
-            <Typography component="p" variant="body-lg">
+            <Typography component="p" variant="body-lg" className="text-secondary-700">
               Que vous soyez intéressé par
             </Typography>
             <span className="text-[1rem] md:text-[1.5rem] font-bold text-primary-Default">
@@ -57,15 +63,36 @@ export const HeroBanner = () => {
                 }}
               />
             </span>
-            <Typography component="p" variant="body-lg" className="text-center md:text-left">
+            <Typography component="p" variant="body-lg" className="text-center md:text-left text-secondary-700">
               nous avons le formateur parfait pour vous.<br/>
               <span className="hidden md:block">
-              Découvrez notre sélection de formateurs dès aujourd'hui !
+              Découvrez notre sélection de formateurs <br/> dès aujourd'hui !
               </span>
             </Typography>
+            <Container className="flex flex-col items-center md:items-start gap-4 md:gap-8 py-3">
+              {!user && (
+                  <Container className="w-full flex justify-center">
+                    <SignInButton />
+
+                  </Container>
+               )}
+
+            </Container>
+
           </Container>
         </Container>
       </Container>
     </BackgroundImage>
+    <Container className="bg-primary-300 w-full h-20">
+    <Carousel className="flex items-center justify-center h-full">
+          {Sponsors.map((sponsor, index) => (
+            <Typography key={index} component="p" variant="body-lg" className="text-white mx-4">
+              {sponsor.name}
+            </Typography>
+          ))}
+    </Carousel>
+    </Container>
+  </Container>
+
   )
 }

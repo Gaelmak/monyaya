@@ -28,6 +28,7 @@ export default withUt({
         // forest-green
         primary: { 
           50: '#f2fbf3',
+          55: '#f4f8f4' ,
           100: '#e0f8e1',
           200: '#c3efc6',
           300: '#95e09c',
@@ -77,6 +78,10 @@ export default withUt({
         'display': ['4rem', {
           lineHeight: '120%',
           fontWeight: '700'
+        }],
+        'large-medium': ['3rem', {
+          lineHeight: '110%',  
+          fontWeight: '500'     
         }],
         'title-lg': ['2.5rem', {
           lineHeight: '120%',

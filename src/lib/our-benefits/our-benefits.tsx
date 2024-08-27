@@ -1,5 +1,41 @@
 import { BarChart4, BookUser, Briefcase, CalendarClock, Coins, Database, PackageCheck, PersonStanding, PiggyBank, RefreshCcw, Rocket, Smile, Users } from "lucide-react";
 
+
+export const OurBenefits = [
+  {
+    Icon: CalendarClock,
+    title: "Flexibilité et Suivi Personnalisé",
+    description: "Choisissez vos horaires de formation selon votre convenance, avec un suivi individualisé pour vous aider à progresser plus rapidement."
+  },
+  {
+    Icon: PiggyBank,
+    title: "Économique",
+    description: "Des cours abordables grâce à la réduction des coûts de déplacement et de logistique."
+  },
+  {
+    Icon: Users,
+    title: "Diversité des Formateurs",
+    description: "Accédez à une variété de formateurs et d'experts dans différents domaines pour répondre à vos besoins."
+  },
+  {
+    Icon: RefreshCcw,
+    title: "Mises à Jour Régulières",
+    description: "Les cours sont régulièrement mis à jour pour refléter les dernières tendances et avancées."
+  },
+];
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 export const OurBenefits = [
   {
     Icon : CalendarClock,
@@ -31,7 +67,7 @@ export const OurBenefits = [
     title : "Facilité d'utilisation",
     description : "Plateforme conviviale et facile à naviguer pour trouver rapidement ce que vous cherchez."
   }
-]
+] */
 
 export const OurBenefitsForTrainers = [
   {
