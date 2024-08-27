@@ -21,7 +21,7 @@ export const BenefitSearch = () => {
        <Container className="md:w-1/2 flex flex-col gap-5 py-4">
         <Typography variant="title-base" className="text-center md:text-left"><span className=" text-primary-Default">Avantages </span> d'Apprendre Dans <br/>Notre Plateforme</Typography>
         {OurBenefits.map(({ Icon, title, description }) => (
-          <Container key={title} className="flex items-center cursor-pointer">
+          <Container key={title} className="flex items-center">
             <Container className="pr-6">
               <Icon className="text-white bg-primary-Default rounded-full p-1" size={40} />
             </Container>

@@ -37,7 +37,7 @@ export const BecomeATrainer = async () => {
           {OurBenefitsForTrainers.map(({ Icon, title, description }) => (
               <HoverCard key={title} >
                 <Container className="">
-                <HoverCardTrigger className="flex flex-row md:flex-row gap-4 py-4">
+                <HoverCardTrigger className="flex flex-row md:flex-row gap-4 py-4 cursor-pointer">
                 <Container className="">
                   <Icon className="text-primary-50 bg-primary-Default rounded-full p-1" size={30} />
                 </Container>
@@ -46,7 +46,7 @@ export const BecomeATrainer = async () => {
                 </Container>
                 </HoverCardTrigger>
                 <HoverCardContent className="bg-primary-700 rounded-xl">
-                  <Typography className="text-primary-50">{description}</Typography>
+                  <Typography className="text-primary-50 text-justify leading-relaxed">{description}</Typography>
                 </HoverCardContent>
                 </Container>
               </HoverCard>
