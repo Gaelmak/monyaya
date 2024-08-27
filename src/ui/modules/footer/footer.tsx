@@ -6,6 +6,7 @@ import MonyayaWhite from "../../../../public/Monyaya_white.png";
 import Image from "next/image";
 import {
   Company,
+  Links,
   MainRoutes,
   SocialNetworks,
 } from "@/lib/page-routes/page-routes";
@@ -72,16 +73,16 @@ export const Footer = () => {
   }
 
   return (
-    <footer className=" bg-primary-400 text-white z-10 flex flex-col justify-between items-center">
-      <Container className="flex gap-16 flex-col md:flex-row justify-between items-start md: py-16  md:py-16">
-      <Container className="w-full md:w-[30vw]">
+    <footer className=" bg-primary-400 text-white z-10 flex flex-col items-center w-full">
+      <Container className="flex flex-col flex-wrap gap-6 md:flex-row md:justify-between items-start md:py-16 container">
+      <Container className="w-full md:w-[20vw]">
         <Image src={logo} alt="logo moyaya" width={50} height={50}/>
         <Typography className="">
           Explorez une approche transformative du développement 
           des compétences sur notre plateforme d'apprentissage.
         </Typography>
       </Container>
-      <Container className="flex flex-col gap-4">
+    <Container className="flex flex-col gap-4 w-auto">
     <Typography variant="title-sm">Pages</Typography>
     <Container className="flex flex-col gap-1">
       {MainRoutes.map(({ title, baseUrl }) => (
@@ -91,7 +92,7 @@ export const Footer = () => {
       ))}
     </Container>
   </Container>
-  <Container className="flex flex-col gap-4">
+  <Container className="flex flex-col gap-4 w-auto">
     <Typography variant="title-sm">Monyaya</Typography>
     <Container className="flex flex-col gap-1">
       {Company.map(({ title, baseUrl }) => (
@@ -101,16 +102,26 @@ export const Footer = () => {
       ))}
     </Container>
   </Container>
-  <Container className="flex flex-col gap-4">
+  <Container className="flex flex-col gap-4 w-auto">
+    <Typography variant="title-sm">Monyaya</Typography>
+    <Container className="flex flex-col gap-1">
+      {Links.map(({ title, baseUrl }) => (
+        <Typography key={title}>
+          <Link href={baseUrl!}>{title}</Link>
+        </Typography>
+      ))}
+    </Container>
+  </Container>
+  
+  <Container className="flex flex-col gap-4 w-auto">
       <Typography variant="title-sm">Contact</Typography>
       <Container className="flex flex-col gap-1">
         <Typography>+243 997 724 968</Typography>
         <Typography>+243 821 611 703</Typography>
         <Typography>...</Typography>
       </Container>
-    </Container>
-    <Container className="flex flex-col gap-8">
-    <Container className="flex flex-col gap-4">
+  </Container>
+    <Container className="flex flex-col gap-4 w-auto">
       <Typography variant="title-sm">Réseaux sociaux</Typography>
       <Container className="flex flex-row gap-4">
         {SocialNetworks.map(({ CustomIcon, baseUrl, title }) => (
@@ -124,7 +135,6 @@ export const Footer = () => {
           </Link>
         ))}
       </Container>
-    </Container>
   </Container>
   </Container>
   <Container className="flex flex-row justify-center items-center gap-4 w-4/5 py-4 border-t-2 border-primary-50 ">

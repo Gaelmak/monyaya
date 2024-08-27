@@ -7,6 +7,9 @@ import Cover_v from '../../../../public/hero_v.png'
 import { BgImg } from "@/ui/components/bg-img/bg-img"
 import { Carousel } from "@/components/ui/carousel"
 import { Sponsors } from "@/lib/sponsors-liste/sponsors-listes"
+import { Buttons } from "@/ui/components/buttons/buttons"
+import { Play } from "lucide-react"
+import { ActiveLink } from "@/routes/active-link"
 
 const BackgroundImage = ({children}: {children: React.ReactNode}) => {
   return (
@@ -66,10 +69,17 @@ export const HeroBanner = () => {
               </span>
             </Typography>
           </Container>
+          <Container className="flex gap-14">
+            <Buttons>Se connecter</Buttons>
+            <Container className="flex items-center justify-center">
+              <Buttons Icon={Play} className="border-dashed border-2 border-primary-50 p-2 rounded-3xl"/>
+              <ActiveLink href="/" className="hover:underline-offset-4 hover:underline">Qui sommes nous?</ActiveLink>
+            </Container>
+          </Container>
         </Container>
       </Container>
     </BackgroundImage>
-    <Container className="bg-primary-300  h-20">
+    <Container className="bg-primary-400  h-20">
     <Carousel className="flex items-center justify-center h-full overflow-x-hidden ">
           {Sponsors.map((sponsor, index) => (
             <Typography key={index} component="p" variant="body-lg" className="text-white mx-4">

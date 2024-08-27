@@ -16,7 +16,6 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
-
 import clsx from "clsx";
 import prisma from "@/lib/prisma";
 import { userAuth } from "@/lib/helper";
@@ -56,12 +55,16 @@ export const Navigation = async ({ className }: Props) => {
             priority
           />
         </Link>
-        <nav className="flex items-center gap-4 justify-between">
+        <nav className="flex items-center  justify-between">
           {MainRoutes.map((route) => (
             <NavigationMenu >
               <NavigationMenuList>
                 <NavigationMenuItem >
-                  <NavigationMenuTrigger className="hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">{route.title}</NavigationMenuTrigger>
+                <ActiveLink href={route.baseUrl!} >
+                  <NavigationMenuTrigger className="hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                    {route.title}
+                  </NavigationMenuTrigger>
+                </ActiveLink>
                   <NavigationMenuContent className="bg-primary-300">
                     <NavigationMenuLink>Link</NavigationMenuLink>
                   </NavigationMenuContent>

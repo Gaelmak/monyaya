@@ -23,6 +23,20 @@ export const MainRoutes: AppLinks[] = [
     baseUrl: '/contact'
   },
 ]
+export const Links: AppLinks[] = [
+  {
+    title: 'Devenir Formateur',
+    baseUrl: '/'
+  },
+  {
+    title: 'Newsletters',
+    baseUrl: '/#Newsletters'
+  },
+  {
+    title: 'Feedback',
+    baseUrl: '/Feedback'
+  },
+]
 
 export const SocialNetworks: AppLinks[] = [
   {

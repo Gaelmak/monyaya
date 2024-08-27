@@ -160,7 +160,7 @@ export const Recommandations = async ({ trainer, branch, current }: Props) => {
   const recommandations = selectRandomObjects(trainings, 8);
 
   return (
-    <Container>
+    <Container className=" bg-primary-400 md:pb-5">
       {trainerRecommandations && branchRecommandations ? (
         <Container>
           <Container className="flex py-8 px-4 md:px-8 md:py-8 bg-[#fafafa] flex-col gap-4">
@@ -211,14 +211,18 @@ export const Recommandations = async ({ trainer, branch, current }: Props) => {
           </Container>
         </Container>
       ) : (
-        <Container className="flex py-8 px-4 md:px-8 md:py-32 bg-primary-400 flex-col gap-8 text-primary-50">
-          <Container className="flex justify-between">
+        <Container className="flex py-8 px-4 md:px-8 md:py-32 flex-col gap-8 text-primary-50">
+          <Container className="flex justify-between flex-col gap-3 items-center">
             <Typography variant="title-base" component="h3">
               Récommandations
             </Typography>
-            <Container className="hidden md:flex">
-              <ServiceButton>Voir tous les cours</ServiceButton>
-            </Container>
+            <Typography className="text-center w-1/2"> 
+            Découvrez les cours les plus demandés!<br/>
+            choisis avec soin pour répondre aux besoins 
+            des apprenants d'aujourd'hui. Profitez d'un 
+            contenu attrayant conçu pour vous accompagner 
+            vers la réussite à chaque étape de votre parcours.
+            </Typography>
           </Container>
           <br />
           <Container className="overflow-auto flex flex-row gap-4 no-scrollbar">
@@ -239,7 +243,11 @@ export const Recommandations = async ({ trainer, branch, current }: Props) => {
           </Container>
           <br />
         </Container>
+        
       )}
+      <Container className="hidden md:flex w-[14vw] container">
+          <ServiceButton>Voir tous les cours</ServiceButton>
+      </Container>
     </Container>
   );
 };
