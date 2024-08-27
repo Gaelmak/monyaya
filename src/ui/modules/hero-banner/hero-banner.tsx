@@ -14,10 +14,13 @@ import { ActiveLink } from "@/routes/active-link"
 const BackgroundImage = ({children}: {children: React.ReactNode}) => {
   return (
     <>
-      <BgImg className="h-[90vh] hidden lg:flex" src={Cover} alt="cover">
+      <BgImg className="h-[94vh] hidden lg:flex" src={Cover} alt="cover">
         {children}
       </BgImg>
-      <BgImg className="h-[92vh] lg:hidden" src={Cover_v} alt="cover">
+      <BgImg className="h-[94vh] lg:hidden md:hidden" src={Cover_v} alt="cover">
+        {children}
+      </BgImg>
+      <BgImg className="h-screen lg:hidden hidden md:flex" src={Cover_v} alt="cover">
         {children}
       </BgImg>
     </>
@@ -27,17 +30,17 @@ export const HeroBanner = () => {
 
   return(
     <Container>
-    <BackgroundImage>
-      <Container className="flex flex-col md:flex-row px-6 py-8 md:py-0 md:px-8 h-full gap-6  overflow-hidden">
-        <Container className="basis-1/3 md:basis-3/6 flex flex-col justify-center items-center md:items-start gap-4 md:gap-8">
-          <Typography component="h1" variant="large-medium" className="text-center md:text-left">
+    <BackgroundImage >
+      <Container className="flex flex-col lg:flex-row px-6 py-8 lg:py-0 lg:px-8 h-full gap-6  overflow-hidden">
+        <Container className="basis-1/3 lg:basis-3/6 flex flex-col justify-center items-center lg:items-start gap-4 lg:gap-8 ">
+          <Typography component="h1" variant="large-medium" className="text-center lg:text-left">
             Apprenez ce que <br/> vous voulez,<br/>où vous voulez
           </Typography>
-          <Container className="flex flex-col items-center md:items-start">
+          <Container className="flex flex-col items-center lg:items-start">
             <Typography component="p" variant="body-lg" className="text-secondary-700">
               Que vous soyez intéressé par
             </Typography>
-            <span className="text-[1rem] md:text-[1.5rem] font-bold text-primary-Default">
+            <span className="text-[1rem] lg:text-[1.5rem] font-bold text-primary-Default">
               <Typewriter
                 options={{
                   autoStart: true,
@@ -62,14 +65,14 @@ export const HeroBanner = () => {
                 }}
               />
             </span>
-            <Typography component="p" variant="body-lg" className="text-center md:text-left text-secondary-700">
+            <Typography component="p" variant="body-lg" className="text-center lg:text-left text-secondary-700">
               nous avons le formateur parfait pour vous.<br/>
-              <span className="hidden md:block">
+              <span className="hidden lg:block">
               Découvrez notre sélection de formateurs <br/> dès aujourd'hui !
               </span>
             </Typography>
           </Container>
-          <Container className="md:flex gap-14 hidden">
+          <Container className="lg:flex gap-14 hidden">
             <Buttons>Se connecter</Buttons>
             <Container className="flex items-center justify-center">
               <Buttons Icon={Play} className="border-dashed border-2 border-primary-50 p-2 rounded-3xl"/>

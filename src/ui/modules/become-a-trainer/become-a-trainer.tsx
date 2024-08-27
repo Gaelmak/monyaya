@@ -15,13 +15,13 @@ import yaya from "../../../../public/yayaMonyaya.png"
 export const BecomeATrainer = async () => {
   const user = await userAuth();
   return (
-    <Container className="bg-secondary-50 flex flex-col-reverse md:flex-row-reverse items-center justify-between gap-8">
-      <Container className=" flex items-center m-auto pb-24 md:pb-0">
-        <div className="rounded-b-full border-dashed border-2 border-primary-Default p-2 ">
-          <Image src={yaya} width={300} height={300} alt="yaya" className="rounded-b-full"/>
-        </div>
+    <Container className="bg-secondary-50 flex flex-col-reverse md:flex-row-reverse items-center justify-center gap-5 ">
+      <Container className="flex  pb-24 md:pb-0">
+        <Container className="rounded-b-full border-dashed border-2 border-primary-Default p-2 md:w-full m-auto">
+          <Image src={yaya} width={300} height={300} alt="yaya" className="object-cover rounded-b-full"/>
+        </Container>
       </Container>
-      <Container className="px-4 md:px-8 py-10 md:py-24 flex flex-col md:w-1/2 gap-8">
+      <Container className="px-4 md:px-8 py-10 md:py-24 flex flex-col md:w-3/5 gap-8">
         <Container className="flex flex-col items-start gap-2 text-center md:text-left">
           <Typography variant="title-base" className=" ">
           Vous êtes un enseignant certifié ? <br/> <span className="text-primary-Default"> devenez instructeur</span> .
@@ -32,10 +32,11 @@ export const BecomeATrainer = async () => {
           inspirer, éduquer, et avoir un impact en tant qu'instructeur certifié.
           </Typography>
         </Container>
-        <Container className="grid grid-cols-2 md:grid-cols-2 gap-4 ">
+        <Typography variant="title-base" className="">Bénéficiez de nombreux avantages</Typography>
+        <Container className="grid grid-cols-2 md:grid-cols-2 gap-2 ">
           {OurBenefitsForTrainers.map(({ Icon, title, description }) => (
               <HoverCard key={title} >
-                <Container className="gap-4">
+                <Container className="">
                 <HoverCardTrigger className="flex flex-row md:flex-row gap-4 py-4">
                 <Container className="">
                   <Icon className="text-primary-50 bg-primary-Default rounded-full p-1" size={30} />

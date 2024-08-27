@@ -16,17 +16,17 @@ export const BenefitSearch = () => {
       </Container>
       <Container className="flex flex-col md:flex-row md:justify-between items-center md:pt-6  md:pb-16">
         <Container className="md:w-2/5 flex justify-start items-start m-auto ">
-            <Image src={imageBenefit} alt="Image" className=" object-cover border-dashed border-2 border-primary-Default p-2 rounded-3xl" />
+            <Image src={imageBenefit} alt="Image benefit" className=" object-cover border-dashed border-2 border-primary-Default p-2 rounded-3xl" />
         </Container>
        <Container className="md:w-1/2 flex flex-col gap-5 py-4">
         <Typography variant="title-base" className="text-center md:text-left"><span className=" text-primary-Default">Avantages </span> d'Apprendre Dans <br/>Notre Plateforme</Typography>
         {OurBenefits.map(({ Icon, title, description }) => (
-          <Container key={title} className="flex items-center">
+          <Container key={title} className="flex items-center cursor-pointer">
             <Container className="pr-6">
               <Icon className="text-white bg-primary-Default rounded-full p-1" size={40} />
             </Container>
             <Container className="py-2 flex flex-col gap-2">
-              <Typography variant="title-sm">{title}</Typography>
+              <Typography variant="title-sm" >{title}</Typography>
               <Typography >{description}</Typography>
             </Container>
           </Container>

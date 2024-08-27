@@ -9,12 +9,10 @@ import { ProfileButton, SignInButton } from "./auth-buttons";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 import clsx from "clsx";
 import prisma from "@/lib/prisma";
@@ -66,7 +64,7 @@ export const Navigation = async ({ className }: Props) => {
                   </NavigationMenuTrigger>
                 </ActiveLink>
                   <NavigationMenuContent className="bg-primary-300">
-                    <NavigationMenuLink>Link</NavigationMenuLink>
+                    <NavigationMenuLink></NavigationMenuLink>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
