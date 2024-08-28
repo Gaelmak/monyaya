@@ -1,55 +1,55 @@
-import { AppLinks } from "@/types/app-links"
-import { Presentation, Home, Settings2 } from "lucide-react"
-import Linkedin from '../../../public/icons/linkedin.png'
-import Facebook from '../../../public/icons/facebook.png'
-import Youtube from '../../../public/icons/youtube.png'
-import X from '../../../public/icons/TwitterX.png'
+import { AppLinks } from '@/types/app-links';
+import { Presentation, Home, Settings2 } from 'lucide-react';
+import Linkedin from '../../../public/icons/linkedin.png';
+import Facebook from '../../../public/icons/facebook.png';
+import Youtube from '../../../public/icons/youtube.png';
+import X from '../../../public/icons/TwitterX.png';
 
 export const MainRoutes: AppLinks[] = [
   {
     title: 'Accueil',
-    baseUrl: '/'
+    baseUrl: '/',
   },
   {
     title: 'Formations',
-    baseUrl: '/trainings'
+    baseUrl: '/trainings',
   },
   {
     title: 'À propos',
-    baseUrl: '/about'
+    baseUrl: '/about',
   },
   {
     title: 'Contact',
-    baseUrl: '/contact'
+    baseUrl: '/contact',
   },
-]
+];
 
 export const SocialNetworks: AppLinks[] = [
   {
     title: 'LinkedIn',
     baseUrl: 'https://www.linkedin.com/company',
     CustomIcon: Linkedin,
-  }
-]
+  },
+];
 
 export const Company: AppLinks[] = [
   {
     title: "Termes d'utilisation",
-    baseUrl: '/terms-of-use'
+    baseUrl: '/terms-of-use',
   },
   {
     title: 'Devenir Formateur',
-    baseUrl: '/'
+    baseUrl: '/',
   },
   {
     title: 'Newsletters',
-    baseUrl: '/newsletters'
+    baseUrl: '/newsletters',
   },
   {
     title: 'Feedback',
-    baseUrl: '/feedback'
+    baseUrl: '/feedback',
   },
-] 
+];
 
 export const AsideRoutes: AppLinks[] = [
   {
@@ -58,21 +58,21 @@ export const AsideRoutes: AppLinks[] = [
       {
         title: 'Tableau de bord',
         baseUrl: '/dashboard',
-        Icon: Presentation
+        Icon: Presentation,
       },
       {
         title: 'Paramètres',
         baseUrl: '/setting',
-        Icon: Settings2
-      }
-    ]
+        Icon: Settings2,
+      },
+    ],
   },
-]
+];
 
 export const HomeRoute: AppLinks[] = [
   {
     title: "Retourner à l'accueil",
     baseUrl: '/',
-    Icon: Home 
+    Icon: Home,
   },
-]
+];

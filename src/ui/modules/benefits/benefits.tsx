@@ -1,8 +1,8 @@
-import { OurBenefits } from "@/lib/our-benefits/our-benefits";
-import { SignInButton } from "@/routes/auth-buttons";
-import { Container } from "@/ui/components/container/container";
-import { Typography } from "@/ui/components/typography/typography";
-import { userAuth } from "@/lib/helper";
+import { OurBenefits } from '@/lib/our-benefits/our-benefits';
+import { SignInButton } from '@/routes/auth-buttons';
+import { Container } from '@/ui/components/container/container';
+import { Typography } from '@/ui/components/typography/typography';
+import { userAuth } from '@/lib/helper';
 
 export const Benefits = async () => {
   const user = await userAuth();

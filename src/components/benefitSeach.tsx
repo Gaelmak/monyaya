@@ -1,15 +1,15 @@
-import { OurBenefits } from "@/lib/our-benefits/our-benefits";
-import { Container } from "@/ui/components/container/container";
-import { Typography } from "@/ui/components/typography/typography";
-import { SearchCourses } from "@/ui/modules/search/search-courses";
-import Image from "next/image";
-import imageBenefit from "public/mail.jpg";
+import { OurBenefits } from '@/lib/our-benefits/our-benefits';
+import { Container } from '@/ui/components/container/container';
+import { Typography } from '@/ui/components/typography/typography';
+import { SearchCourses } from '@/ui/modules/search/search-courses';
+import Image from 'next/image';
+import imageBenefit from 'public/mail.jpg';
 
 export const BenefitSearch = () => {
   return (
     <Container className="px-6 md:px-8 lg:px-[7vw] py-16 flex flex-col gap-20 bg-primary-50">
       <Container className="flex flex-col justify-center m-auto items-center md:w-[60%] gap-4">
-        <Typography  className="md:w-[60%] text-center text-2xl font-bold">
+        <Typography className="md:w-[60%] text-center text-2xl font-bold">
           Recherche une Formation !
         </Typography>
         <SearchCourses />
@@ -23,8 +23,8 @@ export const BenefitSearch = () => {
           />
         </Container>
         <Container className="md:w-1/2 flex flex-col gap-3 py-4">
-          <Typography  className="text-center md:text-left text-xl font-bold">
-            <span className=" text-primary-Default">Avantages </span>{" "}
+          <Typography className="text-center md:text-left text-xl font-bold">
+            <span className=" text-primary-Default">Avantages </span>{' '}
             d'Apprendre Dans <br />
             Notre Plateforme
           </Typography>

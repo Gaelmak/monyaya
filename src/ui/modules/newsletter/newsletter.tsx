@@ -1,62 +1,70 @@
-'use client'
+'use client';
 
-import { Form } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { useForm } from "react-hook-form"
-import { Container } from "@/ui/components/container/container"
-import { Typography } from "@/ui/components/typography/typography"
-import { InputField } from "@/ui/components/input-field/input-field"
-import { useToast } from "@/components/ui/use-toast"
-import UseLoading from "@/hooks/use-loading"
-import { Buttons } from "@/ui/components/buttons/buttons"
-import { NewsletterRegisterFormFieldsType } from "@/types/forms";
-import Image from "next/image";
-import Mail from '../../../../public/mail.jpg'
+import { Form } from '@/components/ui/form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { Container } from '@/ui/components/container/container';
+import { Typography } from '@/ui/components/typography/typography';
+import { InputField } from '@/ui/components/input-field/input-field';
+import { useToast } from '@/components/ui/use-toast';
+import UseLoading from '@/hooks/use-loading';
+import { Buttons } from '@/ui/components/buttons/buttons';
+import { NewsletterRegisterFormFieldsType } from '@/types/forms';
+import Image from 'next/image';
+import Mail from '../../../../public/mail.jpg';
 
 export const Newsletter = () => {
-  const { toast } = useToast()
-  const [ isLoading , startLoading, stopLoading ] = UseLoading()
+  const { toast } = useToast();
+  const [isLoading, startLoading, stopLoading] = UseLoading();
   const form = useForm<z.infer<typeof NewsletterRegisterFormFieldsType>>({
     resolver: zodResolver(NewsletterRegisterFormFieldsType),
     defaultValues: {
-      email: ''
-    }
-  })
+      email: '',
+    },
+  });
 
-  async function onSubmit(values: z.infer<typeof NewsletterRegisterFormFieldsType>) {
+  async function onSubmit(
+    values: z.infer<typeof NewsletterRegisterFormFieldsType>
+  ) {
     startLoading();
-    const { email } = values
-    
+    const { email } = values;
+
     const newsletter = await fetch('/api/newsletter', {
-      method: "PATCH",
-      credentials: "include",
+      method: 'PATCH',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email
-      })
-    })
+        email,
+      }),
+    });
 
-    if(newsletter.status === 200) {
+    if (newsletter.status === 200) {
       toast({
-        variant: "success",
-        title: "Enregistrement réussi !",
-        description: <Typography component="p" variant="body-sm">Enrégistrement réussi</Typography>,
-      })
-      stopLoading()
+        variant: 'success',
+        title: 'Enregistrement réussi !',
+        description: (
+          <Typography component="p" variant="body-sm">
+            Enrégistrement réussi
+          </Typography>
+        ),
+      });
+      stopLoading();
     } else {
       toast({
-        variant: "destructive",
-        title: "Erreur !",
-        description: <Typography component="p" variant="body-sm">Une erreur est survenue. Veuillez réessayer.</Typography>,
-      })
-      stopLoading()
+        variant: 'destructive',
+        title: 'Erreur !',
+        description: (
+          <Typography component="p" variant="body-sm">
+            Une erreur est survenue. Veuillez réessayer.
+          </Typography>
+        ),
+      });
+      stopLoading();
     }
-
   }
-
 
   return (
     <Container className="bg-primary-400 py-8">
@@ -66,10 +74,14 @@ export const Newsletter = () => {
             Abonnez-vous à notre newsletter
           </Typography>
           <Typography>
-            Recevez les dernières mises à jour du site et des offres exclusives de nos formateurs en vous abonnant à notre newsletter.
-          </Typography> 
+            Recevez les dernières mises à jour du site et des offres exclusives
+            de nos formateurs en vous abonnant à notre newsletter.
+          </Typography>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-row justify-center items-center gap-2 w-full m-auto">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-row justify-center items-center gap-2 w-full m-auto"
+            >
               <Container className="flex justify-between md:justify-center flex-row w-full md:gap-2 ">
                 <InputField
                   control={form.control}
@@ -77,7 +89,9 @@ export const Newsletter = () => {
                   placeholder="Entrez votre adresse email"
                   className="md:w-[30vw] w-[60vw]"
                 />
-                <Buttons type='submit' isLoading={isLoading} className="">S'abonner</Buttons>
+                <Buttons type="submit" isLoading={isLoading} className="">
+                  S'abonner
+                </Buttons>
               </Container>
             </form>
           </Form>
