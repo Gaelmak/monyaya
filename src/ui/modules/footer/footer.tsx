@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Container } from "@/ui/components/container/container";
@@ -72,7 +73,7 @@ export const Footer = () => {
 
   return (
     <footer className=" bg-primary-400 text-white z-10 flex flex-col items-center w-full">
-      <Container className="flex flex-wrap gap-6 md:flex-row justify-between items-start md:py-16 container lg:px-[7vw]">
+      <Container className="flex flex-wrap gap-6 md:flex-row justify-between items-center md:py-16 container lg:px-[7vw]">
         <Container className="w-full md:w-[20vw] pb-3 md:pb-0">
           <Image src={logo} alt="logo moyaya" width={50} height={50}/>
           <Typography className="">
@@ -80,6 +81,7 @@ export const Footer = () => {
             des compétences sur notre plateforme d'apprentissage.
           </Typography>
         </Container>
+        <Container className="flex flex-row justify-between   md:w-2/3">
       <Container className="flex flex-col gap-4 w-auto">
         <Typography variant="title-sm">Pages</Typography>
       <Container className="flex flex-col gap-1">
@@ -121,7 +123,6 @@ export const Footer = () => {
       </Container>
       </Container>
   </Container>
-    <Container className="flex flex-col gap-4 w-auto">
   </Container>
   </Container>
   <Container className="flex flex-row justify-center items-center gap-4 w-4/5 py-4 border-t-2 border-primary-50 ">

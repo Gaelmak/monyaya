@@ -14,8 +14,8 @@ import yaya from "../../../../public/yayaMonyaya.png";
 export const BecomeATrainer = async () => {
   const user = await userAuth();
   return (
-    <Container className="bg-secondary-50 flex flex-col-reverse md:flex-row-reverse items-center justify-center gap-6 ">
-      <Container className="flex  pb-24 md:pb-0">
+    <Container className="bg-secondary-50 flex flex-col-reverse md:flex-row-reverse items-center justify-center  ">
+      <Container className="flex pb-24 md:pb-0">
         <Container className="rounded-b-full border-dashed border-2 border-primary-Default p-2 md:w-full m-auto">
           <Image
             src={yaya}
@@ -29,27 +29,26 @@ export const BecomeATrainer = async () => {
       <Container className="px-4  py-10 md:py-24 flex flex-col md:w-3/5 gap-8">
         <Container className="flex flex-col items-start gap-2 text-center md:text-left">
           <Typography
-            variant="title-base"
-            className="text-center md:text-left text-xl md:text-3xl font-bold"
+            className="text-center md:text-left text-xl md:text-3xl font-semibold"
           >
-            Vous êtes un enseignant certifié ? <br />{" "}
-            <span className="text-primary-Default"> devenez instructeur</span> .
+            Vous êtes un enseignant certifié ? <br />
+            <span className="text-primary-Default"> devenez formateur</span> .
           </Typography>
-          <Typography className="">
+          <Typography className="text-base w-4/5">
             Partagez votre expertise et enrichissez votre parcours professionnel
             en rejoignant notre plateforme conviviale et innovante, où vous
             pouvez inspirer, éduquer, et avoir un impact en tant qu'instructeur
             certifié.
           </Typography>
         </Container>
-        <Typography variant="title-base" className="">
+        <Typography  className="text-center md:text-left text-xl md:text-3xl font-semibold">
           Bénéficiez de nombreux avantages
         </Typography>
         <Container className="grid grid-cols-2 md:grid-cols-2 gap-2 ">
           {OurBenefitsForTrainers.map(({ Icon, title, description }) => (
             <HoverCard key={title}>
               <Container className="">
-                <HoverCardTrigger className="flex flex-row md:flex-row gap-4 py-4 cursor-pointer">
+                <HoverCardTrigger className="flex flex-row md:flex-row gap-4 py-3 cursor-pointer">
                   <Container className="">
                     <Icon
                       className="text-primary-50 bg-primary-Default rounded-full p-1"
@@ -57,10 +56,10 @@ export const BecomeATrainer = async () => {
                     />
                   </Container>
                   <Container className="basis-5/6">
-                    <Typography variant="title-sm">{title}</Typography>
+                    <Typography className="text-lg font-semibold">{title}</Typography>
                   </Container>
                 </HoverCardTrigger>
-                <HoverCardContent className="bg-primary-700 rounded-xl">
+                <HoverCardContent className="bg-black rounded-xl -mt-5 -mb-5">
                   <Typography className="text-primary-50  leading-relaxed">
                     {description}
                   </Typography>

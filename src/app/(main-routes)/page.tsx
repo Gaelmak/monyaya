@@ -6,7 +6,6 @@ import { HeroBanner } from "@/ui/modules/hero-banner/hero-banner";
 import { Newsletter } from "@/ui/modules/newsletter/newsletter";
 import { Container } from "@/ui/components/container/container";
 import { BenefitSearch } from "@/components/benefitSeach";
-import { RecommandationsCourses } from "@/ui/modules/recommandations/recommandationsCourse";
 import { Recommandations } from "@/ui/modules/recommandations/recommandations";
 
 export default function Home() {
@@ -15,8 +14,6 @@ export default function Home() {
       <Container>
         <HeroBanner />
         <BenefitSearch />
-        {/* <Benefits/> */}
-        {/* <RecommandationsCourses /> */}
         <Recommandations />
         <BecomeATrainer />
         <HowItWorks />

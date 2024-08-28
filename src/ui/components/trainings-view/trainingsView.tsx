@@ -60,24 +60,24 @@ export const TrainingsView = ({ data, userId, sessionName, myLearnings, classNam
           <Container className="gap-4 flex flex-row justify-between">
             <Container className="flex items-center bg-primary-Default py-1 pr-2 rounded">
               <Dot />
-              <Typography variant="body-sm">{courses.name}</Typography>
+              <Typography className="text-sm">{courses.name}</Typography>
             </Container>
             <Container className="flex items-center bg-primary-600 py-1 rounded px-2">
               <Calendar width={14} height={14} />
-              <Typography variant="body-sm">{format(createdAt, 'dd MMMM yyyy', { locale: fr })}</Typography>
+              <Typography className="text-sm">{format(createdAt, 'dd MMMM yyyy', { locale: fr })}</Typography>
             </Container>
           </Container>
-          <Link href={`/trainings/training/${id}`} className="w-2/3 text-black">
-            <Typography variant="title-base">{truncateText(name, 65)}</Typography>
+          <Link href={`/trainings/training/${id}`} className="w-3/4 text-black">
+            <Typography className="text-2xl font-bold">{truncateText(name, 65)}</Typography>
           </Link>
           <Container className="flex justify-start gap-8 items-center">
             <Container className="flex items-center gap-1">
               <BookOpenText width={14} height={14} className="text-primary-600" />
-              <Typography variant="body-sm" className="text-black">10 classes</Typography>
+              <Typography  className="text-black text-sm">10 classes</Typography>
             </Container>
             <Container className="flex items-center gap-1">
               <BookOpenText width={14} height={14} className="text-primary-600" />
-              <Typography variant="body-sm" className="text-black">6 étudiants</Typography>
+              <Typography className="text-black text-sm">6 étudiants</Typography>
             </Container>
           </Container>
           <Link href={`/trainings/training/${id}`}>
@@ -85,18 +85,18 @@ export const TrainingsView = ({ data, userId, sessionName, myLearnings, classNam
               <Container className="flex justify-start gap-8 items-center">
                 <Container className="flex items-center gap-1">
                   <List width={14} height={14} className="text-primary-600" />
-                  <Typography variant="body-sm" className="text-black">{_count.modules} {_count.modules > 1 ? "Modules" : "Module"}</Typography>
+                  <Typography className="text-black text-sm">{_count.modules} {_count.modules > 1 ? "Modules" : "Module"}</Typography>
                 </Container>
                 <Container className="flex items-center gap-1">
                   <Map width={14} height={14} className="text-primary-600" />
-                  <Typography variant="body-sm" className="text-black">{user?.municipality}</Typography>
+                  <Typography  className="text-black text-sm">{user?.municipality}</Typography>
                 </Container>
               </Container>
             </Container>
           </Link>
           <Container className="flex justify-between">
             <Link href={`/trainings/training/${id}`}>
-              <Typography variant="title-base" className="text-primary-Default">${price}</Typography>
+              <Typography className="text-primary-Default font-bold text-2xl">${price}</Typography>
             </Link>
             <Container className="flex items-center gap-2 text-primary-Default">
               <SearchResultButtons

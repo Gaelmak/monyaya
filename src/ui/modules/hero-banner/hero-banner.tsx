@@ -34,12 +34,11 @@ export const HeroBanner = () => {
   return (
     <Container>
       <BackgroundImage>
-        <Container className="flex flex-col lg:flex-row px-6 py-4 lg:py-0 lg:px-8 h-full gap-6  overflow-hidden">
-          <Container className="basis-1/3 lg:basis-3/6 flex flex-col justify-center items-center lg:items-start gap-4 lg:gap-8 ">
+        <Container className="flex flex-col lg:flex-row px-6 lg:px-[7vw] py-8 lg:py-0  h-full gap-6  overflow-hidden">
+          <Container className="basis-1/3 lg:basis-3/6 flex flex-col justify-center items-center lg:items-start gap-3 lg:gap-6 ">
             <Typography
               component="h1"
-              variant="large-medium"
-              className="text-center lg:text-left text-3xl md:text-4xl lg:text-6xl font-bold"
+              className="text-center lg:text-left text-6xl font-semibold"
             >
               Apprenez ce que <br /> vous voulez,
               <br />
@@ -48,12 +47,11 @@ export const HeroBanner = () => {
             <Container className="flex flex-col items-center lg:items-start">
               <Typography
                 component="p"
-                variant="body-lg"
-                className="text-secondary-700"
+                className="text-secondary-700 text-xl"
               >
                 Que vous soyez intéressé par
               </Typography>
-              <span className="text-[1rem] lg:text-[1.5rem] font-bold text-primary-Default">
+              <span className="text-[1rem] lg:text-[1.25rem] font-bold text-primary-Default">
                 <Typewriter
                   options={{
                     autoStart: true,
@@ -79,8 +77,7 @@ export const HeroBanner = () => {
               </span>
               <Typography
                 component="p"
-                variant="body-lg"
-                className="text-center lg:text-left text-secondary-700"
+                className="text-center lg:text-left text-secondary-700 text-xl"
               >
                 nous avons le formateur parfait pour vous.
                 <br />
@@ -90,8 +87,10 @@ export const HeroBanner = () => {
                 </span>
               </Typography>
             </Container>
-            <Container className="lg:flex gap-14 hidden">
-              <Buttons>S'Inscrire Maintenant</Buttons>
+            <Container className="lg:flex gap-14 hidden justify-center items-center">
+              <Buttons buttonType="link" baseUrl="/new-user">
+                S'Inscrire Maintenant
+              </Buttons>
               <Container className="flex items-center justify-center">
                 <Buttons
                   Icon={Play}
@@ -99,7 +98,7 @@ export const HeroBanner = () => {
                 />
                 <ActiveLink
                   href="/"
-                  className="hover:underline-offset-4 hover:underline"
+                  className="hover:underline-offset-4 hover:underline bg-transparent hover:bg-transparent"
                 >
                   Qui sommes nous?
                 </ActiveLink>
@@ -114,8 +113,7 @@ export const HeroBanner = () => {
             <Typography
               key={index}
               component="p"
-              variant="body-lg"
-              className="text-white mx-4 font-bold text-xl md:text-2xl"
+              className="text-white mx-4 text-xl font-bold lg:mx-[7vw]"
             >
               {sponsor.name}
             </Typography>
