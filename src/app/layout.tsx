@@ -1,12 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import { AuthProvider } from "./auth-provider";
-
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "MonYaya",
@@ -19,9 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr"  className="notranslate">
+    <html lang="fr" className="notranslate">
       <AuthProvider>
-        <body className={poppins.className}>{children}</body>
+        <body className={GeistSans.className}>{children}</body>
       </AuthProvider>
     </html>
   );
