@@ -98,7 +98,7 @@ export const TrainingsView = ({ data, userId, sessionName, myLearnings, classNam
             <Link href={`/trainings/training/${id}`}>
               <Typography variant="title-base" className="text-primary-Default">${price}</Typography>
             </Link>
-            <Container className="flex items-center gap-2">
+            <Container className="flex items-center gap-2 text-primary-Default">
               <SearchResultButtons
                 userId={userId || null}
                 id={myLearnings?.find(obj => obj.trainingId === id)?.id || null}
