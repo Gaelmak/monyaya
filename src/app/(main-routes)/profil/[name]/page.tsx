@@ -1,6 +1,6 @@
 import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil";
 import { Container } from "@/ui/components/container/container";
-import { TrainingsView } from "@/ui/components/trainings-view/trainings-view";
+import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
 import prisma from "@/lib/prisma";
 import { Typography } from "@/ui/components/typography/typography";
 import { userAuth } from "@/lib/helper";

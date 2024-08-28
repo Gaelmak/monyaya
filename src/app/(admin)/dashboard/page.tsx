@@ -1,4 +1,4 @@
-import { TrainingsView } from "@/ui/components/trainings-view/trainings-view";
+import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
 import { Container } from "@/ui/components/container/container";
 import prisma from "@/lib/prisma";
 import { Typography } from "@/ui/components/typography/typography";

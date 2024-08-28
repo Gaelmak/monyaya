@@ -1,7 +1,6 @@
 import { Typography } from "@/ui/components/typography/typography";
 import MonYayaLogo from "../../public/Monyaya.png";
 import Link from "next/link";
-import { ActiveLink } from "./active-link";
 import Image from "next/image";
 import { MainRoutes } from "@/lib/page-routes/page-routes";
 import { Container } from "@/ui/components/container/container";
@@ -43,7 +42,7 @@ export const Navigation = async ({ className }: Props) => {
         className
       )}
     >
-      <Container className="flex flex-row items-center justify-between px-8 h-[10vh]">
+      <Container className="flex flex-row items-center justify-between px-8 lg:px-[7vw] h-[10vh]">
         <Link href="/">
           <Image
             src={MonYayaLogo}
@@ -58,11 +57,11 @@ export const Navigation = async ({ className }: Props) => {
             <NavigationMenu >
               <NavigationMenuList>
                 <NavigationMenuItem >
-                <ActiveLink href={route.baseUrl!} >
+                <Link href={route.baseUrl!} >
                   <NavigationMenuTrigger className="hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
                     {route.title}
                   </NavigationMenuTrigger>
-                </ActiveLink>
+                </Link>
                   <NavigationMenuContent className="bg-primary-300">
                     <NavigationMenuLink></NavigationMenuLink>
                   </NavigationMenuContent>

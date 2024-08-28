@@ -1,7 +1,7 @@
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import prisma from "@/lib/prisma";
-import { TrainingsView } from "@/ui/components/trainings-view/trainings-view";
+import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
 import { selectRandomObjects } from "@/lib/select-random-objects/select-random-objects";
 import { ServiceButton } from "@/routes/auth-buttons";
 import { FilterData } from "@/lib/filter-data/filter-data";

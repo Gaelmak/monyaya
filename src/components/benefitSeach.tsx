@@ -7,7 +7,7 @@ import imageBenefit from "public/mail.jpg"
 
 export const BenefitSearch = () => {
   return (
-    <Container className="px-6 md:px-8 py-16 flex flex-col gap-20 bg-primary-50">
+    <Container className="px-6 md:px-8 lg:px-[7vw] py-16 flex flex-col gap-20 bg-primary-50">
       <Container className="flex flex-col justify-center m-auto items-center md:w-[60%] gap-4">
         <Typography variant="title-base" className="md:w-[60%] text-center">
           Recherche une Formation !
@@ -15,7 +15,7 @@ export const BenefitSearch = () => {
         <SearchCourses />
       </Container>
       <Container className="flex flex-col md:flex-row md:justify-between items-center md:pt-6  md:pb-16">
-        <Container className="md:w-2/5 flex justify-start items-start m-auto ">
+        <Container className="md:w-2/5 flex justify-start items-start ">
             <Image src={imageBenefit} alt="Image benefit" className=" object-cover border-dashed border-2 border-primary-Default p-2 rounded-3xl" />
         </Container>
        <Container className="md:w-1/2 flex flex-col gap-5 py-4">

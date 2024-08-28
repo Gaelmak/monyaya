@@ -31,7 +31,7 @@ export const HeroBanner = () => {
   return(
     <Container>
     <BackgroundImage >
-      <Container className="flex flex-col lg:flex-row px-6 py-8 lg:py-0 lg:px-8 h-full gap-6  overflow-hidden">
+      <Container className="flex flex-col lg:flex-row px-6 lg:px-[7vw] py-8 lg:py-0  h-full gap-6  overflow-hidden">
         <Container className="basis-1/3 lg:basis-3/6 flex flex-col justify-center items-center lg:items-start gap-4 lg:gap-8 ">
           <Typography component="h1" variant="large-medium" className="text-center lg:text-left">
             Apprenez ce que <br/> vous voulez,<br/>où vous voulez
@@ -72,11 +72,16 @@ export const HeroBanner = () => {
               </span>
             </Typography>
           </Container>
-          <Container className="lg:flex gap-14 hidden">
-            <Buttons>S'Inscrire Maintenant</Buttons>
+          <Container className="lg:flex gap-14 hidden justify-center items-center">
+            <Buttons
+              buttonType="link"
+              baseUrl="/new-user"
+            >
+              S'Inscrire Maintenant
+            </Buttons>
             <Container className="flex items-center justify-center">
               <Buttons Icon={Play} className="border-dashed border-2 border-primary-50 p-2 rounded-3xl"/>
-              <ActiveLink href="/" className="hover:underline-offset-4 hover:underline">Qui sommes nous?</ActiveLink>
+              <ActiveLink href="/" className="hover:underline-offset-4 hover:underline bg-transparent hover:bg-transparent">Qui sommes nous?</ActiveLink>
             </Container>
           </Container>
         </Container>
@@ -85,7 +90,7 @@ export const HeroBanner = () => {
     <Container className="bg-primary-400  h-20">
     <Carousel className="flex items-center justify-center h-full overflow-x-hidden ">
           {Sponsors.map((sponsor, index) => (
-            <Typography key={index} component="p" variant="body-lg" className="text-white mx-4">
+            <Typography key={index} component="p" variant="body-lg" className="text-white mx-4 lg:mx-[7vw]">
               {sponsor.name}
             </Typography>
           ))}

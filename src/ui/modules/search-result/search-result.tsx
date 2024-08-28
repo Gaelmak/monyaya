@@ -1,7 +1,7 @@
 "use client";
 
 import { Container } from "@/ui/components/container/container";
-import { TrainingsView } from "@/ui/components/trainings-view/trainings-view";
+import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
 import { Typography } from "@/ui/components/typography/typography";
 import { Filter } from "./filter";
 import useFilterTypeStore from "@/store/filter-type-store";
