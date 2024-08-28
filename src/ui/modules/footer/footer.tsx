@@ -2,11 +2,9 @@
 
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
-import MonyayaWhite from "../../../../public/Monyaya_white.png";
 import Image from "next/image";
 import {
   Company,
-  Links,
   MainRoutes,
   SocialNetworks,
 } from "@/lib/page-routes/page-routes";
@@ -102,17 +100,6 @@ export const Footer = () => {
       ))}
     </Container>
   </Container>
-  <Container className="flex flex-col gap-4 w-auto">
-    <Typography variant="title-sm">Monyaya</Typography>
-    <Container className="flex flex-col gap-1">
-      {Links.map(({ title, baseUrl }) => (
-        <Typography key={title}>
-          <Link href={baseUrl!}>{title}</Link>
-        </Typography>
-      ))}
-    </Container>
-  </Container>
-  
   <Container className="flex flex-col gap-4 w-auto">
       <Typography variant="title-sm">Contact</Typography>
       <Container className="flex flex-col gap-1">

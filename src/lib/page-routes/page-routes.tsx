@@ -23,20 +23,6 @@ export const MainRoutes: AppLinks[] = [
     baseUrl: '/contact'
   },
 ]
-export const Links: AppLinks[] = [
-  {
-    title: 'Devenir Formateur',
-    baseUrl: '/'
-  },
-  {
-    title: 'Newsletters',
-    baseUrl: '/newsletters'
-  },
-  {
-    title: 'Feedback',
-    baseUrl: '/feedback'
-  },
-]
 
 export const SocialNetworks: AppLinks[] = [
   {
@@ -50,7 +36,19 @@ export const Company: AppLinks[] = [
   {
     title: "Termes d'utilisation",
     baseUrl: '/terms-of-use'
-  }
+  },
+  {
+    title: 'Devenir Formateur',
+    baseUrl: '/'
+  },
+  {
+    title: 'Newsletters',
+    baseUrl: '/newsletters'
+  },
+  {
+    title: 'Feedback',
+    baseUrl: '/feedback'
+  },
 ] 
 
 export const AsideRoutes: AppLinks[] = [
