@@ -1,15 +1,15 @@
-import { Container } from "@/ui/components/container/container";
-import { Typography } from "@/ui/components/typography/typography";
-import { OurBenefitsForTrainers } from "@/lib/our-benefits/our-benefits";
-import { SignInButton } from "@/routes/auth-buttons";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import { Typography } from '@/ui/components/typography/typography';
+import { OurBenefitsForTrainers } from '@/lib/our-benefits/our-benefits';
+import { SignInButton } from '@/routes/auth-buttons';
+import { userAuth } from '@/lib/helper';
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import Image from "next/image";
-import yaya from "../../../../public/yayaMonyaya.png";
+} from '@/components/ui/hover-card';
+import Image from 'next/image';
+import yaya from '../../../../public/yayaMonyaya.png';
 
 export const BecomeATrainer = async () => {
   const user = await userAuth();
@@ -28,9 +28,7 @@ export const BecomeATrainer = async () => {
       </Container>
       <Container className="px-4  py-10 md:py-24 flex flex-col w-full md:w-3/5 gap-8">
         <Container className="flex flex-col items-start gap-2 text-center md:text-left">
-          <Typography
-            className="text-center md:text-left text-2xl md:text-3xl font-semibold"
-          >
+          <Typography className="text-center md:text-left text-2xl md:text-3xl font-semibold">
             Vous êtes un enseignant certifié ? <br />
             <span className="text-primary-Default"> devenez formateur</span> .
           </Typography>
@@ -41,7 +39,7 @@ export const BecomeATrainer = async () => {
             certifié.
           </Typography>
         </Container>
-        <Typography  className="text-center md:text-left text-xl md:text-3xl font-semibold">
+        <Typography className="text-center md:text-left text-xl md:text-3xl font-semibold">
           Bénéficiez de nombreux avantages
         </Typography>
         <Container className="grid grid-cols-2 md:grid-cols-2 gap-2 ">
@@ -56,7 +54,9 @@ export const BecomeATrainer = async () => {
                     />
                   </Container>
                   <Container className="basis-5/6">
-                    <Typography className="text-lg font-semibold">{title}</Typography>
+                    <Typography className="text-lg font-semibold">
+                      {title}
+                    </Typography>
                   </Container>
                 </HoverCardTrigger>
                 <HoverCardContent className="bg-black rounded-xl -mt-5 -mb-5">

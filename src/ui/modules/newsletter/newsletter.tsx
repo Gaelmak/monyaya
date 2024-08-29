@@ -70,10 +70,10 @@ export const Newsletter = () => {
     <Container className="bg-primary-400 py-8">
       <Container className="bg-white px-4 py-8 md:px-8 md:py-16 flex flex-col md:flex-row gap-8 items-center md:rounded-tl-full md:rounded-br-full rounded-tl-3xl rounded-br-3xl">
         <Container className="text-primary-50 basis-1/2 flex flex-col items-center justify-center gap-4 bg-primary-400 rounded-xl m-auto py-8 px-2 text-center">
-          <Typography className='text-2xl font-bold' component="h4">
+          <Typography className="text-2xl font-bold" component="h4">
             Abonnez-vous à notre newsletter
           </Typography>
-          <Typography className='text-center '>
+          <Typography className="text-center ">
             Recevez les dernières mises à jour du site et des offres exclusives
             de nos formateurs en vous abonnant à notre newsletter.
           </Typography>

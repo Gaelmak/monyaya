@@ -1,5 +1,5 @@
-import { auth } from "@/auth";
-import type { User } from "@prisma/client";
+import { auth } from '@/auth';
+import type { User } from '@prisma/client';
 
 export class AuthError extends Error {
   constructor(message: string) {

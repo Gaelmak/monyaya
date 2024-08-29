@@ -1,10 +1,10 @@
-import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
-import { Container } from "@/ui/components/container/container";
-import prisma from "@/lib/prisma";
-import { Typography } from "@/ui/components/typography/typography";
-import Link from "next/link";
-import clsx from "clsx";
-import { userAuth } from "@/lib/helper";
+import { TrainingsView } from '@/ui/components/trainings-view/trainingsView';
+import { Container } from '@/ui/components/container/container';
+import prisma from '@/lib/prisma';
+import { Typography } from '@/ui/components/typography/typography';
+import Link from 'next/link';
+import clsx from 'clsx';
+import { userAuth } from '@/lib/helper';
 
 export default async function Home() {
   const user = await userAuth();
@@ -78,7 +78,7 @@ export default async function Home() {
 
   return (
     <Container
-      className={clsx("p-4 rounded", trainings ? "pt-24 md:pt-4" : "")}
+      className={clsx('p-4 rounded', trainings ? 'pt-24 md:pt-4' : '')}
     >
       {trainings.length > 0 ? (
         <TrainingsView
@@ -97,7 +97,7 @@ export default async function Home() {
             Vous pouvez découvrir la formation qui vous convient et commencer
             votre apprentissage en consultant notre page "
             <Link
-              href={"/trainings"}
+              href={'/trainings'}
               className="text-primary-Default underline"
             >
               Formations

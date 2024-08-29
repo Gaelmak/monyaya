@@ -1,15 +1,20 @@
-import prisma from '@/lib/prisma'
-import { NextResponse } from "next/server"
+import prisma from '@/lib/prisma';
+import { NextResponse } from 'next/server';
 
-
-export async function POST (
-  req: Request
-) {
-  const { userId, training_name, training_description, chapters, price, category, image} = await req.json()
+export async function POST(req: Request) {
+  const {
+    userId,
+    training_name,
+    training_description,
+    chapters,
+    price,
+    category,
+    image,
+  } = await req.json();
 
   await prisma.trainings.create({
     include: {
-      modules: true
+      modules: true,
     },
     data: {
       name: training_name,
@@ -18,12 +23,11 @@ export async function POST (
       price: price,
       coursesId: category,
       modules: {
-        create: chapters
+        create: chapters,
       },
-      image: image
-    }
-  })
+      image: image,
+    },
+  });
 
   return NextResponse.json({ status: 200 });
-
 }

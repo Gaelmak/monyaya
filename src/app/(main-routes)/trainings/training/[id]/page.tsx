@@ -1,8 +1,8 @@
-import { Container } from "@/ui/components/container/container";
-import prisma from "@/lib/prisma";
-import { TrainingView } from "@/ui/components/training-view/training-view";
-import { Recommandations } from "@/ui/modules/recommandations/recommandations";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import prisma from '@/lib/prisma';
+import { TrainingView } from '@/ui/components/training-view/training-view';
+import { Recommandations } from '@/ui/modules/recommandations/recommandations';
+import { userAuth } from '@/lib/helper';
 
 export default async function Home({ params }: { params: { id: string } }) {
   const idTraining = decodeURIComponent(params.id);

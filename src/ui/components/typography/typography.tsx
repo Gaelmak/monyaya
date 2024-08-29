@@ -1,70 +1,60 @@
-import { clsx } from "clsx"
+import { clsx } from 'clsx';
 
-interface Props {children: React.ReactNode
-  className?: string
-  component?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'span'
-  variant?: 
-    'display'     |
-    'large-medium'|
-    'title-lg'    | 
-    'title-base'  | 
-    'title-sm'    | 
-    'title-xs'    | 
-    'body-lg'     | 
-    'body-base'   | 
-    'body-sm'     
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+  component?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'span';
+  variant?:
+    | 'display'
+    | 'large-medium'
+    | 'title-lg'
+    | 'title-base'
+    | 'title-sm'
+    | 'title-xs'
+    | 'body-lg'
+    | 'body-base'
+    | 'body-sm';
 }
-
 
 export const Typography = ({
   variant = 'body-base',
-  children, 
+  children,
   className,
-  component : Component  = 'p'
+  component: Component = 'p',
 }: Props) => {
-  
-  let variantStyles: string = ''
-  
+  let variantStyles: string = '';
+
   switch (variant) {
-    case "display":
-      variantStyles = 'text-title-lg md:text-display'
+    case 'display':
+      variantStyles = 'text-title-lg md:text-display';
       break;
-    case "large-medium":
-      variantStyles = 'text-title-lg md:text-large-medium'
+    case 'large-medium':
+      variantStyles = 'text-title-lg md:text-large-medium';
       break;
-    case "title-lg":
-      variantStyles = 'text-title-lg'
+    case 'title-lg':
+      variantStyles = 'text-title-lg';
       break;
-    case "title-base":
-      variantStyles = 'text-title-base'
+    case 'title-base':
+      variantStyles = 'text-title-base';
       break;
-    case "title-sm":
-      variantStyles = 'text-title-sm'
+    case 'title-sm':
+      variantStyles = 'text-title-sm';
       break;
-    case "title-xs":
-      variantStyles = 'text-title-xs'
+    case 'title-xs':
+      variantStyles = 'text-title-xs';
       break;
-    case "body-lg":
-      variantStyles = 'text-body-base md:text-body-lg'
+    case 'body-lg':
+      variantStyles = 'text-body-base md:text-body-lg';
       break;
-    case "body-base": // Default
-      variantStyles = 'text-body-base'
+    case 'body-base': // Default
+      variantStyles = 'text-body-base';
       break;
-    case "body-sm":
-      variantStyles = 'text-body-sm'
+    case 'body-sm':
+      variantStyles = 'text-body-sm';
       break;
   }
 
   return (
-    <Component 
-      className={
-        clsx(
-          variantStyles,
-          className
-        )
-      }
-    >
-      {children}
-    </Component>
-  )
-}
+    <Component className={clsx(variantStyles, className)}>{children}</Component>
+  );
+};

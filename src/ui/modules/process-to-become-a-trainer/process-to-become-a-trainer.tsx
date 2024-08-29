@@ -1,9 +1,9 @@
-import { Container } from "@/ui/components/container/container";
-import Image from "next/image";
-import Young from "../../../../public/young.png";
-import { Typography } from "@/ui/components/typography/typography";
-import { UserDescription } from "../user-description/user-description";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import Image from 'next/image';
+import Young from '../../../../public/young.png';
+import { Typography } from '@/ui/components/typography/typography';
+import { UserDescription } from '../user-description/user-description';
+import { userAuth } from '@/lib/helper';
 
 export const ProcessToBecomeATrainer = async () => {
   const user = await userAuth();

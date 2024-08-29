@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { Container } from "@/ui/components/container/container";
-import { Buttons } from "@/ui/components/buttons/buttons";
-import UseLoading from "@/hooks/use-loading";
-import { useToast } from "@/components/ui/use-toast";
-import { Typography } from "@/ui/components/typography/typography";
-import { useRouter } from "next/navigation";
-import clsx from "clsx";
-import Image from "next/image";
+import { Container } from '@/ui/components/container/container';
+import { Buttons } from '@/ui/components/buttons/buttons';
+import UseLoading from '@/hooks/use-loading';
+import { useToast } from '@/components/ui/use-toast';
+import { Typography } from '@/ui/components/typography/typography';
+import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
+import Image from 'next/image';
 import DefaultAvatar from '../../../../public/default_avatar.jpg';
 
 interface Props {
@@ -55,50 +55,62 @@ export const EditAccountData = ({ name, data }: Props) => {
 
     try {
       const response = await fetch('/api/upload', {
-        method: "POST",
+        method: 'POST',
         body: formData,
       });
       const data = await response.json();
       if (data.status === 200) {
-        const url = data.fileUrl
+        const url = data.fileUrl;
         const uploadProfil = await fetch(`/api/user/userimage/${name}`, {
           method: 'PATCH',
-          credentials: "include",
+          credentials: 'include',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            url: url
-          })
-        })
+            url: url,
+          }),
+        });
 
-        if(uploadProfil.status === 200) {
+        if (uploadProfil.status === 200) {
           toast({
-            variant: "success",
-            title: "Succes",
-            description: <Typography component="p" variant="body-sm">Votre image de profil a été modifié avec succès </Typography>,
-          })
-          
+            variant: 'success',
+            title: 'Succes',
+            description: (
+              <Typography component="p" variant="body-sm">
+                Votre image de profil a été modifié avec succès{' '}
+              </Typography>
+            ),
+          });
+
           setSelectedImage(null);
-          stopLoading()
+          stopLoading();
         } else {
           toast({
-            variant: "destructive",
-            title: "Erreur",
-            description: <Typography component="p" variant="body-sm">Une erreur est survenue, veuillez réessayer plus tard.</Typography>,
-          })
+            variant: 'destructive',
+            title: 'Erreur',
+            description: (
+              <Typography component="p" variant="body-sm">
+                Une erreur est survenue, veuillez réessayer plus tard.
+              </Typography>
+            ),
+          });
 
           setSelectedImage(null);
-          stopLoading()
+          stopLoading();
         }
       }
       stopLoading();
     } catch (error) {
       toast({
-        variant: "destructive",
-        title: "Erreur",
-        description: <Typography component="p" variant="body-sm">Une erreur est survenue, veuillez réessayer plus tard.</Typography>,
-      })
+        variant: 'destructive',
+        title: 'Erreur',
+        description: (
+          <Typography component="p" variant="body-sm">
+            Une erreur est survenue, veuillez réessayer plus tard.
+          </Typography>
+        ),
+      });
       setSelectedImage(null);
       stopLoading();
     }
@@ -109,16 +121,18 @@ export const EditAccountData = ({ name, data }: Props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Container 
-        className={clsx("flex flex-col gap-2 p-4")}
-      > 
-        <Container className={clsx("w-full flex flex-col gap-2 lg:gap-4 items-center")}>
+      <Container className={clsx('flex flex-col gap-2 p-4')}>
+        <Container
+          className={clsx('w-full flex flex-col gap-2 lg:gap-4 items-center')}
+        >
           <Container className="relative w-[24rem] h-[24rem] p-2 flex justify-center items-center overflow-hidden z-10">
             <Container className="w-full h-full rounded-full overflow-hidden">
-              <Image 
+              <Image
                 width={100}
                 height={100}
-                src={preview ? preview : data.image ? data.image : DefaultAvatar}
+                src={
+                  preview ? preview : data.image ? data.image : DefaultAvatar
+                }
                 alt="User profile image"
                 className="h-full w-full object-cover "
               />
@@ -126,11 +140,20 @@ export const EditAccountData = ({ name, data }: Props) => {
           </Container>
           <Container>
             <Container className="flex flex-col gap-4 lg:flex-row justify-between items-center">
-              <label htmlFor="profil" className='cursor-pointer text-gray-500 hover:text-primary-Default animate'>
+              <label
+                htmlFor="profil"
+                className="cursor-pointer text-gray-500 hover:text-primary-Default animate"
+              >
                 Selectionnez une photo...
               </label>
-              <input type="file" accept="image/*" id='profil' onChange={handleImageChange} className='hidden'/>
-              <Buttons disabled={!preview} type='submit' isLoading={isLoading}>
+              <input
+                type="file"
+                accept="image/*"
+                id="profil"
+                onChange={handleImageChange}
+                className="hidden"
+              />
+              <Buttons disabled={!preview} type="submit" isLoading={isLoading}>
                 Enregistrer
               </Buttons>
             </Container>

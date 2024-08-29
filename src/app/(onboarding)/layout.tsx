@@ -1,8 +1,8 @@
-import { Container } from "@/ui/components/container/container";
-import { Toaster } from "@/components/ui/toaster";
-import { redirect } from "next/navigation";
-import prisma from "@/lib/prisma";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import { Toaster } from '@/components/ui/toaster';
+import { redirect } from 'next/navigation';
+import prisma from '@/lib/prisma';
+import { userAuth } from '@/lib/helper';
 
 export default async function RootLayout({
   children,
@@ -12,7 +12,7 @@ export default async function RootLayout({
   const session = await userAuth();
 
   if (!session) {
-    redirect("/signin");
+    redirect('/signin');
   }
 
   const user = await prisma!.user.findUnique({
@@ -39,7 +39,7 @@ export default async function RootLayout({
     user?.avenue &&
     user?.number
   ) {
-    redirect("/dashboard");
+    redirect('/dashboard');
   }
 
   return (

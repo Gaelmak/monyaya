@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -9,20 +9,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import clsx from "clsx"
+} from '@/components/ui/form';
+import clsx from 'clsx';
 
 interface Props {
-  control: any,
-  name: string,
-  label: string | React.ReactNode,
-  description? : string | React.ReactNode,
+  control: any;
+  name: string;
+  label: string | React.ReactNode;
+  description?: string | React.ReactNode;
   items?: {
-    id: string
-    name: string
-  }[]
+    id: string;
+    name: string;
+  }[];
 }
-
 
 export const InputFieldCheckbox = ({
   control,
@@ -31,7 +30,6 @@ export const InputFieldCheckbox = ({
   description,
   items,
 }: Props) => {
-
   const BooleanCheckBox = (
     <FormField
       control={control}
@@ -44,25 +42,21 @@ export const InputFieldCheckbox = ({
                 checked={field.value}
                 onCheckedChange={field.onChange}
                 className={clsx(
-                  field.value? "bg-primary-Default border-none" : "",
-                  "rounded text-white"
-                  )}
+                  field.value ? 'bg-primary-Default border-none' : '',
+                  'rounded text-white'
+                )}
               />
             </FormControl>
             <div className="space-y-1 leading-none">
-              <FormLabel>
-                {label}
-              </FormLabel>
-              <FormDescription>
-                {description}
-              </FormDescription>
+              <FormLabel>{label}</FormLabel>
+              <FormDescription>{description}</FormDescription>
             </div>
           </div>
-          <FormMessage/>
+          <FormMessage />
         </FormItem>
       )}
     />
-  )
+  );
 
   const MultipleCheckBox = (
     <FormField
@@ -72,9 +66,7 @@ export const InputFieldCheckbox = ({
         <FormItem>
           <div>
             <FormLabel>{label}</FormLabel>
-            <FormDescription>
-              {description}
-            </FormDescription>
+            <FormDescription>{description}</FormDescription>
           </div>
           {items!.map((item) => (
             <FormField
@@ -83,10 +75,7 @@ export const InputFieldCheckbox = ({
               name="items"
               render={({ field }) => {
                 return (
-                  <FormItem
-                    key={item.id}
-                    className=""
-                  >
+                  <FormItem key={item.id} className="">
                     <FormControl>
                       <Checkbox
                         checked={field.value?.includes(item.id)}
@@ -97,27 +86,21 @@ export const InputFieldCheckbox = ({
                                 field.value?.filter(
                                   (value: string) => value !== item.id
                                 )
-                              )
+                              );
                         }}
                       />
                     </FormControl>
-                    <FormLabel>
-                      {item.name}
-                    </FormLabel>
+                    <FormLabel>{item.name}</FormLabel>
                   </FormItem>
-                )}
-              }
+                );
+              }}
             />
           ))}
           <FormMessage />
         </FormItem>
       )}
     />
-  )
+  );
 
-  return (
-    <>
-    { items ? MultipleCheckBox : BooleanCheckBox }
-    </>
-  )
-}
+  return <>{items ? MultipleCheckBox : BooleanCheckBox}</>;
+};

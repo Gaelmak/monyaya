@@ -1,10 +1,10 @@
-import prisma from "@/lib/prisma";
-import { redirect } from "next/navigation";
-import { Training, columns } from "./columns";
-import { DataTable } from "./data-table";
-import { Container } from "@/ui/components/container/container";
-import { Typography } from "@/ui/components/typography/typography";
-import { userAuth } from "@/lib/helper";
+import prisma from '@/lib/prisma';
+import { redirect } from 'next/navigation';
+import { Training, columns } from './columns';
+import { DataTable } from './data-table';
+import { Container } from '@/ui/components/container/container';
+import { Typography } from '@/ui/components/typography/typography';
+import { userAuth } from '@/lib/helper';
 
 async function getData(): Promise<Training[]> {
   const user = await userAuth();
@@ -39,7 +39,7 @@ async function getData(): Promise<Training[]> {
       },
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
   });
   return trainings;
@@ -57,8 +57,8 @@ export default async function Home() {
     },
   });
 
-  if (userRole!.role === "USER") {
-    redirect("/become-a-trainer");
+  if (userRole!.role === 'USER') {
+    redirect('/become-a-trainer');
   }
 
   return (

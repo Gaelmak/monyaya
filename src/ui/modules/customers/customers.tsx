@@ -1,3 +1,1 @@
-export const Customers = () => {
-  
-}
+export const Customers = () => {};

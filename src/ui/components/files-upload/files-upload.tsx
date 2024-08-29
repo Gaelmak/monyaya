@@ -44,9 +44,14 @@ export const FilesUpload = () => {
   return (
     <form onSubmit={handleSubmit}>
       <input type="file" accept="image/*" onChange={handleImageChange} />
-      {preview && <img src={preview} alt="Image preview" style={{ width: '200px', height: 'auto' }} />}
+      {preview && (
+        <img
+          src={preview}
+          alt="Image preview"
+          style={{ width: '200px', height: 'auto' }}
+        />
+      )}
       <button type="submit">Upload Image</button>
     </form>
   );
 };
-

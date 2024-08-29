@@ -1,7 +1,7 @@
-import { Container } from "@/ui/components/container/container";
-import { SearchResults } from "@/ui/modules/search-result/search-result";
-import prisma from "@/lib/prisma";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import { SearchResults } from '@/ui/modules/search-result/search-result';
+import prisma from '@/lib/prisma';
+import { userAuth } from '@/lib/helper';
 
 export default async function Home() {
   const session = await userAuth();
@@ -72,7 +72,7 @@ export default async function Home() {
       },
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
   });
   return (

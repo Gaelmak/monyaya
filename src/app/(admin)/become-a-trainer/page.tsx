@@ -1,7 +1,7 @@
-import { userAuth } from "@/lib/helper";
-import prisma from "@/lib/prisma";
-import { ProcessToBecomeATrainer } from "@/ui/modules/process-to-become-a-trainer/process-to-become-a-trainer";
-import { redirect } from "next/navigation";
+import { userAuth } from '@/lib/helper';
+import prisma from '@/lib/prisma';
+import { ProcessToBecomeATrainer } from '@/ui/modules/process-to-become-a-trainer/process-to-become-a-trainer';
+import { redirect } from 'next/navigation';
 
 export default async function Home() {
   const user = await userAuth();
@@ -14,8 +14,8 @@ export default async function Home() {
     },
   });
 
-  if (userRole!.role === "TRAINER") {
-    redirect("/my-trainings");
+  if (userRole!.role === 'TRAINER') {
+    redirect('/my-trainings');
   }
 
   return (

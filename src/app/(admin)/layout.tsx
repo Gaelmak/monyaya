@@ -1,10 +1,10 @@
-import { Container } from "@/ui/components/container/container";
-import { AsideNav } from "@/routes/aside-nav";
-import { Toaster } from "@/components/ui/toaster";
-import { redirect } from "next/navigation";
-import { MobileAsideNav } from "@/routes/mobile-aside-nav";
-import prisma from "@/lib/prisma";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import { AsideNav } from '@/routes/aside-nav';
+import { Toaster } from '@/components/ui/toaster';
+import { redirect } from 'next/navigation';
+import { MobileAsideNav } from '@/routes/mobile-aside-nav';
+import prisma from '@/lib/prisma';
+import { userAuth } from '@/lib/helper';
 
 export default async function RootLayout({
   children,
@@ -14,7 +14,7 @@ export default async function RootLayout({
   const session = await userAuth();
 
   if (!session) {
-    redirect("/signin");
+    redirect('/signin');
   }
 
   const user = await prisma!.user.findUnique({
@@ -36,21 +36,21 @@ export default async function RootLayout({
 
   if (
     !user?.firstName ||
-    user.firstName === "" ||
+    user.firstName === '' ||
     !user?.lastName ||
-    user.lastName === "" ||
+    user.lastName === '' ||
     !user?.phoneNumber ||
-    user.phoneNumber === "" ||
+    user.phoneNumber === '' ||
     !user?.municipality ||
-    user.municipality === "" ||
+    user.municipality === '' ||
     !user?.district ||
-    user.district === "" ||
+    user.district === '' ||
     !user?.avenue ||
-    user.avenue === "" ||
+    user.avenue === '' ||
     !user?.number ||
-    user.number === ""
+    user.number === ''
   ) {
-    redirect("/onboarding");
+    redirect('/onboarding');
   }
 
   return (

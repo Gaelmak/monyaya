@@ -1,14 +1,14 @@
-import { Container } from "@/ui/components/container/container";
-import { AsideActiveLink } from "./aside-active-link";
-import { AsideRoutes, HomeRoute } from "@/lib/page-routes/page-routes";
-import { Typography } from "@/ui/components/typography/typography";
-import { SignOutButton } from "./auth-buttons";
-import Image from "next/image";
-import DefaultAvatar from "../../public/default_avatar.jpg";
-import { Archive, UserRoundPlus } from "lucide-react";
-import prisma from "@/lib/prisma";
-import clsx from "clsx";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import { AsideActiveLink } from './aside-active-link';
+import { AsideRoutes, HomeRoute } from '@/lib/page-routes/page-routes';
+import { Typography } from '@/ui/components/typography/typography';
+import { SignOutButton } from './auth-buttons';
+import Image from 'next/image';
+import DefaultAvatar from '../../public/default_avatar.jpg';
+import { Archive, UserRoundPlus } from 'lucide-react';
+import prisma from '@/lib/prisma';
+import clsx from 'clsx';
+import { userAuth } from '@/lib/helper';
 
 interface Props {
   className?: string;
@@ -30,7 +30,7 @@ export const AsideNav = async ({ className }: Props) => {
   return (
     <Container
       className={clsx(
-        "h-full w-full flex flex-col justify-between bg-white",
+        'h-full w-full flex flex-col justify-between bg-white',
         className
       )}
     >
@@ -74,14 +74,14 @@ export const AsideNav = async ({ className }: Props) => {
         </Container>
       </Container>
       <Container className="md:p-4">
-        {user!.role === "USER" ? (
+        {user!.role === 'USER' ? (
           <Container>
             <Typography
               variant="body-base"
               component="p"
               className="w-full text-black/60"
             >
-              <AsideActiveLink href={"/become-a-trainer"}>
+              <AsideActiveLink href={'/become-a-trainer'}>
                 <span className="flex flex-row items-center">
                   <UserRoundPlus className="mr-4 h-5 w-5" />
                   Devenir formateur
@@ -96,7 +96,7 @@ export const AsideNav = async ({ className }: Props) => {
               component="p"
               className="w-full text-black/60"
             >
-              <AsideActiveLink href={"/my-trainings"}>
+              <AsideActiveLink href={'/my-trainings'}>
                 <span className="flex flex-row items-center">
                   <Archive className="mr-4 h-5 w-5" />
                   Mes formations
