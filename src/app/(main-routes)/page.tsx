@@ -7,6 +7,7 @@ import { Newsletter } from "@/ui/modules/newsletter/newsletter";
 import { Container } from "@/ui/components/container/container";
 import { BenefitSearch } from "@/components/benefitSeach";
 import { Recommandations } from "@/ui/modules/recommandations/recommandations";
+import { HowItWork } from "@/ui/modules/HowItWork";
 
 export default function Home() {
   return (
@@ -16,7 +17,8 @@ export default function Home() {
         <BenefitSearch />
         <Recommandations />
         <BecomeATrainer />
-        <HowItWorks />
+        <HowItWork />
+        {/* <HowItWorks /> */}
         <Newsletter />
       </Container>
     </main>

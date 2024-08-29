@@ -38,7 +38,7 @@ export const HeroBanner = () => {
           <Container className="basis-1/3 lg:basis-3/6 flex flex-col justify-center items-center lg:items-start gap-3 lg:gap-6 ">
             <Typography
               component="h1"
-              className="text-center lg:text-left text-6xl font-semibold"
+              className="text-center lg:text-left lg:text-6xl text-4xl font-semibold"
             >
               Apprenez ce que <br /> vous voulez,
               <br />

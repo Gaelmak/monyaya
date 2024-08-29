@@ -14,7 +14,7 @@ import yaya from "../../../../public/yayaMonyaya.png";
 export const BecomeATrainer = async () => {
   const user = await userAuth();
   return (
-    <Container className="bg-secondary-50 flex flex-col-reverse md:flex-row-reverse items-center justify-center  ">
+    <Container className="bg-secondary-50 flex flex-col-reverse md:flex-row-reverse items-center justify-center w-full ">
       <Container className="flex pb-24 md:pb-0">
         <Container className="rounded-b-full border-dashed border-2 border-primary-Default p-2 md:w-full m-auto">
           <Image
@@ -26,15 +26,15 @@ export const BecomeATrainer = async () => {
           />
         </Container>
       </Container>
-      <Container className="px-4  py-10 md:py-24 flex flex-col md:w-3/5 gap-8">
+      <Container className="px-4  py-10 md:py-24 flex flex-col w-full md:w-3/5 gap-8">
         <Container className="flex flex-col items-start gap-2 text-center md:text-left">
           <Typography
-            className="text-center md:text-left text-xl md:text-3xl font-semibold"
+            className="text-center md:text-left text-2xl md:text-3xl font-semibold"
           >
             Vous êtes un enseignant certifié ? <br />
             <span className="text-primary-Default"> devenez formateur</span> .
           </Typography>
-          <Typography className="text-base w-4/5">
+          <Typography className="text-base md:w-4/5">
             Partagez votre expertise et enrichissez votre parcours professionnel
             en rejoignant notre plateforme conviviale et innovante, où vous
             pouvez inspirer, éduquer, et avoir un impact en tant qu'instructeur

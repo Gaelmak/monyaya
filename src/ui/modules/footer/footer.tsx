@@ -80,9 +80,9 @@ export const Footer = () => {
             compétences sur notre plateforme d'apprentissage.
           </Typography>
         </Container>
-        <Container className="flex flex-row justify-between   md:w-2/3">
+        <Container className="flex flex-wrap gap-3 flex-row justify-between md:w-2/3">
           <Container className="flex flex-col gap-4 w-auto">
-            <Typography variant="title-sm">Pages</Typography>
+            <Typography className='text-lg'>Pages</Typography>
             <Container className="flex flex-col gap-1">
               {MainRoutes.map(({ title, baseUrl }) => (
                 <Typography key={title}>
@@ -92,7 +92,7 @@ export const Footer = () => {
             </Container>
           </Container>
           <Container className="flex flex-col gap-4 w-auto">
-            <Typography variant="title-sm">Monyaya</Typography>
+            <Typography className='text-lg'>Monyaya</Typography>
             <Container className="flex flex-col gap-1">
               {Company.map(({ title, baseUrl }) => (
                 <Typography key={title}>
@@ -101,8 +101,8 @@ export const Footer = () => {
               ))}
             </Container>
           </Container>
-          <Container className="flex flex-col gap-4 w-auto">
-            <Typography variant="title-sm">Contact</Typography>
+          <Container className="flex flex-col gap-4 w-auto pt-4">
+            <Typography className='text-lg'>Contact</Typography>
             <Container className="flex flex-col gap-5">
               <Container className="flex flex-col gap-1">
                 <Typography>+243 997 724 968</Typography>

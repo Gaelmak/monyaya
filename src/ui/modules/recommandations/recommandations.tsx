@@ -12,7 +12,7 @@ interface Props {
 
 export const Recommandations = async ({ trainer, branch, current }: Props) => {
   return (
-    <Container className="flex  px-4 md:px-8 md:py-10 flex-col gap-8 text-primary-50 bg-primary-400 w-full lg:px-[7vw]">
+    <Container className="flex  px-4 md:px-8 py-8 md:py-10 flex-col  gap-8 text-primary-50 bg-primary-400 w-full lg:px-[7vw]">
       <Container className="flex justify-between flex-col gap-3 items-center">
         <Typography component="h3" className="text-2xl font-bold">
           Formations Populaire
