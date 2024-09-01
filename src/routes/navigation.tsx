@@ -1,4 +1,3 @@
-import { Typography } from '@/ui/components/typography/typography';
 import MonYayaLogo from '../../public/Monyaya.png';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -42,13 +41,13 @@ export const Navigation = async ({ className }: Props) => {
         className
       )}
     >
-      <Container className="flex flex-row items-center justify-between px-8 lg:px-[7vw] h-[10vh]">
+      <Container className="flex flex-row items-center justify-between px-8 lg:px-[7vw] lg:h-[9vh] md:h-[10vh]">
         <Link href="/">
           <Image
             src={MonYayaLogo}
             alt="Logo MonYaya"
-            width={120}
-            height={120}
+            width={100}
+            height={100}
             priority
           />
         </Link>

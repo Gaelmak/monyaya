@@ -51,6 +51,7 @@ export const BecomeATrainer = async () => {
                     <Icon
                       className="text-primary-50 bg-primary-Default rounded-full p-1"
                       size={30}
+                      strokeWidth={1}
                     />
                   </Container>
                   <Container className="basis-5/6">
@@ -59,8 +60,8 @@ export const BecomeATrainer = async () => {
                     </Typography>
                   </Container>
                 </HoverCardTrigger>
-                <HoverCardContent className="bg-black rounded-xl -mt-5 -mb-5">
-                  <Typography className="text-primary-50  leading-relaxed">
+                <HoverCardContent className="bg-primary-50 rounded-xl -mt-5 -mb-5">
+                  <Typography className="text-black  leading-relaxed">
                     {description}
                   </Typography>
                 </HoverCardContent>

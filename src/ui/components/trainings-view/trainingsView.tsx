@@ -80,11 +80,10 @@ export const TrainingsView = ({
               />
             </Link>
             <Container className="gap-4 flex flex-row justify-between">
-              <Container className="flex items-center bg-primary-Default py-1 pr-2 rounded">
-                <Dot />
+              <Container className="flex items-center bg-primary-Default py-1 px-4 rounded">
                 <Typography className="text-sm">{courses.name}</Typography>
               </Container>
-              <Container className="flex items-center bg-primary-600 py-1 rounded px-2">
+              <Container className="flex items-center gap-1 bg-primary-600 py-1 rounded px-2">
                 <Calendar width={14} height={14} />
                 <Typography className="text-sm">
                   {format(createdAt, 'dd MMMM yyyy', { locale: fr })}
@@ -95,7 +94,7 @@ export const TrainingsView = ({
               href={`/trainings/training/${id}`}
               className="w-3/4 text-black"
             >
-              <Typography className="text-2xl font-bold">
+              <Typography className="text-xl font-bold">
                 {truncateText(name, 65)}
               </Typography>
             </Link>

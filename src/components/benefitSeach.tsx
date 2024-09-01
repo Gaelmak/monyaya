@@ -32,8 +32,11 @@ export const BenefitSearch = () => {
             <Container key={title} className="flex items-center">
               <Container className="pr-6">
                 <Icon
-                  className="text-white bg-primary-Default rounded-full p-1"
-                  size={35}
+                  className="text-white bg-primary-Default rounded-full p-1 "
+                  width={35}
+                  height={35}
+                  size={30}
+                  strokeWidth={1}
                 />
               </Container>
               <Container className="py-2 flex flex-col gap-1">
