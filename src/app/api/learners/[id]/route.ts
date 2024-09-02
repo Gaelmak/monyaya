@@ -7,7 +7,7 @@ export async function PATCH(
   { params: { id } }: { params: { id: string } }
 ) {
   const { status } = await req.json();
-  const data = await prisma.learners.update({
+  const data = await prisma.yaya.update({
     where: {
       id: id,
     },
@@ -26,7 +26,7 @@ export async function PATCH(
 export async function DELETE(req: Request) {
   const { id } = await req.json();
 
-  await prisma.learners.delete({
+  await prisma.yaya.delete({
     where: {
       id: id,
     },

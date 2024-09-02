@@ -5,10 +5,9 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   const { userId, trainingId } = await req.json();
 
-  const data = await prisma.learners.create({
+  const data = await prisma.yaya.create({
     data: {
       userId: userId,
-      trainingId: trainingId,
     },
   });
 

@@ -17,3 +17,14 @@ export const userAuth = async () => {
 
   return null;
 };
+
+export const userAuthRole = async () => {
+  const session = await auth();
+
+  if (session?.user) {
+    const user = session.user as User;
+    return user.role;
+  }
+
+  return null;
+};

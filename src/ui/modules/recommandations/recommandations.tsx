@@ -30,7 +30,6 @@ export const Recommandations = async ({ trainer, branch, current }: Props) => {
           className="grid grid-cols-1 md:grid-cols-3 gap-4 "
           data={staticData}
           userId={'123'}
-          // myLearnings={myLearnings!}
           sessionName={'jdoe'}
         />
       </Container>

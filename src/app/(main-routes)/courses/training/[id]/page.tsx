@@ -1,8 +1,8 @@
-import { Container } from '@/ui/components/container/container';
-import prisma from '@/lib/prisma';
-import { TrainingView } from '@/ui/components/training-view/training-view';
-import { Recommandations } from '@/ui/modules/recommandations/recommandations';
-import { userAuth } from '@/lib/helper';
+import { Container } from "@/ui/components/container/container";
+import prisma from "@/lib/prisma";
+import { TrainingView } from "@/ui/components/training-view/training-view";
+import { Recommandations } from "@/ui/modules/recommandations/recommandations";
+import { userAuth } from "@/lib/helper";
 
 export default async function Home({ params }: { params: { id: string } }) {
   const idTraining = decodeURIComponent(params.id);
@@ -14,18 +14,6 @@ export default async function Home({ params }: { params: { id: string } }) {
         },
         select: {
           id: true,
-        },
-      })
-    : null;
-  const myLearnings = userId
-    ? await prisma?.learners.findMany({
-        where: {
-          userId: userId!.id,
-        },
-        select: {
-          id: true,
-          trainingId: true,
-          status: true,
         },
       })
     : null;
@@ -76,19 +64,13 @@ export default async function Home({ params }: { params: { id: string } }) {
           },
         },
       },
-      learners: {
-        select: {
-          userId: true,
-          status: true,
-        },
-      },
     },
   });
 
   return (
     <Container>
       <Container className="flex py-8 px-4 md:px-8 bg-[#eee] md:py-8 flex-col gap-8">
-        {session || myLearnings ? (
+        {/* {session || myLearnings ? (
           <TrainingView
             className="grid grid-cols-1"
             data={training}
@@ -98,7 +80,7 @@ export default async function Home({ params }: { params: { id: string } }) {
           />
         ) : (
           <TrainingView className="grid grid-cols-1" data={training} />
-        )}
+        )} */}
       </Container>
       <Container>
         {training.map(({ id, courses, user }) => (

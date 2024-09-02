@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
-import { AuthProvider } from './auth-provider';
+import ContextProvider from '@/components/context-provider';
 
 export const metadata: Metadata = {
   title: 'MonYaya',
@@ -14,10 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className="notranslate">
-      <AuthProvider>
-        <body className={GeistSans.className}>{children}</body>
-      </AuthProvider>
+    <html lang="fr">
+      <body className={GeistSans.className}>
+        <ContextProvider>{children}</ContextProvider>
+      </body>
     </html>
   );
 }

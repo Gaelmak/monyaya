@@ -18,18 +18,6 @@ export default async function Home({ params }: { params: { name: string } }) {
         },
       })
     : null;
-  const myLearnings = session
-    ? await prisma?.learners.findMany({
-        where: {
-          userId: userId!.id,
-        },
-        select: {
-          id: true,
-          trainingId: true,
-          status: true,
-        },
-      })
-    : null;
   const user = await prisma?.user.findUnique({
     where: {
       name: name!,
@@ -121,7 +109,7 @@ export default async function Home({ params }: { params: { name: string } }) {
             <Typography variant="title-lg" className="pb-4">
               Formations
             </Typography>
-            {session || myLearnings ? (
+            {/* {session || myLearnings ? (
               <TrainingsView
                 className="grid grid-cols-1 md:grid-cols-3 gap-4 "
                 data={user.trainings}
@@ -134,7 +122,7 @@ export default async function Home({ params }: { params: { name: string } }) {
                 className="grid grid-cols-1 md:grid-cols-3 gap-4 "
                 data={user.trainings}
               />
-            )}
+            )} */}
           </Container>
         </>
       ) : null}

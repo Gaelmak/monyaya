@@ -37,7 +37,7 @@ export const UserDescription = ({ name }: Props) => {
     startLoading();
     const { bio, terms_and_conditions } = values;
 
-    const userToTrainer = await fetch(`/api/user/${name}`, {
+    const userToTrainer = await fetch(`/api/yaya/${name}`, {
       method: 'PATCH',
       credentials: 'include',
       headers: {
@@ -52,11 +52,10 @@ export const UserDescription = ({ name }: Props) => {
     if (userToTrainer.status === 200) {
       toast({
         variant: 'success',
-        title: 'Maintenant YAYA!',
+        title: 'En attente',
         description: (
           <Typography component="p" variant="body-sm">
-            Bienvenue parmi nous! Vous venez officiellement de devenir un
-            "YAYA".
+            Votre demande est en cours de traitement. Merci de patienter.
           </Typography>
         ),
       });

@@ -12,15 +12,11 @@ export const MainRoutes: AppLinks[] = [
   },
   {
     title: 'Formations',
-    baseUrl: '/trainings',
+    baseUrl: '/courses',
   },
   {
     title: 'À propos',
     baseUrl: '/about',
-  },
-  {
-    title: 'Contact',
-    baseUrl: '/contact',
   },
 ];
 
@@ -36,18 +32,6 @@ export const Company: AppLinks[] = [
   {
     title: "Termes d'utilisation",
     baseUrl: '/terms-of-use',
-  },
-  {
-    title: 'Devenir Formateur',
-    baseUrl: '/',
-  },
-  {
-    title: 'Newsletters',
-    baseUrl: '/newsletters',
-  },
-  {
-    title: 'Feedback',
-    baseUrl: '/feedback',
   },
 ];
 

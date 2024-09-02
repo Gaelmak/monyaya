@@ -1,7 +1,7 @@
-import { Container } from '@/ui/components/container/container';
-import { SearchResults } from '@/ui/modules/search-result/search-result';
-import prisma from '@/lib/prisma';
-import { userAuth } from '@/lib/helper';
+import { Container } from "@/ui/components/container/container";
+import { SearchResults } from "@/ui/modules/search-result/search-result";
+import prisma from "@/lib/prisma";
+import { userAuth } from "@/lib/helper";
 
 export default async function Home() {
   const session = await userAuth();
@@ -12,18 +12,6 @@ export default async function Home() {
         },
         select: {
           id: true,
-        },
-      })
-    : null;
-  const myLearnings = userId
-    ? await prisma?.learners.findMany({
-        where: {
-          userId: userId!.id,
-        },
-        select: {
-          id: true,
-          trainingId: true,
-          status: true,
         },
       })
     : null;
@@ -64,15 +52,9 @@ export default async function Home() {
           },
         },
       },
-      learners: {
-        select: {
-          userId: true,
-          status: true,
-        },
-      },
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
   return (
@@ -80,7 +62,7 @@ export default async function Home() {
       <Container className="px-4 md:px-8 my-[12vh]">
         <SearchResults
           session={session}
-          myLearnings={myLearnings}
+          myLearnings={null}
           userId={userId}
           trainings={trainings}
         />
