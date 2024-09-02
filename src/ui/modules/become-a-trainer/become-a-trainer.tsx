@@ -1,41 +1,80 @@
-import { Container } from "@/ui/components/container/container";
-import { Typography } from "@/ui/components/typography/typography";
-import { OurBenefitsForTrainers } from "@/lib/our-benefits/our-benefits";
-import { SignInButton } from "@/routes/auth-buttons";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import { Typography } from '@/ui/components/typography/typography';
+import { OurBenefitsForTrainers } from '@/lib/our-benefits/our-benefits';
+import { SignInButton } from '@/routes/auth-buttons';
+import { userAuth } from '@/lib/helper';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card';
+import Image from 'next/image';
+import yaya from '../../../../public/yayaMonyaya.png';
 
 export const BecomeATrainer = async () => {
   const user = await userAuth();
   return (
-    <Container className="px-6 md:px-8 py-24 flex flex-col gap-20 bg-secondary-50">
-      <Container className="flex flex-col items-center">
-        <Typography variant="title-lg" className="md:w-[60%] text-center">
-          Devenez formateur sur notre plateforme et profitez de nombreux
-          avantages !
-        </Typography>
-        <Typography className="md:w-[60%] text-center">
-          Partagez votre expertise et enrichissez votre parcours professionnel
-          grâce à notre plateforme conviviale et innovante.
-        </Typography>
-      </Container>
-      <Container className="grid grid-cols-2 md:grid-cols-3 gap-8">
-        {OurBenefitsForTrainers.map(({ Icon, title, description }) => (
-          <Container key={title} className="flex flex-col md:flex-row gap-4">
-            <Container className="basis-1/6">
-              <Icon className="text-secondary-Default" size={48} />
-            </Container>
-            <Container className="basis-5/6">
-              <Typography variant="title-sm">{title}</Typography>
-              <Typography>{description}</Typography>
-            </Container>
-          </Container>
-        ))}
-      </Container>
-      {!user && (
-        <Container className="w-full flex justify-center">
-          <SignInButton />
+    <Container className="bg-secondary-50 flex flex-col-reverse md:flex-row-reverse items-center justify-center w-full ">
+      <Container className="flex pb-24 md:pb-0">
+        <Container className="rounded-b-full border-dashed border-2 border-primary-Default p-2 md:w-full m-auto">
+          <Image
+            src={yaya}
+            width={300}
+            height={300}
+            alt="yaya"
+            className="object-cover rounded-b-full"
+          />
         </Container>
-      )}
+      </Container>
+      <Container className="px-4  py-10 md:py-24 flex flex-col w-full md:w-3/5 gap-8">
+        <Container className="flex flex-col items-start gap-2 text-center md:text-left">
+          <Typography className="text-center md:text-left text-2xl md:text-3xl font-semibold">
+            Vous êtes un enseignant certifié ? <br />
+            <span className="text-primary-Default"> devenez formateur</span> .
+          </Typography>
+          <Typography className="text-base md:w-4/5">
+            Partagez votre expertise et enrichissez votre parcours professionnel
+            en rejoignant notre plateforme conviviale et innovante, où vous
+            pouvez inspirer, éduquer, et avoir un impact en tant qu'instructeur
+            certifié.
+          </Typography>
+        </Container>
+        <Typography className="text-center md:text-left text-xl md:text-3xl font-semibold">
+          Bénéficiez de nombreux avantages
+        </Typography>
+        <Container className="grid grid-cols-2 md:grid-cols-2 gap-2 ">
+          {OurBenefitsForTrainers.map(({ Icon, title, description }) => (
+            <HoverCard key={title}>
+              <Container className="">
+                <HoverCardTrigger className="flex flex-row md:flex-row gap-4 py-3 cursor-pointer">
+                  <Container className="">
+                    <Icon
+                      className="text-primary-50 bg-primary-Default rounded-full p-1"
+                      size={30}
+                      strokeWidth={1}
+                    />
+                  </Container>
+                  <Container className="basis-5/6">
+                    <Typography className="text-lg font-semibold">
+                      {title}
+                    </Typography>
+                  </Container>
+                </HoverCardTrigger>
+                <HoverCardContent className="bg-primary-50 rounded-xl -mt-5 -mb-5">
+                  <Typography className="text-black  leading-relaxed">
+                    {description}
+                  </Typography>
+                </HoverCardContent>
+              </Container>
+            </HoverCard>
+          ))}
+        </Container>
+        {!user && (
+          <Container className="w-full flex justify-start">
+            <SignInButton />
+          </Container>
+        )}
+      </Container>
     </Container>
   );
 };

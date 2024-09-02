@@ -1,9 +1,9 @@
-import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil";
-import { Container } from "@/ui/components/container/container";
-import { TrainingsView } from "@/ui/components/trainings-view/trainings-view";
-import prisma from "@/lib/prisma";
-import { Typography } from "@/ui/components/typography/typography";
-import { userAuth } from "@/lib/helper";
+import { YayaProfil } from '@/ui/modules/yaya-profil/yaya-profil';
+import { Container } from '@/ui/components/container/container';
+import { TrainingsView } from '@/ui/components/trainings-view/trainingsView';
+import prisma from '@/lib/prisma';
+import { Typography } from '@/ui/components/typography/typography';
+import { userAuth } from '@/lib/helper';
 
 export default async function Home({ params }: { params: { name: string } }) {
   const name = decodeURIComponent(params.name);
@@ -15,18 +15,6 @@ export default async function Home({ params }: { params: { name: string } }) {
         },
         select: {
           id: true,
-        },
-      })
-    : null;
-  const myLearnings = session
-    ? await prisma?.learners.findMany({
-        where: {
-          userId: userId!.id,
-        },
-        select: {
-          id: true,
-          trainingId: true,
-          status: true,
         },
       })
     : null;
@@ -88,7 +76,7 @@ export default async function Home({ params }: { params: { name: string } }) {
           },
         },
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
       },
     },
@@ -121,7 +109,7 @@ export default async function Home({ params }: { params: { name: string } }) {
             <Typography variant="title-lg" className="pb-4">
               Formations
             </Typography>
-            {session || myLearnings ? (
+            {/* {session || myLearnings ? (
               <TrainingsView
                 className="grid grid-cols-1 md:grid-cols-3 gap-4 "
                 data={user.trainings}
@@ -134,7 +122,7 @@ export default async function Home({ params }: { params: { name: string } }) {
                 className="grid grid-cols-1 md:grid-cols-3 gap-4 "
                 data={user.trainings}
               />
-            )}
+            )} */}
           </Container>
         </>
       ) : null}

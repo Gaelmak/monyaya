@@ -1,16 +1,11 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
-import { AuthProvider } from "./auth-provider";
-
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-});
+import './globals.css';
+import type { Metadata } from 'next';
+import { GeistSans } from 'geist/font/sans';
+import ContextProvider from '@/components/context-provider';
 
 export const metadata: Metadata = {
-  title: "MonYaya",
-  description: "%s | MonYaya",
+  title: 'MonYaya',
+  description: '%s | MonYaya',
 };
 
 export default function RootLayout({
@@ -20,9 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <AuthProvider>
-        <body className={poppins.className}>{children}</body>
-      </AuthProvider>
+      <body className={GeistSans.className}>
+        <ContextProvider>{children}</ContextProvider>
+      </body>
     </html>
   );
 }

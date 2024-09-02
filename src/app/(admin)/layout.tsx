@@ -1,56 +1,23 @@
-import { Container } from "@/ui/components/container/container";
-import { AsideNav } from "@/routes/aside-nav";
-import { Toaster } from "@/components/ui/toaster";
-import { redirect } from "next/navigation";
-import { MobileAsideNav } from "@/routes/mobile-aside-nav";
-import prisma from "@/lib/prisma";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import { AsideNav } from '@/routes/aside-nav';
+import { Toaster } from '@/components/ui/toaster';
+import { redirect } from 'next/navigation';
+import { MobileAsideNav } from '@/routes/mobile-aside-nav';
+import { userAuth } from '@/lib/helper';
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await userAuth();
+  const user = await userAuth();
 
-  if (!session) {
-    redirect("/signin");
+  if (!user) {
+    redirect('/signin');
   }
 
-  const user = await prisma!.user.findUnique({
-    where: {
-      name: session!.name!,
-    },
-    select: {
-      image: true,
-      firstName: true,
-      lastName: true,
-      phoneNumber: true,
-      password: true,
-      municipality: true,
-      district: true,
-      avenue: true,
-      number: true,
-    },
-  });
-
-  if (
-    !user?.firstName ||
-    user.firstName === "" ||
-    !user?.lastName ||
-    user.lastName === "" ||
-    !user?.phoneNumber ||
-    user.phoneNumber === "" ||
-    !user?.municipality ||
-    user.municipality === "" ||
-    !user?.district ||
-    user.district === "" ||
-    !user?.avenue ||
-    user.avenue === "" ||
-    !user?.number ||
-    user.number === ""
-  ) {
-    redirect("/onboarding");
+  if (!user.email || user.email === '') {
+    redirect('/onboarding');
   }
 
   return (

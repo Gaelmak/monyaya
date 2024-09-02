@@ -1,23 +1,22 @@
-import { 
+import {
   Card,
   CardHeader,
   CardContent,
   CardDescription,
   CardFooter,
-  CardTitle
-} from "@/components/ui/card"
-import { Typography } from "../typography/typography"
-import { BedDouble, Hotel, LocateFixed, Timer } from "lucide-react"
-import { Container } from "../container/container"
+  CardTitle,
+} from '@/components/ui/card';
+import { Typography } from '../typography/typography';
+import { BedDouble, Hotel, LocateFixed, Timer } from 'lucide-react';
+import { Container } from '../container/container';
 
 interface Props {
-  bedroom : {}
+  bedroom: {};
 }
 
-let description = 'Chambre, salon, wifi inclus, ... Description complete de la chambre mise en location'
-export const Cards = ({
-  bedroom
-}: Props) => {
+let description =
+  'Chambre, salon, wifi inclus, ... Description complete de la chambre mise en location';
+export const Cards = ({ bedroom }: Props) => {
   return (
     <>
       {/* {
@@ -59,7 +58,6 @@ export const Cards = ({
           </Card>
         )
       } */}
-      
     </>
-  )
-}
+  );
+};

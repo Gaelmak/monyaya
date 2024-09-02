@@ -30,12 +30,20 @@ export function saltPassword(password: string): HashedPassword {
   };
 }
 
-export function verifyPassword(password: string, hashedPassword: string, salt: string): boolean {
+export function verifyPassword(
+  password: string,
+  hashedPassword: string,
+  salt: string
+): boolean {
   // Hash provided password with stored salt
-  const saltedPassword = CryptoJS.PBKDF2(password, CryptoJS.enc.Hex.parse(salt), {
-    keySize: 512 / 32,
-    iterations: 1000,
-  });
+  const saltedPassword = CryptoJS.PBKDF2(
+    password,
+    CryptoJS.enc.Hex.parse(salt),
+    {
+      keySize: 512 / 32,
+      iterations: 1000,
+    }
+  );
 
   // Convert to hex string
   const hash = saltedPassword.toString(CryptoJS.enc.Hex);

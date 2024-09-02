@@ -1,0 +1,11 @@
+User-agent: *
+
+# Bloque l'accès à certaines sections privées
+Disallow: /admin/
+Disallow: /login/
+Disallow: /api/
+Disallow: /private/
+
+# Autorise l'accès aux sections publiques
+Allow: /public/
+Allow: /blog/

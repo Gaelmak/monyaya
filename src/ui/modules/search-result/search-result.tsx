@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Container } from "@/ui/components/container/container";
-import { TrainingsView } from "@/ui/components/trainings-view/trainings-view";
-import { Typography } from "@/ui/components/typography/typography";
-import { Filter } from "./filter";
-import useFilterTypeStore from "@/store/filter-type-store";
-import { FilterData } from "@/lib/filter-data/filter-data";
+import { Container } from '@/ui/components/container/container';
+import { TrainingsView } from '@/ui/components/trainings-view/trainingsView';
+import { Typography } from '@/ui/components/typography/typography';
+import { Filter } from './filter';
+import useFilterTypeStore from '@/store/filter-type-store';
+import { FilterData } from '@/lib/filter-data/filter-data';
 
 interface Props {
   session: any;

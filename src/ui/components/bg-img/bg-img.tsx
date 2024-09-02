@@ -1,38 +1,29 @@
-import Image, { StaticImageData } from "next/image"
-import { Container } from "../container/container"
-import clsx from "clsx"
+import Image, { StaticImageData } from 'next/image';
+import { Container } from '../container/container';
+import clsx from 'clsx';
 
 interface Props {
-  children?: React.ReactNode
-  className?: string
-  src: StaticImageData | string
-  alt: string
-  classNameImg?: string
+  children?: React.ReactNode;
+  className?: string;
+  src: StaticImageData | string;
+  alt: string;
+  classNameImg?: string;
 }
 
 export const BgImg = ({
-  children, 
+  children,
   src,
   alt,
-  className, 
-  classNameImg
+  className,
+  classNameImg,
 }: Props) => {
   return (
-    <Container 
-      className={
-        clsx(
-          className
-        )
-      }
-    >
-      <Container 
-        className={clsx(
-          "w-full h-full overflow-auto relative",
-          classNameImg
-        )}
+    <Container className={clsx(className)}>
+      <Container
+        className={clsx('w-full h-full overflow-auto relative', classNameImg)}
       >
         <Image
-          src={src} 
+          src={src}
           alt={alt}
           fill={true}
           className="object-cover object-center z-[-1]"
@@ -42,5 +33,5 @@ export const BgImg = ({
         {children}
       </Container>
     </Container>
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function UseLoading() : [boolean, () => void, () => void] {
+export default function UseLoading(): [boolean, () => void, () => void] {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const startLoading = () => {
@@ -10,8 +10,6 @@ export default function UseLoading() : [boolean, () => void, () => void] {
   const stopLoading = () => {
     setLoading(false);
   };
-  
 
   return [isLoading, startLoading, stopLoading];
 }
-

@@ -1,8 +1,8 @@
-import { Container } from "@/ui/components/container/container";
-import { Init } from "../steps/init";
-import { ScrollOnboard } from "@/ui/components/scroll-onboard/scroll-onboard";
-import { CompleteRegistration } from "../steps/complete-registration";
-import { userAuth } from "@/lib/helper";
+import { Container } from '@/ui/components/container/container';
+import { Init } from '../steps/init';
+import { ScrollOnboard } from '@/ui/components/scroll-onboard/scroll-onboard';
+import { CompleteRegistration } from '../steps/complete-registration';
+import { userAuth } from '@/lib/helper';
 
 export default async function Home() {
   const session = await userAuth();
@@ -30,11 +30,11 @@ export default async function Home() {
       <ScrollOnboard
         data={[
           {
-            id: "init",
+            id: 'init',
             element: <Init />,
           },
           {
-            id: "init2",
+            id: 'init2',
             element: <CompleteRegistration data={user!} name={user!.name} />,
           },
         ]}

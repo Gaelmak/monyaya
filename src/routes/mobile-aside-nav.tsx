@@ -1,8 +1,8 @@
-import MonYayaLogo from "../../public/Monyaya.png";
-import Link from "next/link";
-import clsx from "clsx";
-import Image from "next/image";
-import { Container } from "@/ui/components/container/container";
+import MonYayaLogo from '../../public/Monyaya.png';
+import Link from 'next/link';
+import clsx from 'clsx';
+import Image from 'next/image';
+import { Container } from '@/ui/components/container/container';
 import {
   Sheet,
   SheetContent,
@@ -10,11 +10,11 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import Default from "../../public/default_avatar.jpg";
-import { AsideNav } from "./aside-nav";
-import prisma from "@/lib/prisma";
-import { userAuth } from "@/lib/helper";
+} from '@/components/ui/sheet';
+import Default from '../../public/default_avatar.jpg';
+import { AsideNav } from './aside-nav';
+import prisma from '@/lib/prisma';
+import { userAuth } from '@/lib/helper';
 
 interface Props {
   className: string;
@@ -34,7 +34,7 @@ export const MobileAsideNav = async ({ className }: Props) => {
   return (
     <header
       className={clsx(
-        "z-40 fixed top-0 left-0 right-0 border-b-[1px] bg-white border-slate-50",
+        'z-40 fixed top-0 left-0 right-0 border-b-[1px] bg-white border-slate-50',
         className
       )}
     >

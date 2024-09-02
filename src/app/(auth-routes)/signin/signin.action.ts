@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import prisma from "@/lib/prisma";
+import prisma from '@/lib/prisma';
 
 export default async function isUserExist(userName: string) {
   const user = await prisma.user.findUnique({

@@ -5,30 +5,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Textarea } from "@/components/ui/textarea"
-import { Input } from "@/components/ui/input"
-import { Container } from "../container/container"
-import clsx from "clsx"
-import { Typography } from "../typography/typography"
+} from '@/components/ui/form';
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import { Container } from '../container/container';
+import clsx from 'clsx';
+import { Typography } from '../typography/typography';
 
 interface Props {
-  control: any
-  name: string
-  label?: string | React.ReactNode
-  placeholder?: string
-  description? : string | React.ReactNode
-  type?: 
-    'text'      | 
-    'email'     |
-    'file'      |
-    'password'  |
-    'textarea'  |
-    'number'
-  autocompletion? : boolean
-  children? : React.ReactNode
-  required? : boolean
-  className? : string
+  control: any;
+  name: string;
+  label?: string | React.ReactNode;
+  placeholder?: string;
+  description?: string | React.ReactNode;
+  type?: 'text' | 'email' | 'file' | 'password' | 'textarea' | 'number';
+  autocompletion?: boolean;
+  children?: React.ReactNode;
+  required?: boolean;
+  className?: string;
 }
 
 export const InputField = ({
@@ -41,7 +35,7 @@ export const InputField = ({
   autocompletion = true,
   children,
   required = false,
-  className
+  className,
 }: Props) => {
   return (
     <FormField
@@ -49,46 +43,42 @@ export const InputField = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          {
-            label ?
-                required ?
-                <FormLabel>
-                  <Typography variant="title-sm" component="h4" className="">
-                    {label}{' '}<span className="text-red-500">*</span>
-                  </Typography>
-                </FormLabel>
-                :
-                <FormLabel htmlFor={name}>
-                  <Typography variant="title-sm" component="h4" className="">
-                    {label}
-                  </Typography>
-                </FormLabel>
-            :
-            null
-          }
+          {label ? (
+            required ? (
+              <FormLabel>
+                <Typography variant="title-sm" component="h4" className="">
+                  {label} <span className="text-red-500">*</span>
+                </Typography>
+              </FormLabel>
+            ) : (
+              <FormLabel htmlFor={name}>
+                <Typography variant="title-sm" component="h4" className="">
+                  {label}
+                </Typography>
+              </FormLabel>
+            )
+          ) : null}
           <FormControl>
             <Container className="relative flex justify-center items-center">
-              {
-                type === "textarea" ?
+              {type === 'textarea' ? (
                 <Textarea
                   placeholder={placeholder}
                   className={clsx(
-                    "resize-none rounded h-48 focus:ring-primary-Default border-secondary-300",
-                    children? "pl-12" : "",
+                    'resize-none rounded h-48 focus:ring-primary-Default border-secondary-300',
+                    children ? 'pl-12' : '',
                     className
-                    )}
+                  )}
                   {...field}
                 />
-                :
-                type === "file" ?
+              ) : type === 'file' ? (
                 <Input
                   id={name}
                   placeholder={placeholder}
                   type="file"
                   className={clsx(
-                    "rounded focus:ring-primary-Default border-secondary-300",
-                    children? "pl-12" : "",
-                  className
+                    'rounded focus:ring-primary-Default border-secondary-300',
+                    children ? 'pl-12' : '',
+                    className
                   )}
                   {...field}
                   onChange={(event) => {
@@ -96,30 +86,28 @@ export const InputField = ({
                   }}
                   value={undefined}
                 />
-                :
-                <Input 
+              ) : (
+                <Input
                   className={clsx(
-                    "rounded focus:ring-primary-Default border-secondary-300",
-                    children? "pl-12" : "",
+                    'rounded focus:ring-primary-Default border-secondary-300',
+                    children ? 'pl-12' : '',
                     className
                   )}
-                  placeholder={placeholder} {...field} type={type} name={name} id={name} autoComplete={"'" + {autocompletion} +"'"}
+                  placeholder={placeholder}
+                  {...field}
+                  type={type}
+                  name={name}
+                  id={name}
+                  autoComplete={"'" + { autocompletion } + "'"}
                 />
-              }
-              {
-                children?
-                  children
-                :
-                null
-              }
+              )}
+              {children ? children : null}
             </Container>
           </FormControl>
-          <FormDescription>
-            {description}
-          </FormDescription>
+          <FormDescription>{description}</FormDescription>
           <FormMessage />
         </FormItem>
       )}
     />
-  )
-}
+  );
+};

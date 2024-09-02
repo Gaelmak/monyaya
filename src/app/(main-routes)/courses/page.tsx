@@ -15,18 +15,6 @@ export default async function Home() {
         },
       })
     : null;
-  const myLearnings = userId
-    ? await prisma?.learners.findMany({
-        where: {
-          userId: userId!.id,
-        },
-        select: {
-          id: true,
-          trainingId: true,
-          status: true,
-        },
-      })
-    : null;
   const trainings = await prisma?.trainings.findMany({
     include: {
       _count: {
@@ -64,12 +52,6 @@ export default async function Home() {
           },
         },
       },
-      learners: {
-        select: {
-          userId: true,
-          status: true,
-        },
-      },
     },
     orderBy: {
       createdAt: "desc",
@@ -80,7 +62,7 @@ export default async function Home() {
       <Container className="px-4 md:px-8 my-[12vh]">
         <SearchResults
           session={session}
-          myLearnings={myLearnings}
+          myLearnings={null}
           userId={userId}
           trainings={trainings}
         />

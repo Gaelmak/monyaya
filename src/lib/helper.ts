@@ -1,5 +1,5 @@
-import { auth } from "@/auth";
-import type { User } from "@prisma/client";
+import { auth } from '@/auth';
+import type { User } from '@prisma/client';
 
 export class AuthError extends Error {
   constructor(message: string) {
@@ -13,6 +13,17 @@ export const userAuth = async () => {
   if (session?.user) {
     const user = session.user as User;
     return user;
+  }
+
+  return null;
+};
+
+export const userAuthRole = async () => {
+  const session = await auth();
+
+  if (session?.user) {
+    const user = session.user as User;
+    return user.role;
   }
 
   return null;

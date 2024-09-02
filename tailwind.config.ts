@@ -1,9 +1,8 @@
-import type { Config } from 'tailwindcss'
-import { withUt } from 'uploadthing/tw'
+import type { Config } from 'tailwindcss';
+import { withUt } from 'uploadthing/tw';
 
 export default withUt({
-
-  darkMode: ["class"],
+  darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -13,9 +12,9 @@ export default withUt({
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: '2rem',
       screens: {
-        "2xl": "1400px",
+        '2xl': '1400px',
       },
     },
     extend: {
@@ -26,13 +25,14 @@ export default withUt({
       },
       colors: {
         // forest-green
-        primary: { 
+        primary: {
           50: '#f2fbf3',
+          55: '#f4f8f4',
           100: '#e0f8e1',
           200: '#c3efc6',
           300: '#95e09c',
           400: '#5fc969',
-          Default : '#39ae44',
+          Default: '#39ae44',
           600: '#2a9134',
           700: '#24712c',
           800: '#215a28',
@@ -52,13 +52,13 @@ export default withUt({
           800: '#40424c',
           900: '#383942',
           950: '#25262c',
-        }, 
+        },
         destructive: '#ff0035',
         accent: '#f68e5f',
-        white : '#ffffff',
-        black : '#000f08',
+        white: '#ffffff',
+        black: '#000f08',
         // schist
-        gray : {
+        gray: {
           '50': '#f3f5f0',
           '100': '#e6e8df',
           '200': '#cfd3c3',
@@ -71,68 +71,28 @@ export default withUt({
           '900': '#35392e',
           '950': '#1b1d16',
         },
-        white_powder : '#fafaf2'
-      },
-      fontSize: {
-        'display': ['4rem', {
-          lineHeight: '120%',
-          fontWeight: '700'
-        }],
-        'title-lg': ['2.5rem', {
-          lineHeight: '120%',
-          fontWeight: '700'
-        }],
-        'title-base': ['1.5rem', {
-          lineHeight: '120%',
-          fontWeight: '700'
-        }],
-        'title-sm': ['1rem', {
-          lineHeight: '120%',
-          fontWeight: '600'
-        }], 
-        'title-xs': ['0.85rem', {
-          lineHeight: '120%',
-          fontWeight: '600'
-        }],
-        'body-lg': ['1.5rem', {
-          lineHeight: '120%',
-          fontWeight: '600'
-        }],
-        'body-base': ['1rem', {
-          lineHeight: '120%',
-          fontWeight: '400'
-
-        }],
-        'body-sm': ['0.85rem', {
-          lineHeight: '120%',
-          fontWeight: '400'
-        }],
+        white_powder: '#fafaf2',
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-  ],
- 
-})
-
-
+  plugins: [require('tailwindcss-animate')],
+});

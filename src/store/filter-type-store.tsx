@@ -1,22 +1,22 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 type State = {
-  filterType: string
-}
+  filterType: string;
+};
 
 type Actions = {
-  setFilterType: (filterType: State['filterType']) => void
-}
+  setFilterType: (filterType: State['filterType']) => void;
+};
 
 const initialState: State = {
-  filterType: 'Tous'
-}
+  filterType: 'Tous',
+};
 
 const useFilterTypeStore = create<State & Actions>()((set) => ({
   ...initialState,
   setFilterType: (filterType) => {
-    set({filterType: filterType})
-  }
-}))
+    set({ filterType: filterType });
+  },
+}));
 
-export default useFilterTypeStore
+export default useFilterTypeStore;
