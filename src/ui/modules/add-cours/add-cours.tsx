@@ -22,7 +22,7 @@ interface Props {
   userId: string;
 }
 
-export const AddTraining = ({ options, userId }: Props) => {
+export const AddCours = ({ options, userId }: Props) => {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, startLoading, stopLoading] = UseLoading();
@@ -244,7 +244,9 @@ export const AddTraining = ({ options, userId }: Props) => {
                   <InputField
                     control={form.control}
                     name={`chapters.${index}.description` as const}
-                    placeholder={`Ajouter une description au chapitre ${index + 1}`}
+                    placeholder={`Ajouter une description au chapitre ${
+                      index + 1
+                    }`}
                     type="textarea"
                   />
                 </Container>
