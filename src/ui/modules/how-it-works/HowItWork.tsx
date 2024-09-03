@@ -2,13 +2,13 @@
 
 import { Container } from '@/ui/components/container/container';
 import Image from 'next/image';
-import imageHowItWork from '../../../public/etudiant-positif-peau-foncee-porte-dossiers-livre-pointe-expression-joyeuse-cote-sourire-pleines-dents.png';
-import imageW from '../../../public/jeune-femme-coupe-cheveux-afro-portant-pull-rose-tenant-manuels.png';
+import imageHowItWork from 'public/etudiant-positif-peau-foncee-porte-dossiers-livre-pointe-expression-joyeuse-cote-sourire-pleines-dents.png';
+import imageW from 'public/jeune-femme-coupe-cheveux-afro-portant-pull-rose-tenant-manuels.png';
 import {
   HowItWorks_BecomeATrainer,
   HowItWorks_SuscribeToTraining,
 } from '@/lib/how-it-works/how-it-works';
-import { Typography } from '../components/typography/typography';
+import { Typography } from '@/ui/components/typography/typography';
 
 export const HowItWork = () => {
   return (
