@@ -62,7 +62,6 @@ model User {
   sessions               Session[]
 
   yaya                   Yaya?
-  trainings              Trainings[]
 }
 
 model VerificationToken {
@@ -73,34 +72,6 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Category {
-  id      String    @id @default(cuid())
-  name    String
-  courses Courses[]
-}
-
-model Courses {
-  id         String      @id @default(cuid())
-  name       String
-  categoryId String
-  category   Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  trainings  Trainings[]
-}
-
-model Trainings {
-  id          String     @id @default(cuid())
-  name        String
-  image       String?
-  description String
-  userId      String
-  price       Float
-  coursesId   String
-  createdAt   DateTime   @default(now())
-  modules     Modules[]
-  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  courses     Courses    @relation(fields: [coursesId], references: [id], onDelete: Cascade)
-}
-
 model Yaya {
   id         String       @id @default(cuid())
   userId     String       @unique
@@ -108,6 +79,32 @@ model Yaya {
   createdAt  DateTime     @default(now())
   approvedAt DateTime?
   user       User         @relation(fields: [userId], references: [id])
+
+  courses    Courses[]
+}
+
+model Courses {
+  id            String      @id @default(cuid())
+  yayaID        String
+  type          CourseType
+  status        Status
+  title         String
+  description   String
+  cover         String?
+  videoUrl      String?
+  monthlyPrice  Float
+  createAt      DateTime    @default(now())
+  valideAt      DateTime?
+  categoryId    String?
+  
+  category      Category?   @relation(fields: [categoryId], references: [id])
+  yaya          Yaya?       @relation(fields: [yayaID], references: [id])
+}
+
+model Category {
+  id      String    @id @default(cuid())
+  name    String
+  courses Courses[]
 }
 
 model Modules {
@@ -115,7 +112,6 @@ model Modules {
   title       String
   description String
   trainingId  String
-  trainings   Trainings @relation(fields: [trainingId], references: [id], onDelete: Cascade)
 }
 
 enum Role {
@@ -129,4 +125,10 @@ enum Status {
   APPROVED
   REJECTED
   ARCHIVED
+}
+
+enum CourseType {
+  ONLINE
+  DOMICILE
+  ONSITE
 }
