@@ -1,75 +1,18 @@
-'use client';
+"use client";
 
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import Image from 'next/image';
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import Image from "next/image";
 import {
   Company,
   MainRoutes,
   SocialNetworks,
-} from '@/lib/page-routes/page-routes';
-import Link from 'next/link';
-import logo from '../../../../public/Monyaya_white.png';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { useToast } from '@/components/ui/use-toast';
-import UseLoading from '@/hooks/use-loading';
-import { ContactFormFieldsType } from '@/types/forms';
-import { CopyrightIcon } from 'lucide-react';
+} from "@/lib/page-routes/page-routes";
+import Link from "next/link";
+import logo from "../../../../public/Monyaya_white.png";
+import { CopyrightIcon } from "lucide-react";
 
 export const Footer = () => {
-  const { toast } = useToast();
-  const [isLoading, startLoading, stopLoading] = UseLoading();
-  const form = useForm<z.infer<typeof ContactFormFieldsType>>({
-    resolver: zodResolver(ContactFormFieldsType),
-    defaultValues: {
-      email: '',
-      message: '',
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof ContactFormFieldsType>) {
-    startLoading();
-    const { email, message } = values;
-
-    const contact = await fetch('/api/contact', {
-      method: 'PATCH',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        message,
-      }),
-    });
-
-    if (contact.status === 200) {
-      toast({
-        variant: 'success',
-        title: 'Message envoyé',
-        description: (
-          <Typography component="p" variant="body-sm">
-            Message envoyé avec succès
-          </Typography>
-        ),
-      });
-      stopLoading();
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Erreur !',
-        description: (
-          <Typography component="p" variant="body-sm">
-            Une erreur est survenue. Veuillez réessayer.
-          </Typography>
-        ),
-      });
-      stopLoading();
-    }
-  }
-
   return (
     <footer className=" bg-primary-400 text-white z-10 flex flex-col items-center w-full">
       <Container className="flex flex-wrap   gap-6 md:flex-row justify-between items-center md:py-16  lg:px-[7vw] px-5 w-full">

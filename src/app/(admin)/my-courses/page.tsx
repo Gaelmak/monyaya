@@ -2,6 +2,8 @@ import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import { userAuth } from "@/lib/helper";
 import { Skeleton } from "@/components/ui/skeleton";
+import { DataTable } from "./data-table";
+import { columns } from "./columns";
 
 export default async function MyTrainingsPage() {
   const user = await userAuth();

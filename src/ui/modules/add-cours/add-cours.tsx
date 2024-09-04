@@ -18,14 +18,7 @@ import Image from "next/image";
 import DefaultAvatar from "../../../../public/default_avatar.jpg";
 import { TypeCourses } from "@/lib/types-courses/types-courses";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface Props {
   options: Options[];
@@ -50,6 +43,7 @@ export const AddCours = ({ options, userId }: Props) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
+  // Ajout d'image pour le cours
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
     if (file) {
@@ -69,12 +63,14 @@ export const AddCours = ({ options, userId }: Props) => {
 
   const { control } = form;
 
-  const { fields, append, remove } = useFieldArray({
-    name: "chapters",
-    control,
-  });
+  //gestion de chapitre ou lessons
+  // const { fields, append, remove } = useFieldArray({
+  //   name: "chapters",
+  //   control,
+  // });
 
-  async function onSubmit(values: z.infer<typeof NewTrainingFormFieldsType>) {
+  //definir d'abord comment les lessons doivent etre ajouter
+  /* async function onSubmit(values: z.infer<typeof NewTrainingFormFieldsType>) {
     startLoading();
     const { training_name, training_description, chapters, price, category } =
       values;
@@ -120,7 +116,7 @@ export const AddCours = ({ options, userId }: Props) => {
             ),
           });
           stopLoading();
-          router.push("/my-trainings");
+          router.push("/my-courses");
         } else {
           toast({
             variant: "destructive",
@@ -149,47 +145,47 @@ export const AddCours = ({ options, userId }: Props) => {
       setSelectedImage(null);
       stopLoading();
     }
-  }
+  }*/
 
   return (
     <Container className="w-2/3 flex flex-col  m-auto">
-      <Container className="flex flex-col gap-2 justify-center items-center w-full">
-        <Container className="w-full h-[30vh] rounded overflow-hidden">
-          <Image
-            width={100}
-            height={100}
-            src={preview ? preview : DefaultAvatar}
-            alt="User profile image"
-            className="h-full w-full object-cover "
-          />
-        </Container>
-        <Container className="flex flex-col gap-4 lg:flex-row justify-between items-center">
-          <label
-            htmlFor="profil"
-            className="cursor-pointer text-gray-500 hover:text-primary-Default animate"
-          >
-            Selectionnez une photo de couverture pour votre formation
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            id="profil"
-            onChange={handleImageChange}
-            className="hidden"
-          />
-        </Container>
-      </Container>
-      <Card className="w-full mb-5 bg-white">
-        <CardHeader>
-          <CardTitle>Ajouter un cours</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form>
+      <Form {...form}>
+        <form>
+          <Container className="relative flex flex-col justify-center items-center w-full mb-5">
+            <Container className="w-full h-[30vh] rounded overflow-hidden">
+              <Image
+                width={100}
+                height={100}
+                src={preview ? preview : DefaultAvatar}
+                alt="User profile image"
+                className="h-full w-full object-cover "
+              />
+            </Container>
+            <Container className="absolute right-4 bottom-0 transform -translate-y-1/2 flex flex-col  lg:flex-row justify-between items-center">
+              <label
+                htmlFor="profil"
+                className="cursor-pointer text-gray-500 hover:text-primary-Default animate bg-slate-50 px-4 py-2 rounded"
+              >
+                Ajouter une image
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                id="profil"
+                onChange={handleImageChange}
+                className="hidden"
+              />
+            </Container>
+          </Container>
+          <Typography className="text-xl font-semibold">
+            Ajouter un cours
+          </Typography>
+          <Card className="w-full mb-5 bg-white pt-3">
+            <CardContent>
               <Typography
                 variant="title-sm"
                 component="h4"
-                className="text-sm text-secondary-600 mb-1"
+                className="text-sm text-secondary-400 mb-1"
               >
                 Titre
               </Typography>
@@ -201,7 +197,7 @@ export const AddCours = ({ options, userId }: Props) => {
               <Typography
                 variant="title-xs"
                 component="h4"
-                className=" text-sm text-secondary-600 mb-1"
+                className=" text-sm text-secondary-400 mb-1"
               >
                 Branche de votre formation
               </Typography>
@@ -216,7 +212,7 @@ export const AddCours = ({ options, userId }: Props) => {
                   <Typography
                     variant="title-sm"
                     component="h4"
-                    className="text-sm text-secondary-600 mb-1"
+                    className="text-sm text-secondary-400 mb-1"
                   >
                     Prix
                   </Typography>
@@ -238,7 +234,7 @@ export const AddCours = ({ options, userId }: Props) => {
                   <Typography
                     variant="title-sm"
                     component="h4"
-                    className="text-sm text-secondary-600 mb-1"
+                    className="text-sm text-secondary-400 mb-1"
                   >
                     Type de formation
                   </Typography>
@@ -250,20 +246,20 @@ export const AddCours = ({ options, userId }: Props) => {
                   />
                 </Container>
               </Container>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
-      <Textarea placeholder="Description..." />
-      <Container className=" text-right mt-5">
-        <Buttons
-          type="submit"
-          isLoading={isLoading}
-          className="w-[15vw] text-right"
-        >
-          Créer la formation
-        </Buttons>
-      </Container>
+            </CardContent>
+          </Card>
+          <Textarea placeholder="Description..." />
+          <Container className=" text-right mt-5">
+            <Buttons
+              type="submit"
+              isLoading={isLoading}
+              className="w-[15vw] text-right"
+            >
+              Créer la formation
+            </Buttons>
+          </Container>
+        </form>
+      </Form>
     </Container>
   );
 };
