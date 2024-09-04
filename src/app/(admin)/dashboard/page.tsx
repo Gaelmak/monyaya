@@ -17,6 +17,8 @@ export default async function Home() {
     },
   });
 
+  console.log(userId);
+
   return (
     <Container className={clsx("p-4 rounded")}>
       <Container className="h-[100vh] flex flex-col justify-center items-center">
