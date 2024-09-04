@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -10,8 +10,8 @@ import {
   getFilteredRowModel,
   useReactTable,
   SortingState,
-  getSortedRowModel
-} from "@tanstack/react-table"
+  getSortedRowModel,
+} from "@tanstack/react-table";
 
 import {
   Table,
@@ -20,26 +20,26 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
-import { Buttons } from "@/ui/components/buttons/buttons"
-import { MoveLeft, MoveRight, Plus } from "lucide-react"
-import { Typography } from "@/ui/components/typography/typography"
-import { Input } from "@/components/ui/input"
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { MoveLeft, MoveRight, Plus } from "lucide-react";
+import { Typography } from "@/ui/components/typography/typography";
+import { Input } from "@/components/ui/input";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
+  );
   const table = useReactTable({
     data,
     columns,
@@ -57,8 +57,8 @@ export function DataTable<TData, TValue>({
       pagination: {
         pageSize: 5,
       },
-    }
-  })
+    },
+  });
 
   return (
     <div>
@@ -71,7 +71,12 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm rounded focus:ring-primary-Default border-secondary-300"
         />
-        <Buttons buttonType="link" baseUrl="/my-trainings/add" Icon={Plus} className="w-full md:w-auto">
+        <Buttons
+          buttonType="link"
+          baseUrl="/my-courses/add"
+          Icon={Plus}
+          className="w-full md:w-auto"
+        >
           Ajouter une formation
         </Buttons>
       </div>
@@ -84,15 +89,15 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead key={header.id}>
                       <Typography variant="title-sm" component="h4">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
                       </Typography>
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -106,14 +111,20 @@ export function DataTable<TData, TValue>({
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -142,5 +153,5 @@ export function DataTable<TData, TValue>({
         />
       </div>
     </div>
-  )
+  );
 }

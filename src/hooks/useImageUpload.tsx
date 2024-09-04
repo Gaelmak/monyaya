@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from "react";
 
 function useImageUpload(defaultImage: string | null = null) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);

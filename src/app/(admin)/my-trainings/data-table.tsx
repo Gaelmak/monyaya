@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import * as React from 'react';
+import * as React from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -11,7 +11,7 @@ import {
   useReactTable,
   SortingState,
   getSortedRowModel,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 
 import {
   Table,
@@ -20,12 +20,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { MoveLeft, MoveRight, Plus } from 'lucide-react';
-import { Typography } from '@/ui/components/typography/typography';
-import { Input } from '@/components/ui/input';
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { MoveLeft, MoveRight, Plus } from "lucide-react";
+import { Typography } from "@/ui/components/typography/typography";
+import { Input } from "@/components/ui/input";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -65,9 +65,9 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4 flex-col gap-4 md:flex-row justify-between">
         <Input
           placeholder="Filtrez par titre ..."
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm rounded focus:ring-primary-Default border-secondary-300"
         />
@@ -107,7 +107,7 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
+                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

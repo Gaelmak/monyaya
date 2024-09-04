@@ -1,7 +1,7 @@
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import { userAuth } from '@/lib/helper';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import { userAuth } from "@/lib/helper";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function MyTrainingsPage() {
   const user = await userAuth();

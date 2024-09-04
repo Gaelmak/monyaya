@@ -1,8 +1,8 @@
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import prisma from '@/lib/prisma';
-import { userAuth } from '@/lib/helper';
-import { AddCours } from '@/ui/modules/add-cours/add-cours';
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import prisma from "@/lib/prisma";
+import { userAuth } from "@/lib/helper";
+import { AddCours } from "@/ui/modules/add-cours/add-cours";
 
 export default async function Home() {
   const courses = await prisma.category.findMany({
