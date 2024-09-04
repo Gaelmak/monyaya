@@ -1,23 +1,31 @@
-'use client';
-import { Container } from '@/ui/components/container/container';
-import { Form } from '@/components/ui/form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useForm, useFieldArray } from 'react-hook-form';
-import { NewTrainingFormFieldsType } from '@/types/forms';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { Typography } from '@/ui/components/typography/typography';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
-import UseLoading from '@/hooks/use-loading';
-import { InputFieldSelect } from '@/ui/components/input-field-select/input-field-select';
-import { Options } from '@/types/options';
-import { useState, ChangeEvent, FormEvent } from 'react';
-import Image from 'next/image';
-import DefaultAvatar from '../../../../public/default_avatar.jpg';
-import { TypeCourses } from '@/lib/types-courses/types-courses';
-import { Textarea } from '@/components/ui/textarea';
+"use client";
+import { Container } from "@/ui/components/container/container";
+import { Form } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useForm, useFieldArray } from "react-hook-form";
+import { NewTrainingFormFieldsType } from "@/types/forms";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { Typography } from "@/ui/components/typography/typography";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import UseLoading from "@/hooks/use-loading";
+import { InputFieldSelect } from "@/ui/components/input-field-select/input-field-select";
+import { Options } from "@/types/options";
+import { useState, ChangeEvent, FormEvent } from "react";
+import Image from "next/image";
+import DefaultAvatar from "../../../../public/default_avatar.jpg";
+import { TypeCourses } from "@/lib/types-courses/types-courses";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface Props {
   options: Options[];
@@ -31,11 +39,11 @@ export const AddCours = ({ options, userId }: Props) => {
   const form = useForm<z.infer<typeof NewTrainingFormFieldsType>>({
     resolver: zodResolver(NewTrainingFormFieldsType),
     defaultValues: {
-      training_name: '',
-      training_description: '',
-      chapters: [{ title: '', description: '' }],
+      training_name: "",
+      training_description: "",
+      chapters: [{ title: "", description: "" }],
       price: 0,
-      category: '',
+      category: "",
     },
   });
 
@@ -62,7 +70,7 @@ export const AddCours = ({ options, userId }: Props) => {
   const { control } = form;
 
   const { fields, append, remove } = useFieldArray({
-    name: 'chapters',
+    name: "chapters",
     control,
   });
 
@@ -72,23 +80,23 @@ export const AddCours = ({ options, userId }: Props) => {
       values;
 
     const formData = new FormData();
-    formData.append('file', selectedImage!);
-    formData.append('name', userId + '_' + training_name);
-    formData.append('folder', 'Trainings');
+    formData.append("file", selectedImage!);
+    formData.append("name", userId + "_" + training_name);
+    formData.append("folder", "Trainings");
 
     try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
+      const response = await fetch("/api/upload", {
+        method: "POST",
         body: formData,
       });
       const data = await response.json();
       if (data.status === 200) {
         const url = data.fileUrl;
         const addTraining = await fetch(`/api/training`, {
-          method: 'POST',
-          credentials: 'include',
+          method: "POST",
+          credentials: "include",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             userId,
@@ -103,8 +111,8 @@ export const AddCours = ({ options, userId }: Props) => {
 
         if (addTraining.status === 200) {
           toast({
-            variant: 'success',
-            title: 'Youpi !',
+            variant: "success",
+            title: "Youpi !",
             description: (
               <Typography component="p" variant="body-sm">
                 Votre formation a été ajoutée avec succès
@@ -112,11 +120,11 @@ export const AddCours = ({ options, userId }: Props) => {
             ),
           });
           stopLoading();
-          router.push('/my-trainings');
+          router.push("/my-trainings");
         } else {
           toast({
-            variant: 'destructive',
-            title: 'Erreur !',
+            variant: "destructive",
+            title: "Erreur !",
             description: (
               <Typography component="p" variant="body-sm">
                 Une erreur est survenue durant l'enregistrement de votre
@@ -130,8 +138,8 @@ export const AddCours = ({ options, userId }: Props) => {
       stopLoading();
     } catch (error) {
       toast({
-        variant: 'destructive',
-        title: 'Erreur',
+        variant: "destructive",
+        title: "Erreur",
         description: (
           <Typography component="p" variant="body-sm">
             Une erreur est survenue, veuillez réessayer plus tard.
@@ -144,68 +152,67 @@ export const AddCours = ({ options, userId }: Props) => {
   }
 
   return (
-    <Container>
-      <Form {...form}>
-        <form>
-          <Container className="flex flex-col gap-2 justify-center items-center">
-            <Container className="w-full h-[30vh] rounded overflow-hidden">
-              <Image
-                width={100}
-                height={100}
-                src={preview ? preview : DefaultAvatar}
-                alt="User profile image"
-                className="h-full w-full object-cover "
-              />
-            </Container>
-            <Container className="flex flex-col gap-4 lg:flex-row justify-between items-center">
-              <label
-                htmlFor="profil"
-                className="cursor-pointer text-gray-500 hover:text-primary-Default animate"
+    <Container className="w-2/3 flex flex-col  m-auto">
+      <Container className="flex flex-col gap-2 justify-center items-center w-full">
+        <Container className="w-full h-[30vh] rounded overflow-hidden">
+          <Image
+            width={100}
+            height={100}
+            src={preview ? preview : DefaultAvatar}
+            alt="User profile image"
+            className="h-full w-full object-cover "
+          />
+        </Container>
+        <Container className="flex flex-col gap-4 lg:flex-row justify-between items-center">
+          <label
+            htmlFor="profil"
+            className="cursor-pointer text-gray-500 hover:text-primary-Default animate"
+          >
+            Selectionnez une photo de couverture pour votre formation
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            id="profil"
+            onChange={handleImageChange}
+            className="hidden"
+          />
+        </Container>
+      </Container>
+      <Card className="w-full mb-5 bg-white">
+        <CardHeader>
+          <CardTitle>Ajouter un cours</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form>
+              <Typography
+                variant="title-sm"
+                component="h4"
+                className="text-sm text-secondary-600 mb-1"
               >
-                Selectionnez une photo de couverture pour votre formation
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                id="profil"
-                onChange={handleImageChange}
-                className="hidden"
+                Titre
+              </Typography>
+              <InputField
+                control={form.control}
+                name="training_name"
+                placeholder="Titre de votre formation"
               />
-            </Container>
-          </Container>
-          <Container className="flex flex-col mx-auto gap-4 mt-4 w-3/4 ">
-            <Container className="h-screen">
-              <Container>
-                <Typography
-                  variant="title-xs"
-                  component="h4"
-                  className=" text-sm text-secondary-600 mb-1"
-                >
-                  Branche de votre formation
-                </Typography>
-                <InputFieldSelect
-                  control={form.control}
-                  name="category"
-                  options={options}
-                  placeholder="Selectionnez une branche pour votre formation"
-                />
-              </Container>
-              <Container className="flex flex-col gap-2">
-                <Typography
-                  variant="title-sm"
-                  component="h4"
-                  className="text-sm text-secondary-600 mb-1"
-                >
-                  Titre
-                </Typography>
-                <InputField
-                  control={form.control}
-                  name="training_name"
-                  placeholder="Titre de votre formation"
-                />
-              </Container>
+              <Typography
+                variant="title-xs"
+                component="h4"
+                className=" text-sm text-secondary-600 mb-1"
+              >
+                Branche de votre formation
+              </Typography>
+              <InputFieldSelect
+                control={form.control}
+                name="category"
+                options={options}
+                placeholder="Selectionnez une branche pour votre formation"
+              />
               <Container className="flex flex-row justify-between gap-4 items-start">
-                <Container>
+                <Container className="w-[27vw]">
                   <Typography
                     variant="title-sm"
                     component="h4"
@@ -213,12 +220,12 @@ export const AddCours = ({ options, userId }: Props) => {
                   >
                     Prix
                   </Typography>
-                  <div className="relative w-[27vw]">
+                  <div className="relative ">
                     <InputField
                       control={form.control}
                       name="price"
                       placeholder="Ajouter le prix de votre formation"
-                      description={'Dévise en dollar ($)'}
+                      description={"Dévise en dollar ($)"}
                       type="number"
                       className="w-full pr-16"
                     />
@@ -227,7 +234,7 @@ export const AddCours = ({ options, userId }: Props) => {
                     </span>
                   </div>
                 </Container>
-                <Container className="w-[27vw] mb-20">
+                <Container className="w-[27vw]">
                   <Typography
                     variant="title-sm"
                     component="h4"
@@ -243,20 +250,20 @@ export const AddCours = ({ options, userId }: Props) => {
                   />
                 </Container>
               </Container>
-              <Textarea placeholder="Description..." />
-            </Container>
-            <Container className=" text-right">
-              <Buttons
-                type="submit"
-                isLoading={isLoading}
-                className="w-[15vw] text-right"
-              >
-                Créer la formation
-              </Buttons>
-            </Container>
-          </Container>
-        </form>
-      </Form>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+      <Textarea placeholder="Description..." />
+      <Container className=" text-right mt-5">
+        <Buttons
+          type="submit"
+          isLoading={isLoading}
+          className="w-[15vw] text-right"
+        >
+          Créer la formation
+        </Buttons>
+      </Container>
     </Container>
   );
 };

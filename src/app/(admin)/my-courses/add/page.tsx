@@ -23,10 +23,7 @@ export default async function Home() {
 
   return (
     <main className="w-full min-h-[100vh] pt-24 md:pt-2 pb-8 flex flex-col p-4 gap-4">
-      <Container className="w-full h-full py-2 px-4 flex flex-col gap-4 bg-white rounded">
-        <Typography variant="title-base" component="h3">
-          Ajouter une formation
-        </Typography>
+      <Container className="w-full h-full py-2 px-4 flex flex-col gap-4  rounded">
         <AddCours userId={userData!.id!} options={courses} />
       </Container>
     </main>
