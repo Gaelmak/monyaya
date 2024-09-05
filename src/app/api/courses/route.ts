@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ status: 200, data: course });
+    return NextResponse.json(course, { status: 202 });
   } catch (error) {
     console.error("Error creating Yaya:", error);
     return new Response(
@@ -57,12 +57,29 @@ export async function POST(req: Request) {
 export async function GET(req: Request & NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const categoryId = searchParams.get("categoryId");
+  const yayaId = searchParams.get("yayaId");
 
   try {
     const courses = await prisma.courses.findMany({
-      ...(categoryId ? { where: { categoryId: categoryId } } : {}),
+      where: {
+        ...(categoryId ? { categoryId: categoryId } : {}),
+        ...(yayaId ? { yaya: { id: yayaId } } : {}),
+        status: "APPROVED",
+      },
       include: {
-        yaya: true,
+        yaya: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                image: true,
+                firstName: true,
+                lastName: true,
+              },
+            },
+          },
+        },
         category: true,
       },
     });
@@ -74,7 +91,7 @@ export async function GET(req: Request & NextRequest) {
       );
     }
 
-    return NextResponse.json({ status: 200, data: courses });
+    return NextResponse.json(courses, { status: 202 });
   } catch (error) {
     console.error("Error retrieving course:", error);
     return new Response(
