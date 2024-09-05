@@ -24,7 +24,7 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({ status: 200, data: course });
+    return NextResponse.json(course, { status: 202 });
   } catch (error) {
     console.error("Error retrieving course:", error);
     return new Response(
@@ -69,7 +69,7 @@ export async function PATCH(
       },
     });
 
-    return NextResponse.json({ status: 200, data: updatedCourse });
+    return NextResponse.json(updatedCourse, { status: 202 });
   } catch (error) {
     console.error("Error updating course:", error);
     return new Response(
@@ -106,7 +106,7 @@ export async function DELETE(
       },
     });
 
-    return NextResponse.json({ status: 200, data: deletedCourse });
+    return NextResponse.json(deletedCourse, { status: 202 });
   } catch (error) {
     console.error("Error deleting course:", error);
     return new Response(
