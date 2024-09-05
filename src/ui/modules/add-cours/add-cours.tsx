@@ -146,7 +146,7 @@ export const AddCours = ({ options, userId }: Props) => {
                         type="number"
                         className="w-full pr-16"
                       />
-                      <span className="absolute right-4 top-1/3 transform -translate-y-1/2 text-gray-500">
+                      <span className="absolute right-4 top-[4vh] transform -translate-y-1/2 text-gray-500">
                         /mois
                       </span>
                     </div>
