@@ -1,180 +1,101 @@
-'use client';
+"use client";
 
-import { Container } from '../container/container';
-import { Typography } from '../typography/typography';
+import { Typography } from "../typography/typography";
+import { Library, User } from "lucide-react";
+import { truncateText } from "@/lib/truncate-text";
+import RekreationPaysage from "../../../../public/rekreatioonPaysage.jpg";
+import Image from "next/image";
+import { Courses, User as UserProps, Yaya } from "@prisma/client";
+import { cn } from "@/lib/utils";
+import { Container } from "../container/container";
 import {
-  SearchResultButtons,
-  SearchResultTrainer,
-} from '@/ui/modules/search-result/search-result-buttons';
-import { BookOpenText, Calendar, Dot, List, Map } from 'lucide-react';
-import DefaultAvatar from '../../../../public/default_avatar.jpg';
-import { truncateText } from '@/lib/truncate-text';
-import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
-import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
-import RekreationPaysage from '../../../../public/rekreatioonPaysage.jpg';
-import Image from 'next/image';
-import Link from 'next/link';
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Loader } from "@/components/ui/loader";
+import Link from "next/link";
 
-interface Props {
-  data: {
-    id: string;
-    name: string;
-    image: string | null;
-    description: string;
-    price: number;
-    createdAt: Date;
-    _count: {
-      modules: number;
-    };
-    user: {
-      name: string;
-      firstName: string | null;
-      lastName: string | null;
-      municipality: string | null;
-      image?: string | null;
-    };
-    courses: {
-      name: string;
-    };
-  }[];
-  userId?: string;
-  sessionName?: string;
-  myLearnings?: {
-    id: string;
-    trainingId: string;
-    status: 'PENDING' | 'APPROVED' | 'REJECTED' | 'ARCHIVED';
-  }[];
+type TrainingsViewProps = {
   className?: string;
-}
+  data: (Courses & { yaya: Yaya & { user: UserProps } })[];
+  env?: "back" | "front";
+};
 
 export const TrainingsView = ({
-  data,
-  userId,
-  sessionName,
-  myLearnings,
   className,
-}: Props) => {
-  const pathname = usePathname();
-  const visibleData = data.slice(0, 3);
+  data: courses,
+  env,
+}: TrainingsViewProps) => {
+  const baseLink = env === "back" ? "/my-courses" : "/courses";
+  if (courses?.length > 0) {
+    return (
+      <Container className={cn(className, "w-full")}>
+        {courses.map((course, index) => (
+          <Link key={index} href={`${baseLink}/${course.id}`}>
+            <Card className="bg-white shadow-sm hover:shadow-md transition-all">
+              <CardHeader className="p-2 rounded-lg">
+                <Image
+                  src={course.cover || RekreationPaysage}
+                  alt="Training image"
+                  className="rounded-lg aspect-video"
+                />
+              </CardHeader>
+              <CardContent className="p-2 flex flex-col gap-3">
+                <div className="flex flex-row justify-between">
+                  <Badge className="py-1 rounded-lg bg-primary-200 text-black/80 flex items-center">
+                    <span className="text-sm bg-primary-600 w-2 h-2 rounded-full mr-[6px]"></span>
+                    {course.type}
+                  </Badge>
+                  <Badge className="py-1 rounded-lg bg-primary-600 text-white/80">
+                    6 mois
+                  </Badge>
+                </div>
+                <div className="pr-4 md:pr-16">
+                  <Typography className="text-xl md:text-2xl font-semibold text-primary-900">
+                    {truncateText(course.title, 65)}
+                  </Typography>
+                </div>
+                <div className="flex gap-2 items-center text-black/80 text-sm">
+                  <div className="flex gap-1 items-center">
+                    <Library size={18} className="text-primary-800" /> 16 lecons
+                  </div>
+                  <div className="flex gap-1 items-center">
+                    <User size={18} className="text-primary-800" /> 16 lecons
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="p-2 mx-2 border-t flex justify-between text-primary-950">
+                <p>
+                  <span className="text-lg font-semibold uppercase">
+                    {course.monthlyPrice}
+                  </span>
+                  <span className="text-sm font-semibold">$</span>
+                  <span className="text-sm">/mois</span>
+                </p>
+                <div className="flex items-center gap-2">
+                  <Avatar className="w-6 h-6 rounded-full border border-muted">
+                    <AvatarImage src={course.yaya.user.image || ""} />
+                    <AvatarFallback className="text-xs">
+                      <User size={12} />
+                    </AvatarFallback>
+                  </Avatar>
+                  <p className="text-sm">{`${course.yaya.user.firstName} ${course.yaya.user.lastName}`}</p>
+                </div>
+              </CardFooter>
+            </Card>
+          </Link>
+        ))}
+      </Container>
+    );
+  }
 
   return (
-    <Container className={clsx(className)}>
-      {visibleData.map(
-        ({ id, createdAt, image, name, price, _count, user, courses }) => (
-          <Container
-            key={id}
-            className="group p-4 hover:cursor-pointer rounded-2xl overflow-hidden flex flex-col gap-2 justify-between bg-white animate"
-          >
-            <Link
-              href={`/trainings/training/${id}`}
-              className="rounded-2xl w-full relative md:w-auto aspect-video overflow-hidden flex justify-center items-center"
-            >
-              <Image
-                width={100}
-                height={100}
-                src={image || RekreationPaysage}
-                alt="Training image"
-                className="h-full w-full object-cover group-hover:scale-150 animate"
-              />
-            </Link>
-            <Container className="gap-4 flex flex-row justify-between">
-              <Container className="flex items-center bg-primary-Default py-1 px-4 rounded">
-                <Typography className="text-sm">{courses.name}</Typography>
-              </Container>
-              <Container className="flex items-center gap-1 bg-primary-600 py-1 rounded px-2">
-                <Calendar width={14} height={14} />
-                <Typography className="text-sm">
-                  {format(createdAt, 'dd MMMM yyyy', { locale: fr })}
-                </Typography>
-              </Container>
-            </Container>
-            <Link
-              href={`/trainings/training/${id}`}
-              className="w-3/4 text-black"
-            >
-              <Typography className="text-xl font-bold">
-                {truncateText(name, 65)}
-              </Typography>
-            </Link>
-            <Container className="flex justify-start gap-8 items-center">
-              <Container className="flex items-center gap-1">
-                <BookOpenText
-                  width={14}
-                  height={14}
-                  className="text-primary-600"
-                />
-                <Typography className="text-black text-sm">
-                  10 classes
-                </Typography>
-              </Container>
-              <Container className="flex items-center gap-1">
-                <BookOpenText
-                  width={14}
-                  height={14}
-                  className="text-primary-600"
-                />
-                <Typography className="text-black text-sm">
-                  6 étudiants
-                </Typography>
-              </Container>
-            </Container>
-            <Link href={`/trainings/training/${id}`}>
-              <Container className="flex flex-col border-b-2 pb-2">
-                <Container className="flex justify-start gap-8 items-center">
-                  <Container className="flex items-center gap-1">
-                    <List width={14} height={14} className="text-primary-600" />
-                    <Typography className="text-black text-sm">
-                      {_count.modules}{' '}
-                      {_count.modules > 1 ? 'Modules' : 'Module'}
-                    </Typography>
-                  </Container>
-                  <Container className="flex items-center gap-1">
-                    <Map width={14} height={14} className="text-primary-600" />
-                    <Typography className="text-black text-sm">
-                      {user?.municipality}
-                    </Typography>
-                  </Container>
-                </Container>
-              </Container>
-            </Link>
-            <Container className="flex justify-between">
-              <Link href={`/trainings/training/${id}`}>
-                <Typography className="text-primary-Default font-bold text-2xl">
-                  ${price}
-                </Typography>
-              </Link>
-              <Container className="flex items-center gap-2 text-primary-Default">
-                <SearchResultButtons
-                  userId={userId || null}
-                  id={
-                    myLearnings?.find((obj) => obj.trainingId === id)?.id ||
-                    null
-                  }
-                  trainingId={id}
-                  isMyAccount={sessionName === user?.name}
-                  amLearner={
-                    myLearnings?.some((obj) => obj.trainingId === id) || false
-                  }
-                  status={
-                    myLearnings?.find((obj) => obj.trainingId === id)?.status ||
-                    null
-                  }
-                />
-                {pathname !== `/profil/${user?.name}` && (
-                  <SearchResultTrainer
-                    name={user?.name}
-                    fullName={`${user?.firstName || ''} ${user?.lastName || ''}`}
-                    image={user?.image || DefaultAvatar}
-                    isMyAccount={sessionName === user?.name}
-                  />
-                )}
-              </Container>
-            </Container>
-          </Container>
-        )
-      )}
-    </Container>
+    <div className="w-full flex flex-col items-center justify-center overflow-hidden">
+      <Loader />
+    </div>
   );
 };

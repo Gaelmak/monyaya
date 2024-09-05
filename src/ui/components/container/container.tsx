@@ -1,29 +1,29 @@
-import clsx from 'clsx';
+import { cn } from "@/lib/utils";
 
 interface Props {
   children?: React.ReactNode;
   className?: string;
-  variant?: 'Default' | 'Glass-Effect' | 'Gradiant';
+  variant?: "Default" | "Glass-Effect" | "Gradiant";
 }
 
 export const Container = ({
   children,
   className,
-  variant = 'Default',
+  variant = "Default",
 }: Props) => {
-  let bgStyles: string = '';
+  let bgStyles: string = "";
 
   switch (variant) {
-    case 'Default':
-      bgStyles = '';
+    case "Default":
+      bgStyles = "";
       break;
-    case 'Glass-Effect':
-      bgStyles = 'glass-effect';
+    case "Glass-Effect":
+      bgStyles = "glass-effect";
       break;
-    case 'Gradiant':
-      bgStyles = 'gradiant-effect';
+    case "Gradiant":
+      bgStyles = "gradiant-effect";
       break;
   }
 
-  return <div className={clsx(bgStyles, className)}>{children}</div>;
+  return <div className={cn(bgStyles, className)}>{children}</div>;
 };
