@@ -1,4 +1,5 @@
 "use client";
+
 import { Container } from "@/ui/components/container/container";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,12 +9,9 @@ import { NewTrainingFormFieldsType } from "@/types/forms";
 import { InputField } from "@/ui/components/input-field/input-field";
 import { Typography } from "@/ui/components/typography/typography";
 import { Buttons } from "@/ui/components/buttons/buttons";
-import { useToast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
-import UseLoading from "@/hooks/use-loading";
 import { InputFieldSelect } from "@/ui/components/input-field-select/input-field-select";
 import { Options } from "@/types/options";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import Image from "next/image";
 import DefaultAvatar from "../../../../public/default_avatar.jpg";
 import { TypeCourses } from "@/lib/types-courses/types-courses";
@@ -37,9 +35,14 @@ interface Props {
 }
 
 export const AddCours = ({ options, userId }: Props) => {
-  // const router = useRouter();
-  // const { toast } = useToast();
-  // const [isLoading, startLoading, stopLoading] = UseLoading();
+  const [isClient, setIsClient] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const form = useForm<z.infer<typeof NewTrainingFormFieldsType>>({
     resolver: zodResolver(NewTrainingFormFieldsType),
     defaultValues: {
@@ -51,10 +54,7 @@ export const AddCours = ({ options, userId }: Props) => {
     },
   });
 
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
-
-  // Ajout d'image pour le cours
+  // Fonction pour gérer le changement d'image
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
     if (file) {
@@ -73,20 +73,24 @@ export const AddCours = ({ options, userId }: Props) => {
   };
 
   return (
-    <Container className="w-2/3 flex flex-col  m-auto">
+    <Container className="w-2/3 flex flex-col m-auto">
       <Form {...form}>
         <form>
+          {/* Section pour l'image */}
           <Container className="relative flex flex-col justify-center items-center w-full mb-5">
             <Container className="w-full h-[30vh] rounded overflow-hidden">
-              <Image
-                width={100}
-                height={100}
-                src={preview ? preview : DefaultAvatar}
-                alt="User profile image"
-                className="h-full w-full object-cover "
-              />
+              {/* N'afficher l'image que lorsque le composant est rendu côté client */}
+              {isClient && (
+                <Image
+                  width={100}
+                  height={100}
+                  src={preview ? preview : DefaultAvatar}
+                  alt="User profile image"
+                  className="h-full w-full object-cover"
+                />
+              )}
             </Container>
-            <Container className="absolute right-4 bottom-0 transform -translate-y-1/2 flex flex-col  lg:flex-row justify-between items-center">
+            <Container className="absolute right-4 bottom-0 transform -translate-y-1/2 flex flex-col lg:flex-row justify-between items-center">
               <label
                 htmlFor="profil"
                 className="cursor-pointer text-gray-500 hover:text-primary-Default animate bg-slate-50 px-4 py-2 rounded"
@@ -103,20 +107,19 @@ export const AddCours = ({ options, userId }: Props) => {
             </Container>
           </Container>
           <div className="flex flex-col gap-5">
-            <div className="">
-              <InputField
-                control={form.control}
-                name="training_name"
-                placeholder="Titre de votre formation"
-                className="border-none bg-transparent active:bg-transparent focus:bg-transparent focus:border-none active:border-none focus:ring-transparent active:ring-transparent ring-offset-transparent placeholder:text-secondary-400 placeholder:text-3xl text-3xl text-secondary-400 "
-              />
-            </div>
-            <Card className="w-full  bg-white pt-3">
+            <InputField
+              control={form.control}
+              name="training_name"
+              placeholder="Titre de votre formation"
+              className="border-none bg-transparent focus:bg-transparent focus:ring-transparent placeholder:text-secondary-400 placeholder:text-3xl text-3xl text-secondary-400"
+            />
+
+            <Card className="w-full bg-white pt-3">
               <CardContent>
                 <Typography
                   variant="title-xs"
                   component="h4"
-                  className=" text-sm text-secondary-400 mb-1"
+                  className="text-sm text-secondary-400 mb-1"
                 >
                   Branche de votre formation
                 </Typography>
@@ -124,7 +127,7 @@ export const AddCours = ({ options, userId }: Props) => {
                   control={form.control}
                   name="category"
                   options={options}
-                  placeholder="Selectionnez une branche pour votre formation"
+                  placeholder="Sélectionnez une branche pour votre formation"
                 />
                 <Container className="flex flex-row justify-between gap-4 items-start">
                   <Container className="w-[27vw]">
@@ -135,12 +138,11 @@ export const AddCours = ({ options, userId }: Props) => {
                     >
                       Prix
                     </Typography>
-                    <div className="relative ">
+                    <div className="relative">
                       <InputField
                         control={form.control}
                         name="price"
                         placeholder="Ajouter le prix de votre formation"
-                        description={"Dévise en dollar ($)"}
                         type="number"
                         className="w-full pr-16"
                       />
@@ -167,9 +169,12 @@ export const AddCours = ({ options, userId }: Props) => {
                 </Container>
               </CardContent>
             </Card>
+
             <Textarea placeholder="Description..." />
           </div>
-          <Container className=" text-right mt-5 bg-pr">
+
+          {/* Bouton pour créer la formation */}
+          <Container className="text-right mt-5 bg-pr">
             <AlertDialog>
               <AlertDialogTrigger>
                 <Buttons className="w-[15vw] text-right">
@@ -178,15 +183,17 @@ export const AddCours = ({ options, userId }: Props) => {
               </AlertDialogTrigger>
               <AlertDialogContent className="bg-primary-50">
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogTitle>
+                    Etes vous sur de creer ce cours ?
+                  </AlertDialogTitle>
                   <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your account and remove your data from our servers.
+                    En créant ce cours, vous acceptez toutes nos conditions et
+                    règles..
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction className="bg-primary-600 hover:bg-primary-400 ">
+                  <AlertDialogCancel>Annuler</AlertDialogCancel>
+                  <AlertDialogAction className="bg-primary-600 hover:bg-primary-400">
                     Continue
                   </AlertDialogAction>
                 </AlertDialogFooter>
