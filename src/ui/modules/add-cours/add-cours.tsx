@@ -76,120 +76,47 @@ export const AddCours = ({ options, userId }: Props) => {
     <Container className="w-2/3 flex flex-col m-auto">
       <Form {...form}>
         <form>
-          {/* Section pour l'image */}
-          <Container className="relative flex flex-col justify-center items-center w-full mb-5">
-            <Container className="w-full h-[30vh] rounded overflow-hidden">
-              {/* N'afficher l'image que lorsque le composant est rendu côté client */}
-              {isClient && (
-                <Image
-                  width={100}
-                  height={100}
-                  src={preview ? preview : DefaultAvatar}
-                  alt="User profile image"
-                  className="h-full w-full object-cover"
-                />
-              )}
-            </Container>
-            <Container className="absolute right-4 bottom-0 transform -translate-y-1/2 flex flex-col lg:flex-row justify-between items-center">
-              <label
-                htmlFor="profil"
-                className="cursor-pointer text-gray-500 hover:text-primary-Default animate bg-slate-50 px-4 py-2 rounded"
-              >
-                Ajouter une image
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                id="profil"
-                onChange={handleImageChange}
-                className="hidden"
-              />
-            </Container>
-          </Container>
           <div className="flex flex-col gap-5">
-            <InputField
-              control={form.control}
-              name="training_name"
-              placeholder="Titre de votre formation"
-              className="border-none bg-transparent focus:bg-transparent focus:ring-transparent placeholder:text-secondary-400 placeholder:text-3xl text-3xl text-secondary-400 focus:ring-offset-transparent"
-            />
-
-            <Card className="w-full bg-white pt-3">
-              <CardContent>
-                <div>
-                  <Typography
-                    variant="title-xs"
-                    component="h4"
-                    className="text-sm text-secondary-400 mb-1"
-                  >
-                    Cathegorie
-                  </Typography>
-                  <InputFieldSelect
-                    control={form.control}
-                    name="category"
-                    options={options}
-                    placeholder="Sélectionnez une cathegorie"
+            <Container className="relative flex flex-col justify-center items-center w-full">
+              <Container className="w-full h-[30vh] rounded overflow-hidden">
+                {/* N'afficher l'image que lorsque le composant est rendu côté client */}
+                {isClient && (
+                  <Image
+                    width={100}
+                    height={100}
+                    src={preview ? preview : DefaultAvatar}
+                    alt="User profile image"
+                    className="h-full w-full object-cover"
                   />
-                </div>
-                <Container className="flex flex-row justify-between gap-4 items-start">
-                  <Container className="w-[27vw]">
-                    <Typography
-                      variant="title-sm"
-                      component="h4"
-                      className="text-sm text-secondary-400 mb-1"
-                    >
-                      Prix
-                    </Typography>
-                    <div className="relative">
-                      <InputField
-                        control={form.control}
-                        name="price"
-                        placeholder="Ajouter le prix de votre formation"
-                        type="number"
-                        className="w-full pr-16"
-                      />
-                      <span className="absolute right-4 top-[3vh] transform -translate-y-1/2 text-gray-500">
-                        /mois
-                      </span>
-                    </div>
-                  </Container>
-                  <Container className="w-[27vw]">
-                    <Typography
-                      variant="title-sm"
-                      component="h4"
-                      className="text-sm text-secondary-400 mb-1"
-                    >
-                      Type de formation
-                    </Typography>
-                    <InputFieldSelect
-                      control={form.control}
-                      name="category"
-                      options={TypeCourses}
-                      placeholder="Type de votre formation"
-                    />
-                  </Container>
-                </Container>
-              </CardContent>
-            </Card>
+                )}
+              </Container>
+              <Container className="absolute right-4 bottom-0 transform -translate-y-1/2 flex flex-col lg:flex-row justify-between items-center">
+                <label
+                  htmlFor="profil"
+                  className="cursor-pointer text-gray-500 hover:text-primary-Default animate bg-slate-50 px-4 py-2 rounded"
+                >
+                  Ajouter une image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="profil"
+                  onChange={handleImageChange}
+                  className="hidden"
+                />
+              </Container>
+            </Container>
+            <div className="flex flex-col gap-5">
+              <InputField
+                control={form.control}
+                name="training_name"
+                placeholder="Titre de votre formation"
+                className="border-none bg-transparent focus:bg-transparent focus:ring-transparent placeholder:text-secondary-400 placeholder:text-3xl text-3xl text-secondary-400 focus:ring-offset-transparent"
+              />
 
-            <Card className="w-full bg-white">
-              <CardContent>
-                <div className="flex flex-col pt-3">
-                  <div className="">
-                    <Typography
-                      variant="title-xs"
-                      component="h4"
-                      className="text-sm text-secondary-400 mb-1"
-                    >
-                      Ajouter la video de votre cours
-                    </Typography>
-                    <InputField
-                      control={form.control}
-                      name="videoUrl"
-                      placeholder="Le lien de votre video pour votre cours"
-                    />
-                  </div>
-                  <div className="">
+              <Card className="w-full bg-white pt-3">
+                <CardContent>
+                  <div>
                     <Typography
                       variant="title-xs"
                       component="h4"
@@ -197,52 +124,126 @@ export const AddCours = ({ options, userId }: Props) => {
                     >
                       Cathegorie
                     </Typography>
-                    <InputField
+                    <InputFieldSelect
                       control={form.control}
-                      name="cover"
-                      placeholder="Le lien d'une image de votre cours"
+                      name="category"
+                      options={options}
+                      placeholder="Sélectionnez une cathegorie"
                     />
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                  <Container className="flex flex-row justify-between gap-4 items-start">
+                    <Container className="w-[27vw]">
+                      <Typography
+                        variant="title-sm"
+                        component="h4"
+                        className="text-sm text-secondary-400 mb-1"
+                      >
+                        Prix
+                      </Typography>
+                      <div className="relative">
+                        <InputField
+                          control={form.control}
+                          name="price"
+                          placeholder="Ajouter le prix de votre formation"
+                          type="number"
+                          className="w-full pr-16"
+                        />
+                        <span className="absolute right-4 top-[3vh] transform -translate-y-1/2 text-gray-500">
+                          /mois
+                        </span>
+                      </div>
+                    </Container>
+                    <Container className="w-[27vw]">
+                      <Typography
+                        variant="title-sm"
+                        component="h4"
+                        className="text-sm text-secondary-400 mb-1"
+                      >
+                        Type de formation
+                      </Typography>
+                      <InputFieldSelect
+                        control={form.control}
+                        name="category"
+                        options={TypeCourses}
+                        placeholder="Type de votre formation"
+                      />
+                    </Container>
+                  </Container>
+                </CardContent>
+              </Card>
 
-            <Card className="w-full bg-white">
-              <Textarea
-                placeholder="Description..."
-                className="border-none bg-transparent focus:bg-transparent focus:ring-transparent placeholder:text-secondary-400 placeholder:text-xl  text-xl text-secondary-400 focus:ring-offset-transparent"
-              />
-              <CardContent></CardContent>
-            </Card>
+              <Card className="w-full bg-white">
+                <CardContent>
+                  <div className="flex flex-col pt-3">
+                    <div className="">
+                      <Typography
+                        variant="title-xs"
+                        component="h4"
+                        className="text-sm text-secondary-400 mb-1"
+                      >
+                        Ajouter la video de votre cours
+                      </Typography>
+                      <InputField
+                        control={form.control}
+                        name="videoUrl"
+                        placeholder="Le lien de votre video pour votre cours"
+                      />
+                    </div>
+                    <div className="">
+                      <Typography
+                        variant="title-xs"
+                        component="h4"
+                        className="text-sm text-secondary-400 mb-1"
+                      >
+                        Cathegorie
+                      </Typography>
+                      <InputField
+                        control={form.control}
+                        name="cover"
+                        placeholder="Le lien d'une image de votre cours"
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="w-full bg-white">
+                <Textarea
+                  placeholder="Description..."
+                  className="border-none bg-transparent focus:bg-transparent focus:ring-transparent placeholder:text-secondary-400 placeholder:text-xl  text-xl text-secondary-400 focus:ring-offset-transparent"
+                />
+                <CardContent></CardContent>
+              </Card>
+            </div>
+
+            {/* Bouton pour créer la formation */}
+            <Container className="text-right mt-5 bg-pr">
+              <AlertDialog>
+                <AlertDialogTrigger>
+                  <span className="w-[15vw] bg-primary-Default hover:bg-primary-400 text-white rounded-lg  h-5 text-center py-4 px-2 font-medium m-auto">
+                    Créer la formation
+                  </span>
+                </AlertDialogTrigger>
+                <AlertDialogContent className="bg-primary-50">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Etes vous sur de creer ce cours ?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      En créant ce cours, vous acceptez toutes nos conditions et
+                      règles..
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Annuler</AlertDialogCancel>
+                    <AlertDialogAction className="bg-primary-600 hover:bg-primary-400">
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </Container>
           </div>
-
-          {/* Bouton pour créer la formation */}
-          <Container className="text-right mt-5 bg-pr">
-            <AlertDialog>
-              <AlertDialogTrigger>
-                <Buttons className="w-[15vw] text-right">
-                  Créer la formation
-                </Buttons>
-              </AlertDialogTrigger>
-              <AlertDialogContent className="bg-primary-50">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    Etes vous sur de creer ce cours ?
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    En créant ce cours, vous acceptez toutes nos conditions et
-                    règles..
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Annuler</AlertDialogCancel>
-                  <AlertDialogAction className="bg-primary-600 hover:bg-primary-400">
-                    Continue
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </Container>
         </form>
       </Form>
     </Container>
