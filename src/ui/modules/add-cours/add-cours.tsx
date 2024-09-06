@@ -16,7 +16,7 @@ import Image from "next/image";
 import DefaultAvatar from "../../../../public/default_avatar.jpg";
 import { TypeCourses } from "@/lib/types-courses/types-courses";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -111,24 +111,26 @@ export const AddCours = ({ options, userId }: Props) => {
               control={form.control}
               name="training_name"
               placeholder="Titre de votre formation"
-              className="border-none bg-transparent focus:bg-transparent focus:ring-transparent placeholder:text-secondary-400 placeholder:text-3xl text-3xl text-secondary-400"
+              className="border-none bg-transparent focus:bg-transparent focus:ring-transparent placeholder:text-secondary-400 placeholder:text-3xl text-3xl text-secondary-400 focus:ring-offset-transparent"
             />
 
             <Card className="w-full bg-white pt-3">
               <CardContent>
-                <Typography
-                  variant="title-xs"
-                  component="h4"
-                  className="text-sm text-secondary-400 mb-1"
-                >
-                  Branche de votre formation
-                </Typography>
-                <InputFieldSelect
-                  control={form.control}
-                  name="category"
-                  options={options}
-                  placeholder="Sélectionnez une branche pour votre formation"
-                />
+                <div>
+                  <Typography
+                    variant="title-xs"
+                    component="h4"
+                    className="text-sm text-secondary-400 mb-1"
+                  >
+                    Cathegorie
+                  </Typography>
+                  <InputFieldSelect
+                    control={form.control}
+                    name="category"
+                    options={options}
+                    placeholder="Sélectionnez une cathegorie"
+                  />
+                </div>
                 <Container className="flex flex-row justify-between gap-4 items-start">
                   <Container className="w-[27vw]">
                     <Typography
@@ -146,7 +148,7 @@ export const AddCours = ({ options, userId }: Props) => {
                         type="number"
                         className="w-full pr-16"
                       />
-                      <span className="absolute right-4 top-[4vh] transform -translate-y-1/2 text-gray-500">
+                      <span className="absolute right-4 top-[3vh] transform -translate-y-1/2 text-gray-500">
                         /mois
                       </span>
                     </div>
@@ -170,7 +172,48 @@ export const AddCours = ({ options, userId }: Props) => {
               </CardContent>
             </Card>
 
-            <Textarea placeholder="Description..." />
+            <Card className="w-full bg-white">
+              <CardContent>
+                <div className="flex flex-col pt-3">
+                  <div className="">
+                    <Typography
+                      variant="title-xs"
+                      component="h4"
+                      className="text-sm text-secondary-400 mb-1"
+                    >
+                      Ajouter la video de votre cours
+                    </Typography>
+                    <InputField
+                      control={form.control}
+                      name="videoUrl"
+                      placeholder="Le lien de votre video pour votre cours"
+                    />
+                  </div>
+                  <div className="">
+                    <Typography
+                      variant="title-xs"
+                      component="h4"
+                      className="text-sm text-secondary-400 mb-1"
+                    >
+                      Cathegorie
+                    </Typography>
+                    <InputField
+                      control={form.control}
+                      name="cover"
+                      placeholder="Le lien d'une image de votre cours"
+                    />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="w-full bg-white">
+              <Textarea
+                placeholder="Description..."
+                className="border-none bg-transparent focus:bg-transparent focus:ring-transparent placeholder:text-secondary-400 placeholder:text-xl  text-xl text-secondary-400 focus:ring-offset-transparent"
+              />
+              <CardContent></CardContent>
+            </Card>
           </div>
 
           {/* Bouton pour créer la formation */}
