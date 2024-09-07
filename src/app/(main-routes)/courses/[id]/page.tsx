@@ -144,8 +144,8 @@ export default async function HandleCourse({
           <div className="">
             <iframe
               width="100%"
-              height="500"
-              src={"https://youtu.be/pgIwMkbzCPY?si=yXPYqwlVoCZX9Ui1"}
+              height="auto"
+              src="https://youtu.be/jOHVRabET4w?list=RDjOHVRabET4w"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
