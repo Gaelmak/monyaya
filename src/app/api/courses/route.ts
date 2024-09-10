@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(course, { status: 202 });
   } catch (error) {
-    console.error("Error creating Yaya:", error);
+    console.error("Error creating Course:", error);
     return new Response(
       "An unexpected error occurred while processing your request. Please review the data you provided and try again later.",
       { status: 500 }
@@ -58,13 +58,16 @@ export async function GET(req: Request & NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const categoryId = searchParams.get("categoryId");
   const yayaId = searchParams.get("yayaId");
+  const status = searchParams.get("status");
 
   try {
     const courses = await prisma.courses.findMany({
       where: {
         ...(categoryId ? { categoryId: categoryId } : {}),
         ...(yayaId ? { yaya: { id: yayaId } } : {}),
-        status: "APPROVED",
+        ...(status
+          ? { status: status === "pending" ? "PENDING" : "APPROVED" }
+          : {}),
       },
       include: {
         yaya: {

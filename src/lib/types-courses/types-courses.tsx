@@ -1,6 +1,6 @@
-import { Options } from "@/types/options";
+import { OptionsTypes } from "@/types/options";
 
-export const TypeCourses: Options[] = [
+export const TypeCourses: OptionsTypes[] = [
   {
     id: "home",
     name: "A Domicile",
@@ -10,7 +10,7 @@ export const TypeCourses: Options[] = [
     name: "En Ligne",
   },
   {
-    id: "Onsite",
+    id: "onsite",
     name: "Sur Place",
   },
 ];

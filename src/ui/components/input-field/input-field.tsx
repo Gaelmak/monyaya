@@ -5,12 +5,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
-import { Container } from '../container/container';
-import clsx from 'clsx';
-import { Typography } from '../typography/typography';
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Container } from "../container/container";
+import clsx from "clsx";
+import { Typography } from "../typography/typography";
 
 interface Props {
   control: any;
@@ -18,7 +18,7 @@ interface Props {
   label?: string | React.ReactNode;
   placeholder?: string;
   description?: string | React.ReactNode;
-  type?: 'text' | 'email' | 'file' | 'password' | 'textarea' | 'number';
+  type?: "text" | "email" | "file" | "password" | "textarea" | "number";
   autocompletion?: boolean;
   children?: React.ReactNode;
   required?: boolean;
@@ -31,7 +31,7 @@ export const InputField = ({
   label,
   placeholder,
   description,
-  type = 'text',
+  type = "text",
   autocompletion = true,
   children,
   required = false,
@@ -60,24 +60,24 @@ export const InputField = ({
           ) : null}
           <FormControl>
             <Container className="relative flex justify-center items-center">
-              {type === 'textarea' ? (
+              {type === "textarea" ? (
                 <Textarea
                   placeholder={placeholder}
                   className={clsx(
-                    'resize-none rounded h-48 focus:ring-primary-Default border-secondary-300',
-                    children ? 'pl-12' : '',
+                    "resize-none rounded h-48 focus:ring-primary-Default border-secondary-300",
+                    children ? "pl-12" : "",
                     className
                   )}
                   {...field}
                 />
-              ) : type === 'file' ? (
+              ) : type === "file" ? (
                 <Input
                   id={name}
                   placeholder={placeholder}
                   type="file"
                   className={clsx(
-                    'rounded focus:ring-primary-Default border-secondary-300',
-                    children ? 'pl-12' : '',
+                    "rounded focus:ring-primary-Default border-secondary-300",
+                    children ? "pl-12" : "",
                     className
                   )}
                   {...field}
@@ -86,11 +86,28 @@ export const InputField = ({
                   }}
                   value={undefined}
                 />
+              ) : type === "number" ? (
+                <Input
+                  className={clsx(
+                    "rounded focus:ring-primary-Default border-secondary-300",
+                    children ? "pl-12" : "",
+                    className
+                  )}
+                  placeholder={placeholder}
+                  {...field}
+                  onChange={(event) => {
+                    field.onChange(Number(event.target?.value));
+                  }}
+                  type="number"
+                  name={name}
+                  id={name}
+                  inputMode="numeric"
+                />
               ) : (
                 <Input
                   className={clsx(
-                    'rounded focus:ring-primary-Default border-secondary-300',
-                    children ? 'pl-12' : '',
+                    "rounded focus:ring-primary-Default border-secondary-300",
+                    children ? "pl-12" : "",
                     className
                   )}
                   placeholder={placeholder}
