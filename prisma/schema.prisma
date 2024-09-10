@@ -60,6 +60,8 @@ model User {
   isTrainerValidated     Boolean?    @default(false)
   accounts               Account[]
   sessions               Session[]
+  UserCourse             UserCourse[]
+  UserLesson             UserLesson[]
 
   yaya                   Yaya?
 }
@@ -94,11 +96,53 @@ model Courses {
   videoUrl      String?
   monthlyPrice  Float
   createAt      DateTime    @default(now())
-  valideAt      DateTime?
+  valideAt      DateTime?   @updatedAt
   categoryId    String?
+  lessons       Lessons[]
+  UserCourse    UserCourse[]
   
   category      Category?   @relation(fields: [categoryId], references: [id])
   yaya          Yaya?       @relation(fields: [yayaID], references: [id])
+}
+
+model Lessons {
+  id            String      @id @default(cuid())
+  courseId      String
+  title         String
+  description   String
+  content       String
+  videoUrl      String?
+  meetUrl       String?
+  adress        String?
+  createAt      DateTime    @default(now())
+  updateAt      DateTime?   @updatedAt
+  UserLesson    UserLesson[]
+  
+  course        Courses?   @relation(fields: [courseId], references: [id])
+}
+
+model UserCourse {
+  id        String      @id @default(cuid())
+  userId    String
+  courseId  String
+  completed Boolean     @default(false) // Indique si le cours a été suivi
+
+  user      User        @relation(fields: [userId], references: [id])
+  course    Courses     @relation(fields: [courseId], references: [id])
+
+  @@unique([userId, courseId]) // Assure qu'un utilisateur ne peut pas suivre le même cours plusieurs fois
+}
+
+model UserLesson {
+  id        String      @id @default(cuid())
+  userId    String
+  lessonId  String
+  completed Boolean     @default(false) // Indique si la leçon a été suivie
+
+  user      User        @relation(fields: [userId], references: [id])
+  lesson    Lessons     @relation(fields: [lessonId], references: [id])
+
+  @@unique([userId, lessonId]) // Assure qu'un utilisateur ne peut pas suivre la même leçon plusieurs fois
 }
 
 model Category {
