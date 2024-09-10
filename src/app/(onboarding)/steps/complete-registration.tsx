@@ -1,28 +1,28 @@
-'use client';
-import { Form } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { CompleteRegisterFormFieldsType } from '@/types/forms';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import Cover from '../../../../public/form.jpg';
-import Cover_v from '../../../../public/form_v.jpg';
-import { BgImg } from '@/ui/components/bg-img/bg-img';
-import { Buttons } from '@/ui/components/buttons/buttons';
+"use client";
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { CompleteRegisterFormFieldsType } from "@/types/forms";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import Cover from "../../../../public/form.jpg";
+import Cover_v from "../../../../public/form_v.jpg";
+import { BgImg } from "@/ui/components/bg-img/bg-img";
+import { Buttons } from "@/ui/components/buttons/buttons";
 import {
   Accordion,
   AccordionItem,
   AccordionContent,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { CheckCircle2, Mail, Phone, User, Home } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import UseLoading from '@/hooks/use-loading';
-import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
-import clsx from 'clsx';
+} from "@/components/ui/accordion";
+import { CheckCircle2, Mail, Phone, User, Home } from "lucide-react";
+import { useEffect, useState } from "react";
+import UseLoading from "@/hooks/use-loading";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import clsx from "clsx";
 
 interface Props {
   data: {
@@ -61,36 +61,36 @@ export const CompleteRegistration = ({ data, name }: Props) => {
   const form = useForm<z.infer<typeof CompleteRegisterFormFieldsType>>({
     resolver: zodResolver(CompleteRegisterFormFieldsType),
     defaultValues: {
-      firstname: data.firstName ? data.firstName : '',
-      lastname: data.lastName ? data.lastName : '',
-      email: data.email ? data.email : '',
-      phonenumber: data.phoneNumber ? data.phoneNumber : '',
-      avenue: data.avenue ? data.avenue : '',
-      district: data.district ? data.district : '',
-      municipality: data.municipality ? data.municipality : '',
-      number: data.number ? data.number : '',
+      firstname: data.firstName ? data.firstName : "",
+      lastname: data.lastName ? data.lastName : "",
+      email: data.email ? data.email : "",
+      phonenumber: data.phoneNumber ? data.phoneNumber : "",
+      avenue: data.avenue ? data.avenue : "",
+      district: data.district ? data.district : "",
+      municipality: data.municipality ? data.municipality : "",
+      number: data.number ? data.number : "",
     },
   });
 
   useEffect(() => {
     const { firstname, lastname } = form.getValues();
-    const isFilled = firstname.trim() !== '' && lastname.trim() !== '';
+    const isFilled = firstname.trim() !== "" && lastname.trim() !== "";
     setIsFirstFilled(isFilled);
   }, [form.getValues()]);
 
   useEffect(() => {
     const { phonenumber, email } = form.getValues();
-    const isFilled = phonenumber.trim() !== '' && email.trim() !== '';
+    const isFilled = phonenumber.trim() !== "" && email.trim() !== "";
     setIsSecondFilled(isFilled);
   }, [form.getValues()]);
 
   useEffect(() => {
     const { avenue, district, municipality, number } = form.getValues();
     const isFilled =
-      avenue.trim() !== '' &&
-      district.trim() !== '' &&
-      municipality.trim() !== '' &&
-      number.trim() !== '';
+      avenue.trim() !== "" &&
+      district.trim() !== "" &&
+      municipality.trim() !== "" &&
+      number.trim() !== "";
     setIsThirdFilled(isFilled);
   }, [form.getValues()]);
 
@@ -110,10 +110,10 @@ export const CompleteRegistration = ({ data, name }: Props) => {
       number,
     } = values;
     const registration = await fetch(`/api/user/${name}/complete`, {
-      method: 'PATCH',
-      credentials: 'include',
+      method: "PATCH",
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         firstname,
@@ -129,8 +129,8 @@ export const CompleteRegistration = ({ data, name }: Props) => {
 
     if (registration.status === 200) {
       toast({
-        variant: 'success',
-        title: 'Bienvenue !',
+        variant: "success",
+        title: "Bienvenue !",
         description: (
           <Typography component="p" variant="body-sm">
             Vos informations ont correctement été enregistré
@@ -138,13 +138,12 @@ export const CompleteRegistration = ({ data, name }: Props) => {
         ),
       });
       stopLoading();
-      router.push('/dashboard');
+      router.push("/dashboard");
       router.refresh();
     } else {
-      console.log(registration);
       toast({
-        variant: 'destructive',
-        title: 'Utilisateur déjà existant',
+        variant: "destructive",
+        title: "Utilisateur déjà existant",
         description: (
           <Typography component="p" variant="body-sm">
             Veuillez utiliser une autre adresse email
@@ -195,7 +194,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className={clsx('flex flex-col gap-8 ')}
+              className={clsx("flex flex-col gap-8 ")}
             >
               <Accordion type="single" collapsible>
                 <AccordionItem value="step-1">
@@ -205,8 +204,8 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                       <CheckCircle2
                         className={clsx(
                           isFirstFilled
-                            ? 'text-primary-Default'
-                            : 'text-gray-100'
+                            ? "text-primary-Default"
+                            : "text-gray-100"
                         )}
                       />
                     </Container>
@@ -223,7 +222,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                       </Container>
                       <Container
                         className={clsx(
-                          'w-full flex flex-col lg:flex-row gap-2 lg:gap-4'
+                          "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
                         )}
                       >
                         <Container className="lg:basis-1/2">
@@ -259,8 +258,8 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                       <CheckCircle2
                         className={clsx(
                           isSecondFilled
-                            ? 'text-primary-Default'
-                            : 'text-gray-100'
+                            ? "text-primary-Default"
+                            : "text-gray-100"
                         )}
                       />
                     </Container>
@@ -277,7 +276,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                       </Container>
                       <Container
                         className={clsx(
-                          'w-full flex flex-col lg:flex-row gap-2 lg:gap-4'
+                          "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
                         )}
                       >
                         <Container className="lg:basis-1/2">
@@ -319,8 +318,8 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                       <CheckCircle2
                         className={clsx(
                           isThirdFilled
-                            ? 'text-primary-Default'
-                            : 'text-gray-100'
+                            ? "text-primary-Default"
+                            : "text-gray-100"
                         )}
                       />
                     </Container>
@@ -336,7 +335,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                       </Container>
                       <Container
                         className={clsx(
-                          'w-full flex flex-col lg:flex-row gap-2 lg:gap-4'
+                          "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
                         )}
                       >
                         <Container className="lg:basis-1/2">

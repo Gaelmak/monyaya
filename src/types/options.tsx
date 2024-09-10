@@ -1,12 +1,7 @@
-import React from 'react';
+import React from "react";
 
-export interface Options {
+export interface OptionsTypes {
   id: string;
   Icon?: React.ElementType;
   name?: string;
-  courses?: {
-    id?: string;
-    name?: string;
-    Icon?: React.ElementType;
-  }[];
 }

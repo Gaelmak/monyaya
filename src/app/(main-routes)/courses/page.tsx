@@ -15,7 +15,7 @@ export default async function Home() {
         },
       })
     : null;
-  const trainings = await prisma?.trainings.findMany({
+  const trainings = await prisma?.courses.findMany({
     include: {
       _count: {
         select: {

@@ -1,18 +1,16 @@
-'use client';
+"use client";
 
-import { getProviders } from 'next-auth/react';
-import { ProvidersList } from './providers-list';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import { Aside } from './aside';
-import { SigninForm } from './signin-form';
-import { BackButton } from '@/ui/components/back-button/back-button';
-import { useEffect, useState } from 'react';
+import { getProviders } from "next-auth/react";
+import { ProvidersList } from "./providers-list";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import { Aside } from "./aside";
+import { SigninForm } from "./signin-form";
+import { BackButton } from "@/ui/components/back-button/back-button";
+import { useEffect, useState } from "react";
 
 export default function SignIn() {
   const [providerslist, setProvidersList] = useState<any>([]);
-
-  console.log(providerslist);
 
   useEffect(() => {
     const getProvidersList = async () => {

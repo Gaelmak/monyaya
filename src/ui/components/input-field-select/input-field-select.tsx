@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   FormControl,
@@ -7,7 +7,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
@@ -16,8 +16,10 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Options } from '@/types/options';
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { OptionsTypes } from "@/types/options";
+import { Image } from "lucide-react";
 
 interface Props {
   control: any;
@@ -25,7 +27,8 @@ interface Props {
   label?: string;
   placeholder: string;
   description?: string;
-  options: Options[];
+  options: OptionsTypes[];
+  className?: any;
 }
 
 export const InputFieldSelect = ({
@@ -35,13 +38,14 @@ export const InputFieldSelect = ({
   placeholder,
   description,
   options,
+  className,
 }: Props) => {
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={cn(className)}>
           {label ? <FormLabel>{label}</FormLabel> : null}
           <Select
             onValueChange={field.onChange}
@@ -49,41 +53,24 @@ export const InputFieldSelect = ({
             name={name}
           >
             <FormControl>
-              <SelectTrigger className="rounded focus:ring-primary-Default">
+              <SelectTrigger className="rounded focus:ring-primary-Default h-12">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
             <SelectContent className="max-h-[40vh] overflow-auto rounded bg-white">
-              {options.map(({ id, courses, name, Icon }) =>
-                !courses ? (
+              <SelectGroup>
+                {options?.map(({ id, name, Icon }) => (
                   <SelectItem
                     key={id}
                     value={id!}
                     className="focus:bg-primary-50"
                   >
-                    {name}
+                    <div className="flex items-center w-full">
+                      {Icon && <Icon className="w-4 h-4 mr-2" />} {name}
+                    </div>
                   </SelectItem>
-                ) : (
-                  <SelectGroup key={id}>
-                    {Icon ? (
-                      <SelectLabel className="flex flex-row items-center">
-                        <Icon className="w-4 h-4 mr-2" /> {name}
-                      </SelectLabel>
-                    ) : (
-                      <SelectLabel> {name}</SelectLabel>
-                    )}
-                    {courses?.map(({ id, name }) => (
-                      <SelectItem
-                        key={id}
-                        value={id!}
-                        className="focus:bg-primary-50"
-                      >
-                        {name}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                )
-              )}
+                ))}
+              </SelectGroup>
             </SelectContent>
           </Select>
           <FormDescription>{description}</FormDescription>
