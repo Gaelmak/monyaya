@@ -31,7 +31,11 @@ export default function SignIn() {
       <Container className="py-32 px-8 md:py-0 md:basis-3/5 flex flex-col justify-center items-center md:px-16">
         <Container className="md:w-[30vw] flex flex-col gap-8">
           <Container className="flex flex-col gap-2 ">
-            <Typography variant="title-lg" component="h2">
+            <Typography
+              variant="title-lg"
+              component="h2"
+              className="text-2xl font-semibold"
+            >
               Heureux de vous revoir !
             </Typography>
             <Typography variant="body-base" component="p">

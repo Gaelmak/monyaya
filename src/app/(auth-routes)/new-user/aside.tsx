@@ -1,6 +1,6 @@
-'use client';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
+"use client";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
 
 export const Aside = () => {
   return (
@@ -9,10 +9,10 @@ export const Aside = () => {
         <Typography
           variant="title-base"
           component="h2"
-          className="text-white md:text-title-lg"
+          className="text-white text-2xl md:text-5xl xl:text-6xl font-bold leading-10 md:leading-[60px]"
         >
-          Découvrez les formations qui vous correspondent auprès de formateurs
-          passionnés !
+          Créez votre compte pour accéder à des formations adaptées à vos
+          besoins et à votre rythme !
         </Typography>
       </Container>
     </Container>
