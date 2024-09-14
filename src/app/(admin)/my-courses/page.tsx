@@ -1,14 +1,28 @@
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import { userAuth, userAuthRole, userAuthYaya } from "@/lib/helper";
-import CoursesList from "@/components/admin/my-courses/courses-list";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import YayaCoursesList from "@/components/admin/my-courses/yaya-courses-list";
+import UserCoursesList from "@/components/admin/my-courses/user-courses-list";
 
 export default async function MyTrainingsPage() {
-  const user = await userAuth();
+  const authUser = await userAuth();
+  const user = await prisma?.user.findUnique({
+    where: {
+      name: authUser!.name!,
+    },
+    select: {
+      id: true,
+    },
+  });
   const role = await userAuthRole();
   const yaya = await userAuthYaya();
+
+  if (!user) {
+    redirect("/signin");
+  }
 
   return (
     <main className="w-full min-h-[100dvh] pt-24 md:pt-0 pb-8 flex flex-col p-4">
@@ -29,7 +43,8 @@ export default async function MyTrainingsPage() {
           </Link>
         )}
       </Container>
-      <CoursesList yayaId={yaya?.id} />
+      {role === "TRAINER" && <YayaCoursesList yayaId={yaya?.id} />}
+      {role === "USER" && <UserCoursesList user={user} />}
     </main>
   );
 }

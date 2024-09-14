@@ -1,10 +1,9 @@
-import { Container } from '@/ui/components/container/container';
-import { Toaster } from '@/components/ui/toaster';
-import { redirect } from 'next/navigation';
-import prisma from '@/lib/prisma';
-import { userAuth } from '@/lib/helper';
+import { Container } from "@/ui/components/container/container";
+import { Toaster } from "@/components/ui/toaster";
+import { redirect } from "next/navigation";
+import { userAuth } from "@/lib/helper";
 
-export default async function RootLayout({
+export default async function OnboardLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -12,34 +11,7 @@ export default async function RootLayout({
   const session = await userAuth();
 
   if (!session) {
-    redirect('/signin');
-  }
-
-  const user = await prisma!.user.findUnique({
-    where: {
-      name: session!.name!,
-    },
-    select: {
-      firstName: true,
-      lastName: true,
-      phoneNumber: true,
-      municipality: true,
-      district: true,
-      avenue: true,
-      number: true,
-    },
-  });
-
-  if (
-    user?.firstName &&
-    user?.lastName &&
-    user?.phoneNumber &&
-    user?.municipality &&
-    user?.district &&
-    user?.avenue &&
-    user?.number
-  ) {
-    redirect('/dashboard');
+    redirect("/signin");
   }
 
   return (
