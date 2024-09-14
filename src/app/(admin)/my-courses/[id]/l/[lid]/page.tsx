@@ -13,6 +13,9 @@ import { Progress } from "@/components/ui/progress";
 import { BookAIcon } from "lucide-react";
 import Link from "next/link";
 import { apiUrl } from "@/lib/api-url";
+import CourseCompletionBar from "@/components/admin/my-courses/course-completion-bar";
+import { userAuth } from "@/lib/helper";
+import prisma from "@/lib/prisma";
 
 export type LessonPageProps = {
   params: { id: string; lid: string };
@@ -21,6 +24,15 @@ export type LessonPageProps = {
 export default async function LessonPage({ params }: LessonPageProps) {
   const courseId = params.id;
   const lessonId = params.lid;
+  const authUser = await userAuth();
+  const user = await prisma.user.findUnique({
+    where: {
+      name: authUser!.name!,
+    },
+    select: {
+      id: true,
+    },
+  });
 
   try {
     const lesson = await fetch(`${apiUrl()}/api/lessons/${lessonId}`).then(
@@ -44,17 +56,22 @@ export default async function LessonPage({ params }: LessonPageProps) {
                     </div>
                   </Link>
                 </TableCell>
-                <TableCell className="font-medium w-4/12 md:w-5/12">
-                  <Progress value={33} className="h-2 w-full" />
+                <TableCell className="font-medium w-5/12 md:w-7/12">
+                  <CourseCompletionBar
+                    userId={user?.id}
+                    courseId={courseId}
+                    className="h-2 w-full"
+                  />
                 </TableCell>
-                <TableCell className="text-right font-medium w-1/12 md:w-2/12">
+                {/* <TableCell className="text-right font-medium w-1/12 md:w-2/12">
                   10/18
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             </TableBody>
           </Table>
         </div>
         <LessonContent
+          userId={user?.id}
           courseId={courseId}
           lessonId={lessonId}
           lesson={lesson}

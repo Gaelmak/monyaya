@@ -33,9 +33,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader } from "../ui/loader";
 
 interface TimelineLayoutProps {
+  userId: string | undefined;
+  yayaId: string | undefined;
   course: Courses; // Replace any[] with the actual type of items.
 }
-export const LessonsTimelineLayout = ({ course }: TimelineLayoutProps) => {
+export const LessonsTimelineLayout = ({
+  userId,
+  yayaId,
+  course,
+}: TimelineLayoutProps) => {
   const [isPopOpen, setIsPopOpen] = useState(false);
 
   const {
@@ -82,35 +88,43 @@ export const LessonsTimelineLayout = ({ course }: TimelineLayoutProps) => {
             {isLoadingLessons ? (
               <Loader />
             ) : (
-              <MixedSortingLessons section={section} lessons={lessons} />
+              <MixedSortingLessons
+                userId={userId}
+                yayaId={yayaId}
+                course={course}
+                section={section}
+                lessons={lessons}
+              />
             )}
             {/* <TimelineDescription>{section.description}</TimelineDescription> */}
           </TimelineContent>
         </TimelineItem>
       ))}
 
-      <TimelineItem>
-        <TimelineConnector />
-        <TimelineHeader>
-          <TimelineIcon className="w-3 h-3" />
-          <TimelineContent className="p-0">
-            <AlertDialog open={isPopOpen} onOpenChange={setIsPopOpen}>
-              <AlertDialogTrigger className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg">
-                Ajouter une section
-              </AlertDialogTrigger>
-              <AlertDialogContent className="bg-white">
-                <CreateSection
-                  sections={sections}
-                  courseId={course.id}
-                  isPopOpen={isPopOpen}
-                  setIsPopOpen={setIsPopOpen}
-                  refetchSections={refetchSections}
-                />
-              </AlertDialogContent>
-            </AlertDialog>
-          </TimelineContent>
-        </TimelineHeader>
-      </TimelineItem>
+      {yayaId === course.yayaID && (
+        <TimelineItem>
+          <TimelineConnector />
+          <TimelineHeader>
+            <TimelineIcon className="w-3 h-3" />
+            <TimelineContent className="p-0">
+              <AlertDialog open={isPopOpen} onOpenChange={setIsPopOpen}>
+                <AlertDialogTrigger className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg">
+                  Ajouter une section
+                </AlertDialogTrigger>
+                <AlertDialogContent className="bg-white">
+                  <CreateSection
+                    sections={sections}
+                    courseId={course.id}
+                    isPopOpen={isPopOpen}
+                    setIsPopOpen={setIsPopOpen}
+                    refetchSections={refetchSections}
+                  />
+                </AlertDialogContent>
+              </AlertDialog>
+            </TimelineContent>
+          </TimelineHeader>
+        </TimelineItem>
+      )}
     </Timeline>
   );
 };
