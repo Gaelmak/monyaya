@@ -42,6 +42,8 @@ export const TrainingsView = ({
                   src={course.cover || RekreationPaysage}
                   alt="Training image"
                   className="rounded-lg aspect-video"
+                  width={1920}
+                  height={1080}
                 />
               </CardHeader>
               <CardContent className="p-2 flex flex-col gap-3">
