@@ -7,7 +7,6 @@ import { Courses, User as UserProps, Yaya } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { Frown } from "lucide-react";
 import { useEffect, useState } from "react";
-
 export type CoursesListProps = {
   yayaId?: string;
 };

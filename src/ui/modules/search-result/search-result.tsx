@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { Container } from '@/ui/components/container/container';
-import { TrainingsView } from '@/ui/components/trainings-view/trainingsView';
-import { Typography } from '@/ui/components/typography/typography';
-import { Filter } from './filter';
-import useFilterTypeStore from '@/store/filter-type-store';
-import { FilterData } from '@/lib/filter-data/filter-data';
+import { Container } from "@/ui/components/container/container";
+import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
+import { Typography } from "@/ui/components/typography/typography";
+import { Filter } from "./filter";
+import useFilterTypeStore from "@/store/filter-type-store";
+import { FilterData } from "@/lib/filter-data/filter-data";
 
 interface Props {
   session: any;
@@ -22,6 +22,7 @@ export const SearchResults = ({
 }: Props) => {
   const filter = useFilterTypeStore((state) => state.filterType);
   const filteredData = FilterData(trainings, filter);
+
   return (
     <Container className="flex flex-row gap-4 ">
       <Container className="w-full flex flex-col md:flex-row gap-8 md:gap-4">
@@ -37,9 +38,6 @@ export const SearchResults = ({
               <TrainingsView
                 className="grid grid-cols-1 md:grid-cols-3 gap-4 *:bg-[#fdfdfd]"
                 data={filteredData}
-                userId={userId!.id!}
-                myLearnings={myLearnings!}
-                sessionName={session!.name!}
               />
             ) : (
               <TrainingsView

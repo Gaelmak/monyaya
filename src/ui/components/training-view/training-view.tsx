@@ -1,30 +1,28 @@
-'use client';
+"use client";
 
-import { pusherClient } from '@/lib/pusher';
-import { useState } from 'react';
-import { Container } from '../container/container';
-import { Typography } from '../typography/typography';
+import { pusherClient } from "@/lib/pusher";
+import { useState } from "react";
+import { Container } from "../container/container";
+import { Typography } from "../typography/typography";
 import {
   SearchResultButtons,
   SearchResultTrainer,
-} from '@/ui/modules/search-result/search-result-buttons';
-import { Calendar, List, Map } from 'lucide-react';
-import DefaultAvatar from '../../../../public/default_avatar.jpg';
-import { truncateText } from '@/lib/truncate-text';
-import clsx from 'clsx';
+} from "@/ui/modules/search-result/search-result-buttons";
+import { Calendar, List, Map } from "lucide-react";
+import clsx from "clsx";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { YayaProfil } from '@/ui/modules/yaya-profil/yaya-profil';
-import { usePathname } from 'next/navigation';
-import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
-import RekreationPaysage from '../../../../public/rekreatioonPaysage.jpg';
-import Image from 'next/image';
-import { Buttons } from '../buttons/buttons';
+} from "@/components/ui/accordion";
+import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil";
+import { usePathname } from "next/navigation";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+import RekreationPaysage from "../../../../public/rekreatioonPaysage.jpg";
+import Image from "next/image";
+import { Buttons } from "../buttons/buttons";
 
 interface Props {
   data: {
@@ -71,7 +69,7 @@ interface Props {
   myLearnings?: {
     id: string;
     trainingId: string;
-    status: 'PENDING' | 'APPROVED' | 'REJECTED' | 'ARCHIVED';
+    status: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED";
   }[];
   className?: string;
 }
@@ -88,14 +86,14 @@ export const TrainingView = ({
 
   if (userId) {
     const channel = pusherClient.subscribe(userId!);
-    channel.bind('add', function (data: any) {
+    channel.bind("add", function (data: any) {
       const parsedLearnings = JSON.parse(data.result);
       setLearnings((prev) => [...prev, parsedLearnings]);
     });
   }
 
   return (
-    <Container className={clsx('', className)}>
+    <Container className={clsx("", className)}>
       {data.map(
         ({
           id,
@@ -136,7 +134,7 @@ export const TrainingView = ({
                 <Container className="flex flex-row gap-1 items-center">
                   <Calendar width={14} height={14} />
                   <Typography variant="body-sm">
-                    {format(createdAt, 'dd MMMM yyyy', { locale: fr })}
+                    {format(createdAt, "dd MMMM yyyy", { locale: fr })}
                   </Typography>
                 </Container>
               </Container>
