@@ -12,8 +12,26 @@ export async function GET(
         id: params.id,
       },
       include: {
-        yaya: true,
+        yaya: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                image: true,
+                firstName: true,
+                lastName: true,
+              },
+            },
+          },
+        },
         category: true,
+        lessons: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
       },
     });
 

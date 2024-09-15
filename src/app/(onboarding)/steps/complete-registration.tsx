@@ -23,6 +23,7 @@ import UseLoading from "@/hooks/use-loading";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import { signOut } from "next-auth/react";
 
 interface Props {
   data: {
@@ -71,6 +72,21 @@ export const CompleteRegistration = ({ data, name }: Props) => {
       number: data.number ? data.number : "",
     },
   });
+
+  // afficher une notification si il y a des erreurs dans les champs
+  useEffect(() => {
+    if (Object.keys(form.formState.errors).length > 0) {
+      toast({
+        variant: "destructive",
+        description: (
+          <Typography component="p" variant="body-sm">
+            Il y'a des erreurs dans vos informations, veuillez vérifier votre
+            saisie.
+          </Typography>
+        ),
+      });
+    }
+  }, [form.formState.isSubmitting]);
 
   useEffect(() => {
     const { firstname, lastname } = form.getValues();
@@ -138,8 +154,10 @@ export const CompleteRegistration = ({ data, name }: Props) => {
         ),
       });
       stopLoading();
-      router.push("/dashboard");
-      router.refresh();
+      setTimeout(() => {
+        signOut({ callbackUrl: "/signin" });
+        // window.location.href = "/dashboard";
+      }, 1000);
     } else {
       toast({
         variant: "destructive",
@@ -182,15 +200,15 @@ export const CompleteRegistration = ({ data, name }: Props) => {
 
   return (
     <BackgroundImage>
-      <Container className="bg-[#e7ffb5] lg:bg-transparent h-full w-full flex flex-col p-8 lg:justify-center gap-4">
+      <div className="bg-[#e7ffb5] lg:bg-transparent h-full w-full flex flex-col p-8 lg:justify-center gap-4">
         <Typography
-          variant="display"
+          variant="title-lg"
           component="h2"
-          className="text-center md:text-left lg:text-5xl font-semibold"
+          className="text-center text-4xl font-bold md:text-left"
         >
           Terminer l'inscription
         </Typography>
-        <Container className="w-full lg:w-[50vw]">
+        <div className="w-full lg:w-[50vw]">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -199,7 +217,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
               <Accordion type="single" collapsible>
                 <AccordionItem value="step-1">
                   <AccordionTrigger>
-                    <Container className="flex flex-row gap-4 justify-center">
+                    <div className="flex flex-row gap-4 justify-center">
                       <Typography variant="title-base">Identité</Typography>
                       <CheckCircle2
                         className={clsx(
@@ -208,24 +226,24 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                             : "text-gray-100"
                         )}
                       />
-                    </Container>
+                    </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <Container className="flex flex-col gap-4 px-1">
-                      <Container>
+                    <div className="flex flex-col gap-4 px-1">
+                      <div>
                         <Typography variant="body-sm">
                           Bienvenue à la section des informations personnelles.
                           Ici, nous allons recueillir des informations de base
                           vous concernant. Veuillez fournir les détails
                           nécessaires afin de continuer avec le formulaire.
                         </Typography>
-                      </Container>
-                      <Container
+                      </div>
+                      <div
                         className={clsx(
                           "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
                         )}
                       >
-                        <Container className="lg:basis-1/2">
+                        <div className="lg:basis-1/2">
                           <InputField
                             placeholder="John"
                             control={form.control}
@@ -235,8 +253,8 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                           >
                             {UserIcon()}
                           </InputField>
-                        </Container>
-                        <Container className="lg:basis-1/2">
+                        </div>
+                        <div className="lg:basis-1/2">
                           <InputField
                             placeholder="Doe"
                             control={form.control}
@@ -246,14 +264,14 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                           >
                             {UserIcon()}
                           </InputField>
-                        </Container>
-                      </Container>
-                    </Container>
+                        </div>
+                      </div>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="step-2" disabled={!isFirstFilled}>
                   <AccordionTrigger>
-                    <Container className="flex flex-row gap-4 justify-center">
+                    <div className="flex flex-row gap-4 justify-center">
                       <Typography variant="title-base">Coordonnées</Typography>
                       <CheckCircle2
                         className={clsx(
@@ -262,24 +280,24 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                             : "text-gray-100"
                         )}
                       />
-                    </Container>
+                    </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <Container className="flex flex-col gap-4 px-1">
-                      <Container>
+                    <div className="flex flex-col gap-4 px-1">
+                      <div>
                         <Typography variant="body-sm">
                           Pour nous permettre de vous contacter facilement, nous
                           avons besoin de vos coordonnées complètes. Ces
                           informations resteront confidentielles et ne seront
                           utilisées que pour des fins de communication.
                         </Typography>
-                      </Container>
-                      <Container
+                      </div>
+                      <div
                         className={clsx(
                           "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
                         )}
                       >
-                        <Container className="lg:basis-1/2">
+                        <div className="lg:basis-1/2">
                           <InputField
                             placeholder="JohnDoe12@jd.com"
                             control={form.control}
@@ -290,8 +308,8 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                           >
                             {MailIcon()}
                           </InputField>
-                        </Container>
-                        <Container className="lg:basis-1/2">
+                        </div>
+                        <div className="lg:basis-1/2">
                           <InputField
                             placeholder="0*********"
                             control={form.control}
@@ -301,9 +319,9 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                           >
                             {PhoneIcon()}
                           </InputField>
-                        </Container>
-                      </Container>
-                    </Container>
+                        </div>
+                      </div>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem
@@ -311,7 +329,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                   disabled={isFirstFilled && isSecondFilled ? false : true}
                 >
                   <AccordionTrigger>
-                    <Container className="flex flex-row gap-4 justify-center">
+                    <div className="flex flex-row gap-4 justify-center">
                       <Typography variant="title-base">
                         Adresse Physique
                       </Typography>
@@ -322,23 +340,23 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                             : "text-gray-100"
                         )}
                       />
-                    </Container>
+                    </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <Container className="flex flex-col gap-4 px-1">
-                      <Container>
+                    <div className="flex flex-col gap-4 px-1">
+                      <div>
                         <Typography variant="body-sm">
                           Nous avons besoin de votre adresse physique pour des
                           raisons administratives. Veuillez entrer votre adresse
                           complète et exacte.
                         </Typography>
-                      </Container>
-                      <Container
+                      </div>
+                      <div
                         className={clsx(
                           "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
                         )}
                       >
-                        <Container className="lg:basis-1/2">
+                        <div className="lg:basis-1/2">
                           <InputField
                             control={form.control}
                             name="municipality"
@@ -357,8 +375,8 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                           >
                             {HomeIcon()}
                           </InputField>
-                        </Container>
-                        <Container className="lg:basis-1/2">
+                        </div>
+                        <div className="lg:basis-1/2">
                           <InputField
                             control={form.control}
                             name="avenue"
@@ -377,13 +395,13 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                           >
                             {HomeIcon()}
                           </InputField>
-                        </Container>
-                      </Container>
-                    </Container>
+                        </div>
+                      </div>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-              <Container className="flex flex-col justify-between items-center lg:items-start gap-2">
+              <div className="flex flex-col justify-between items-center lg:items-start gap-2">
                 <Buttons
                   type="submit"
                   isLoading={isLoading}
@@ -395,11 +413,11 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                 >
                   Enregistrer
                 </Buttons>
-              </Container>
+              </div>
             </form>
           </Form>
-        </Container>
-      </Container>
+        </div>
+      </div>
     </BackgroundImage>
   );
 };

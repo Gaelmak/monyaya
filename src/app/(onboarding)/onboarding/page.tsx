@@ -1,15 +1,21 @@
-import { Container } from '@/ui/components/container/container';
-import { Init } from '../steps/init';
-import { ScrollOnboard } from '@/ui/components/scroll-onboard/scroll-onboard';
-import { CompleteRegistration } from '../steps/complete-registration';
-import { userAuth } from '@/lib/helper';
+import { Container } from "@/ui/components/container/container";
+import { Init } from "../steps/init";
+import { ScrollOnboard } from "@/ui/components/scroll-onboard/scroll-onboard";
+import { CompleteRegistration } from "../steps/complete-registration";
+import { userAuth } from "@/lib/helper";
+import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   const session = await userAuth();
 
-  const user = await prisma!.user.findUnique({
+  if (!session) {
+    redirect("/signin");
+  }
+
+  const user = await prisma.user.findUnique({
     where: {
-      name: session!.name!,
+      name: session?.name,
     },
     select: {
       email: true,
@@ -25,20 +31,28 @@ export default async function Home() {
     },
   });
 
+  if (!user) {
+    redirect("/signin");
+  }
+
+  if (user?.email && user?.firstName && user?.lastName) {
+    redirect("/dashboard");
+  }
+
   return (
-    <Container className="flex flex-col h-[100vh] w-full overflow-hidden relative">
+    <div className="flex flex-col h-dvh w-full overflow-hidden relative">
       <ScrollOnboard
         data={[
           {
-            id: 'init',
+            id: "init",
             element: <Init />,
           },
           {
-            id: 'init2',
-            element: <CompleteRegistration data={user!} name={user!.name} />,
+            id: "init2",
+            element: <CompleteRegistration data={user} name={user?.name} />,
           },
         ]}
       />
-    </Container>
+    </div>
   );
 }

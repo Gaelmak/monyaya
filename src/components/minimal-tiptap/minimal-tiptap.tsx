@@ -91,6 +91,7 @@ export const MinimalTiptapEditor = React.forwardRef<
       <EditorContent
         editor={editor}
         className={cn("minimal-tiptap-editor", editorContentClassName)}
+        style={{ minHeight: "200px" }}
       />
       <LinkBubbleMenu editor={editor} />
       <ImageBubbleMenu editor={editor} />
@@ -99,5 +100,20 @@ export const MinimalTiptapEditor = React.forwardRef<
 });
 
 MinimalTiptapEditor.displayName = "MinimalTiptapEditor";
+
+export const TitapParser = (props: { value: any }) => {
+  const editor = useMinimalTiptapEditor({
+    value: props.value,
+    autofocus: false,
+    editable: false,
+    immediatelyRender: false,
+  });
+  return (
+    <EditorContent
+      editor={editor}
+      className={cn("minimal-tiptap-editor", "pointer-events-none select-none")}
+    />
+  );
+};
 
 export default MinimalTiptapEditor;

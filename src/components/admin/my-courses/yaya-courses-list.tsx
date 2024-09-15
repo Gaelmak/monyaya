@@ -13,10 +13,11 @@ export type CoursesListProps = {
 
 type coursesPropos = Courses & { yaya: Yaya & { user: UserProps } };
 
-export default function CoursesList(props: CoursesListProps) {
+export default function YayaCoursesList(props: CoursesListProps) {
   const [approvedCourses, setApprovedCourses] = useState<coursesPropos[]>([]);
   const [pendingCourses, setPendingCourses] = useState<coursesPropos[]>([]);
   const [rejectedCourses, setRejectedCourses] = useState<coursesPropos[]>([]);
+
   const { data: courses, isLoading } = useQuery({
     queryKey: ["courses"],
     queryFn: async () => {

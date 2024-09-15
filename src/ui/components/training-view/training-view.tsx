@@ -1,13 +1,10 @@
 "use client";
+"use client";
 
 import { pusherClient } from "@/lib/pusher";
 import { useState } from "react";
 import { Container } from "../container/container";
 import { Typography } from "../typography/typography";
-import {
-  SearchResultButtons,
-  SearchResultTrainer,
-} from "@/ui/modules/search-result/search-result-buttons";
 import { Calendar, List, Map } from "lucide-react";
 import clsx from "clsx";
 import {
@@ -135,6 +132,7 @@ export const TrainingView = ({
                   <Calendar width={14} height={14} />
                   <Typography variant="body-sm">
                     {format(createdAt, "dd MMMM yyyy", { locale: fr })}
+                    {format(createdAt, "dd MMMM yyyy", { locale: fr })}
                   </Typography>
                 </Container>
               </Container>
@@ -147,16 +145,16 @@ export const TrainingView = ({
                     ${price}
                   </Typography>
                 </Container>
-                <SearchResultButtons
-                  userId={userId ? userId : null}
-                  id={myLearnings!.find((obj) => obj!.trainingId === id)?.id!}
-                  trainingId={id}
-                  isMyAccount={sessionName === user!.name}
-                  amLearner={learnings.some((objet) => objet.trainingId === id)}
-                  status={
-                    learnings.find((obj) => obj!.trainingId === id)?.status
-                  }
-                />
+                {/* <SearchResultButtons
+              userId={userId ? userId : null}
+              id={myLearnings!.find((obj) => obj!.trainingId === id)?.id!}
+              trainingId={id}
+              isMyAccount={sessionName === user!.name}
+              amLearner={learnings.some((objet) => objet.trainingId === id)}
+              status={
+                learnings.find((obj) => obj!.trainingId === id)?.status
+              }
+            /> */}
               </Container>
               <Container className="flex flex-col gap-2">
                 <Typography variant="body-sm">Description</Typography>

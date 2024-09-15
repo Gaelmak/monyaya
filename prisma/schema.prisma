@@ -99,6 +99,7 @@ model Courses {
   valideAt      DateTime?   @updatedAt
   categoryId    String?
   lessons       Lessons[]
+  sections      Sections[]
   UserCourse    UserCourse[]
   
   category      Category?   @relation(fields: [categoryId], references: [id])
@@ -116,9 +117,24 @@ model Lessons {
   adress        String?
   createAt      DateTime    @default(now())
   updateAt      DateTime?   @updatedAt
+  sectionId     String?
   UserLesson    UserLesson[]
   
   course        Courses?   @relation(fields: [courseId], references: [id])
+  section       Sections?  @relation(fields: [sectionId], references: [id])
+}
+
+model Sections {
+  id            String      @id @default(cuid())
+  courseId      String
+  title         String
+  description   String?
+  order         Int         @default(1) // Champ pour l'ordre des sections
+  createAt      DateTime    @default(now())
+  updateAt      DateTime?   @updatedAt
+  
+  course        Courses?     @relation(fields: [courseId], references: [id])
+  lessons       Lessons[]
 }
 
 model UserCourse {
