@@ -1,15 +1,7 @@
 "use client";
+
 import { useQuery } from "@tanstack/react-query";
-import { Typography } from "@/ui/components/typography/typography";
-import {
-  Calendar,
-  List,
-  PenBox,
-  Map,
-  Share2,
-  Bookmark,
-  ChevronDown,
-} from "lucide-react";
+import { Share2Icon, CheckIcon, CopyIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -18,24 +10,41 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Buttons } from "@/ui/components/buttons/buttons";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@radix-ui/react-dropdown-menu";
-import { string } from "zod";
 import { Avatar } from "@radix-ui/react-avatar";
 import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useParams } from "next/navigation";
+import { TitapParser } from "@/components/minimal-tiptap";
+import Image from "next/image";
+import Link from "next/link";
+import { BanknoteIcon, ChevronLeft, Clock2, Library, User } from "lucide-react";
+import ReactPlayer from "react-player";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useCopyToClipboard } from "@uidotdev/usehooks";
+import { Input } from "@/components/ui/input";
+import { Loader } from "@/components/ui/loader";
 
 export default function HandleCourse() {
+  const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsPlayerReady(true);
+  }, []);
+
   const params = useParams<{ id: string; item: string }>();
-  const {
-    data: course,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["courses"],
+  const [copiedText, copyToClipboard] = useCopyToClipboard();
+  const hasCopiedText = Boolean(copiedText);
+  const { data: course, isLoading } = useQuery({
+    queryKey: ["frontSingleCourse"],
     queryFn: async () => {
       const response = await fetch(`/api/courses/${params.id}`);
       if (!response.ok) {
@@ -45,180 +54,147 @@ export default function HandleCourse() {
     },
   });
 
-  // Gérer l'état de chargement
   if (isLoading) {
-    return <div>Chargement...</div>;
+    return (
+      <div className="w-full h-80 flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   }
-
-  // Gérer l'état d'erreur
-  if (error) {
-    return <div>Une erreur est survenue: {(error as Error).message}</div>;
-  }
-
-  console.log(course);
-  // const tags = course?.tags || [];
-
-  // //tableau provisoir pour faire passé les lecons
-  const tags = Array.from({ length: 10 }).map(
-    (_, i, a) => `Developpement web Chapitre.${a.length - i}`
-  );
 
   return (
-    <main>
-      <main className="hidden md:flex max-w-full select-none w-full px-4  lg:px-[7vw] mb-20">
-        <div className="flex  flex-row-reverse  md:justify-between md:items-start relative gap-6 pt-4 w-full">
-          <Card className="hidden md:block lg:w-1/3 md:w-1/3  sticky right-0 top-0  rounded-xl h-[calc(115vh-65px)]">
-            <CardHeader className="">
-              <CardTitle className="flex flex-row justify-between items-center border-b-2 pb-2">
-                <Typography className="text-base">
-                  {`$ ${course?.monthlyPrice}`}
-                  <span className="text-secondary-600">/Mois</span>
-                </Typography>
-                <Badge className="bg-primary-Default text-primary-50 font-normal ">
-                  {course?.status}
-                </Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-3">
-              <div>
-                <Typography className="text-sm font-medium text-primary-400 pb-2">
-                  {"Appercu de lecon pour ce cours"}
-                </Typography>
-                <ScrollArea className="md:h-[10vw] lg:h-[20vw] border-none rounded-md ">
-                  <div className="pt-2">
-                    <div>
-                      <div className=" w-full ">
-                        {tags.map((tag, index) => (
-                          <div key={index}>
-                            <Typography className="text-secondary-800 font-medium">
-                              {tag}
-                            </Typography>
-                            <div className="border-b-secondary-900"></div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </ScrollArea>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Buttons className="w-full">Demarer</Buttons>
-            </CardFooter>
-          </Card>
-          <div className="flex flex-col gap-5 md:w-[60%]">
-            <div className="">
-              <iframe
-                width="100%"
-                height="auto"
-                src="https://youtu.be/jOHVRabET4w?list=RDjOHVRabET4w"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="h-[60vh] rounded-xl"
-              ></iframe>
-            </div>
-            <div className=" flex flex-row justify-between items-center">
-              <div className=" flex flex-row justify-start items-center gap-3 text-xs">
-                <div className="flex flex-row items-center p-2 bg-primary-100 rounded py-1 text-center ">
-                  <Typography className="semibold font-semibold text-center m-auto text-primary-600">
-                    {course?.type}
-                  </Typography>
-                </div>
-                <div className="flex flex-row items-center p-2 bg-amber-100 rounded py-1 text-center ">
-                  <Typography className="semibold font-semibold text-center m-auto text-amber-600">
-                    {"6 mois"}
-                  </Typography>
-                </div>
-                <div className="flex flex-row items-center p-2 bg-teal-100 rounded py-1 text-center ">
-                  <Typography className="semibold font-semibold text-center m-auto text-teal-600">
-                    {course?.Category}
-                  </Typography>
-                </div>
-                <div className="flex flex-row items-center p-2 bg-red-100 rounded py-1 text-center ">
-                  <Typography className="semibold font-semibold text-center m-auto text-red-600">
-                    {"16 lecons"}
-                  </Typography>
-                </div>
-                <div className="flex flex-row items-center p-2 bg-amber-100 rounded py-1 text-center ">
-                  <Typography className="semibold font-semibold text-center m-auto text-amber-600">
-                    {"16 etudiants"}
-                  </Typography>
-                </div>
-              </div>
-              <div className=" flex flex-row justify-between items-center gap-2 text-secondary-600">
-                <Share2 size={20} strokeWidth={1} />
-                <Bookmark size={20} strokeWidth={1} />
-              </div>
-            </div>
-            <div>
-              <Typography className="text-lg font-bold text-primary-900">
-                {course?.title}
-              </Typography>
-              <div className="flex items-center justify-start gap-3 text-secondary-400 text-xs font-medium">
-                <Avatar>
-                  <AvatarImage
-                    src={course?.avatar}
-                    alt={course?.yaya}
-                    className="rounded-full w-6 h-6"
-                  />
-                  <AvatarFallback>theodore</AvatarFallback>
-                </Avatar>
-                <Typography>{"course"}</Typography>
-                <Typography>{"Municipality"}</Typography>
-                <Typography>{"district"}</Typography>{" "}
-                <Typography>{"avenue"}</Typography>
-                <Typography>{"numero"}</Typography>
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <Tabs className="" defaultValue="Description">
-                <TabsList
-                  defaultValue={"Description"}
-                  className="text-sm font-medium gap-5 text-secondary-900"
-                >
-                  <TabsTrigger
-                    value="Description"
-                    className="border-none  data-[state=active]:border-none data-[state=active]:shadow-none p-0 data-[state=active]:decoration-4 data-[state=active]:decoration-primary-600 data-[state=active]:underline data-[state=active]:underline-offset-8 active:bg-transparent data-[state=active]:bg-transparent data-[state=active]:text-primary-600"
-                  >
-                    Description
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="Yaya"
-                    className="border-none data-[state=active]:border-none data-[state=active]:shadow-none p-0 data-[state=active]:decoration-4 data-[state=active]:decoration-primary-600 data-[state=active]:underline data-[state=active]:underline-offset-8 active:bg-transparent data-[state=active]:bg-transparent data-[state=active]:text-primary-600"
-                  >
-                    yaya
-                  </TabsTrigger>
-                  {/* <TabsTrigger
-                      value="lecons"
-                      className="border-none data-[state=active]:border-none data-[state=active]:shadow-none p-0 data-[state=active]:decoration-4 data-[state=active]:decoration-primary-600 data-[state=active]:underline data-[state=active]:underline-offset-8 active:bg-transparent data-[state=active]:bg-transparent data-[state=active]:text-primary-600"
+    <main className="w-full px-4 lg:px-[7vw] mb-20 space-y-4">
+      <div className="flex justify-between gap-4">
+        <h1 className="text-2xl font-bold flex gap-2 items-center">
+          <Link href="/my-courses">
+            <ChevronLeft
+              size={20}
+              className="text-primary-600 hover:text-primary-700"
+            />
+          </Link>
+          {course.title}
+        </h1>
+      </div>
+      <div className="w-full flex flex-col md:flex-row gap-4">
+        <div className="w-full md:w-8/12 space-y-6">
+          {(course.videoUrl || course.cover) && (
+            <Card className="w-full aspect-video overflow-hidden">
+              {course.videoUrl && isPlayerReady ? (
+                <ReactPlayer
+                  url={course.videoUrl}
+                  controls={true}
+                  light={true}
+                  width="100%"
+                  height="100%"
+                />
+              ) : (
+                <Image
+                  src={course.cover ?? ""}
+                  alt="Course cover image"
+                  width={1920}
+                  height={1080}
+                />
+              )}
+            </Card>
+          )}
+
+          <div className="wp-full flex flex-wrap gap-2 md:gap-4 items-center">
+            <Badge className="rounded-md bg-primary-100 text-black/80 px-4 py-2 flex gap-1 items-center">
+              <span className="text-sm bg-primary-600 w-2 h-2 rounded-full"></span>
+              {course.type}
+            </Badge>
+            <Badge className="rounded-md bg-orange-100 text-black/80 px-4 py-2 flex gap-1 items-center">
+              <Clock2 size={14} />
+              <span>6 mois</span>
+            </Badge>
+            <Badge className="rounded-md bg-red-100 text-black/80 px-4 py-2 flex gap-1 items-center">
+              <Library size={14} /> 16 leçons
+            </Badge>
+            <Badge className="rounded-md bg-blue-100 text-black/80 px-4 py-2 flex gap-1 items-center">
+              <User size={14} /> 16 étudiants
+            </Badge>
+            <div className="ml-auto">
+              <Popover>
+                <PopoverTrigger>
+                  <Share2Icon size={20} />
+                </PopoverTrigger>
+                <PopoverContent className="bg-white">
+                  <h6 className="text-sm font-bold mb-2">Partager</h6>
+                  <div className="relative">
+                    <Input className="w-full" value={pathname} />
+                    <button
+                      disabled={hasCopiedText}
+                      className="link absolute top-3 right-2"
+                      onClick={() => copyToClipboard(pathname)}
                     >
-                      lecons
-                    </TabsTrigger> */}
-                </TabsList>
-                <TabsContent
-                  value="Description"
-                  className="text-secondary-600 text-base "
-                >
-                  {course?.description}
-                </TabsContent>
-                <TabsContent
-                  value="Yaya"
-                  className="text-secondary-600 text-base"
-                >
-                  {}
-                </TabsContent>
-                <TabsContent
-                  value="lecons"
-                  className="text-secondary-600 text-base "
-                >
-                  {}
-                </TabsContent>
-              </Tabs>
+                      {hasCopiedText ? (
+                        <CheckIcon size={16} />
+                      ) : (
+                        <CopyIcon size={16} />
+                      )}
+                    </button>
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
+
+          <div>
+            <Tabs defaultValue="description" className="w-full p-0">
+              <TabsList className="p-0">
+                <TabsTrigger value="description">Description</TabsTrigger>
+                <TabsTrigger value="avis">Avis</TabsTrigger>
+              </TabsList>
+              <TabsContent value="description">
+                <TitapParser value={course.description} />
+              </TabsContent>
+              <TabsContent value="avis">
+                <TitapParser value={course.description} />
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
-      </main>
+        <div className="w-full md:w-4/12">
+          <Card className="bg-white sticky top-[10vh]">
+            <CardHeader className="gap-2">
+              <CardTitle className="text-black/80 text-lg flex gap-1 justify-between items-center">
+                <div className="flex items-center gap-1">
+                  <BanknoteIcon size={24} className="text-primary-800" /> Prix
+                </div>
+                <div>{course.monthlyPrice}$/mois</div>
+              </CardTitle>
+              <hr />
+              <CardDescription className="flex flex-col justify-center items-center gap-2 text-center px-4">
+                <Avatar>
+                  <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    className="rounded-full w-24 h-24 overflow-hidden"
+                  />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <div>
+                  Nulla nisi nulla reprehenderit nisi laborum pariatur do
+                  voluptate quis sit sunt culpa ea minim nisi. Commodo nostrud
+                  laborum excepteur fugiat nulla nisi eu ad sint non.
+                </div>
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <h4 className="mb-2">Programmes</h4>
+              <ul className="p-3 pl-6 bg-blue-100 rounded space-y-2 text-sm list-disc">
+                {course?.lessons?.map((lesson, index) => (
+                  <li key={index}>{lesson.title}</li>
+                ))}
+              </ul>
+            </CardContent>
+            <CardFooter>
+              <Button className="px-4 py-8 text-base text-white w-full bg-primary-600 hover:bg-primary-700">
+                Commencer maintenant
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </div>
     </main>
   );
 }

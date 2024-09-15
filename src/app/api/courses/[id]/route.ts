@@ -26,6 +26,12 @@ export async function GET(
           },
         },
         category: true,
+        lessons: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
       },
     });
 
