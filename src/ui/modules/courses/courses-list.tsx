@@ -4,7 +4,6 @@ import { Container } from "@/ui/components/container/container";
 import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
 import { Typography } from "@/ui/components/typography/typography";
 import { CategoryFilter } from "./category-filter";
-import useFilterTypeStore from "@/store/filter-type-store";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "@/components/ui/loader";
 import { useSearchParams } from "next/navigation";
@@ -13,12 +12,15 @@ import { OrderFilter } from "./order-filter";
 export const FrontCoursesList = () => {
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("category");
-  const urlquery = categoryId ? `?categoryId=${categoryId}` : "";
+  const params = new URLSearchParams();
+  if (categoryId) {
+    params.set("categoryId", categoryId);
+  }
 
   const { data: courses, isLoading } = useQuery({
     queryKey: ["courses", categoryId],
     queryFn: async () => {
-      const response = await fetch(`/api/courses/${urlquery}`);
+      const response = await fetch(`/api/courses?${params.toString()}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
