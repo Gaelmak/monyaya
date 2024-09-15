@@ -83,11 +83,11 @@ export function DataTable<TData, TValue>({
       <div className="rounded border">
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
+            {table.getHeaderGroups().map((headerGroup, index) => (
+              <TableRow key={index}>
+                {headerGroup.headers.map((header, index) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={index}>
                       <Typography variant="title-sm" component="h4">
                         {header.isPlaceholder
                           ? null

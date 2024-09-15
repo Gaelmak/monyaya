@@ -1,13 +1,13 @@
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import Image from 'next/image';
-import studentImage from '../../../../public/OIP (4).jpg';
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import Image from "next/image";
+import studentImage from "../../../../public/OIP (4).jpg";
 export default function MissionSection() {
   return (
-    <Container className=" container flex flex-col lg:flex-row-reverse lg:justify-between max-w-full md:items-center gap-8  py-4 lg:py-10 bg-secondary-50">
+    <Container className="flex flex-col lg:flex-row-reverse lg:justify-between max-w-full md:items-center gap-8  py-4 lg:py-10 bg-secondary-50 lg:px-[7vw]">
       <Container className="lg:w-1/2 flex flex-col justify-between items-center gap-8">
         <Typography
-          className="text-[#39ae44] "
+          className="text-[#39ae44] text-3xl font-semibold"
           component="h4"
           variant="title-lg"
         >
@@ -35,8 +35,6 @@ export default function MissionSection() {
           className="rounded-2xl "
         />
       </Container>
-
-      <Container></Container>
     </Container>
   );
 }

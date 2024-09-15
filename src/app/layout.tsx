@@ -1,11 +1,11 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import ContextProvider from '@/components/context-provider';
+import "./globals.css";
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import ContextProvider from "@/components/context-provider";
 
 export const metadata: Metadata = {
-  title: 'MonYaya',
-  description: '%s | MonYaya',
+  title: "MonYaya",
+  description: "%s | MonYaya",
 };
 
 export default function RootLayout({

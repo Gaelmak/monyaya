@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Container } from '@/ui/components/container/container';
-import { termOfUse } from '@/lib/terme-of-use-data/term-of-use';
-import { Typography } from '@/ui/components/typography/typography';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Container } from "@/ui/components/container/container";
+import { termOfUse } from "@/lib/terme-of-use-data/term-of-use";
+import { Typography } from "@/ui/components/typography/typography";
 
 export default function TermOfUse() {
   const [activeSection, setActiveSection] = useState<string>(termOfUse[0].id);
@@ -29,8 +29,8 @@ export default function TermOfUse() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleClick = (id: string) => {
@@ -38,21 +38,21 @@ export default function TermOfUse() {
     if (element) {
       window.scrollTo({
         top: element.offsetTop - 150,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
   };
 
   return (
-    <main className="flex max-w-full select-none w-full ">
+    <main className="flex max-w-full select-none w-full lg:px-[7vw]">
       <Container className="flex justify-between items-start relative">
         <Container
-          className={`hidden lg:w-1/4 md:w-1/3 md:flex sticky left-0 top-0 pt-10 bg-gray-100 p-4 h-[calc(115vh-65px)]`}
+          className={`hidden lg:w-1/4 md:w-1/3 md:flex sticky left-0 top-0 pt-8 bg-gray-100 p-4 h-[calc(115vh-65px)]`}
         >
           <ul className="w-full pt-10">
-            {termOfUse.map((article) => (
+            {termOfUse.map((article, index) => (
               <Container
-                key={article.id}
+                key={index}
                 className="flex justify-start gap-6 items-center"
               >
                 <li>
@@ -66,7 +66,11 @@ export default function TermOfUse() {
                 <li>
                   <span
                     onClick={() => handleClick(article.id)}
-                    className={`block px-2 py-2 cursor-pointer ${activeSection === article.id ? 'font-semibold text-[#39ae44]' : 'text-gray-700'}`}
+                    className={`block px-2 py-2 cursor-pointer ${
+                      activeSection === article.id
+                        ? "font-semibold text-[#39ae44]"
+                        : "text-gray-700"
+                    }`}
                   >
                     {article.title}
                   </span>
@@ -78,14 +82,13 @@ export default function TermOfUse() {
         <Container className="flex flex-col ml-4 md:w-2/3 lg:w-3/4 md:mr-4">
           <Container className="leading-relaxed mb-6 flex flex-col gap-4">
             <Typography
-              className="leading-relaxed text-[#39ae44]"
+              className="leading-relaxed text-[#39ae44] text-5xl font-semibold"
               component="h3"
-              variant="title-lg"
             >
               Contrats
             </Typography>
             <Typography
-              className="text-[#424242]"
+              className="text-[#424242] text-xl"
               component="h5"
               variant="title-sm"
             >
@@ -112,13 +115,13 @@ export default function TermOfUse() {
               <span className="font-semibold">{"D'autre part,"}</span>
               <br />
               il a été conclu le présent contrat de service d'apprentissage à
-              domicile, ci- après dénommé{' '}
+              domicile, ci- après dénommé{" "}
               <span className="font-semibold">{`"Contrat"`}</span>
             </Typography>
           </Container>
-          {termOfUse.map((section) => (
-            <div id={section.id} key={section.id} className="mb-10">
-              <Typography className="mb-4 text-[#39ae44]" variant="title-base">
+          {termOfUse.map((section, index) => (
+            <div id={section.id} key={index} className="mb-10">
+              <Typography className="mb-4 text-[#39ae44] text-2xl font-semibold">
                 {section.title}
               </Typography>
               <Typography className="leading-relaxed" variant="body-base">

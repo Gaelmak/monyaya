@@ -8,7 +8,7 @@ import MissionSection from "@/ui/modules/about-components/mission";
 import VisionSection from "@/ui/modules/about-components/visionSection";
 import TestimonialCarousel from "@/ui/modules/about-components/TestimonialCarousel";
 
-export default function Home() {
+export default function About() {
   return (
     <main>
       <Container>
