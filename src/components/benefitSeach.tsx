@@ -1,9 +1,9 @@
-import { OurBenefits } from '@/lib/our-benefits/our-benefits';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import { SearchCourses } from '@/ui/modules/search/search-courses';
-import Image from 'next/image';
-import imageBenefit from 'public/mail.jpg';
+import { OurBenefits } from "@/lib/our-benefits/our-benefits";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import { SearchCourses } from "@/ui/modules/search/search-courses";
+import Image from "next/image";
+import imageBenefit from "public/mail.jpg";
 
 export const BenefitSearch = () => {
   return (
@@ -24,8 +24,8 @@ export const BenefitSearch = () => {
         </Container>
         <Container className="md:w-1/2 flex flex-col gap-3 py-4">
           <Typography className="text-center md:text-left text-xl font-bold">
-            <span className=" text-primary-Default">Avantages </span>{' '}
-            d'Apprendre Dans <br />
+            <span className=" text-primary-Default">Avantages </span>{" "}
+            d&apos;Apprendre Dans <br />
             Notre Plateforme
           </Typography>
           {OurBenefits.map(({ Icon, title, description }) => (

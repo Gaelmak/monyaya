@@ -95,7 +95,7 @@ export default function YayaCoursesList(props: CoursesListProps) {
     <div>
       <div className="text-center p-4 w-full flex flex-col items-center justify-center">
         <Frown size={80} strokeWidth={0.8} className="mb-2 opacity-60" />
-        <Typography>Il n'y a pas de cours pour le moment.</Typography>
+        <Typography>Il n&apos;y a pas de cours pour le moment.</Typography>
       </div>
     </div>
   );

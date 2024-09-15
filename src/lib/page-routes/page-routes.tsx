@@ -3,7 +3,7 @@ import { Presentation, Home, Settings2 } from "lucide-react";
 import Linkedin from "../../../public/icons/linkedin.png";
 import Facebook from "../../../public/icons/facebook.png";
 import Youtube from "../../../public/icons/youtube.png";
-import X from "../../../public/icons/TwitterX.png";
+import X from "../../../public/icons/twitterx.png";
 
 export const MainRoutes: AppLinks[] = [
   {

@@ -134,7 +134,7 @@ export const AsideNav = async ({ className }: Props) => {
             className="flex flex-row items-center gap-2"
           >
             <Home className="h-5 w-5" />
-            Retourner à l'accueil
+            Retourner à l&apos;accueil
           </AsideActiveLink>
         </Typography>
         <SignOutButton className="bg-white md:bg-slate-50 text-red-400 hover:bg-white md:hover:bg-slate-50 hover:text-red-500 justify-start p-2 w-full" />

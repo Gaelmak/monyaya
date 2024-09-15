@@ -1,6 +1,6 @@
-'use client';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { Container } from '@/ui/components/container/container';
+"use client";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { Container } from "@/ui/components/container/container";
 import {
   Archive,
   ArchiveRestore,
@@ -10,16 +10,16 @@ import {
   Check,
   Plus,
   Trash2,
-} from 'lucide-react';
-import { Typography } from '@/ui/components/typography/typography';
-import { useToast } from '@/components/ui/use-toast';
-import UseLoading from '@/hooks/use-loading';
-import { useRouter } from 'next/navigation';
+} from "lucide-react";
+import { Typography } from "@/ui/components/typography/typography";
+import { useToast } from "@/components/ui/use-toast";
+import UseLoading from "@/hooks/use-loading";
+import { useRouter } from "next/navigation";
 
 interface Props {
   trainingId?: string;
   amLearner?: boolean;
-  status?: 'PENDING' | 'APPROVED' | 'REJECTED' | 'ARCHIVED';
+  status?: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED";
 }
 
 export const ValidationButton = ({
@@ -33,8 +33,8 @@ export const ValidationButton = ({
 
   function logIn() {
     toast({
-      variant: 'default',
-      title: 'Authentification requise',
+      variant: "default",
+      title: "Authentification requise",
       description: (
         <Typography component="p" variant="body-sm">
           Pour ajouter cette formation à votre panier, veuillez vous connecter
@@ -52,10 +52,10 @@ export const ValidationButton = ({
   async function handleTraining(id: string, status: string) {
     startLoading();
     const add = await fetch(`/api/learners/${id}`, {
-      method: 'PATCH',
-      credentials: 'include',
+      method: "PATCH",
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         status,
@@ -64,23 +64,23 @@ export const ValidationButton = ({
 
     if (add.status === 200) {
       toast({
-        variant: 'success',
-        title: 'Formation ajoutée !',
+        variant: "success",
+        title: "Formation ajoutée !",
         description: (
           <Typography component="p" variant="body-sm">
-            L'état de la formation a été modifié avec succès.
+            L&apos;état de la formation a été modifié avec succès.
           </Typography>
         ),
       });
       stopLoading();
     } else {
       toast({
-        variant: 'destructive',
-        title: 'Erreur !',
+        variant: "destructive",
+        title: "Erreur !",
         description: (
           <Typography component="p" variant="body-sm">
-            Une erreur est survenue durant la modification de l'état de la
-            formation. Veuillez recommencer l'opération.
+            Une erreur est survenue durant la modification de l&apos;état de la
+            formation. Veuillez recommencer l&apos;opération.
           </Typography>
         ),
       });
@@ -92,10 +92,10 @@ export const ValidationButton = ({
   async function rejectTraining(id: string) {
     startLoading();
     const add = await fetch(`/api/learners/${id}`, {
-      method: 'DELETE',
-      credentials: 'include',
+      method: "DELETE",
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         id,
@@ -104,8 +104,8 @@ export const ValidationButton = ({
 
     if (add.status === 200) {
       toast({
-        variant: 'success',
-        title: 'Formation ajoutée !',
+        variant: "success",
+        title: "Formation ajoutée !",
         description: (
           <Typography component="p" variant="body-sm">
             La formation a été annulée avec succès.
@@ -115,12 +115,12 @@ export const ValidationButton = ({
       stopLoading();
     } else {
       toast({
-        variant: 'destructive',
-        title: 'Erreur !',
+        variant: "destructive",
+        title: "Erreur !",
         description: (
           <Typography component="p" variant="body-sm">
-            Une erreur est survenue durant l'annulation de la formation.
-            Veuillez recommencer l'opération.
+            Une erreur est survenue durant l&apos;annulation de la formation.
+            Veuillez recommencer l&apos;opération.
           </Typography>
         ),
       });
@@ -133,19 +133,19 @@ export const ValidationButton = ({
     <Container className="flex flex-row gap-2">
       {amLearner && (
         <Container className="flex flex-row gap-2">
-          {status === 'PENDING' ? (
+          {status === "PENDING" ? (
             <Buttons
               Icon={CalendarClock}
               className="text-white bg-orange-400 hover:bg-orange-400"
               isLoading={isLoading}
             />
-          ) : status === 'REJECTED' ? (
+          ) : status === "REJECTED" ? (
             <Buttons
               Icon={CalendarX}
               className="text-white bg-red-400 hover:bg-red-400"
               isLoading={isLoading}
             />
-          ) : status === 'ARCHIVED' ? (
+          ) : status === "ARCHIVED" ? (
             <Buttons
               Icon={Archive}
               className="text-white bg-red-400 hover:bg-red-400"
@@ -158,7 +158,7 @@ export const ValidationButton = ({
               isLoading={isLoading}
             />
           )}
-          {status === 'PENDING' && (
+          {status === "PENDING" && (
             <Buttons
               Icon={Trash2}
               variant="ghost"
@@ -170,20 +170,20 @@ export const ValidationButton = ({
           )}
         </Container>
       )}
-      {status === 'PENDING' ? (
+      {status === "PENDING" ? (
         <Buttons
           Icon={Check}
           isLoading={isLoading}
           buttonType="action"
-          action={() => handleTraining(trainingId!, 'APPROVED')}
+          action={() => handleTraining(trainingId!, "APPROVED")}
         />
       ) : (
-        status !== 'ARCHIVED' && (
+        status !== "ARCHIVED" && (
           <Buttons
             Icon={ArchiveRestore}
             isLoading={isLoading}
             buttonType="action"
-            action={() => handleTraining(trainingId!, 'ARCHIVED')}
+            action={() => handleTraining(trainingId!, "ARCHIVED")}
           />
         )
       )}

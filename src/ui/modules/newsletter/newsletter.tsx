@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { Form } from '@/components/ui/form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { useToast } from '@/components/ui/use-toast';
-import UseLoading from '@/hooks/use-loading';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { NewsletterRegisterFormFieldsType } from '@/types/forms';
-import Image from 'next/image';
-import Mail from '../../../../public/mail.jpg';
+import { Form } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { useToast } from "@/components/ui/use-toast";
+import UseLoading from "@/hooks/use-loading";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { NewsletterRegisterFormFieldsType } from "@/types/forms";
+import Image from "next/image";
+import Mail from "../../../../public/mail.jpg";
 
 export const Newsletter = () => {
   const { toast } = useToast();
@@ -20,7 +20,7 @@ export const Newsletter = () => {
   const form = useForm<z.infer<typeof NewsletterRegisterFormFieldsType>>({
     resolver: zodResolver(NewsletterRegisterFormFieldsType),
     defaultValues: {
-      email: '',
+      email: "",
     },
   });
 
@@ -30,11 +30,11 @@ export const Newsletter = () => {
     startLoading();
     const { email } = values;
 
-    const newsletter = await fetch('/api/newsletter', {
-      method: 'PATCH',
-      credentials: 'include',
+    const newsletter = await fetch("/api/newsletter", {
+      method: "PATCH",
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email,
@@ -43,8 +43,8 @@ export const Newsletter = () => {
 
     if (newsletter.status === 200) {
       toast({
-        variant: 'success',
-        title: 'Enregistrement réussi !',
+        variant: "success",
+        title: "Enregistrement réussi !",
         description: (
           <Typography component="p" variant="body-sm">
             Enrégistrement réussi
@@ -54,8 +54,8 @@ export const Newsletter = () => {
       stopLoading();
     } else {
       toast({
-        variant: 'destructive',
-        title: 'Erreur !',
+        variant: "destructive",
+        title: "Erreur !",
         description: (
           <Typography component="p" variant="body-sm">
             Une erreur est survenue. Veuillez réessayer.
@@ -90,7 +90,7 @@ export const Newsletter = () => {
                   className="md:w-[30vw] w-[60vw]"
                 />
                 <Buttons type="submit" isLoading={isLoading} className="">
-                  S'abonner
+                  S&apos;abonner
                 </Buttons>
               </Container>
             </form>

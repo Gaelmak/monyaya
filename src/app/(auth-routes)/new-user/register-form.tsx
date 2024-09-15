@@ -1,12 +1,12 @@
-'use client';
-import { Form } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { RegisterFormFieldsType } from '@/types/forms';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { Container } from '@/ui/components/container/container';
-import { Buttons } from '@/ui/components/buttons/buttons';
+"use client";
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { RegisterFormFieldsType } from "@/types/forms";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { Container } from "@/ui/components/container/container";
+import { Buttons } from "@/ui/components/buttons/buttons";
 import {
   Check,
   Eye,
@@ -18,15 +18,15 @@ import {
   Phone,
   User,
   UserPlus,
-} from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { saltPassword } from '@/lib/password-to-salt';
-import UseLoading from '@/hooks/use-loading';
-import { useToast } from '@/components/ui/use-toast';
-import { Typography } from '@/ui/components/typography/typography';
-import { useRouter } from 'next/navigation';
-import clsx from 'clsx';
-import { signIn } from 'next-auth/react';
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { saltPassword } from "@/lib/password-to-salt";
+import UseLoading from "@/hooks/use-loading";
+import { useToast } from "@/components/ui/use-toast";
+import { Typography } from "@/ui/components/typography/typography";
+import { useRouter } from "next/navigation";
+import clsx from "clsx";
+import { signIn } from "next-auth/react";
 
 export const RegisterForm = () => {
   const router = useRouter();
@@ -39,9 +39,9 @@ export const RegisterForm = () => {
   const form = useForm<z.infer<typeof RegisterFormFieldsType>>({
     resolver: zodResolver(RegisterFormFieldsType),
     defaultValues: {
-      name: '',
-      password: '',
-      confirmpassword: '',
+      name: "",
+      password: "",
+      confirmpassword: "",
     },
   });
 
@@ -51,7 +51,7 @@ export const RegisterForm = () => {
     const { name, password, confirmpassword } = values;
     if (password !== confirmpassword) {
       toast({
-        title: 'Mot de passe ne correspondent pas',
+        title: "Mot de passe ne correspondent pas",
         description: (
           <Typography component="p" variant="body-sm">
             Veuillez vous assurer de bien avoir confirmé votre mot de passe
@@ -64,10 +64,10 @@ export const RegisterForm = () => {
       const hash = saltedPassword.hash;
       const salt = saltedPassword.salt;
       const registration = await fetch(`/api/user`, {
-        method: 'POST',
-        credentials: 'include',
+        method: "POST",
+        credentials: "include",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name,
@@ -77,26 +77,26 @@ export const RegisterForm = () => {
       });
 
       if (registration.status === 200) {
-        const loginRespose = await signIn('credentials', {
+        const loginRespose = await signIn("credentials", {
           name: name,
           password: password,
           redirect: false,
         });
         if (loginRespose?.status === 200) {
           toast({
-            variant: 'success',
-            title: 'Connexion réussie',
-            description: 'Content de vous revoir !',
+            variant: "success",
+            title: "Connexion réussie",
+            description: "Content de vous revoir !",
           });
           stopLoading();
-          router.push('/dashboard');
+          router.push("/dashboard");
         } else {
           toast({
-            variant: 'destructive',
-            title: 'Une erreur est survenue',
+            variant: "destructive",
+            title: "Une erreur est survenue",
             description: (
               <Typography component="p" variant="body-sm">
-                Votre nom d'utilisateur ou votre mot de passe a été saisi
+                &apos;utilisateur ou votre mot de passe a été saisi
                 incorrectement. Veuillez réessayer.
               </Typography>
             ),
@@ -105,8 +105,8 @@ export const RegisterForm = () => {
         }
       } else {
         toast({
-          variant: 'destructive',
-          title: 'Utilisateur déjà existant',
+          variant: "destructive",
+          title: "Utilisateur déjà existant",
           description: (
             <Typography component="p" variant="body-sm">
               Veuillez utiliser une autre adresse email
@@ -169,10 +169,10 @@ export const RegisterForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={clsx('flex flex-col gap-8 ')}
+        className={clsx("flex flex-col gap-8 ")}
       >
-        <Container className={clsx('flex flex-col gap-2')}>
-          <Container className={clsx('w-full flex flex-col gap-2 lg:gap-4')}>
+        <Container className={clsx("flex flex-col gap-2")}>
+          <Container className={clsx("w-full flex flex-col gap-2 lg:gap-4")}>
             <Container>
               <InputField
                 placeholder="@JohnD12"
@@ -183,9 +183,9 @@ export const RegisterForm = () => {
                   <>
                     <span className="text-body-sm flex flex-col gap-1">
                       <span>
-                        * Assurez-vous de choisir un nom d'utilisateur que vous
-                        pourrez facilement mémoriser mais qui reste suffisamment
-                        unique pour être accepté par notre système.
+                        * Assurez-vous de choisir un nom d&apos;utilisateur que
+                        vous pourrez facilement mémoriser mais qui reste
+                        suffisamment unique pour être accepté par notre système.
                       </span>
                       <span>
                         * Il doit avoir au moins 2 caractères et peut contenir
@@ -200,7 +200,7 @@ export const RegisterForm = () => {
             </Container>
             <Container
               className={clsx(
-                'w-full flex flex-col lg:flex-row gap-2 lg:gap-4'
+                "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
               )}
             >
               <Container className="lg:basis-1/2">
@@ -208,7 +208,7 @@ export const RegisterForm = () => {
                   placeholder="••••••••"
                   control={form.control}
                   name="password"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   label="Mot de passe"
                   className="pr-12"
                 >
@@ -221,7 +221,7 @@ export const RegisterForm = () => {
                   placeholder="••••••••"
                   control={form.control}
                   name="confirmpassword"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   label="Confirmer le mot de passe"
                 >
                   {PasswordIcon()}
@@ -237,7 +237,7 @@ export const RegisterForm = () => {
             isLoading={isLoading}
             className="w-full"
           >
-            S'inscrire
+            S&apos;inscrire
           </Buttons>
           <Typography variant="body-sm" className="pt-8">
             Vous avez un compte ? Connectez vous.

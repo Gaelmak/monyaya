@@ -1,5 +1,6 @@
 // components/ImageUpload.tsx
-import { useState, ChangeEvent, FormEvent } from 'react';
+import Image from "next/image";
+import { useState, ChangeEvent, FormEvent } from "react";
 
 export const FilesUpload = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -27,17 +28,17 @@ export const FilesUpload = () => {
     if (!selectedImage) return;
 
     const formData = new FormData();
-    formData.append('image', selectedImage);
+    formData.append("image", selectedImage);
 
     try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
+      const response = await fetch("/api/upload", {
+        method: "POST",
         body: formData,
       });
       const data = await response.json();
       console.log(data);
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error("Error uploading image:", error);
     }
   };
 
@@ -45,10 +46,12 @@ export const FilesUpload = () => {
     <form onSubmit={handleSubmit}>
       <input type="file" accept="image/*" onChange={handleImageChange} />
       {preview && (
-        <img
+        <Image
           src={preview}
           alt="Image preview"
-          style={{ width: '200px', height: 'auto' }}
+          width={200}
+          height={200}
+          style={{ width: "200px", height: "auto" }}
         />
       )}
       <button type="submit">Upload Image</button>

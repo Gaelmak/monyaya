@@ -1,4 +1,4 @@
-import MonYayaLogo from "../../public/Monyaya.png";
+import MonYayaLogo from "../../public/monyaya.png";
 import Link from "next/link";
 import clsx from "clsx";
 import Image from "next/image";

@@ -1,21 +1,21 @@
-'use client';
-import { Form } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { EditUsersFormFieldsType } from '@/types/forms';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { Container } from '@/ui/components/container/container';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { Mail, Pen, Phone, User } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import UseLoading from '@/hooks/use-loading';
-import { useToast } from '@/components/ui/use-toast';
-import { Typography } from '@/ui/components/typography/typography';
-import { useRouter } from 'next/navigation';
-import clsx from 'clsx';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
+"use client";
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { EditUsersFormFieldsType } from "@/types/forms";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { Container } from "@/ui/components/container/container";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { Mail, Pen, Phone, User } from "lucide-react";
+import { useState, useEffect } from "react";
+import UseLoading from "@/hooks/use-loading";
+import { useToast } from "@/components/ui/use-toast";
+import { Typography } from "@/ui/components/typography/typography";
+import { useRouter } from "next/navigation";
+import clsx from "clsx";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   data: {
@@ -51,17 +51,17 @@ export const EditUsersData = ({ name, data }: Props) => {
       email.trim() == data.email &&
       phonenumber.trim() == data.phonenumber;
     setUpdate(updated);
-  }, [form.getValues()]);
+  }, [form.getValues()]); // eslint-disable-line
 
   async function onSubmit(values: z.infer<typeof EditUsersFormFieldsType>) {
     startLoading();
 
     const { firstname, lastname, phonenumber, email } = values;
     const registration = await fetch(`/api/user/userdata/${name}`, {
-      method: 'PATCH',
-      credentials: 'include',
+      method: "PATCH",
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         firstname,
@@ -73,8 +73,8 @@ export const EditUsersData = ({ name, data }: Props) => {
 
     if (registration.status === 200) {
       toast({
-        variant: 'success',
-        title: 'Succes !',
+        variant: "success",
+        title: "Succes !",
         description: (
           <Typography component="p" variant="body-sm">
             Vos informations ont correctement été enregistré
@@ -82,11 +82,11 @@ export const EditUsersData = ({ name, data }: Props) => {
         ),
       });
       stopLoading();
-      router.push('/signin');
+      router.push("/signin");
     } else {
       toast({
-        variant: 'destructive',
-        title: 'Erreur !',
+        variant: "destructive",
+        title: "Erreur !",
         description: (
           <Typography component="p" variant="body-sm">
             Une erreur est survenue, veuillez réessayer plus tard.
@@ -137,7 +137,7 @@ export const EditUsersData = ({ name, data }: Props) => {
               <Typography variant="title-sm">
                 {data.phonenumber
                   ? data.phonenumber
-                  : 'Numéro de téléphone non defini'}
+                  : "Numéro de téléphone non defini"}
               </Typography>
             </Container>
           </Container>
@@ -154,12 +154,12 @@ export const EditUsersData = ({ name, data }: Props) => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className={clsx('flex flex-col gap-8')}
+              className={clsx("flex flex-col gap-8")}
             >
-              <Container className={clsx('flex flex-col gap-2 p-4 rounded')}>
+              <Container className={clsx("flex flex-col gap-2 p-4 rounded")}>
                 <Container
                   className={clsx(
-                    'w-full flex flex-col lg:flex-row gap-2 lg:gap-4'
+                    "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
                   )}
                 >
                   <Container className="lg:basis-1/2">
@@ -185,7 +185,7 @@ export const EditUsersData = ({ name, data }: Props) => {
                 </Container>
                 <Container
                   className={clsx(
-                    'w-full flex flex-col lg:flex-row gap-2 lg:gap-4'
+                    "w-full flex flex-col lg:flex-row gap-2 lg:gap-4"
                   )}
                 >
                   <Container className="lg:basis-1/2">

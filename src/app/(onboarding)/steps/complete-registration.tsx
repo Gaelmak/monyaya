@@ -80,25 +80,25 @@ export const CompleteRegistration = ({ data, name }: Props) => {
         variant: "destructive",
         description: (
           <Typography component="p" variant="body-sm">
-            Il y'a des erreurs dans vos informations, veuillez vérifier votre
-            saisie.
+            Il y&apos;a des erreurs dans vos informations, veuillez vérifier
+            votre saisie.
           </Typography>
         ),
       });
     }
-  }, [form.formState.isSubmitting]);
+  }, [form.formState.isSubmitting]); // eslint-disable-line
 
   useEffect(() => {
     const { firstname, lastname } = form.getValues();
     const isFilled = firstname.trim() !== "" && lastname.trim() !== "";
     setIsFirstFilled(isFilled);
-  }, [form.getValues()]);
+  }, [form.getValues()]); // eslint-disable-line
 
   useEffect(() => {
     const { phonenumber, email } = form.getValues();
     const isFilled = phonenumber.trim() !== "" && email.trim() !== "";
     setIsSecondFilled(isFilled);
-  }, [form.getValues()]);
+  }, [form.getValues()]); // eslint-disable-line
 
   useEffect(() => {
     const { avenue, district, municipality, number } = form.getValues();
@@ -108,7 +108,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
       municipality.trim() !== "" &&
       number.trim() !== "";
     setIsThirdFilled(isFilled);
-  }, [form.getValues()]);
+  }, [form.getValues()]); // eslint-disable-line
 
   async function onSubmit(
     values: z.infer<typeof CompleteRegisterFormFieldsType>
@@ -206,7 +206,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
           component="h2"
           className="text-center text-4xl font-bold md:text-left"
         >
-          Terminer l'inscription
+          Terminer l&apos;inscription
         </Typography>
         <div className="w-full lg:w-[50vw]">
           <Form {...form}>

@@ -89,7 +89,7 @@ export default function LessonContent({
           </CardTitle>
           <CardDescription>
             Ce cours est à domicile, donc le Yaya va se déplacer vers le
-            domicile de l'apprenant.
+            domicile de l&apos;apprenant.
           </CardDescription>
           <CardContent className="w-full h-20 bg-blue-100 rounded-lg mt-2"></CardContent>
         </Card>
@@ -113,8 +113,8 @@ export default function LessonContent({
             Adresse du cours
           </CardTitle>
           <CardDescription>
-            Ce cours est sur site, donc l'apprenant va se déplacer vers le lieu
-            du Yaya.
+            Ce cours est sur site, donc l&apos;apprenant va se déplacer vers le
+            lieu du Yaya.
           </CardDescription>
           <CardContent className="w-full h-20 bg-blue-100 rounded-lg mt-2"></CardContent>
         </Card>

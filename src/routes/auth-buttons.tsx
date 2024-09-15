@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { Container } from '@/ui/components/container/container';
-import { Home, LogOut, User } from 'lucide-react';
-import { signIn, signOut } from 'next-auth/react';
-import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
-import DefaultAvatar from '../../public/default_avatar.jpg';
-import { Typography } from '@/ui/components/typography/typography';
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { Container } from "@/ui/components/container/container";
+import { Home, LogOut, User } from "lucide-react";
+import { signIn, signOut } from "next-auth/react";
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import DefaultAvatar from "../../public/default_avatar.jpg";
+import { Typography } from "@/ui/components/typography/typography";
 
 interface Props {
   profileImg?: StaticImageData | undefined | string;
@@ -26,7 +26,7 @@ export const HomeButton = ({ className }: Props) => {
       baseUrl="/"
       className={className}
     >
-      Page d'accueil
+      Page d&apos;accueil
     </Buttons>
   );
 };
@@ -39,7 +39,7 @@ export const ServiceButton = ({ children }: Props) => {
       baseUrl="/courses"
       className="w-full"
     >
-      {children ? children : 'Services'}
+      {children ? children : "Services"}
     </Buttons>
   );
 };
@@ -63,7 +63,7 @@ export const SignOutButton = ({ className }: Props) => {
       variant="primary"
       buttonType="action"
       action={() => {
-        signOut({ callbackUrl: '/' });
+        signOut({ callbackUrl: "/" });
       }}
       className={className}
     >

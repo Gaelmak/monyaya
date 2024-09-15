@@ -109,7 +109,7 @@ export const UserDescription = ({ name }: Props) => {
           </Container>
           <Container className="flex flex-col gap-2 p-4">
             <Typography variant="title-sm" component="h4" className="mb-2">
-              Termes et conditions d'utilisation{" "}
+              Termes et conditions d&apos;utilisation{" "}
               <span className="text-red-500">*</span>
             </Typography>
             <InputFieldCheckbox
@@ -117,10 +117,10 @@ export const UserDescription = ({ name }: Props) => {
               name="terms_and_conditions"
               label={
                 <span>
-                  J'accepte les{" "}
+                  J&apos;accepte les{" "}
                   <Sheet>
                     <SheetTrigger className="text-primary-Default">
-                      termes et conditions d'utilisation
+                      termes et conditions d&apos;utilisation
                     </SheetTrigger>
                     <TermsAndConditions />
                   </Sheet>

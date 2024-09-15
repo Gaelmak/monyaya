@@ -77,7 +77,7 @@ export default function YayaStats(props: UserStatsProps) {
           <Users size={80} strokeWidth={1} className="text-primary-600" />
         </CardContent>
         <CardFooter className="bg-primary-600 p-4 text-white/90 text-xs">
-          Le nombre total de lecons pour l'ensemble de vos cours
+          Le nombre total de lecons pour l&apos;ensemble de vos cours
         </CardFooter>
       </Card>
     </div>

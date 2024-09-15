@@ -1,15 +1,15 @@
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import { OurBenefitsForTrainers } from '@/lib/our-benefits/our-benefits';
-import { SignInButton } from '@/routes/auth-buttons';
-import { userAuth } from '@/lib/helper';
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import { OurBenefitsForTrainers } from "@/lib/our-benefits/our-benefits";
+import { SignInButton } from "@/routes/auth-buttons";
+import { userAuth } from "@/lib/helper";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from '@/components/ui/hover-card';
-import Image from 'next/image';
-import yaya from '../../../../public/yayaMonyaya.png';
+} from "@/components/ui/hover-card";
+import Image from "next/image";
+import yaya from "../../../../public/yayaMonyaya.png";
 
 export const BecomeATrainer = async () => {
   const user = await userAuth();
@@ -35,8 +35,8 @@ export const BecomeATrainer = async () => {
           <Typography className="text-base md:w-4/5">
             Partagez votre expertise et enrichissez votre parcours professionnel
             en rejoignant notre plateforme conviviale et innovante, où vous
-            pouvez inspirer, éduquer, et avoir un impact en tant qu'instructeur
-            certifié.
+            pouvez inspirer, éduquer, et avoir un impact en tant
+            qu&apos;instructeur certifié.
           </Typography>
         </Container>
         <Typography className="text-center md:text-left text-xl md:text-3xl font-semibold">

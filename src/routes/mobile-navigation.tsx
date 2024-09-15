@@ -1,12 +1,12 @@
-import { Typography } from '@/ui/components/typography/typography';
-import MonYayaLogo from '../../public/Monyaya.png';
-import Link from 'next/link';
-import { ActiveLink } from './active-link';
-import clsx from 'clsx';
-import Image from 'next/image';
-import { MainRoutes } from '@/lib/page-routes/page-routes';
-import { Container } from '@/ui/components/container/container';
-import { ProfileButton, SignInButton } from './auth-buttons';
+import { Typography } from "@/ui/components/typography/typography";
+import MonYayaLogo from "../../public/monyaya.png";
+import Link from "next/link";
+import { ActiveLink } from "./active-link";
+import clsx from "clsx";
+import Image from "next/image";
+import { MainRoutes } from "@/lib/page-routes/page-routes";
+import { Container } from "@/ui/components/container/container";
+import { ProfileButton, SignInButton } from "./auth-buttons";
 import {
   Sheet,
   SheetContent,
@@ -14,10 +14,10 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
-import prisma from '@/lib/prisma';
-import { userAuth } from '@/lib/helper';
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import prisma from "@/lib/prisma";
+import { userAuth } from "@/lib/helper";
 
 interface Props {
   className: string;
@@ -42,7 +42,7 @@ export const MobileNavigation = async ({ className }: Props) => {
   return (
     <header
       className={clsx(
-        'z-40 fixed top-0 left-0 right-0 border-b-[1px] bg-white border-slate-50',
+        "z-40 fixed top-0 left-0 right-0 border-b-[1px] bg-white border-slate-50",
         className
       )}
     >
@@ -81,7 +81,7 @@ export const MobileNavigation = async ({ className }: Props) => {
                     user ? (
                       <ProfileButton
                         profileImg={user.image ? user.image : undefined}
-                        name={user!.firstName! + ' ' + '' + user!.lastName!}
+                        name={user!.firstName! + " " + "" + user!.lastName!}
                       />
                     ) : (
                       <SignInButton />

@@ -1,9 +1,9 @@
-'use client';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { signIn } from 'next-auth/react';
-import Google_Icon from '../../../../public/icons/Google.png';
-import { Container } from '@/ui/components/container/container';
-import UseLoading from '@/hooks/use-loading';
+"use client";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { signIn } from "next-auth/react";
+import Google_Icon from "../../../../public/icons/google.png";
+import { Container } from "@/ui/components/container/container";
+import UseLoading from "@/hooks/use-loading";
 
 interface Props {
   providers: {
@@ -19,12 +19,12 @@ export const ProvidersList = ({ providers }: Props) => {
   const [isLoading, startLoading, stopLoading] = UseLoading();
 
   const filteredProviders = providers!.filter(
-    (provider) => provider.name !== 'Credentials'
+    (provider) => provider.name !== "Credentials"
   );
 
   const signInWithProvider = async (provider: string) => {
     startLoading();
-    await signIn(provider, { callbackUrl: '/dashboard' });
+    await signIn(provider, { callbackUrl: "/dashboard" });
     stopLoading();
   };
 
@@ -35,7 +35,7 @@ export const ProvidersList = ({ providers }: Props) => {
           <Buttons
             className="w-full"
             variant="secondary"
-            CustomIcon={provider.name === 'Google' ? Google_Icon : Google_Icon}
+            CustomIcon={provider.name === "Google" ? Google_Icon : Google_Icon}
             buttonType="action"
             isLoading={isLoading}
             action={() => signInWithProvider(provider.id)}

@@ -99,7 +99,7 @@ export default function TermOfUse() {
               className="flex flex-col leading-relaxed"
               variant="body-base"
             >
-              Contrat de service d'apprentissage à domicile Entre
+              Contrat de service d&apos;apprentissage à domicile Entre
               <br />
               <Typography component="span" variant="body-lg">
                 MonYaya
@@ -114,8 +114,8 @@ export default function TermOfUse() {
               <br />
               <span className="font-semibold">{"D'autre part,"}</span>
               <br />
-              il a été conclu le présent contrat de service d'apprentissage à
-              domicile, ci- après dénommé{" "}
+              il a été conclu le présent contrat de service d&apos;apprentissage
+              à domicile, ci- après dénommé{" "}
               <span className="font-semibold">{`"Contrat"`}</span>
             </Typography>
           </Container>

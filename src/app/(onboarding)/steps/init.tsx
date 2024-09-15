@@ -32,8 +32,8 @@ export const Init = () => {
         </Typography>
         <Typography className=" w-full md:w-[50vw] text-white text-center md:text-left">
           Nous sommes ravis de vous accueillir dans notre communauté ! La
-          création d'un compte est votre première étape pour débloquer tout le
-          potentiel de nos services.
+          création d&apos;un compte est votre première étape pour débloquer tout
+          le potentiel de nos services.
         </Typography>
         <Typography className=" w-full md:w-[50vw] text-white text-center md:text-left">
           Que vous soyez ici pour explorer de nouvelles opportunités, proposer

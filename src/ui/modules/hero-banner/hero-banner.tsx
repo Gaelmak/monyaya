@@ -83,14 +83,14 @@ export const HeroBanner = () => {
                 nous avons le formateur parfait pour vous.
                 <br />
                 <span className="hidden lg:block">
-                  Découvrez notre sélection de formateurs <br /> dès aujourd'hui
-                  !
+                  Découvrez notre sélection de formateurs <br /> dès
+                  aujourd&apos;hui !
                 </span>
               </Typography>
             </Container>
             <Container className="lg:flex gap-14 hidden justify-center items-center">
               <Buttons buttonType="link" baseUrl="/new-user">
-                S'Inscrire Maintenant
+                S&apos;Inscrire Maintenant
               </Buttons>
               <Container className="flex items-center justify-center">
                 <Buttons

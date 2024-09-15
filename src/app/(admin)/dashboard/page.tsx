@@ -69,7 +69,8 @@ export default async function Home() {
             Bienvenue {user?.firstName} {user?.lastName} 🙌🏼💫
           </h1>
           <Typography className="font-thin">
-            Explorez vos cours et commencez votre apprentissage dès aujourd'hui.
+            Explorez vos cours et commencez votre apprentissage dès
+            aujourd&apos;hui.
           </Typography>
         </div>
         <p className="text-xs font-bold absolute top-8 right-8 text-white/80">

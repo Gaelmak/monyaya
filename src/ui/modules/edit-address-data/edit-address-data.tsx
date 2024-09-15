@@ -1,21 +1,21 @@
-'use client';
-import { Form } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { EditAddressFormFieldsType } from '@/types/forms';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { Container } from '@/ui/components/container/container';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { Home, Pen } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import UseLoading from '@/hooks/use-loading';
-import { useToast } from '@/components/ui/use-toast';
-import { Typography } from '@/ui/components/typography/typography';
-import { useRouter } from 'next/navigation';
-import clsx from 'clsx';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
+"use client";
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { EditAddressFormFieldsType } from "@/types/forms";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { Container } from "@/ui/components/container/container";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { Home, Pen } from "lucide-react";
+import { useState, useEffect } from "react";
+import UseLoading from "@/hooks/use-loading";
+import { useToast } from "@/components/ui/use-toast";
+import { Typography } from "@/ui/components/typography/typography";
+import { useRouter } from "next/navigation";
+import clsx from "clsx";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   data: {
@@ -51,17 +51,17 @@ export const EditAddressData = ({ name, data }: Props) => {
       municipality.trim() == data.municipality &&
       number.trim() == data.number;
     setUpdate(updated);
-  }, [form.getValues()]);
+  }, [form.getValues()]); // eslint-disable-line
 
   async function onSubmit(values: z.infer<typeof EditAddressFormFieldsType>) {
     startLoading();
 
     const { avenue, district, municipality, number } = values;
     const registration = await fetch(`/api/user/address/${name}`, {
-      method: 'PATCH',
-      credentials: 'include',
+      method: "PATCH",
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         avenue,
@@ -73,8 +73,8 @@ export const EditAddressData = ({ name, data }: Props) => {
 
     if (registration.status === 200) {
       toast({
-        variant: 'success',
-        title: 'Succes',
+        variant: "success",
+        title: "Succes",
         description: (
           <Typography component="p" variant="body-sm">
             Votre adresse a correctement été modifié
@@ -84,8 +84,8 @@ export const EditAddressData = ({ name, data }: Props) => {
       stopLoading();
     } else {
       toast({
-        variant: 'destructive',
-        title: 'Erreur',
+        variant: "destructive",
+        title: "Erreur",
         description: (
           <Typography component="p" variant="body-sm">
             Une erreur est survenue, veuillez réessayer plus tard.
@@ -139,9 +139,9 @@ export const EditAddressData = ({ name, data }: Props) => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className={clsx('flex flex-col gap-8 ')}
+              className={clsx("flex flex-col gap-8 ")}
             >
-              <Container className={clsx('flex flex-col gap-2 p-4 rounded')}>
+              <Container className={clsx("flex flex-col gap-2 p-4 rounded")}>
                 <Container className="flex flex-row gap-4">
                   <Container className="basis-1/2">
                     <InputField

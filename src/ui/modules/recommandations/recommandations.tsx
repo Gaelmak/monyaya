@@ -40,9 +40,9 @@ export const Recommandations = ({ trainer, branch, current }: Props) => {
         </Typography>
         <Typography className="text-center md:w-1/2 text-sm">
           Découvrez les cours les plus demandés ! choisis avec soin pour
-          répondre aux besoins des apprenants d'aujourd'hui. Profitez d'un
-          contenu attrayant conçu pour vous accompagner vers la réussite à
-          chaque étape de votre parcours.
+          répondre aux besoins des apprenants d&apos;aujourd&apos;hui. Profitez
+          d&apos;un contenu attrayant conçu pour vous accompagner vers la
+          réussite à chaque étape de votre parcours.
         </Typography>
       </Container>
       <br />

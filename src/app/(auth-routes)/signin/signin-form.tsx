@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { Form } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { LoginFormFieldsType } from '@/types/forms';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { Container } from '@/ui/components/container/container';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { Eye, EyeOff, Lock, LogIn, User, UserPlus } from 'lucide-react';
-import { useState } from 'react';
-import Link from 'next/link';
-import UseLoading from '@/hooks/use-loading';
-import { useToast } from '@/components/ui/use-toast';
-import { Typography } from '@/ui/components/typography/typography';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { LoginFormFieldsType } from "@/types/forms";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { Container } from "@/ui/components/container/container";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { Eye, EyeOff, Lock, LogIn, User, UserPlus } from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+import UseLoading from "@/hooks/use-loading";
+import { useToast } from "@/components/ui/use-toast";
+import { Typography } from "@/ui/components/typography/typography";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export const SigninForm = () => {
   const { toast } = useToast();
@@ -24,8 +24,8 @@ export const SigninForm = () => {
   const form = useForm<z.infer<typeof LoginFormFieldsType>>({
     resolver: zodResolver(LoginFormFieldsType),
     defaultValues: {
-      name: '',
-      password: '',
+      name: "",
+      password: "",
     },
   });
 
@@ -35,7 +35,7 @@ export const SigninForm = () => {
     startLoading();
     const { name, password } = values;
 
-    const loginRespose = await signIn('credentials', {
+    const loginRespose = await signIn("credentials", {
       name: name,
       password: password,
       redirect: false,
@@ -43,11 +43,11 @@ export const SigninForm = () => {
 
     if (loginRespose?.error) {
       toast({
-        variant: 'destructive',
-        title: 'Une erreur est survenue',
+        variant: "destructive",
+        title: "Une erreur est survenue",
         description: (
           <Typography component="p" variant="body-sm">
-            Votre nom d'utilisateur ou votre mot de passe a été saisi
+            Votre nom d&apos;utilisateur ou votre mot de passe a été saisi
             incorrectement. Veuillez réessayer.
           </Typography>
         ),
@@ -57,12 +57,12 @@ export const SigninForm = () => {
     }
 
     toast({
-      variant: 'success',
-      title: 'Connexion réussie',
-      description: 'Content de vous revoir !',
+      variant: "success",
+      title: "Connexion réussie",
+      description: "Content de vous revoir !",
     });
     stopLoading();
-    router.push('/dashboard');
+    router.push("/dashboard");
   }
 
   const ShowPasswordButton = (visibility: boolean) => {
@@ -120,7 +120,7 @@ export const SigninForm = () => {
               placeholder="Mot de passe"
               control={form.control}
               name="password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               description={
                 <Link href="/" className="text-secondary-Default">
                   Mot de passe oublié ?
@@ -142,7 +142,7 @@ export const SigninForm = () => {
             Se connecter
           </Buttons>
           <Typography variant="body-sm" className="pt-8">
-            Vous n'avez pas de compte ? Inscrivez vous.
+            Vous n&apos;avez pas de compte ? Inscrivez vous.
           </Typography>
           <Buttons
             buttonType="link"
@@ -152,7 +152,7 @@ export const SigninForm = () => {
             outline="outline"
             className="text-secondary-Default w-full"
           >
-            S'enregistrer
+            S&apos;enregistrer
           </Buttons>
         </Container>
       </form>

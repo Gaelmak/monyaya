@@ -55,7 +55,7 @@ export default function ProgressionCourses(props: ProgressionCoursesProps) {
     <Table>
       <TableBody>
         {data?.map((userCourse: CourseCustom, index: string) => (
-          <TableRow>
+          <TableRow key={index}>
             <TableCell className="font-medium w-6/12 md:w-3/12">
               {userCourse.course.title}
             </TableCell>

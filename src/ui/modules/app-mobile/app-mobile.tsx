@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { Container } from '@/ui/components/container/container';
-import Mobile from '../../../../public/mobile.png';
-import Image from 'next/image';
-import { Typography } from '@/ui/components/typography/typography';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { Download } from 'lucide-react';
-import { Form } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { NewsletterRegisterFormFieldsType } from '@/types/forms';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { InputField } from '@/ui/components/input-field/input-field';
+import { Container } from "@/ui/components/container/container";
+import Mobile from "../../../../public/mobile.png";
+import Image from "next/image";
+import { Typography } from "@/ui/components/typography/typography";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { Download } from "lucide-react";
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { NewsletterRegisterFormFieldsType } from "@/types/forms";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { InputField } from "@/ui/components/input-field/input-field";
 
 export const AppMobile = () => {
   const form = useForm<z.infer<typeof NewsletterRegisterFormFieldsType>>({
     resolver: zodResolver(NewsletterRegisterFormFieldsType),
     defaultValues: {
-      email: '',
+      email: "",
     },
   });
 
@@ -44,7 +44,7 @@ export const AppMobile = () => {
           component="h1"
           className="text-secondary-950"
         >
-          L'application mobile bientôt disponible !
+          L&apos;application mobile bientôt disponible !
         </Typography>
         <Container className="flex flex-col md:flex-row gap-4">
           <Buttons disabled={true} Icon={Download} className="w-full md:w-auto">

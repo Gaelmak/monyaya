@@ -56,7 +56,7 @@ export default function YayaUsersList(props: YayaUsersListProps) {
   if (data?.length === 0) {
     return (
       <div className="w-full p-4 text-center text-xs">
-        Personne n'a encore souscrit à vos cours
+        Personne n&apos;a encore souscrit à vos cours
       </div>
     );
   }

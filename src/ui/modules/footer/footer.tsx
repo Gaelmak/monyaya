@@ -9,7 +9,6 @@ import {
   SocialNetworks,
 } from "@/lib/page-routes/page-routes";
 import Link from "next/link";
-import logo from "../../../../public/Monyaya_white.png";
 import { CopyrightIcon } from "lucide-react";
 
 export const Footer = () => {
@@ -17,10 +16,15 @@ export const Footer = () => {
     <footer className=" bg-primary-400 text-white z-10 flex flex-col items-center w-full">
       <Container className="flex flex-wrap   gap-6 md:flex-row justify-between items-center md:py-16  lg:px-[7vw] px-5 w-full">
         <Container className="w-full md:w-[20vw] pb-3 md:pb-0">
-          <Image src={logo} alt="logo moyaya" width={50} height={50} />
+          <Image
+            src="/monyaya_white.png"
+            alt="logo moyaya"
+            width={50}
+            height={50}
+          />
           <Typography className="">
             Explorez une approche transformative du développement des
-            compétences sur notre plateforme d'apprentissage.
+            compétences sur notre plateforme d&apos;apprentissage.
           </Typography>
         </Container>
         <Container className="flex flex-wrap gap-3 flex-row justify-between md:w-2/3">

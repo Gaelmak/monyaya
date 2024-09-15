@@ -30,9 +30,9 @@ export default function ValueSection() {
             </span>{" "}
             :<br />
             Nous croyons que le véritable bénéfice réside dans le partage des
-            connaissances et l'acte de donner. En offrant nos compétences et
-            notre expertise, nous contribuons au bonheur des autres et à notre
-            propre épanouissement.
+            connaissances et l&apos;acte de donner. En offrant nos compétences
+            et notre expertise, nous contribuons au bonheur des autres et à
+            notre propre épanouissement.
           </Typography>
         </Container>
         <Container className="flex justify-center items-center  lg:w-1/3 md:w-full flex-col md:bg-white md:rounded-2xl  md:shadow-2xl hover:shadow-none  md:p-4">
@@ -52,10 +52,11 @@ export default function ValueSection() {
               {"L'envie et la capacité d'apprendre"}{" "}
             </span>
             :<br />
-            Nous croyons que chacun a la capacité d'apprendre et d'enseigner.
-            Nous encourageons l'envie d'apprendre et reconnaissons que ceux qui
-            apprennent aujourd'hui peuvent devenir les enseignants de demain,
-            créant ainsi une chaîne d'apprentissage sans fin.
+            Nous croyons que chacun a la capacité d&apos;apprendre et
+            d&apos;enseigner. Nous encourageons l&apos;envie d&apos;apprendre et
+            reconnaissons que ceux qui apprennent aujourd&apos;hui peuvent
+            devenir les enseignants de demain, créant ainsi une chaîne
+            d&apos;apprentissage sans fin.
           </Typography>
         </Container>
         <Container className="flex justify-center items-center  lg:w-1/3 md:w-full flex-col md:bg-white md:rounded-2xl  md:shadow-2xl hover:shadow-none  md:p-4">
@@ -76,11 +77,11 @@ export default function ValueSection() {
             </span>{" "}
             :<br />
             Nous plaçons la confiance au cœur de notre communauté Monyaya. Nous
-            croyons en l'importance d'une relation de confiance entre nos
-            'yayas' et nos clients. Nous nous engageons à créer un environnement
-            où la confiance est primordiale, permettant aux apprenants de se
-            sentir en sécurité et aux mentors de partager leurs connaissances en
-            toute sérénité.
+            croyons en l&apos;importance d&apos;une relation de confiance entre
+            nos &apos;yayas&apos; et nos clients. Nous nous engageons à créer un
+            environnement où la confiance est primordiale, permettant aux
+            apprenants de se sentir en sécurité et aux mentors de partager leurs
+            connaissances en toute sérénité.
           </Typography>
         </Container>
       </Container>
