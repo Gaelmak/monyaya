@@ -1,9 +1,9 @@
-import { YayaProfil } from '@/ui/modules/yaya-profil/yaya-profil';
-import { Container } from '@/ui/components/container/container';
-import { TrainingsView } from '@/ui/components/trainings-view/trainingsView';
-import prisma from '@/lib/prisma';
-import { Typography } from '@/ui/components/typography/typography';
-import { userAuth } from '@/lib/helper';
+import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil";
+import { Container } from "@/ui/components/container/container";
+import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
+import prisma from "@/lib/prisma";
+import { Typography } from "@/ui/components/typography/typography";
+import { userAuth } from "@/lib/helper";
 
 export default async function Home({ params }: { params: { name: string } }) {
   const name = decodeURIComponent(params.name);
@@ -36,49 +36,6 @@ export default async function Home({ params }: { params: { name: string } }) {
       district: true,
       avenue: true,
       number: true,
-      role: true,
-      trainings: {
-        include: {
-          _count: {
-            select: {
-              modules: true,
-            },
-          },
-          modules: {
-            select: {
-              title: true,
-              description: true,
-            },
-          },
-          user: {
-            select: {
-              name: true,
-              firstName: true,
-              lastName: true,
-              email: true,
-              createdAt: true,
-              municipality: true,
-              district: true,
-              avenue: true,
-              number: true,
-              image: true,
-            },
-          },
-          courses: {
-            select: {
-              name: true,
-              category: {
-                select: {
-                  name: true,
-                },
-              },
-            },
-          },
-        },
-        orderBy: {
-          createdAt: 'desc',
-        },
-      },
     },
   });
 

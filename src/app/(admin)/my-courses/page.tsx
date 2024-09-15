@@ -6,6 +6,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import YayaCoursesList from "@/components/admin/my-courses/yaya-courses-list";
 import UserCoursesList from "@/components/admin/my-courses/user-courses-list";
+import prisma from "@/lib/prisma";
 
 export default async function MyTrainingsPage() {
   const authUser = await userAuth();

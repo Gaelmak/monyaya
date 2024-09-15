@@ -1,28 +1,27 @@
-'use client';
+"use client";
 
-import { Form } from '@/components/ui/form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { CourseSearchFormFieldsType } from '@/types/forms';
-import { Buttons } from '@/ui/components/buttons/buttons';
-import { Container } from '@/ui/components/container/container';
-import { InputFieldSelect } from '@/ui/components/input-field-select/input-field-select';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { Filter } from 'lucide-react';
-import { Options } from '@/types/options';
+import { Form } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { CourseSearchFormFieldsType } from "@/types/forms";
+import { Buttons } from "@/ui/components/buttons/buttons";
+import { Container } from "@/ui/components/container/container";
+import { InputFieldSelect } from "@/ui/components/input-field-select/input-field-select";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { Filter } from "lucide-react";
 
 interface Props {
-  CourseList: Options[];
+  CourseList: any[];
 }
 
 export const FilterCourses = ({ CourseList }: Props) => {
   const form = useForm<z.infer<typeof CourseSearchFormFieldsType>>({
     resolver: zodResolver(CourseSearchFormFieldsType),
     defaultValues: {
-      course: '',
-      budget: '',
-      formation_or_name: '',
+      course: "",
+      budget: "",
+      formation_or_name: "",
     },
   });
 
@@ -44,7 +43,7 @@ export const FilterCourses = ({ CourseList }: Props) => {
                 name="course"
                 placeholder="Formations"
                 options={CourseList}
-                description={''}
+                description={""}
               />
             </Container>
             <Container className="col-span-2 md:basis-2/5">
