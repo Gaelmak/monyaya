@@ -1,4 +1,3 @@
-import MonYayaLogo from "../../public/monyaya.png";
 import Link from "next/link";
 import Image from "next/image";
 import { MainRoutes } from "@/lib/page-routes/page-routes";
@@ -44,7 +43,7 @@ export const Navigation = async ({ className }: Props) => {
       <Container className="flex flex-row items-center justify-between px-8 lg:px-[7vw] lg:h-[7vh] md:h-[8vh]">
         <Link href="/">
           <Image
-            src={MonYayaLogo}
+            src="/monyaya.png"
             alt="Logo MonYaya"
             width={100}
             height={100}

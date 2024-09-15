@@ -1,5 +1,4 @@
 import { Typography } from "@/ui/components/typography/typography";
-import MonYayaLogo from "../../public/monyaya.png";
 import Link from "next/link";
 import { ActiveLink } from "./active-link";
 import clsx from "clsx";
@@ -49,7 +48,7 @@ export const MobileNavigation = async ({ className }: Props) => {
       <Container className="flex flex-row items-center justify-between px-4 py-2 gap-4 h-[8vh]">
         <Link href="/">
           <Image
-            src={MonYayaLogo}
+            src="/monyaya.png"
             alt="Logo MonYaya"
             priority
             width={100}

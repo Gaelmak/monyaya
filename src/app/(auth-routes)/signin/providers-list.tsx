@@ -1,7 +1,6 @@
 "use client";
 import { Buttons } from "@/ui/components/buttons/buttons";
 import { signIn } from "next-auth/react";
-import Google_Icon from "../../../../public/icons/google.png";
 import { Container } from "@/ui/components/container/container";
 import UseLoading from "@/hooks/use-loading";
 
@@ -35,7 +34,11 @@ export const ProvidersList = ({ providers }: Props) => {
           <Buttons
             className="w-full"
             variant="secondary"
-            CustomIcon={provider.name === "Google" ? Google_Icon : Google_Icon}
+            CustomIcon={
+              provider.name === "Google"
+                ? "/icons/google.png"
+                : "/icons/google.png"
+            }
             buttonType="action"
             isLoading={isLoading}
             action={() => signInWithProvider(provider.id)}

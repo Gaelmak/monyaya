@@ -1,4 +1,3 @@
-import MonYayaLogo from "../../public/monyaya.png";
 import Link from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
@@ -41,7 +40,7 @@ export const MobileAsideNav = async ({ className }: Props) => {
       <Container className="flex flex-row items-center justify-between px-4 py-2 gap-4 h-[8vh]">
         <Link href="/">
           <Image
-            src={MonYayaLogo}
+            src="/monyaya.png"
             alt="Logo MonYaya"
             priority
             width={100}
