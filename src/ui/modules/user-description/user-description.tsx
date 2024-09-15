@@ -1,19 +1,19 @@
-'use client';
-import { Form } from '@/components/ui/form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { BecomeATrainerFormFieldsType } from '@/types/forms';
-import { InputField } from '@/ui/components/input-field/input-field';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import { InputFieldCheckbox } from '@/ui/components/input-field-checkbox/input-field-checbox';
-import { Sheet, SheetTrigger } from '@/components/ui/sheet';
-import { TermsAndConditions } from '../terms_and_conditions/terms_and_conditions';
-import { useRouter } from 'next/navigation';
-import { useToast } from '@/components/ui/use-toast';
-import UseLoading from '@/hooks/use-loading';
-import { Buttons } from '@/ui/components/buttons/buttons';
+"use client";
+import { Form } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { BecomeATrainerFormFieldsType } from "@/types/forms";
+import { InputField } from "@/ui/components/input-field/input-field";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import { InputFieldCheckbox } from "@/ui/components/input-field-checkbox/input-field-checbox";
+import { Sheet, SheetTrigger } from "@/components/ui/sheet";
+import { TermsAndConditions } from "../terms_and_conditions/terms_and_conditions";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
+import UseLoading from "@/hooks/use-loading";
+import { Buttons } from "@/ui/components/buttons/buttons";
 
 interface Props {
   name: string;
@@ -26,7 +26,7 @@ export const UserDescription = ({ name }: Props) => {
   const form = useForm<z.infer<typeof BecomeATrainerFormFieldsType>>({
     resolver: zodResolver(BecomeATrainerFormFieldsType),
     defaultValues: {
-      bio: '',
+      bio: "",
       terms_and_conditions: false,
     },
   });
@@ -38,10 +38,10 @@ export const UserDescription = ({ name }: Props) => {
     const { bio, terms_and_conditions } = values;
 
     const userToTrainer = await fetch(`/api/yaya/${name}`, {
-      method: 'PATCH',
-      credentials: 'include',
+      method: "PATCH",
+      credentials: "include",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         bio,
@@ -51,8 +51,8 @@ export const UserDescription = ({ name }: Props) => {
 
     if (userToTrainer.status === 200) {
       toast({
-        variant: 'success',
-        title: 'En attente',
+        variant: "success",
+        title: "En attente",
         description: (
           <Typography component="p" variant="body-sm">
             Votre demande est en cours de traitement. Merci de patienter.
@@ -60,11 +60,11 @@ export const UserDescription = ({ name }: Props) => {
         ),
       });
       stopLoading();
-      router.push('/my-trainings');
+      router.push("/my-courses");
     } else {
       toast({
-        variant: 'destructive',
-        title: 'Erreur !',
+        variant: "destructive",
+        title: "Erreur !",
         description: (
           <Typography component="p" variant="body-sm">
             Une erreur est survenue. Veuillez réessayer.
@@ -96,7 +96,7 @@ export const UserDescription = ({ name }: Props) => {
                   <span>
                     Dites nous en quelques lignes ce qui fait de vous un bon
                     formateur
-                  </span>{' '}
+                  </span>{" "}
                   <br />
                   <span>
                     La pertinence de votre description sera determinant de votre
@@ -109,7 +109,7 @@ export const UserDescription = ({ name }: Props) => {
           </Container>
           <Container className="flex flex-col gap-2 p-4">
             <Typography variant="title-sm" component="h4" className="mb-2">
-              Termes et conditions d'utilisation{' '}
+              Termes et conditions d'utilisation{" "}
               <span className="text-red-500">*</span>
             </Typography>
             <InputFieldCheckbox
@@ -117,7 +117,7 @@ export const UserDescription = ({ name }: Props) => {
               name="terms_and_conditions"
               label={
                 <span>
-                  J'accepte les{' '}
+                  J'accepte les{" "}
                   <Sheet>
                     <SheetTrigger className="text-primary-Default">
                       termes et conditions d'utilisation

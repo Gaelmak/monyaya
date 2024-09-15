@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Slider from 'react-slick';
-import { ListOfTestimonials } from '@/lib/testimonials-list/list-of-testimonials';
-import Image from 'next/image';
-import defaultImage from 'public/default_avatar.jpg';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
+import React from "react";
+import Slider from "react-slick";
+import { ListOfTestimonials } from "@/lib/testimonials-list/list-of-testimonials";
+import Image from "next/image";
+import defaultImage from "public/default_avatar.jpg";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
 
 const settings = {
   dots: true,
@@ -45,7 +45,7 @@ const settings = {
 
 const TestimonialCarousel: React.FC = () => {
   return (
-    <Container className="container bg-white py-18">
+    <Container className=" bg-white py-18 w-full px-4 lg:px-[7vw]">
       <Slider {...settings}>
         {ListOfTestimonials.map((testimonial, index) => (
           <Container key={index} className="flex flex-col p-4 rounded">

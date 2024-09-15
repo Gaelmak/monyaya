@@ -1,10 +1,9 @@
-'use client';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import Cover from '../../../../public/onboard.png';
-import Cover_v from '../../../../public/onboard_v.png';
-import { BgImg } from '@/ui/components/bg-img/bg-img';
-import { Buttons } from '@/ui/components/buttons/buttons';
+"use client";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import Cover from "../../../../public/onboard.png";
+import Cover_v from "../../../../public/onboard_v.png";
+import { BgImg } from "@/ui/components/bg-img/bg-img";
 
 const BackgroundImage = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -23,9 +22,8 @@ export const Init = () => {
     <BackgroundImage>
       <Container className="h-full w-full flex flex-col p-8 lg:justify-center gap-4">
         <Typography
-          variant="display"
           component="h2"
-          className="text-white text-center md:text-left"
+          className="text-white text-center md:text-left lg:text-5xl font-bold"
         >
           Bienvenue <br />
           chez Monyaya !

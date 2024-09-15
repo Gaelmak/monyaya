@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-import { SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
+import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
 // import { Buttons } from "@/ui/components/buttons/buttons"
 
 export const TermsAndConditions = () => {
   return (
     <SheetContent
-      side={'bottom'}
+      side={"bottom"}
       className="bg-white w-full flex flex-col gap-8 lg:px-80 h-2/3 overflow-y-scroll "
     >
       <SheetHeader>
@@ -38,11 +38,14 @@ export const TermsAndConditions = () => {
           <span className="font-semibold pt-2">D'autre part,</span>
           <p>
             il a été conclu le présent contrat de prestation de services
-            d'apprentissage à domicile, ci-après dénommé le{' '}
+            d'apprentissage à domicile, ci-après dénommé le{" "}
             <span className="font-semibold pt-2">"Contrat"</span>
           </p>
           <Container>
-            <Typography className="my-4 text-[#39ae44]" variant="title-sm">
+            <Typography
+              className="my-4 text-[#39ae44] font-semibold"
+              variant="title-sm"
+            >
               <span className="text-semibold text-[#545454] mr-4">
                 Article 1
               </span>
@@ -55,7 +58,10 @@ export const TermsAndConditions = () => {
             </Typography>
           </Container>
           <Container>
-            <Typography className="my-4 text-[#39ae44]" variant="title-sm">
+            <Typography
+              className="my-4 text-[#39ae44] font-semibold"
+              variant="title-sm"
+            >
               <span className="text-semibold text-[#545454] mr-4">
                 Article 2
               </span>
@@ -81,7 +87,10 @@ export const TermsAndConditions = () => {
             </Typography>
           </Container>
           <Container>
-            <Typography className="my-4 text-[#39ae44]" variant="title-sm">
+            <Typography
+              className="my-4 text-[#39ae44] font-semibold"
+              variant="title-sm"
+            >
               <span className="text-semibold text-[#545454] mr-4">
                 Article 3
               </span>

@@ -8,20 +8,20 @@ import useFilterTypeStore from "@/store/filter-type-store";
 import { FilterData } from "@/lib/filter-data/filter-data";
 
 interface Props {
-  session: any;
-  userId: any;
-  myLearnings: any;
-  trainings: any;
+  session?: any;
+  userId?: any;
+  MyCourses: any;
+  courses: any;
 }
 
 export const SearchResults = ({
   session,
   userId,
-  myLearnings,
-  trainings,
+  MyCourses,
+  courses,
 }: Props) => {
   const filter = useFilterTypeStore((state) => state.filterType);
-  const filteredData = FilterData(trainings, filter);
+  const filteredData = FilterData(courses, filter);
 
   return (
     <Container className="flex flex-row gap-4 ">
@@ -34,14 +34,14 @@ export const SearchResults = ({
         </Container>
         <Container className="basis-4/5">
           <Container className="w-full">
-            {session || myLearnings ? (
+            {session || MyCourses ? (
               <TrainingsView
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 *:bg-[#fdfdfd]"
+                className="grid grid-cols-1 md:grid-cols-3 gap-2 *:bg-[#fdfdfd]"
                 data={filteredData}
               />
             ) : (
               <TrainingsView
-                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                className="grid grid-cols-1 md:grid-cols-3 gap-2"
                 data={filteredData}
               />
             )}

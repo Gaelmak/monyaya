@@ -1,10 +1,10 @@
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
-import Image from 'next/image';
-import studentImage from '../../../../public/OIP (4).jpg';
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
+import Image from "next/image";
+import studentImage from "../../../../public/OIP (4).jpg";
 export default function VisionSection() {
   return (
-    <Container className=" container flex flex-col-reverse lg:flex-row-reverse max-w-full lg:justify-between  items-center gap-8 lg:my-10 p-8 ">
+    <Container className=" lg:px-[7vw] flex flex-col-reverse lg:flex-row-reverse max-w-full lg:justify-between  items-center gap-8 lg:my-10 p-8 ">
       <Container className="">
         <Image
           width={500}
@@ -16,7 +16,7 @@ export default function VisionSection() {
       </Container>
       <Container className="lg:w-1/2 flex flex-col justify-between items-center gap-8">
         <Typography
-          className="text-[#39ae44] "
+          className="text-[#39ae44] font-semibold text-3xl"
           component="h4"
           variant="title-lg"
         >

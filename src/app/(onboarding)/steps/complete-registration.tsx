@@ -186,7 +186,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
         <Typography
           variant="display"
           component="h2"
-          className="text-center md:text-left"
+          className="text-center md:text-left lg:text-5xl font-semibold"
         >
           Terminer l'inscription
         </Typography>

@@ -1,6 +1,6 @@
-'use client';
-import { Container } from '@/ui/components/container/container';
-import { Typography } from '@/ui/components/typography/typography';
+"use client";
+import { Container } from "@/ui/components/container/container";
+import { Typography } from "@/ui/components/typography/typography";
 
 export const Aside = () => {
   return (
@@ -9,7 +9,7 @@ export const Aside = () => {
         <Typography
           variant="title-base"
           component="h2"
-          className="text-white md:text-title-lg"
+          className="text-white md:text-3xl font-semibold"
         >
           Découvrez les formations qui vous correspondent auprès de formateurs
           passionnés !

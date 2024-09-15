@@ -40,11 +40,11 @@ export default function AllCourses() {
 
   return (
     <main>
-      <Container className="px-4 md:px-8 my-[12vh] h-screen">
+      <Container className="px-4 lg:px-[7vw] my-[12vh] h-screen">
         <SearchResults
           session={null}
           MyCourses={null} // À adapter selon vos besoins
-          trainings={course} // Utilisation des données des cours récupérés
+          courses={course} // Utilisation des données des cours récupérés
         />
       </Container>
     </main>

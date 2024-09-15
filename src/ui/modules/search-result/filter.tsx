@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { useEffect } from "react";
 
 export const Filter = () => {
-  const branch = [
+  const categories = [
     { name: "Tous" },
     { name: "Anglais" },
     { name: "Français" },
@@ -46,22 +46,22 @@ export const Filter = () => {
 
   return (
     <Container className="flex flex-wrap gap-4">
-      {branch.map((item, index) => {
+      {categories.map((categorie, index) => {
         // Ajouter une vérification pour éviter les erreurs si item est undefined
-        if (!item || !item.name) return null;
+        if (!categorie || !categorie.name) return null;
 
         return (
           <div
-            onClick={() => handleClick(item.name)}
+            onClick={() => handleClick(categorie.name)}
             key={index} // Utiliser index comme clé de secours si `item.name` peut être dupliqué
             className={clsx(
               "inline-block cursor-pointer px-4 py-2 rounded animate hover:bg-primary-Default hover:text-white",
-              filter === item.name
+              filter === categorie.name
                 ? "bg-primary-Default text-white"
                 : "bg-primary-100"
             )}
           >
-            <Typography>{item.name}</Typography>
+            <Typography>{categorie.name}</Typography>
           </div>
         );
       })}

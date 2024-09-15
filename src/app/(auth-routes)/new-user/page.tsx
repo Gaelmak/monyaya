@@ -1,8 +1,8 @@
-import { Container } from '@/ui/components/container/container';
-import { Aside } from './aside';
-import { RegisterForm } from './register-form';
-import { BackButton } from '@/ui/components/back-button/back-button';
-import { Typography } from '@/ui/components/typography/typography';
+import { Container } from "@/ui/components/container/container";
+import { Aside } from "./aside";
+import { RegisterForm } from "./register-form";
+import { BackButton } from "@/ui/components/back-button/back-button";
+import { Typography } from "@/ui/components/typography/typography";
 
 export default async function NewUser() {
   return (
@@ -13,7 +13,10 @@ export default async function NewUser() {
       <Container className="py-32 px-8 md:py-0 md:basis-3/5 flex flex-col justify-center items-center md:px-16">
         <Container className="md:w-[40vw] flex flex-col gap-8">
           <Container className="flex flex-col gap-2 ">
-            <Typography variant="title-lg" component="h2">
+            <Typography
+              className="text-2xl font-semibold text-secondary-950"
+              component="h2"
+            >
               Inscription
             </Typography>
             <Typography variant="body-base" component="p">

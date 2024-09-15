@@ -1,20 +1,24 @@
-import { BgImg } from '@/ui/components/bg-img/bg-img';
-import { Container } from '@/ui/components/container/container';
-import aboutImage from '../../../../public/Hero-Img-from-About2.0.png';
-import { Typography } from '@/ui/components/typography/typography';
+import { BgImg } from "@/ui/components/bg-img/bg-img";
+import { Container } from "@/ui/components/container/container";
+import aboutImage from "../../../../public/Hero-Img-from-About2.0.png";
+import { Typography } from "@/ui/components/typography/typography";
 
 export default function CompanyOverview() {
   return (
-    <Container className="container flex justify-between flex-col lg:flex-row  items-center  ">
+    <Container className="flex justify-between flex-col lg:flex-row  items-center lg:px-[7vw]  ">
       <Container className="py-4">
         <Typography
-          className="text-[#737373]"
+          className="text-[#737373] text-base"
           component="span"
           variant="title-sm"
         >
           À propos de nous
         </Typography>
-        <Typography className="md:w-3/4 py-2" component="h3" variant="title-lg">
+        <Typography
+          className="md:w-3/4 py-2 text-5xl font-medium"
+          component="h3"
+          variant="title-lg"
+        >
           Cʼest quoi monyaya ?
         </Typography>
         <Container>
@@ -49,7 +53,7 @@ export default function CompanyOverview() {
       <Container className="">
         <BgImg
           src={aboutImage}
-          alt={'aboutUs'}
+          alt={"aboutUs"}
           className="w-[20rem] h-[30rem] md:w-[25rem] md:h-[30rem] lg:w-[32rem] lg:h-[32rem] overflow-hidden"
           classNameImg="w-full h-full"
         />
