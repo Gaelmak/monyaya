@@ -24,7 +24,7 @@ export async function GET(req: Request & NextRequest) {
         },
         category: true,
       },
-      take: 1,
+      take: 3,
       orderBy: {
         id: "asc",
       },

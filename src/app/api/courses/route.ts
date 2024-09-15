@@ -65,9 +65,7 @@ export async function GET(req: Request & NextRequest) {
       where: {
         ...(categoryId ? { categoryId: categoryId } : {}),
         ...(yayaId ? { yaya: { id: yayaId } } : {}),
-        ...(status
-          ? { status: status === "pending" ? "PENDING" : "APPROVED" }
-          : {}),
+        status: status === "pending" ? "PENDING" : "APPROVED",
       },
       include: {
         yaya: {
