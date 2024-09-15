@@ -139,6 +139,17 @@ export const NewCourseFormFieldsType = z.object({
   cover: z.string(),
 });
 
+export const NewLessonsFormFieldsType = z.object({
+  title: z.string().min(1, {
+    message: "Le nom de la formation est requis.",
+  }),
+  description: z.string(),
+  content: z.string(),
+  videoUrl: z.string(),
+  meetUrl: z.string(),
+  adress: z.string(),
+});
+
 export const EditUsersFormFieldsType = z.object({
   firstname: z
     .string()
