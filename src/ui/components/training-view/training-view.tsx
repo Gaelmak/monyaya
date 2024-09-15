@@ -5,10 +5,6 @@ import { pusherClient } from "@/lib/pusher";
 import { useState } from "react";
 import { Container } from "../container/container";
 import { Typography } from "../typography/typography";
-import {
-  SearchResultButtons,
-  SearchResultTrainer,
-} from "@/ui/modules/search-result/search-result-buttons";
 import { Calendar, List, Map } from "lucide-react";
 import clsx from "clsx";
 import {
@@ -16,14 +12,6 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil";
-import { usePathname } from "next/navigation";
-import { format } from "date-fns";
-import { fr } from "date-fns/locale";
-import RekreationPaysage from "../../../../public/rekreatioonPaysage.jpg";
-import Image from "next/image";
-import { Buttons } from "../buttons/buttons";
 } from "@/components/ui/accordion";
 import { YayaProfil } from "@/ui/modules/yaya-profil/yaya-profil";
 import { usePathname } from "next/navigation";
@@ -79,7 +67,6 @@ interface Props {
     id: string;
     trainingId: string;
     status: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED";
-    status: "PENDING" | "APPROVED" | "REJECTED" | "ARCHIVED";
   }[];
   className?: string;
 }
@@ -97,14 +84,12 @@ export const TrainingView = ({
   if (userId) {
     const channel = pusherClient.subscribe(userId!);
     channel.bind("add", function (data: any) {
-    channel.bind("add", function (data: any) {
       const parsedLearnings = JSON.parse(data.result);
       setLearnings((prev) => [...prev, parsedLearnings]);
     });
   }
 
   return (
-    <Container className={clsx("", className)}>
     <Container className={clsx("", className)}>
       {data.map(
         ({
@@ -161,15 +146,15 @@ export const TrainingView = ({
                   </Typography>
                 </Container>
                 {/* <SearchResultButtons
-                  userId={userId ? userId : null}
-                  id={myLearnings!.find((obj) => obj!.trainingId === id)?.id!}
-                  trainingId={id}
-                  isMyAccount={sessionName === user!.name}
-                  amLearner={learnings.some((objet) => objet.trainingId === id)}
-                  status={
-                    learnings.find((obj) => obj!.trainingId === id)?.status
-                  }
-                /> */}
+              userId={userId ? userId : null}
+              id={myLearnings!.find((obj) => obj!.trainingId === id)?.id!}
+              trainingId={id}
+              isMyAccount={sessionName === user!.name}
+              amLearner={learnings.some((objet) => objet.trainingId === id)}
+              status={
+                learnings.find((obj) => obj!.trainingId === id)?.status
+              }
+            /> */}
               </Container>
               <Container className="flex flex-col gap-2">
                 <Typography variant="body-sm">Description</Typography>

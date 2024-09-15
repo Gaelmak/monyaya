@@ -52,8 +52,8 @@ export const Navigation = async ({ className }: Props) => {
           />
         </Link>
         <nav className="flex items-center  justify-between">
-          {MainRoutes.map((route) => (
-            <NavigationMenu>
+          {MainRoutes.map((route, index) => (
+            <NavigationMenu key={index}>
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <Link href={route.baseUrl!}>
