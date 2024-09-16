@@ -3,7 +3,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { TrainingsView } from "@/ui/components/trainings-view/trainingsView";
 import { Typography } from "@/ui/components/typography/typography";
-import { Courses, User as UserProps, Yaya } from "@prisma/client";
+import { Category, Courses, User as UserProps, Yaya } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { Frown } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -11,7 +11,11 @@ export type CoursesListProps = {
   yayaId?: string;
 };
 
-type coursesPropos = Courses & { yaya: Yaya & { user: UserProps } };
+type coursesPropos = Courses & {
+  yaya: Yaya & { user: UserProps };
+  category: Category;
+  lessons: { id: string; title: string }[];
+};
 
 export default function YayaCoursesList(props: CoursesListProps) {
   const [approvedCourses, setApprovedCourses] = useState<coursesPropos[]>([]);

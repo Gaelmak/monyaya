@@ -10,7 +10,7 @@ import TestimonialCarousel from "@/ui/modules/about-components/TestimonialCarous
 
 export default function About() {
   return (
-    <main>
+    <main className="py-4 md:py-8">
       <Container>
         <CompanyOverview />
         <MissionSection />

@@ -18,5 +18,9 @@ export default async function SingleCoursePage({
   });
   const courseUrl = getServerUrl() + `/api/courses/${params.id}`;
 
-  return <SingleCourseFront user={user} courseUrl={courseUrl} />;
+  return (
+    <main className="py-4 md:py-8">
+      <SingleCourseFront user={user} courseUrl={courseUrl} />
+    </main>
+  );
 }
