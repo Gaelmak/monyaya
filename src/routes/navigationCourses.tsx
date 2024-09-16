@@ -24,22 +24,24 @@ export default function NavigationCourse() {
   console.log(categories);
   return (
     <div>
-      <NavigationMenu>
+      <NavigationMenu className="">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="px-2 py-2 hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
               {"Formations"}
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="bg-primary-300">
-              <NavigationMenuLink className="p-4 text-base font-medium">
-                <Link href={"/courses"}>Voir tout les cours</Link>
+            <NavigationMenuContent className="bg-primary-50 text-sm">
+              <NavigationMenuLink className="">
+                <Link href={"/courses"} className="p-4 text-base font-medium">
+                  Voir tout les cours
+                </Link>
               </NavigationMenuLink>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[400px] ">
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[300px] ">
                 {categories?.map((categorie, index) => (
                   <Link
                     key={index}
                     href={"/"}
-                    className="text-base font-medium bg-primary-100 px-4 py-2 rounded hover:bg-white hover:text-secondary-950"
+                    className="text-base font-medium bg-primary-100 px-2 py-2 rounded hover:bg-white hover:text-secondary-950"
                   >
                     {categorie.name}
                   </Link>
