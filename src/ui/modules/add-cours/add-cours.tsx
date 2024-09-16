@@ -69,6 +69,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
       title: course?.title ?? "",
       description: descFromEditor ?? "",
       price: course?.monthlyPrice ?? 0,
+      duration: course?.duration ?? 0,
       type: course?.type.toLowerCase() ?? "online",
       category: course?.category ? course?.category?.name : "none",
       videoUrl: course?.videoUrl ?? "",
@@ -100,10 +101,12 @@ export const AddCours = ({ categories, userId, course }: Props) => {
         title: values.title,
         description: values.description,
         monthlyPrice: values.price,
+        duration: values.duration,
         category: values.category,
         videoUrl: values.videoUrl,
         cover: values.cover,
       };
+
       const res = course
         ? await fetch(`/api/courses/${course.id}`, {
             method: "PATCH",
@@ -232,7 +235,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
               />
 
               <Card className="w-full bg-white">
-                <CardContent className="w-full p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+                <CardContent className="w-full p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Typography
                       variant="title-xs"
@@ -282,6 +285,27 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                       />
                       <span className="absolute right-2 top-0 text-gray-500 h-12 flex items-center justify-center text-sm">
                         $/mois
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <Typography
+                      variant="title-sm"
+                      component="h4"
+                      className="text-sm text-secondary-400 mb-2"
+                    >
+                      Durée
+                    </Typography>
+                    <div className="relative">
+                      <InputField
+                        control={form.control}
+                        name="duration"
+                        placeholder="La durée de votre formation"
+                        type="number"
+                        className="w-full pr-16 h-12"
+                      />
+                      <span className="absolute right-2 top-0 text-gray-500 h-12 flex items-center justify-center text-sm">
+                        mois
                       </span>
                     </div>
                   </div>

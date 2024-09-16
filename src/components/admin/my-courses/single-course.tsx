@@ -7,15 +7,26 @@ import { Buttons } from "@/ui/components/buttons/buttons";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LessonsTimelineLayout } from "@/components/timeline/timeline-layout";
-import { Courses, User as UserType, Yaya } from "@prisma/client";
-import { BanknoteIcon, ChevronLeft, Clock2, Library, User } from "lucide-react";
+import { Category, Courses, User as UserType, Yaya } from "@prisma/client";
+import {
+  BanknoteIcon,
+  ChevronLeft,
+  Clock2,
+  Layers3Icon,
+  Library,
+  User,
+} from "lucide-react";
 import ReactPlayer from "react-player";
 import { useEffect, useState } from "react";
 import { TitapParser } from "@/components/minimal-tiptap";
 import { usePathname } from "next/navigation";
 
 export type SingleCourseProps = {
-  course: Courses;
+  course: Courses & {
+    yaya: Yaya & { user: UserType };
+    category: Category;
+    lessons: { id: string; title: string }[];
+  };
   user: {
     id: string;
     role: string;
@@ -79,16 +90,21 @@ export default function SingleCourse({
           <span className="text-sm bg-primary-600 w-2 h-2 rounded-full"></span>
           {course.type}
         </Badge>
-        <Badge className="rounded-md bg-orange-100 text-black/80 px-4 py-2 flex gap-1 items-center">
-          <Clock2 size={14} />
-          <span>6 mois</span>
-        </Badge>
+        {course.duration && (
+          <Badge className="rounded-md bg-orange-100 text-black/80 px-4 py-2 flex gap-1 items-center">
+            <Clock2 size={14} />
+            <span>{course.duration} mois</span>
+          </Badge>
+        )}
         <Badge className="rounded-md bg-red-100 text-black/80 px-4 py-2 flex gap-1 items-center">
-          <Library size={14} /> 16 leçons
+          <Library size={14} /> {course.lessons ? course.lessons.length : 0}{" "}
+          leçons
         </Badge>
-        <Badge className="rounded-md bg-blue-100 text-black/80 px-4 py-2 flex gap-1 items-center">
-          <User size={14} /> 16 étudiants
-        </Badge>
+        {course.category && (
+          <Badge className="rounded-md bg-blue-100 text-black/80 px-4 py-2 flex gap-1 items-center">
+            <Layers3Icon size={14} /> {course.category.name}
+          </Badge>
+        )}
         <Badge className="rounded-md bg-purple-100 text-black/80 px-4 py-2 flex gap-1 items-center md:ml-auto">
           <BanknoteIcon size={14} /> {course.monthlyPrice}$/mois
         </Badge>

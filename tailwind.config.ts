@@ -54,7 +54,7 @@ export default withUt({
           950: "#25262c",
         },
         destructive: "#ff0035",
-        accent: "#f68e5f",
+        accent: "#eaeaea",
         white: "#ffffff",
         black: "#000f08",
         // schist

@@ -21,6 +21,7 @@ export async function GET(
                 image: true,
                 firstName: true,
                 lastName: true,
+                bio: true,
               },
             },
           },
@@ -81,8 +82,9 @@ export async function PATCH(
         title: data.title,
         description: data.description,
         cover: data.cover,
-        videoUrl: data.VideoUrl,
+        videoUrl: data.videoUrl,
         monthlyPrice: data.monthlyPrice,
+        duration: data.duration,
         categoryId: data.categoryId,
       },
     });

@@ -154,7 +154,7 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
                     <InputField
                       control={form.control}
                       name="description"
-                      placeholder="Ajouter le prix de votre formation"
+                      placeholder="Ajouter une description à cette leçon"
                       type="textarea"
                       className="w-full pr-16 h-12"
                     />
@@ -171,28 +171,50 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
                       <InputField
                         control={form.control}
                         name="videoUrl"
-                        placeholder="Ajouter le prix de votre formation"
+                        placeholder="ex: https://www.youtube.com/watch?v=ejFsz3T6DUk"
                         type="text"
                         className="w-full pr-16 h-12"
-                        description="Le lien de votre video pour votre cours"
+                        description="Peut-être une vidéo de présentation ou la vidéo complète de la leçon"
                       />
                     </div>
-                    <div>
-                      <Typography
-                        variant="title-xs"
-                        component="h4"
-                        className="text-sm text-secondary-400 mb-2"
-                      >
-                        Video où suivre la leçon
-                      </Typography>
-                      <InputField
-                        control={form.control}
-                        name="meetUrl"
-                        placeholder="Ajouter le prix de votre formation"
-                        type="text"
-                        className="w-full pr-16 h-12"
-                      />
-                    </div>
+                    {course.type === "ONLINE" && (
+                      <div>
+                        <Typography
+                          variant="title-xs"
+                          component="h4"
+                          className="text-sm text-secondary-400 mb-2"
+                        >
+                          Video où suivre la leçon
+                        </Typography>
+                        <InputField
+                          control={form.control}
+                          name="meetUrl"
+                          placeholder="ex: https://meet.google.com/link"
+                          type="text"
+                          className="w-full pr-16 h-12"
+                          description="Utile si la leçon est une séance de coaching en ligne"
+                        />
+                      </div>
+                    )}
+                    {course.type === "ONSITE" && (
+                      <div>
+                        <Typography
+                          variant="title-xs"
+                          component="h4"
+                          className="text-sm text-secondary-400 mb-2"
+                        >
+                          Adresse
+                        </Typography>
+                        <InputField
+                          control={form.control}
+                          name="adress"
+                          placeholder="Adresse pour cette leçon"
+                          type="text"
+                          className="w-full pr-16 h-12"
+                          description="Entrer l'adresse où l'apprenant peut se rendre pour suivre la leçon"
+                        />
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -205,7 +227,7 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
                   className="w-full bg-white"
                   editorContentClassName="p-5"
                   output="html"
-                  placeholder="Tapez votre description ici..."
+                  placeholder="Commencer à écrire le contenu de la leçon..."
                   autofocus={true}
                   immediatelyRender={false}
                   editable={true}

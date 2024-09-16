@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.userCourse.deleteMany();
   await prisma.courses.deleteMany();
   await prisma.yaya.deleteMany();
   await prisma.category.deleteMany();
@@ -23,6 +24,16 @@ async function main() {
   const hash = saltedPassword.hash;
   const salt = saltedPassword.salt;
 
+  const sameInfos = {
+    password: hash,
+    salt: salt,
+    municipality: "Ngaliema",
+    district: "Kingu",
+    avenue: "Mbaki",
+    number: "1",
+    phoneNumber: "0612345678",
+  };
+
   await prisma.user.createMany({
     data: [
       {
@@ -32,8 +43,7 @@ async function main() {
         email: "alice@example.com",
         role: "TRAINER",
         isTrainerValidated: true,
-        password: hash,
-        salt: salt,
+        ...sameInfos,
       },
       {
         name: "bob",
@@ -41,32 +51,28 @@ async function main() {
         lastName: "Martin",
         email: "bob@example.com",
         role: "ADMIN",
-        password: hash,
-        salt: salt,
+        ...sameInfos,
       },
       {
         name: "charlie",
         firstName: "Charlie",
         lastName: "Durand",
         email: "charlie@example.com",
-        password: hash,
-        salt: salt,
+        ...sameInfos,
       },
       {
         name: "diane",
         firstName: "Diane",
         lastName: "Petit",
         email: "diane@example.com",
-        password: hash,
-        salt: salt,
+        ...sameInfos,
       },
       {
         name: "eve",
         firstName: "Eve",
         lastName: "Lefevre",
         email: "eve@example.com",
-        password: hash,
-        salt: salt,
+        ...sameInfos,
       },
     ],
   });
@@ -127,6 +133,7 @@ async function main() {
         cover: "https://placehold.co/1920x1080/blue/white?text=cover",
         videoUrl: "https://www.youtube.com/watch?v=ejFsz3T6DUk",
         categoryId: await prisma.category.findMany().then((res) => res[0].id),
+        duration: 2,
       },
       {
         title: "Introduction à la Programmation",
@@ -139,6 +146,7 @@ async function main() {
         status: "APPROVED",
         cover: "https://placehold.co/1920x1080/green/white?text=cover",
         categoryId: await prisma.category.findMany().then((res) => res[0].id),
+        duration: 6,
       },
       {
         title: "Yoga pour Débutants",
@@ -150,6 +158,7 @@ async function main() {
         type: "ONSITE",
         status: "PENDING",
         categoryId: await prisma.category.findMany().then((res) => res[1].id),
+        duration: 12,
       },
       {
         title: "Peinture Acrylique",
@@ -161,6 +170,7 @@ async function main() {
         type: "ONLINE",
         status: "PENDING",
         categoryId: await prisma.category.findMany().then((res) => res[2].id),
+        duration: 8,
       },
       {
         title: "Stratégies d'Affaires",
@@ -172,6 +182,7 @@ async function main() {
         type: "DOMICILE",
         status: "REJECTED",
         categoryId: await prisma.category.findMany().then((res) => res[3].id),
+        duration: 1,
       },
     ],
   });
