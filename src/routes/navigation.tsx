@@ -40,14 +40,14 @@ export const Navigation = async ({ className }: Props) => {
         className
       )}
     >
-      <Container className="flex flex-row items-center justify-between px-8 lg:px-[7vw] lg:h-[7vh] md:h-[8vh]">
+      <Container className="flex flex-row items-center justify-between px-8 lg:px-[7vw] lg:h-16 md:h-16">
         <Link href="/">
           <Image
-            src="/monyaya.png"
+            src="/img/logo-monyaya.webp"
             alt="Logo MonYaya"
-            width={100}
-            height={100}
-            priority
+            width={459}
+            height={200}
+            className="h-12 w-auto"
           />
         </Link>
         <nav className="flex items-center  justify-between">

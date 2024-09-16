@@ -9,14 +9,12 @@ import { HowItWork } from "@/ui/modules/how-it-works/HowItWork";
 export default function Home() {
   return (
     <main>
-      <Container>
-        <HeroBanner />
-        <BenefitSearch />
-        <Recommandations />
-        <BecomeATrainer />
-        <HowItWork />
-        <Newsletter />
-      </Container>
+      <HeroBanner />
+      <BenefitSearch />
+      <Recommandations />
+      <BecomeATrainer />
+      <HowItWork />
+      <Newsletter />
     </main>
   );
 }
