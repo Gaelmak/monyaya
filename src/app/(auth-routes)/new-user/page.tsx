@@ -8,7 +8,11 @@ export default async function NewUser() {
   return (
     <Container className="bg-white md:h-[100dvh] flex flex-col md:flex-row relative">
       <Container className="absolute top-8 left-8 z-10">
-        <BackButton icon="home" backTo="/" />
+        <BackButton
+          icon="home"
+          backTo="/"
+          className="bg-primary-600 hover:bg-primary-700"
+        />
       </Container>
       <Container className="py-32 px-8 md:py-0 md:basis-3/5 flex flex-col justify-center items-center md:px-16">
         <Container className="md:w-[40vw] flex flex-col gap-8">

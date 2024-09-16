@@ -29,7 +29,7 @@ export default async function AuthRoutesLayout({
     redirect("/dashboard");
   }
   return (
-    <div className="mt-[-8vh] md:mt-[-10vh] z-50">
+    <div className="z-50">
       {children}
       <Toaster />
     </div>
