@@ -19,7 +19,7 @@ export default function ContactPage() {
   return (
     <div>
       <BackgroundImage>
-        <div className="flex flex-col justify-center h-full items-center gap-6 ">
+        <div className="flex flex-col justify-center h-full items-center gap-6 text-center top-0 md:pb-8">
           <h1 className="text-6xl font-bold text-white ">Nous Contactez</h1>
           <p className="font-bold text-white">
             Nous repondons dans moins de 24h

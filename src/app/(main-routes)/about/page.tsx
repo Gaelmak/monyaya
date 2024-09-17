@@ -10,15 +10,13 @@ import TestimonialCarousel from "@/ui/modules/about-components/TestimonialCarous
 
 export default function About() {
   return (
-    <main>
-      <Container>
-        <CompanyOverview />
-        <MissionSection />
-        <VisionSection />
-        <ValueSection />
-        <TestimonialCarousel />
-        <Newsletter />
-      </Container>
+    <main className="w-full">
+      <CompanyOverview />
+      <MissionSection />
+      <VisionSection />
+      <ValueSection />
+      {/* <TestimonialCarousel /> */}
+      <Newsletter />
     </main>
   );
 }

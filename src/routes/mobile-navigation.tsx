@@ -10,13 +10,12 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
-  SheetFooter,
-  SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import prisma from "@/lib/prisma";
 import { userAuth } from "@/lib/helper";
+import NavigationCourse from "./navigationCourses";
 
 interface Props {
   className: string;
@@ -61,21 +60,26 @@ export const MobileNavigation = async ({ className }: Props) => {
           </SheetTrigger>
           <SheetContent className="w-[90vw] bg-white">
             <SheetDescription className="h-full">
-              <nav className="h-full pt-8 flex flex-col justify-between">
-                <Container className="w-full flex flex-col pt-4">
-                  {MainRoutes.map((route) => (
-                    <Typography
-                      key={route.title!}
-                      variant="body-base"
-                      component="p"
-                    >
-                      <ActiveLink href={route.baseUrl!}>
-                        {route.title}
-                      </ActiveLink>
-                    </Typography>
-                  ))}
-                </Container>
-                <Container className="w-full flex flex-col gap-2 mb-4">
+              <nav className=" h-full pt-8 text-left justify-between flex flex-col">
+                <div className="flex flex-col justify-start items-start gap-3 ">
+                  <Link href={"/"}>
+                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                      {"Accueil"}
+                    </div>
+                  </Link>
+                  <NavigationCourse />
+                  <Link href={"/about"}>
+                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                      {"À propos"}
+                    </div>
+                  </Link>
+                  <Link href={"/contact"}>
+                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                      {"Contact"}
+                    </div>
+                  </Link>
+                </div>
+                <Container className="w-full flex flex-col gap-2 my-4">
                   {session ? (
                     user ? (
                       <ProfileButton

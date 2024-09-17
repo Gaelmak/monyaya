@@ -30,13 +30,13 @@ export default function NavigationCourse() {
             <NavigationMenuTrigger className="px-2 py-2 hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
               {"Formations"}
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="bg-primary-50 text-sm">
+            <NavigationMenuContent className="bg-primary-50 text-sm pt-2">
               <NavigationMenuLink className="">
                 <Link href={"/courses"} className="p-4 text-base font-medium">
                   Voir tout les cours
                 </Link>
               </NavigationMenuLink>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[300px] ">
+              <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[300px] ">
                 {categories?.map((categorie, index) => (
                   <Link
                     key={index}
@@ -46,7 +46,7 @@ export default function NavigationCourse() {
                     {categorie.name}
                   </Link>
                 ))}
-              </ul>
+              </div>
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>

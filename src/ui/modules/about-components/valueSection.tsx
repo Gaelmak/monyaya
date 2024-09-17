@@ -14,7 +14,7 @@ export default function ValueSection() {
       </Typography>
 
       {/* Valeurs */}
-      <Container className="flex flex-col md:flex-wrap lg:flex-nowrap justify-center items-center lg:items-stretch lg:flex-row gap-12 lg:gap-20 py-12 lg:px-8 w-full">
+      <Container className="flex flex-col md:flex-wrap lg:flex-nowrap justify-center items-center lg:items-stretch px-4 lg:flex-row gap-12 lg:gap-20 py-12 lg:px-8 w-full">
         {/* Valeur 1 */}
         <Container className="flex flex-col justify-center items-center w-full lg:w-1/3 bg-white rounded-2xl shadow-2xl p-6 hover:shadow-none transition-shadow duration-300">
           <Typography

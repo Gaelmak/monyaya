@@ -4,8 +4,7 @@ import { Typography } from "@/ui/components/typography/typography";
 
 export default function CompanyOverview() {
   return (
-    <Container className="flex flex-col lg:flex-row justify-between items-center px-4 lg:px-[7vw] py-6">
-      {/* Texte À propos de nous */}
+    <Container className="w-full flex flex-col lg:flex-row justify-between items-center px-4 lg:px-[7vw] py-6">
       <Container className="py-4 w-full lg:w-1/2">
         <Typography
           className="text-[#737373] text-sm md:text-base"
@@ -57,7 +56,7 @@ export default function CompanyOverview() {
         <BgImg
           src="/hero-img-from-about.png"
           alt={"aboutUs"}
-          className="w-[15rem] h-[20rem] sm:w-[20rem] sm:h-[25rem] md:w-[25rem] md:h-[30rem] lg:w-[32rem] lg:h-[32rem] overflow-hidden"
+          className="w-[18rem] h-[20rem] sm:w-[20rem] sm:h-[25rem] md:w-[25rem] md:h-[30rem] lg:w-[32rem] lg:h-[32rem] overflow-hidden"
           classNameImg="w-full h-full"
         />
       </Container>

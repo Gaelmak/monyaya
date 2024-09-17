@@ -5,8 +5,7 @@ import studentImage from "../../../../public/oip.jpg";
 
 export default function VisionSection() {
   return (
-    <Container className="flex flex-col-reverse lg:flex-row-reverse justify-between items-center gap-6 lg:gap-8 lg:px-[7vw] p-6 lg:py-10 max-w-full bg-secondary-50">
-      {/* Bloc Image */}
+    <Container className="flex w-full flex-col-reverse lg:flex-row-reverse justify-between items-center gap-6 lg:gap-8 lg:px-[7vw] p-6 lg:py-10 max-w-full bg-secondary-50">
       <Container className="w-full lg:w-1/2 flex justify-center lg:justify-start">
         <Image
           width={500}
