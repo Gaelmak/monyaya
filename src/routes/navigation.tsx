@@ -47,18 +47,18 @@ export const Navigation = async ({ className }: Props) => {
         <nav className="">
           <div className="flex items-center  justify-between gap-3">
             <Link href={"/"}>
-              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-secondary-900 focus:text-secondary-900 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
                 {"Accueil"}
               </div>
             </Link>
             <NavigationCourse />
             <Link href={"/about"}>
-              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-secondary-900 focus:text-secondary-900 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
                 {"À propos"}
               </div>
             </Link>
             <Link href={"/contact"}>
-              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-secondary-900 focus:text-secondary-900 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
                 {"Contact"}
               </div>
             </Link>

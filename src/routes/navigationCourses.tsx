@@ -21,32 +21,31 @@ export default function NavigationCourse() {
       return response.json();
     },
   });
-  console.log(categories);
+
   return (
     <div>
       <NavigationMenu className="">
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-2 py-2 hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+            <NavigationMenuTrigger className="px-2 py-2 hover:bg-primary-400 focus:bg-primary-300 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
               {"Formations"}
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="bg-primary-50 text-sm">
-              <NavigationMenuLink className="">
-                <Link href={"/courses"} className="p-4 text-base font-medium">
-                  Voir tout les cours
-                </Link>
+            <NavigationMenuContent className="bg-white text-sm p-4 flex flex-col gap-2 w-11/12 md:w-[250px]">
+              <NavigationMenuLink
+                href="/courses"
+                className="w-full p-2 bg-primary-100 hover:bg-primary-200 rounded"
+              >
+                Voir tout les cours
               </NavigationMenuLink>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[300px] ">
-                {categories?.map((categorie, index) => (
-                  <Link
-                    key={index}
-                    href={"/"}
-                    className="text-base font-medium bg-primary-100 px-2 py-2 rounded hover:bg-white hover:text-secondary-950"
-                  >
-                    {categorie.name}
-                  </Link>
-                ))}
-              </ul>
+              {categories?.map((categorie, index) => (
+                <NavigationMenuLink
+                  key={index}
+                  href={`/courses?category=${categorie.id}`}
+                  className="w-full p-2 bg-primary-100 hover:bg-primary-200 rounded"
+                >
+                  {categorie.name}
+                </NavigationMenuLink>
+              ))}
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
