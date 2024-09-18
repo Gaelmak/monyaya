@@ -132,6 +132,9 @@ export const NewCourseFormFieldsType = z.object({
   price: z.number().min(1, {
     message: "Le montant doit commencer à partir de 1$",
   }),
+  duration: z.number().min(1, {
+    message: "Ne doit pas être zéro",
+  }),
   category: z.string().min(1, {
     message: "Veuillez choisir une catégorie pour votre formation",
   }),

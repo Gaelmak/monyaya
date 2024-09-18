@@ -23,7 +23,11 @@ export default function SignIn() {
   return (
     <Container className="bg-white relative md:h-[100dvh] flex flex-col-reverse md:flex-row">
       <Container className="absolute top-8 left-8 z-10">
-        <BackButton icon="home" backTo="/" />
+        <BackButton
+          icon="home"
+          backTo="/"
+          className="bg-primary-600 hover:bg-primary-700"
+        />
       </Container>
       <Container className="h-80 md:h-full md:basis-2/5">
         <Aside />

@@ -3,7 +3,6 @@ import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import { SearchCourses } from "@/ui/modules/search/search-courses";
 import Image from "next/image";
-import imageBenefit from "public/mail.jpg";
 
 export const BenefitSearch = () => {
   return (
@@ -17,8 +16,10 @@ export const BenefitSearch = () => {
       <Container className="flex flex-col md:flex-row md:justify-between items-center md:pt-6  md:pb-16">
         <Container className="md:w-2/5 flex justify-start items-start ">
           <Image
-            src={imageBenefit}
+            src="/img/benefit.webp"
             alt="Image benefit"
+            width={500}
+            height={500}
             className=" object-cover border-dashed border-2 border-primary-Default p-2 rounded-3xl"
           />
         </Container>

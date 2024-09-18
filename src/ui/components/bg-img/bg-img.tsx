@@ -1,6 +1,6 @@
-import Image, { StaticImageData } from 'next/image';
-import { Container } from '../container/container';
-import clsx from 'clsx';
+import Image, { StaticImageData } from "next/image";
+import { Container } from "../container/container";
+import clsx from "clsx";
 
 interface Props {
   children?: React.ReactNode;
@@ -20,7 +20,7 @@ export const BgImg = ({
   return (
     <Container className={clsx(className)}>
       <Container
-        className={clsx('w-full h-full overflow-auto relative', classNameImg)}
+        className={clsx("w-full h-full overflow-auto relative", classNameImg)}
       >
         <Image
           src={src}
@@ -28,7 +28,6 @@ export const BgImg = ({
           fill={true}
           className="object-cover object-center z-[-1]"
           sizes="100%"
-          priority
         />
         {children}
       </Container>

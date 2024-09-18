@@ -33,7 +33,6 @@ export const AppMobile = () => {
           alt="Mobile app"
           className=""
           sizes="100%"
-          priority
           width={100}
           height={100}
         />

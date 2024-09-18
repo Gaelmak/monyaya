@@ -77,17 +77,13 @@ export const ProfileButton = ({ profileImg, name }: Props) => {
     <>
       <Link href="/dashboard">
         <Container className="items-center w-full flex justify-center flex-row gap-2 pb-4 lg:pb-0">
-          <Container>
-            <Container className="flex items-start rounded-full w-[180px] h-[180px] lg:w-[50px] lg:h-[50px] overflow-hidden">
-              <Image
-                width={240}
-                height={240}
-                className="w-full h-full object-cover"
-                src={profileImg ? profileImg : DefaultAvatar}
-                alt="User profile image"
-              />
-            </Container>
-          </Container>
+          <Image
+            width={240}
+            height={240}
+            className="w-12 h-12 rounded-full"
+            src={profileImg ? profileImg : DefaultAvatar}
+            alt="User profile image"
+          />
         </Container>
       </Link>
     </>

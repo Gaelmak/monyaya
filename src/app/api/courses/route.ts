@@ -37,8 +37,9 @@ export async function POST(req: Request) {
         title: data.title,
         description: data.description,
         cover: data.cover,
-        videoUrl: data.VideoUrl,
+        videoUrl: data.videoUrl,
         monthlyPrice: data.monthlyPrice,
+        duration: data.duration,
         categoryId: data.categoryId,
       },
     });
@@ -65,7 +66,9 @@ export async function GET(req: Request & NextRequest) {
       where: {
         ...(categoryId ? { categoryId: categoryId } : {}),
         ...(yayaId ? { yaya: { id: yayaId } } : {}),
-        status: status === "pending" ? "PENDING" : "APPROVED",
+        ...(status
+          ? { status: status === "pending" ? "PENDING" : "APPROVED" }
+          : {}),
       },
       include: {
         yaya: {
@@ -82,6 +85,12 @@ export async function GET(req: Request & NextRequest) {
           },
         },
         category: true,
+        lessons: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
       },
     });
 

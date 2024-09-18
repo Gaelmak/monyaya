@@ -3,10 +3,8 @@ import { FrontCoursesList } from "@/ui/modules/courses/courses-list";
 
 export default function AllCourses() {
   return (
-    <main>
-      <Container className="px-4 md:px-8 my-[12vh] min-h-dvh">
-        <FrontCoursesList />
-      </Container>
+    <main className="px-4 py-8 md:px-8 md:py-12 min-h-dvh">
+      <FrontCoursesList />
     </main>
   );
 }

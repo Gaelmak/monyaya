@@ -12,7 +12,7 @@ export default async function MainRoutesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="">
+    <div className="mt-16 md:mt-16">
       <Navigation className="hidden md:block" />
       <MobileNavigation className="md:hidden" />
       {children}
