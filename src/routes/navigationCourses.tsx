@@ -30,10 +30,10 @@ export default function NavigationCourse() {
             <NavigationMenuTrigger className="px-2 py-2 hover:bg-primary-400 focus:bg-primary-300 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
               {"Formations"}
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="bg-white text-sm p-4 flex flex-col gap-2 w-11/12 md:w-[250px]">
+            <NavigationMenuContent className="bg-white text-sm p-4 flex flex-col gap-2 w-full md:w-[250px] ">
               <NavigationMenuLink
                 href="/courses"
-                className="w-full p-2 bg-primary-100 hover:bg-primary-200 rounded"
+                className="w-full px-4 py-2 bg-primary-100 hover:bg-primary-200 rounded"
               >
                 Voir tout les cours
               </NavigationMenuLink>

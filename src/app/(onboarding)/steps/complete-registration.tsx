@@ -1,7 +1,6 @@
 "use client";
 import { Form } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { CompleteRegisterFormFieldsType } from "@/types/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { InputField } from "@/ui/components/input-field/input-field";
@@ -24,6 +23,18 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { signOut } from "next-auth/react";
+
+// Schéma de validation Zod
+const CompleteRegisterFormFieldsType = z.object({
+  firstname: z.string().nonempty("Le prénom est requis"),
+  lastname: z.string().nonempty("Le nom est requis"),
+  email: z.string().email("Veuillez entrer une adresse email valide"),
+  phonenumber: z.string().nonempty("Le numéro de téléphone est requis"),
+  avenue: z.string().nonempty("L'avenue est requise"),
+  district: z.string().nonempty("Le quartier est requis"),
+  municipality: z.string().nonempty("La commune est requise"),
+  number: z.string().nonempty("Le numéro est requis"),
+});
 
 interface Props {
   data: {
@@ -51,6 +62,7 @@ const BackgroundImage = ({ children }: { children: React.ReactNode }) => {
     </>
   );
 };
+
 export const CompleteRegistration = ({ data, name }: Props) => {
   const router = useRouter();
   const { toast } = useToast();

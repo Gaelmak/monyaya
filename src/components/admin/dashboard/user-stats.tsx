@@ -51,7 +51,7 @@ export default function UserStats(props: UserStatsProps) {
       <Card className="bg-white p-0 flex flex-col justify-between overflow-hidden">
         <CardContent className="p-6 flex gap-2 justify-between items-center">
           <div>
-            <p className="text">Total des lecons</p>
+            <p className="text">Total des leçons </p>
             <p className="text-5xl font-bold">
               {isLoading ? <Loader /> : stats?.lessons}
             </p>
@@ -59,7 +59,7 @@ export default function UserStats(props: UserStatsProps) {
           <Users size={80} strokeWidth={1} className="text-primary-600" />
         </CardContent>
         <CardFooter className="bg-primary-600 p-4 text-white/90 text-xs">
-          Le nombre total de lecons pour l&apos;ensemble de cours que vous avez
+          Le nombre total de leçons pour l&apos;ensemble de cours que vous avez
           rejoints
         </CardFooter>
       </Card>

@@ -14,9 +14,8 @@ export default function CompanyOverview() {
           À propos de nous
         </Typography>
         <Typography
-          className="py-2 text-3xl md:text-5xl font-medium"
+          className="py-2 lg:text-6xl text-4xl font-semibold"
           component="h3"
-          variant="title-lg"
         >
           C&apos;est quoi monyaya ?
         </Typography>

@@ -1,7 +1,7 @@
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import Image from "next/image";
-import studentImage from "../../../../public/oip.jpg";
+import studentImage from "public/img/WhatsApp Image 2024-09-18 à 22.00.51_a23d5a6b.jpg";
 
 export default function VisionSection() {
   return (

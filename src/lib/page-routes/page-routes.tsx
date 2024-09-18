@@ -30,6 +30,16 @@ export const SocialNetworks: AppLinks[] = [
     baseUrl: "https://www.linkedin.com/company",
     CustomIcon: Linkedin,
   },
+  {
+    title: "Facebook",
+    baseUrl: "https://www.facebook.com/",
+    CustomIcon: Facebook,
+  },
+  {
+    title: "X",
+    baseUrl: "https://www.instagram.com/",
+    CustomIcon: X,
+  },
 ];
 
 export const Company: AppLinks[] = [

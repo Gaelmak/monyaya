@@ -27,7 +27,7 @@ export default function ContactSection() {
               </li>
               <li className="flex flex-row gap-3 items-center">
                 <Mail size={20} />
-                <span className="text-sm">monyaya@gmail.com</span>
+                <span className="text-sm">ceo@monyaya.com </span>
               </li>
               <li className="flex flex-row gap-3 items-center">
                 <MapPin size={20} />

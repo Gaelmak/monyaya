@@ -109,7 +109,7 @@ export const RegisterForm = () => {
           title: "Utilisateur déjà existant",
           description: (
             <Typography component="p" variant="body-sm">
-              Veuillez utiliser une autre adresse email
+              Veuillez utiliser un autre nom d’utilisateur
             </Typography>
           ),
         });
@@ -205,7 +205,7 @@ export const RegisterForm = () => {
             >
               <Container className="lg:basis-1/2">
                 <InputField
-                  placeholder="••••••••"
+                  placeholder="•••••••••••••••"
                   control={form.control}
                   name="password"
                   type={showPassword ? "text" : "password"}

@@ -11,14 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Buttons } from "../buttons/buttons";
@@ -80,9 +73,8 @@ export default function ContactForm() {
                 </div>
               </div>
               <div className="w-1/2">
-                {/* Champ Numéro de téléphone (facultatif) */}
                 <div>
-                  <span>telephone</span>
+                  <span>téléphone</span>
                   <InputField
                     control={form.control}
                     name="phone"
