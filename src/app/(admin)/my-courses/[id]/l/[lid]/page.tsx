@@ -31,6 +31,11 @@ export default async function LessonPage({ params }: LessonPageProps) {
     },
     select: {
       id: true,
+      yaya: {
+        select: {
+          id: true,
+        },
+      },
     },
   });
 
@@ -71,7 +76,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
           </Table>
         </div>
         <LessonContent
-          userId={user?.id}
+          user={user}
           courseId={courseId}
           lessonId={lessonId}
           lesson={lesson}

@@ -85,7 +85,7 @@
 }
 
 body {
-  @apply mt-[8vh] md:mt-[10vh] bg-[#fafafa];
+  @apply bg-[#fafafa];
 }
 
 .animate {

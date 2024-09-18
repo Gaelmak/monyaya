@@ -40,11 +40,11 @@ export const MobileAsideNav = async ({ className }: Props) => {
       <Container className="flex flex-row items-center justify-between px-4 py-2 gap-4 h-[8vh]">
         <Link href="/">
           <Image
-            src="/monyaya.png"
+            src="/img/logo-monyaya.webp"
             alt="Logo MonYaya"
-            priority
-            width={100}
-            height={100}
+            width={459}
+            height={200}
+            className="h-12 w-auto"
           />
         </Link>
         <Sheet>
@@ -53,7 +53,6 @@ export const MobileAsideNav = async ({ className }: Props) => {
               <Image
                 src={user?.image ? user?.image : Default}
                 alt="Profil image"
-                priority
                 width={40}
                 height={40}
                 className="w-full h-full object-cover object-center rounded-full"

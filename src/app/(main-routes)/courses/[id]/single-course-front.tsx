@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { Share2Icon, CheckIcon, CopyIcon } from "lucide-react";
+import { Share2Icon, CheckIcon, CopyIcon, Layers3Icon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -33,6 +33,7 @@ import { Input } from "@/components/ui/input";
 import { Loader } from "@/components/ui/loader";
 import BeforeBuy from "./before-buy";
 import { User as UserType } from "@prisma/client";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function SingleCourseFront({
   user,
@@ -111,16 +112,22 @@ export default function SingleCourseFront({
               <span className="text-sm bg-primary-600 w-2 h-2 rounded-full"></span>
               {course.type}
             </Badge>
-            <Badge className="rounded-md bg-orange-100 text-black/80 px-4 py-2 flex gap-1 items-center">
-              <Clock2 size={14} />
-              <span>6 mois</span>
-            </Badge>
+            {course.duration && (
+              <Badge className="rounded-md bg-orange-100 text-black/80 px-4 py-2 flex gap-1 items-center">
+                <Clock2 size={14} />
+                <span>{course.duration} mois</span>
+              </Badge>
+            )}
             <Badge className="rounded-md bg-red-100 text-black/80 px-4 py-2 flex gap-1 items-center">
-              <Library size={14} /> 16 leçons
+              <Library size={14} /> {course.lesson ? course.lesson.length : 0}{" "}
+              leçons
             </Badge>
-            <Badge className="rounded-md bg-blue-100 text-black/80 px-4 py-2 flex gap-1 items-center">
-              <User size={14} /> 16 étudiants
-            </Badge>
+            {course.category && (
+              <Badge className="rounded-md bg-blue-100 text-black/80 px-4 py-2 flex gap-1 items-center">
+                <Layers3Icon size={14} /> {course.category.name}
+              </Badge>
+            )}
+
             <div className="ml-auto">
               <Popover>
                 <PopoverTrigger>
@@ -129,7 +136,7 @@ export default function SingleCourseFront({
                 <PopoverContent className="bg-white">
                   <h6 className="text-sm font-bold mb-2">Partager</h6>
                   <div className="relative">
-                    <Input className="w-full" value={pathname} />
+                    <Input className="w-full pr-8" value={courseUrl} />
                     <button
                       disabled={hasCopiedText}
                       className="link absolute top-3 right-2"
@@ -175,25 +182,37 @@ export default function SingleCourseFront({
               <CardDescription className="flex flex-col justify-center items-center gap-2 text-center px-4">
                 <Avatar>
                   <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    className="rounded-full w-24 h-24 overflow-hidden"
+                    src={course.yaya.user.image ?? "/default_avatar.jpg"}
+                    className="rounded-full w-24 h-24 overflow-hidden hi"
                   />
-                  <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div>
-                  Nulla nisi nulla reprehenderit nisi laborum pariatur do
-                  voluptate quis sit sunt culpa ea minim nisi. Commodo nostrud
-                  laborum excepteur fugiat nulla nisi eu ad sint non.
+                  <h3 className="font-semibold">
+                    {course.yaya.user.firstName} {course.yaya.user.lastName}
+                  </h3>
+                  <p className="opacity-70">
+                    {course.yaya.user.bio ?? "Pas encore de bio"}
+                  </p>
                 </div>
               </CardDescription>
             </CardHeader>
+
             <CardContent>
               <h4 className="mb-2">Programmes</h4>
-              <ul className="p-3 pl-6 bg-blue-100 rounded space-y-2 text-sm list-disc">
-                {course?.lessons?.map((lesson, index) => (
-                  <li key={index}>{lesson.title}</li>
-                ))}
-              </ul>
+              {course.lessons.length > 0 ? (
+                <ul className="p-3 pl-6 bg-blue-100 rounded space-y-2 text-sm list-disc">
+                  {course?.lessons?.map((lesson, index) => (
+                    <li key={index}>{lesson.title}</li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="flex flex-col gap-2">
+                  <Skeleton className="h-6 bg-gray-50 w-full" />
+                  <Skeleton className="h-6 bg-gray-50 w-8/12" />
+                  <Skeleton className="h-6 bg-gray-50 w-4/12" />
+                  <Skeleton className="h-6 bg-gray-50 w-10/12" />
+                </div>
+              )}
             </CardContent>
             <CardFooter>
               <BeforeBuy

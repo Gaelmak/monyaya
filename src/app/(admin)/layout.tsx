@@ -35,7 +35,7 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="mt-[-8vh] md:mt-[-10vh] z-50 block">
+    <div className="z-50 block">
       <div className="flex flex-row min-h-[100dvh] ">
         <MobileAsideNav className="md:hidden" />
         <div className="w-[20%] relative h-[100dvh] hidden md:block">

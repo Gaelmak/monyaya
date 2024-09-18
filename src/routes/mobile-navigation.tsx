@@ -45,14 +45,14 @@ export const MobileNavigation = async ({ className }: Props) => {
         className
       )}
     >
-      <Container className="flex flex-row items-center justify-between px-4 py-2 gap-4 h-[8vh]">
+      <Container className="flex flex-row items-center justify-between px-4 py-2 gap-4 h-16">
         <Link href="/">
           <Image
-            src="/monyaya.png"
+            src="/img/logo-monyaya.webp"
             alt="Logo MonYaya"
-            priority
-            width={100}
-            height={100}
+            width={459}
+            height={200}
+            className="h-12 w-auto"
           />
         </Link>
         <Sheet>

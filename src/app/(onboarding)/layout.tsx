@@ -15,7 +15,7 @@ export default async function OnboardLayout({
   }
 
   return (
-    <div className="mt-[-8vh] md:mt-[-10vh] z-50 block">
+    <div className="z-50 block">
       <Container className="flex flex-row min-h-[100dvh] ">
         <Container className="w-full">{children}</Container>
       </Container>

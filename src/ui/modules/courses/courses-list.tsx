@@ -13,6 +13,7 @@ export const FrontCoursesList = () => {
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("category");
   const params = new URLSearchParams();
+  params.set("status", "APPROVED");
   if (categoryId) {
     params.set("categoryId", categoryId);
   }

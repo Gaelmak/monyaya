@@ -17,7 +17,7 @@ const BackgroundImage = ({ children }: { children: React.ReactNode }) => {
 };
 export default function ContactPage() {
   return (
-    <div>
+    <main>
       <BackgroundImage>
         <div className="flex flex-col justify-center h-full items-center gap-6 ">
           <h1 className="text-6xl font-bold text-white ">Nous Contactez</h1>
@@ -30,6 +30,6 @@ export default function ContactPage() {
       <ContactSection />
       <HowItWork />
       <Newsletter />
-    </div>
+    </main>
   );
 }
