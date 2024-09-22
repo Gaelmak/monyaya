@@ -110,7 +110,7 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
   return (
     <Container
       className={cn(
-        "w-full 2xl:w-2/3 flex flex-col m-auto",
+        "w-full 2xl:w-2/3 flex flex-col m-auto pt-6 md:pt-1",
         isPending && "animate-pulse opacity-50"
       )}
     >
@@ -166,7 +166,7 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
                         component="h4"
                         className="text-sm text-secondary-400 mb-2"
                       >
-                        Video de présentation
+                        Vidéo de présentation
                       </Typography>
                       <InputField
                         control={form.control}
@@ -227,7 +227,7 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
                   className="w-full bg-white"
                   editorContentClassName="p-5"
                   output="html"
-                  placeholder="Commencer à écrire le contenu de la leçon..."
+                  placeholder="Commencer à écrire l’aperçu de la leçon..."
                   autofocus={true}
                   immediatelyRender={false}
                   editable={true}

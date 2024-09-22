@@ -176,12 +176,12 @@ export const AddCours = ({ categories, userId, course }: Props) => {
   return (
     <Container
       className={cn(
-        "w-2/3 flex flex-col m-auto",
+        "w-full lg:w-2/3 flex flex-col m-auto",
         isPending && "animate-pulse opacity-50"
       )}
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">
           <div className="flex flex-col gap-5">
             {course && (
               <div className="py-2 px-4 bg-orange-100 rounded-lg text-sm">
@@ -321,7 +321,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                         component="h4"
                         className="text-sm text-secondary-400 mb-2"
                       >
-                        Ajouter une video de presentation
+                        Ajouter une vidéo de presentation
                       </Typography>
                       <InputField
                         control={form.control}

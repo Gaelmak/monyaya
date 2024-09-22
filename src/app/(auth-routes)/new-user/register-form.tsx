@@ -175,7 +175,7 @@ export const RegisterForm = () => {
           <Container className={clsx("w-full flex flex-col gap-2 lg:gap-4")}>
             <Container>
               <InputField
-                placeholder="@JohnD12"
+                placeholder="Votre nom d'utilisation"
                 control={form.control}
                 name="name"
                 label="Nom d'utilisateur"

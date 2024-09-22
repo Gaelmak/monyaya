@@ -176,7 +176,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
         title: "Utilisateur déjà existant",
         description: (
           <Typography component="p" variant="body-sm">
-            Veuillez utiliser une autre adresse email
+            Veuillez utiliser un autre nom d’utilisateur
           </Typography>
         ),
       });

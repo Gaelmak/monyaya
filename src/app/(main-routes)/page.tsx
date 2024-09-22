@@ -11,9 +11,9 @@ export default function Home() {
     <main>
       <HeroBanner />
       <BenefitSearch />
-      <HowItWork />
-      <BecomeATrainer />
       <Recommandations />
+      <BecomeATrainer />
+      <HowItWork />
       <Newsletter />
     </main>
   );

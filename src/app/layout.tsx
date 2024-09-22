@@ -4,8 +4,8 @@ import { GeistSans } from "geist/font/sans";
 import ContextProvider from "@/components/context-provider";
 
 export const metadata: Metadata = {
-  title: "MonYaya",
-  description: "%s | MonYaya",
+  title: "Monyaya",
+  description: "%s | Monyaya",
 };
 
 export default function RootLayout({

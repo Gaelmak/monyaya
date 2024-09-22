@@ -3,7 +3,11 @@ import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import Typewriter from "typewriter-effect";
 import { BgImg } from "@/ui/components/bg-img/bg-img";
-import { Carousel } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { Sponsors } from "@/lib/sponsors-liste/sponsors-listes";
 import { Buttons } from "@/ui/components/buttons/buttons";
 import { Play } from "lucide-react";
@@ -110,17 +114,21 @@ export const HeroBanner = () => {
           </Container>
         </Container>
       </BackgroundImage>
-      <Container className="bg-primary-400  h-20">
-        <Carousel className="flex items-center justify-center h-full overflow-x-hidden ">
-          {Sponsors.map((sponsor, index) => (
-            <Typography
-              key={index}
-              component="p"
-              className="text-white mx-4 text-xl font-bold lg:mx-[7vw]"
-            >
-              {sponsor.name}
-            </Typography>
-          ))}
+      <Container>
+        <Carousel opts={{ loop: true }} className="bg-primary-400 ">
+          <CarouselContent className="h-20">
+            <CarouselItem className="flex items-center justify-center h-full  ">
+              {Sponsors.map((sponsor, index) => (
+                <Typography
+                  key={index}
+                  component="p"
+                  className="text-white mx-4 text-xl font-bold lg:mx-[4vw] text-center"
+                >
+                  {sponsor.name}
+                </Typography>
+              ))}
+            </CarouselItem>
+          </CarouselContent>
         </Carousel>
       </Container>
     </Container>
