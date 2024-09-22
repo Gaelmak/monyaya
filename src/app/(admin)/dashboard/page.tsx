@@ -68,10 +68,22 @@ export default async function Home() {
           <h1 className="text-4xl font-bold">
             Bienvenue {user?.firstName} {user?.lastName} 🙌🏼💫
           </h1>
-          <Typography className="font-thin">
-            Explorez vos cours et commencez votre apprentissage dès
-            aujourd&apos;hui.
-          </Typography>
+          {user?.role === "ADMIN" && (
+            <Typography className="font-thin">
+              Vous etes Administrateur de la plateforme
+            </Typography>
+          )}
+          {user?.role === "TRAINER" && (
+            <Typography className="font-thin">
+              Vous etes un &apos;yaya&apos; sur la plateforme
+            </Typography>
+          )}
+          {user?.role === "USER" && (
+            <Typography className="font-thin">
+              Explorez vos cours et commencez votre apprentissage dès
+              aujourd&apos;hui.
+            </Typography>
+          )}
         </div>
         <p className="text-xs font-bold absolute top-8 right-8 text-white/80">
           {dayjs().format("DD/MM/YYYY")}
