@@ -1,8 +1,6 @@
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import Image from "next/image";
-import studentImage from "../../../../public/oip.jpg";
-
 export default function VisionSection() {
   return (
     <Container className="flex flex-col-reverse lg:flex-row-reverse justify-between items-center gap-6 lg:gap-8 lg:px-[7vw] p-6 lg:py-10 max-w-full bg-secondary-50">
@@ -10,7 +8,7 @@ export default function VisionSection() {
       <Container className="w-full lg:w-1/2 flex justify-center lg:justify-start">
         <Image
           width={500}
-          src={studentImage}
+          src="/img/exemple-revisao-de-literatura.jpg"
           height={300}
           alt="image"
           className="rounded-2xl w-full h-auto object-cover"
