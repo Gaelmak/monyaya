@@ -4,17 +4,18 @@ import { Typography } from "@/ui/components/typography/typography";
 
 export default function CompanyOverview() {
   return (
-    <Container className="flex justify-between flex-col lg:flex-row  items-center lg:px-[7vw]  ">
-      <Container className="py-4">
+    <Container className="flex flex-col lg:flex-row justify-between items-center px-4 lg:px-[7vw] py-6">
+      {/* Texte À propos de nous */}
+      <Container className="py-4 w-full lg:w-1/2">
         <Typography
-          className="text-[#737373] text-base"
+          className="text-[#737373] text-sm md:text-base"
           component="span"
           variant="title-sm"
         >
           À propos de nous
         </Typography>
         <Typography
-          className="md:w-3/4 py-2 text-5xl font-medium"
+          className="py-2 text-3xl md:text-5xl font-medium"
           component="h3"
           variant="title-lg"
         >
@@ -22,7 +23,7 @@ export default function CompanyOverview() {
         </Typography>
         <Container>
           <Typography
-            className="py-4 text-justify md:text-left tracking-wide leading-relaxed"
+            className="py-4 text-justify md:text-left text-sm md:text-base tracking-wide leading-relaxed"
             component="p"
             variant="body-base"
           >
@@ -36,7 +37,7 @@ export default function CompanyOverview() {
             service personnalisé répondant à leurs besoins réels.
           </Typography>
           <Typography
-            className="py-4 text-justify md:text-left tracking-wide leading-relaxed"
+            className="py-4 text-justify md:text-left text-sm md:text-base tracking-wide leading-relaxed"
             component="p"
             variant="body-base"
           >
@@ -50,11 +51,13 @@ export default function CompanyOverview() {
           </Typography>
         </Container>
       </Container>
-      <Container className="">
+
+      {/* Image */}
+      <Container className="mt-6 lg:mt-0 w-full lg:w-1/2 flex justify-center">
         <BgImg
           src="/hero-img-from-about.png"
           alt={"aboutUs"}
-          className="w-[20rem] h-[30rem] md:w-[25rem] md:h-[30rem] lg:w-[32rem] lg:h-[32rem] overflow-hidden"
+          className="w-[15rem] h-[20rem] sm:w-[20rem] sm:h-[25rem] md:w-[25rem] md:h-[30rem] lg:w-[32rem] lg:h-[32rem] overflow-hidden"
           classNameImg="w-full h-full"
         />
       </Container>

@@ -2,28 +2,32 @@ import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import Image from "next/image";
 import studentImage from "../../../../public/oip.jpg";
+
 export default function VisionSection() {
   return (
-    <Container className=" lg:px-[7vw] flex flex-col-reverse lg:flex-row-reverse max-w-full lg:justify-between  items-center gap-8 lg:my-10 p-8 ">
-      <Container className="">
+    <Container className="flex flex-col-reverse lg:flex-row-reverse justify-between items-center gap-6 lg:gap-8 lg:px-[7vw] p-6 lg:py-10 max-w-full bg-secondary-50">
+      {/* Bloc Image */}
+      <Container className="w-full lg:w-1/2 flex justify-center lg:justify-start">
         <Image
           width={500}
           src={studentImage}
           height={300}
           alt="image"
-          className="rounded-2xl "
+          className="rounded-2xl w-full h-auto object-cover"
         />
       </Container>
-      <Container className="lg:w-1/2 flex flex-col justify-between items-center gap-8">
+
+      {/* Bloc Texte */}
+      <Container className="w-full lg:w-1/2 flex flex-col justify-center items-start gap-4 lg:gap-8">
         <Typography
-          className="text-[#39ae44] font-semibold text-3xl"
+          className="text-[#39ae44] font-semibold text-2xl md:text-3xl"
           component="h4"
           variant="title-lg"
         >
           Notre Vision
         </Typography>
         <Typography
-          className="leading-relaxed text-lg"
+          className="leading-relaxed text-base md:text-lg text-justify md:text-left"
           component="p"
           variant="body-base"
         >
@@ -36,7 +40,7 @@ export default function VisionSection() {
           accompagner dans leur parcours d&apos;apprentissage. Notre vision est
           de toucher chaque individu et de créer une chaîne continue
           d&apos;apprentissage, où ceux qui apprennent aujourd&apos;hui pourront
-          enseigner à d&apos;autres demain
+          enseigner à d&apos;autres demain.
         </Typography>
       </Container>
     </Container>

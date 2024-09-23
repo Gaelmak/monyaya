@@ -3,18 +3,22 @@ import { Typography } from "@/ui/components/typography/typography";
 
 export default function ValueSection() {
   return (
-    <Container className="lg:px-[7vw] flex flex-col  justify-center items-center bg-secondary-50 py-8">
+    <Container className="flex flex-col justify-center items-center bg-secondary-50 py-8 lg:px-[7vw]">
+      {/* Titre */}
       <Typography
-        className="text-[#39ae44] text-3xl font-semibold "
+        className="text-[#39ae44] text-2xl md:text-3xl font-semibold"
         component="h4"
         variant="title-lg"
       >
         Nos Valeurs
       </Typography>
-      <Container className="lg:px-8 md:px-3 lg:w-full py-20 flex flex-col  md:flex-wrap lg:flex-nowrap  md:justify-center md:items-center lg:flex-row gap-20">
-        <Container className="flex justify-center items-center  lg:w-1/3 md:w-full flex-col md:bg-white md:rounded-2xl  md:shadow-2xl  md:p-4 hover:shadow-none">
+
+      {/* Valeurs */}
+      <Container className="flex flex-col md:flex-wrap lg:flex-nowrap justify-center items-center lg:items-stretch lg:flex-row gap-12 lg:gap-20 py-12 lg:px-8 w-full">
+        {/* Valeur 1 */}
+        <Container className="flex flex-col justify-center items-center w-full lg:w-1/3 bg-white rounded-2xl shadow-2xl p-6 hover:shadow-none transition-shadow duration-300">
           <Typography
-            className="text-[#39ae44] md:p-4 text-2xl font-semibold"
+            className="text-[#39ae44] text-xl md:text-2xl font-semibold"
             variant="title-base"
             component="h4"
           >
@@ -23,11 +27,11 @@ export default function ValueSection() {
           <Typography
             component="p"
             variant="body-base"
-            className="md:px-2 md:py-8  py-3 leading-relaxed text-sm"
+            className="text-sm leading-relaxed mt-4 text-center"
           >
-            <span className="font-semibold hover:text-[#39ae44] text-sm">
+            <span className="font-semibold hover:text-[#39ae44] transition-colors">
               {"Il y'a plus de bonheur à donner qu'à recevoir "}
-            </span>{" "}
+            </span>
             :<br />
             Nous croyons que le véritable bénéfice réside dans le partage des
             connaissances et l&apos;acte de donner. En offrant nos compétences
@@ -35,9 +39,11 @@ export default function ValueSection() {
             notre propre épanouissement.
           </Typography>
         </Container>
-        <Container className="flex justify-center items-center  lg:w-1/3 md:w-full flex-col md:bg-white md:rounded-2xl  md:shadow-2xl hover:shadow-none  md:p-4">
+
+        {/* Valeur 2 */}
+        <Container className="flex flex-col justify-center items-center w-full lg:w-1/3 bg-white rounded-2xl shadow-2xl p-6 hover:shadow-none transition-shadow duration-300">
           <Typography
-            className="text-[#39ae44] md:p-4 text-2xl font-semibold"
+            className="text-[#39ae44] text-xl md:text-2xl font-semibold"
             variant="title-base"
             component="h4"
           >
@@ -46,10 +52,10 @@ export default function ValueSection() {
           <Typography
             component="p"
             variant="body-base"
-            className="md:px-3 md:py-6  text-start  py-3 leading-relaxed text-sm"
+            className="text-sm leading-relaxed mt-4 text-center"
           >
-            <span className="font-semibold hover:text-[#39ae44] text-sm">
-              {"L'envie et la capacité d'apprendre"}{" "}
+            <span className="font-semibold hover:text-[#39ae44] transition-colors">
+              {"L'envie et la capacité d'apprendre"}
             </span>
             :<br />
             Nous croyons que chacun a la capacité d&apos;apprendre et
@@ -59,9 +65,11 @@ export default function ValueSection() {
             d&apos;apprentissage sans fin.
           </Typography>
         </Container>
-        <Container className="flex justify-center items-center  lg:w-1/3 md:w-full flex-col md:bg-white md:rounded-2xl  md:shadow-2xl hover:shadow-none  md:p-4">
+
+        {/* Valeur 3 */}
+        <Container className="flex flex-col justify-center items-center w-full lg:w-1/3 bg-white rounded-2xl shadow-2xl p-6 hover:shadow-none transition-shadow duration-300">
           <Typography
-            className="text-[#39ae44] text-2xl font-semibold"
+            className="text-[#39ae44] text-xl md:text-2xl font-semibold"
             variant="title-base"
             component="h4"
           >
@@ -70,11 +78,11 @@ export default function ValueSection() {
           <Typography
             component="p"
             variant="body-base"
-            className="md:px-3 md:py-2 text-justify lg:text-start  py-3 leading-relaxed text-sm"
+            className="text-sm leading-relaxed mt-4 text-center"
           >
-            <span className="font-semibold hover:text-[#39ae44] text-sm">
+            <span className="font-semibold hover:text-[#39ae44] transition-colors">
               {"Confiance mutuelle"}
-            </span>{" "}
+            </span>
             :<br />
             Nous plaçons la confiance au cœur de notre communauté Monyaya. Nous
             croyons en l&apos;importance d&apos;une relation de confiance entre

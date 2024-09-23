@@ -3,17 +3,11 @@ import Image from "next/image";
 import { MainRoutes } from "@/lib/page-routes/page-routes";
 import { Container } from "@/ui/components/container/container";
 import { ProfileButton, SignInButton } from "./auth-buttons";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 import clsx from "clsx";
 import prisma from "@/lib/prisma";
 import { userAuth } from "@/lib/helper";
+import { useQuery } from "@tanstack/react-query";
+import NavigationCourse from "./navigationCourses";
 
 interface Props {
   className?: string;
@@ -50,23 +44,25 @@ export const Navigation = async ({ className }: Props) => {
             className="h-12 w-auto"
           />
         </Link>
-        <nav className="flex items-center  justify-between">
-          {MainRoutes.map((route, index) => (
-            <NavigationMenu key={index}>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <Link href={route.baseUrl!}>
-                    <NavigationMenuTrigger className="hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
-                      {route.title}
-                    </NavigationMenuTrigger>
-                  </Link>
-                  <NavigationMenuContent className="bg-primary-300">
-                    <NavigationMenuLink></NavigationMenuLink>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          ))}
+        <nav className="">
+          <div className="flex items-center  justify-between gap-3">
+            <Link href={"/"}>
+              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-secondary-900 focus:text-secondary-900 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                {"Accueil"}
+              </div>
+            </Link>
+            <NavigationCourse />
+            <Link href={"/about"}>
+              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-secondary-900 focus:text-secondary-900 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                {"À propos"}
+              </div>
+            </Link>
+            <Link href={"/contact"}>
+              <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-secondary-900 focus:text-secondary-900 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                {"Contact"}
+              </div>
+            </Link>
+          </div>
         </nav>
         <Container>
           {session ? (

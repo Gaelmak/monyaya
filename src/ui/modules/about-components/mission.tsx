@@ -2,19 +2,21 @@ import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import Image from "next/image";
 import studentImage from "../../../../public/oip.jpg";
+
 export default function MissionSection() {
   return (
-    <Container className="flex flex-col lg:flex-row-reverse lg:justify-between max-w-full md:items-center gap-8  py-4 lg:py-10 bg-secondary-50 lg:px-[7vw]">
-      <Container className="lg:w-1/2 flex flex-col justify-between items-center gap-8">
+    <Container className="flex flex-col lg:flex-row-reverse lg:justify-between items-center gap-6 lg:gap-8 py-6 lg:py-10 bg-secondary-50 px-4 lg:px-[7vw]">
+      {/* Bloc Texte */}
+      <Container className="w-full lg:w-1/2 flex flex-col justify-center items-start gap-4 lg:gap-8">
         <Typography
-          className="text-[#39ae44] text-3xl font-semibold"
+          className="text-[#39ae44] text-2xl md:text-3xl font-semibold"
           component="h4"
           variant="title-lg"
         >
           Notre Mission
         </Typography>
         <Typography
-          className="leading-relaxed text-lg"
+          className="leading-relaxed text-base md:text-lg text-justify md:text-left"
           component="p"
           variant="body-base"
         >
@@ -26,13 +28,15 @@ export default function MissionSection() {
           l&apos;accès à l&apos;éducation et l&apos;enrichissement personnel.
         </Typography>
       </Container>
-      <Container className="lg:w-1/2">
+
+      {/* Bloc Image */}
+      <Container className="w-full lg:w-1/2 flex justify-center lg:justify-end">
         <Image
           width={500}
           src={studentImage}
           height={300}
           alt="image"
-          className="rounded-2xl "
+          className="rounded-2xl w-full h-auto object-cover"
         />
       </Container>
     </Container>
