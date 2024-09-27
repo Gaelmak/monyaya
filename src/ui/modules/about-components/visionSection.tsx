@@ -9,7 +9,7 @@ export default function VisionSection() {
       <Container className="w-full lg:w-1/2 flex justify-center lg:justify-start">
         <Image
           width={500}
-          src={studentImage}
+          src="/img/exemple-revisao-de-literatura.jpg"
           height={300}
           alt="image"
           className="rounded-2xl w-full h-auto object-cover"
