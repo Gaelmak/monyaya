@@ -1,9 +1,5 @@
 import { AppLinks } from "@/types/app-links";
 import { Presentation, Home, Settings2 } from "lucide-react";
-import Linkedin from "../../../public/icons/linkedin.png";
-import Facebook from "../../../public/icons/facebook.png";
-import Youtube from "../../../public/icons/youtube.png";
-import X from "../../../public/icons/twitterx.png";
 
 export const MainRoutes: AppLinks[] = [
   {
@@ -28,17 +24,17 @@ export const SocialNetworks: AppLinks[] = [
   {
     title: "LinkedIn",
     baseUrl: "https://www.linkedin.com/company",
-    CustomIcon: Linkedin,
+    CustomIcon: "/icons/linkedin.png",
   },
   {
     title: "Facebook",
     baseUrl: "https://www.facebook.com/",
-    CustomIcon: Facebook,
+    CustomIcon: "/icons/facebook.png",
   },
   {
     title: "X",
     baseUrl: "https://www.instagram.com/",
-    CustomIcon: X,
+    CustomIcon: "/icons/x.png",
   },
 ];
 
