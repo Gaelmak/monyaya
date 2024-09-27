@@ -99,15 +99,15 @@ export const HeroBanner = () => {
                 S&apos;Inscrire Maintenant
               </Buttons>
               <Container className="flex items-center justify-center">
-                <Buttons
-                  Icon={Play}
-                  className="border-dashed border-2 border-primary-50 p-2 rounded-3xl"
-                />
                 <ActiveLink
                   href="/about"
-                  className="hover:underline-offset-4 hover:underline bg-transparent hover:bg-transparent"
+                  className="hover:underline-offset-4 hover:underline bg-transparent hover:bg-transparent flex justify-center items-center gap-2"
                 >
-                  Qui sommes nous ?
+                  <Buttons
+                    Icon={Play}
+                    className="border-dashed border-2 border-primary-50 p-2 rounded-3xl"
+                  />
+                  <p> Qui sommes nous ?</p>
                 </ActiveLink>
               </Container>
             </Container>
