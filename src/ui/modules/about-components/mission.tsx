@@ -5,8 +5,7 @@ import studentImage from "../../../../public/oip.jpg";
 
 export default function MissionSection() {
   return (
-    <Container className="flex flex-col lg:flex-row-reverse lg:justify-between items-center gap-6 lg:gap-8 py-6 lg:py-10 bg-secondary-50 px-4 lg:px-[7vw]">
-      {/* Bloc Texte */}
+    <Container className="w-full flex flex-col lg:flex-row-reverse lg:justify-between items-center gap-6 lg:gap-8 py-6 lg:py-10 bg-secondary-50 px-4 lg:px-[7vw]">
       <Container className="w-full lg:w-1/2 flex flex-col justify-center items-start gap-4 lg:gap-8">
         <Typography
           className="text-[#39ae44] text-2xl md:text-3xl font-semibold"

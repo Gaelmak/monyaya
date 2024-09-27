@@ -74,7 +74,7 @@ export const Footer = () => {
       </Container>
       <Container className="w-11/12 flex flex-row justify-center items-center gap-4 py-4 border-t border-primary-50/80 ">
         <Typography variant="body-sm" className="text-xs">
-          © 2024 MonYaya. Tous droits réservés.
+          © 2024 Monyaya. Tous droits réservés.
         </Typography>
       </Container>
     </footer>

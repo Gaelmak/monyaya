@@ -45,11 +45,11 @@ const settings = {
 
 const TestimonialCarousel: React.FC = () => {
   return (
-    <Container className=" bg-white py-18 w-full px-4 lg:px-[7vw]">
+    <Container className="container bg-white py-18 w-auto  lg:px-[7vw]">
       <Slider {...settings}>
         {ListOfTestimonials.map((testimonial, index) => (
           <Container key={index} className="flex flex-col p-4 rounded">
-            <Container className="flex justify-start items-center gap-8 my-8">
+            <Container className="flex justify-start items-center gap- my-8">
               <Container className="flex  justify-start items-center gap-4 py-4">
                 <Image
                   src={testimonial.imgUrl ?? defaultImage}

@@ -1,10 +1,10 @@
-import { StaticImageData } from 'next/image';
+import { StaticImageData } from "next/image";
 
 export interface AppLinks {
   title: string;
   baseUrl?: string;
   Icon?: React.ElementType;
-  CustomIcon?: StaticImageData;
+  CustomIcon?: StaticImageData | string;
   action?: Function;
   children?: {
     title?: string;

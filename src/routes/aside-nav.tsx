@@ -62,6 +62,11 @@ export const AsideNav = async ({ className }: Props) => {
                     yaya
                   </Typography>
                 )}
+                {user?.role === "ADMIN" && (
+                  <Typography className="py-1 px-2 rounded-full bg-primary-600 text-white text-[10px]">
+                    Admin
+                  </Typography>
+                )}
               </div>
             </Container>
           </Container>

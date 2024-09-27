@@ -11,14 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Buttons } from "../buttons/buttons";
@@ -69,9 +62,8 @@ export default function ContactForm() {
           <CardContent className="text-sm text-secondary-900">
             <div className="flex items-center justify-between gap-4 w-full">
               <div className="w-1/2">
-                {/* Champ Username */}
                 <div>
-                  <span>Username</span>
+                  <span>Nom</span>
                   <InputField
                     control={form.control}
                     name="username"
@@ -81,9 +73,8 @@ export default function ContactForm() {
                 </div>
               </div>
               <div className="w-1/2">
-                {/* Champ Numéro de téléphone (facultatif) */}
                 <div>
-                  <span>Numero de telephone</span>
+                  <span>téléphone</span>
                   <InputField
                     control={form.control}
                     name="phone"

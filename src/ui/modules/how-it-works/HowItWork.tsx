@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { Container } from '@/ui/components/container/container';
-import Image from 'next/image';
-import imageHowItWork from 'public/etudiant-positif-peau-foncee-porte-dossiers-livre-pointe-expression-joyeuse-cote-sourire-pleines-dents.png';
-import imageW from 'public/jeune-femme-coupe-cheveux-afro-portant-pull-rose-tenant-manuels.png';
+import { Container } from "@/ui/components/container/container";
+import Image from "next/image";
+import imageHowItWork from "public/etudiant-positif-peau-foncee-porte-dossiers-livre-pointe-expression-joyeuse-cote-sourire-pleines-dents.png";
+import imageW from "public/jeune-femme-coupe-cheveux-afro-portant-pull-rose-tenant-manuels.png";
 import {
   HowItWorks_BecomeATrainer,
   HowItWorks_SuscribeToTraining,
-} from '@/lib/how-it-works/how-it-works';
-import { Typography } from '@/ui/components/typography/typography';
+} from "@/lib/how-it-works/how-it-works";
+import { Typography } from "@/ui/components/typography/typography";
 
 export const HowItWork = () => {
   return (
     <Container className="flex flex-col md:flex-col gap-8 px-4 md:px-[7vw] py-16 md:py-8  bg-primary-400 w-full">
       <Container className="flex justify-between flex-col gap-3 items-center pb-4">
         <Typography className="text-2xl  font-bold text-primary-50 text-center">
-          Comment Rejoindre Monyaya ?
+          Comment fonctionne Monyaya ?
         </Typography>
         <Typography className=" text-primary-50  md:w-1/2 text-sm text-center">
           Devenez expert dans un domaine de votre choix !<br /> La meilleure

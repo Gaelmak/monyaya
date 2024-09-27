@@ -11,7 +11,7 @@ export const Aside = () => {
           component="h2"
           className="text-white text-2xl md:text-4xl xl:text-5xl font-bold leading-10 md:leading-[40px] xl:leading-[60px]"
         >
-          Découvrez les formations qui vous correspondent auprès de formateurs
+          Découvrez les formations qui vous correspondent auprès des formateurs
           passionnés !
         </Typography>
       </Container>

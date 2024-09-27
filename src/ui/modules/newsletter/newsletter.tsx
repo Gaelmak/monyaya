@@ -73,23 +73,29 @@ export const Newsletter = () => {
           <Typography className="text-2xl font-bold" component="h4">
             Abonnez-vous à notre newsletter
           </Typography>
-          <Typography className="text-center ">
+          <Typography className="py-4">
             Recevez les dernières mises à jour du site et des offres exclusives
             de nos formateurs en vous abonnant à notre newsletter.
           </Typography>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-row justify-center items-center gap-2 w-full m-auto"
+              className="flex flex-row justify-center  gap-4 md:gap-2 w-full m-auto"
             >
-              <Container className="flex justify-between md:justify-center flex-row w-full md:gap-2 ">
-                <InputField
-                  control={form.control}
-                  name="email"
-                  placeholder="Entrez votre adresse email"
-                  className="md:w-[30vw] w-[60vw]"
-                />
-                <Buttons type="submit" isLoading={isLoading} className="">
+              <Container className="flex  md:justify-center items-center md:items-start  flex-col md:flex-row md:px-4 w-full gap-3 md:gap-2 ">
+                <div className="w-full">
+                  <InputField
+                    control={form.control}
+                    name="email"
+                    placeholder="Entrez votre adresse email"
+                    className=" w-full"
+                  />
+                </div>
+                <Buttons
+                  type="submit"
+                  isLoading={isLoading}
+                  className="w-[14vh] md:w-auto"
+                >
                   S&apos;abonner
                 </Buttons>
               </Container>

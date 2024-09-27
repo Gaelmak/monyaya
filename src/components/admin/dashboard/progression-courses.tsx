@@ -83,7 +83,7 @@ export default function ProgressionCourses(props: ProgressionCoursesProps) {
             <TableCell className="text-right font-medium w-3/12 md:w-2/12">
               <Button asChild>
                 <Link href={`/my-courses/${userCourse.course.id}`}>
-                  Continuer
+                  Continuez
                 </Link>
               </Button>
             </TableCell>
