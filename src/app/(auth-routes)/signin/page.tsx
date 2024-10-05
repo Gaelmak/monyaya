@@ -8,9 +8,13 @@ import { Aside } from "./aside";
 import { SigninForm } from "./signin-form";
 import { BackButton } from "@/ui/components/back-button/back-button";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { ResetPasswordForm } from "./reset-form";
 
 export default function SignIn() {
   const [providerslist, setProvidersList] = useState<any>([]);
+  const searchParams = useSearchParams();
+  const action = searchParams.get("action");
 
   useEffect(() => {
     const getProvidersList = async () => {
@@ -43,7 +47,9 @@ export default function SignIn() {
               Heureux de vous revoir !
             </Typography>
             <Typography variant="body-base" component="p">
-              Veuillez selectionner un mode de connexion
+              {action === "reset-password"
+                ? "Veuillez saisir votre adresse email pour réinitialiser votre mot de passe."
+                : "Veuillez selectionner un mode de connexion"}
             </Typography>
           </Container>
           {providerslist.length > 0 && (
@@ -63,7 +69,11 @@ export default function SignIn() {
             </>
           )}
           <Container className="w-full px-2">
-            <SigninForm />
+            {action === "reset-password" ? (
+              <ResetPasswordForm />
+            ) : (
+              <SigninForm />
+            )}
           </Container>
         </Container>
       </Container>

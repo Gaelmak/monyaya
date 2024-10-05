@@ -123,7 +123,10 @@ export const SigninForm = () => {
               name="password"
               type={showPassword ? "text" : "password"}
               description={
-                <Link href="/" className="text-secondary-Default">
+                <Link
+                  href="/signin?action=reset-password"
+                  className="text-secondary-Default"
+                >
                   Mot de passe oublié ?
                 </Link>
               }

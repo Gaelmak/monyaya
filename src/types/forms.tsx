@@ -85,6 +85,25 @@ export const LoginFormFieldsType = z.object({
     .max(24, "Mot de passe trop long"),
 });
 
+export const ResetLoginFormFieldsType = z.object({
+  email: z.string().email("Veuillez entrer une adresse email valide"),
+});
+
+export const PasswordChangeFormFieldsType = z.object({
+  password: z
+    .string()
+    .min(2, {
+      message: "Mot de passe trop court",
+    })
+    .max(50),
+  confirmpassword: z
+    .string()
+    .min(2, {
+      message: "Mot de passe trop court",
+    })
+    .max(50),
+});
+
 export const CourseSearchFormFieldsType = z.object({
   course: z.string(),
   budget: z.string(),
