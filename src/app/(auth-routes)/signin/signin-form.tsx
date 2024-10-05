@@ -48,7 +48,8 @@ export const SigninForm = () => {
         description: (
           <Typography component="p" variant="body-sm">
             Votre nom d&apos;utilisateur ou votre mot de passe a été saisi
-            incorrectement. Veuillez réessayer.
+            incorrectement. Si vous n&apos;avez pas de compte, veuillez
+            commencer par vous enregistrer.
           </Typography>
         ),
       });

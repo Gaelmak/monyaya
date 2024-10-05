@@ -163,9 +163,10 @@ model UserLesson {
 }
 
 model Category {
-  id      String    @id @default(cuid())
-  name    String
-  courses Courses[]
+  id            String    @id @default(cuid())
+  name          String
+  description   String?
+  courses       Courses[]
 }
 
 model Modules {

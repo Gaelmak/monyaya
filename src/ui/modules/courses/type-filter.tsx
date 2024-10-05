@@ -5,31 +5,31 @@ import { Typography } from "@/ui/components/typography/typography";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-export const OrderFilter = () => {
+export const TypeFilter = () => {
   const orders = [
-    { id: "desc", name: "Du plus récent au plus ancien" },
-    { id: "asc", name: "Du plus ancien au plus récent" },
-    // { id: "popular", name: "Populaire" },
+    { id: "online", name: "En ligne" },
+    { id: "domicile", name: "À domicile" },
+    { id: "mobile", name: "Mobile" },
   ];
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [filter, setFilter] = useState("Tous");
+  const [filter, setFilter] = useState<string | null>(null);
 
   useEffect(() => {
-    const categoryParam = searchParams.get("order");
-    if (categoryParam) {
-      setFilter(categoryParam);
+    const typeParam = searchParams.get("type");
+    if (typeParam) {
+      setFilter(typeParam);
     } else {
-      setFilter("Tous");
+      setFilter(null);
     }
   }, [searchParams, setFilter]);
 
-  const handleClick = (order: string) => {
+  const handleClick = (type: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set("order", order);
+    newSearchParams.set("type", type);
     router.push(`/courses?${newSearchParams.toString()}`);
-    setFilter(order);
+    setFilter(type);
   };
 
   return (
@@ -42,8 +42,8 @@ export const OrderFilter = () => {
             key={index}
             id={item.id}
             className={cn(
-              "inline-block cursor-pointer text-xs px-4 py-2 rounded animate hover:bg-blue-600 hover:text-white border border-blue-900/50 hover:border-blue-600",
-              filter === item.id ? "bg-blue-600 border-blue-600 text-white" : ""
+              "inline-block cursor-pointer text-xs px-4 py-2 rounded animate hover:bg-red-600 hover:text-white border border-red-900/50 hover:border-red-600",
+              filter === item.id ? "bg-red-600 border-red-600 text-white" : ""
             )}
           >
             <Typography>{item.name}</Typography>

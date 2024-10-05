@@ -11,7 +11,10 @@ export const BenefitSearch = () => {
         <Typography className="md:w-[60%] text-center text-2xl font-bold">
           Recherche une Formation !
         </Typography>
-        <SearchCourses />
+        <SearchCourses
+          className="w-full md:w-[50%]"
+          placeholder="Recherchez une formation ou un formateur"
+        />
       </Container>
       <Container className="flex flex-col md:flex-row md:justify-between items-center md:pt-6  md:pb-16">
         <Container className="md:w-2/5 flex justify-start items-start ">

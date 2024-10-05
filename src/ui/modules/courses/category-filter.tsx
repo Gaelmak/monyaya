@@ -68,7 +68,7 @@ export const CategoryFilter = () => {
         onClick={() => handleClick("all")}
         id="all"
         className={cn(
-          "inline-block cursor-pointer text-xs px-4 py-2 rounded animate hover:bg-primary-700 hover:text-white border border-primary-900/50 hover:border-primary-700",
+          "inline-block cursor-pointer text-xs px-4 py-2 rounded animate hover:bg-primary-600 hover:text-white border border-primary-900/50 hover:border-primary-600",
           filter === "all" ? "bg-primary-600 border-primary-600 text-white" : ""
         )}
       >

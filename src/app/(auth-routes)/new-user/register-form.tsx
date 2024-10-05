@@ -97,7 +97,8 @@ export const RegisterForm = () => {
             description: (
               <Typography component="p" variant="body-sm">
                 &apos;utilisateur ou votre mot de passe a été saisi
-                incorrectement. Veuillez réessayer.
+                incorrectement. Si vous n&apos;avez pas de compte, veuillez
+                commencer par vous enregistrer.
               </Typography>
             ),
           });

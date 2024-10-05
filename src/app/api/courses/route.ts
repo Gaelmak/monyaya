@@ -60,6 +60,9 @@ export async function GET(req: Request & NextRequest) {
   const categoryId = searchParams.get("categoryId");
   const yayaId = searchParams.get("yayaId");
   const status = searchParams.get("status");
+  const search = searchParams.get("s");
+  const type = searchParams.get("type");
+  const order = searchParams.get("order");
 
   try {
     const courses = await prisma.courses.findMany({
@@ -68,6 +71,17 @@ export async function GET(req: Request & NextRequest) {
         ...(yayaId ? { yaya: { id: yayaId } } : {}),
         ...(status
           ? { status: status === "pending" ? "PENDING" : "APPROVED" }
+          : {}),
+        ...(search ? { title: { contains: search, mode: "insensitive" } } : {}),
+        ...(type
+          ? {
+              type:
+                type === "online"
+                  ? "ONLINE"
+                  : type === "domicile"
+                  ? "DOMICILE"
+                  : "ONSITE",
+            }
           : {}),
       },
       include: {
@@ -91,6 +105,9 @@ export async function GET(req: Request & NextRequest) {
             title: true,
           },
         },
+      },
+      orderBy: {
+        title: order === "asc" ? "asc" : "desc",
       },
     });
 

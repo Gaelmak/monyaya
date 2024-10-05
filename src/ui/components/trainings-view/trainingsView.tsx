@@ -114,7 +114,7 @@ export const TrainingsView = ({
   if (courses?.length === 0) {
     return (
       <div className="w-full flex flex-col items-center justify-center overflow-hidden">
-        Aucun cours pour le moment
+        Aucun cours trouvé
       </div>
     );
   }
