@@ -10,6 +10,7 @@ import {
 import { Loader } from "@/components/ui/loader";
 import { useQuery } from "@tanstack/react-query";
 import {
+  BookAIcon,
   BookCopyIcon,
   BookUser,
   FileSpreadsheetIcon,
@@ -71,11 +72,7 @@ export default function AdminStats(props: UserStatsProps) {
               {isLoading ? <Loader /> : stats?.courses}
             </p>
           </div>
-          <FileSpreadsheetIcon
-            size={80}
-            strokeWidth={1}
-            className="text-primary-600"
-          />
+          <BookAIcon size={80} strokeWidth={1} className="text-primary-600" />
         </CardContent>
         <CardFooter className="bg-primary-600 p-4 text-white/90 text-xs">
           Le nombre total de cours pour l&apos;ensemble de vos yayas
@@ -89,7 +86,11 @@ export default function AdminStats(props: UserStatsProps) {
               {isLoading ? <Loader /> : stats?.lessons}
             </p>
           </div>
-          <Users size={80} strokeWidth={1} className="text-primary-600" />
+          <FileSpreadsheetIcon
+            size={80}
+            strokeWidth={1}
+            className="text-primary-600"
+          />
         </CardContent>
         <CardFooter className="bg-primary-600 p-4 text-white/90 text-xs">
           Le nombre total de lecons pour l&apos;ensemble de cours de la
