@@ -84,7 +84,7 @@ export async function PATCH(
         description: data.description,
         cover: data.cover,
         videoUrl: data.videoUrl,
-        monthlyPrice: data.monthlyPrice,
+        price: data.price,
         duration: data.duration,
         categoryId: data.categoryId,
       },

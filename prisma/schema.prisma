@@ -94,7 +94,8 @@ model Courses {
   description   String
   cover         String?
   videoUrl      String?
-  monthlyPrice  Float
+  price         Float       @default(0)
+  pricePer      PricePer    @default(MONTH)
   duration      Int?
   createAt      DateTime    @default(now())
   valideAt      DateTime?   @updatedAt
@@ -197,4 +198,9 @@ enum CourseType {
   DOMICILE
   MOBILE
   ONSITE  // not used
+}
+
+enum PricePer {
+  MONTH
+  SECTION
 }

@@ -90,10 +90,12 @@ export const TrainingsView = ({
               <CardFooter className="p-2 mx-2 border-t flex justify-between text-primary-950">
                 <p>
                   <span className="text-lg font-semibold uppercase">
-                    {course.monthlyPrice}
+                    {course.price}
                   </span>
                   <span className="text-sm font-semibold">$</span>
-                  <span className="text-sm">/mois</span>
+                  <span className="text-sm">
+                    /{course.pricePer === "SECTION" ? "section" : "mois"}
+                  </span>
                 </p>
                 <div className="flex items-center gap-2">
                   <Avatar className="w-6 h-6 rounded-full border border-muted">

@@ -156,6 +156,9 @@ export const NewCourseFormFieldsType = z.object({
     message:
       "Le montant doit être un nombre positif et commencer à partir de 1$",
   }),
+  pricePer: z.enum(["MONTH", "SECTION"], {
+    message: "Requis",
+  }),
   duration: z.string().regex(/^[1-9]\d*$/, {
     message: "La durée doit être un nombre positif et ne doit pas être zéro",
   }),

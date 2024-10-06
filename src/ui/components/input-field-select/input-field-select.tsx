@@ -53,7 +53,7 @@ export const InputFieldSelect = ({
             name={name}
           >
             <FormControl>
-              <SelectTrigger className="rounded focus:ring-primary-Default h-12">
+              <SelectTrigger className="rounded focus:ring-primary-Default focus:ring-0 h-12">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>

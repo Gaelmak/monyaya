@@ -194,7 +194,10 @@ export default function SingleCourseFront({
                 <div className="flex items-center gap-1">
                   <BanknoteIcon size={24} className="text-primary-800" /> Prix
                 </div>
-                <div>{course.monthlyPrice}$/mois</div>
+                <div>
+                  {course.price}$/
+                  {course.pricePer === "SECTION" ? "section" : "mois"}
+                </div>
               </CardTitle>
               <hr />
               <div className="flex flex-col gap-2">

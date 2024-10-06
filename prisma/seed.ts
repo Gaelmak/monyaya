@@ -124,7 +124,7 @@ async function main() {
       {
         title: "Cours de Gestion du Temps",
         description: "Apprenez à gérer votre temps efficacement.",
-        monthlyPrice: 29.99,
+        price: 29.99,
         yayaID: (
           await prisma.yaya.findFirst({ where: { user: { name: "alice" } } })
         ).id,
@@ -138,7 +138,7 @@ async function main() {
       {
         title: "Introduction à la Programmation",
         description: "Un cours pour débutants sur la programmation.",
-        monthlyPrice: 49.99,
+        price: 49.99,
         yayaID: (
           await prisma.yaya.findFirst({ where: { user: { name: "alice" } } })
         ).id,
@@ -151,7 +151,7 @@ async function main() {
       {
         title: "Yoga pour Débutants",
         description: "Découvrez les bases du yoga.",
-        monthlyPrice: 19.99,
+        price: 19.99,
         yayaID: (
           await prisma.yaya.findFirst({ where: { user: { name: "alice" } } })
         ).id,
@@ -163,7 +163,7 @@ async function main() {
       {
         title: "Peinture Acrylique",
         description: "Apprenez les techniques de peinture acrylique.",
-        monthlyPrice: 39.99,
+        price: 39.99,
         yayaID: (
           await prisma.yaya.findFirst({ where: { user: { name: "alice" } } })
         ).id,
@@ -175,7 +175,7 @@ async function main() {
       {
         title: "Stratégies d'Affaires",
         description: "Développez des stratégies pour réussir en affaires.",
-        monthlyPrice: 59.99,
+        price: 59.99,
         yayaID: (
           await prisma.yaya.findFirst({ where: { user: { name: "alice" } } })
         ).id,

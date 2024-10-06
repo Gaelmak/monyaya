@@ -66,7 +66,8 @@ export const AddCours = ({ categories, userId, course }: Props) => {
     defaultValues: {
       title: course?.title ?? "",
       description: descFromEditor ?? "",
-      price: course?.monthlyPrice.toString() ?? "",
+      price: course?.price.toString() ?? "",
+      pricePer: course?.pricePer ?? "MONTH",
       duration: course?.duration.toString() ?? "",
       type: course?.type.toLowerCase() ?? "online",
       category: course?.category ? course?.category?.name : "none",
@@ -139,7 +140,8 @@ export const AddCours = ({ categories, userId, course }: Props) => {
       const data = {
         title: values.title,
         description: values.description,
-        monthlyPrice: Number(values.price),
+        price: Number(values.price),
+        pricePer: values.pricePer,
         duration: Number(values.duration),
         category: values.category,
         videoUrl: values.videoUrl,
@@ -315,17 +317,32 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                     >
                       Prix
                     </Typography>
-                    <div className="relative">
-                      <InputField
+                    <div className="flex gap-2">
+                      <div className="relative">
+                        <InputField
+                          control={form.control}
+                          name="price"
+                          placeholder="Taper le prix du cours"
+                          type="text"
+                          className="w-full pr-8 h-12"
+                        />
+                        <span className="absolute right-2 top-0 text-gray-500 h-12 flex items-center justify-center text-sm">
+                          $/
+                        </span>
+                      </div>
+                      <InputFieldSelect
                         control={form.control}
-                        name="price"
-                        placeholder="Ajouter le prix de votre formation"
-                        type="text"
-                        className="w-full pr-16 h-12"
+                        name="pricePer"
+                        options={[
+                          { id: "MONTH", name: "Mois" },
+                          { id: "SECTION", name: "Section" },
+                        ]}
+                        placeholder="Prix par"
+                        className={cn(
+                          "p-0 w-[150px]",
+                          course && "pointer-events-none opacity-50"
+                        )}
                       />
-                      <span className="absolute right-2 top-0 text-gray-500 h-12 flex items-center justify-center text-sm">
-                        $/mois
-                      </span>
                     </div>
                   </div>
                   <div>

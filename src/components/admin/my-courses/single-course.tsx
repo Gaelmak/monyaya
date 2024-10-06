@@ -200,7 +200,8 @@ export default function SingleCourse({
           </Badge>
         )}
         <Badge className="rounded-md bg-purple-100 text-black/80 px-4 py-2 flex gap-1 items-center md:ml-auto">
-          <BanknoteIcon size={14} /> {course.monthlyPrice}$/mois
+          <BanknoteIcon size={14} /> {course.price}$/
+          {course.pricePer === "SECTION" ? "section" : "mois"}
         </Badge>
       </div>
 
