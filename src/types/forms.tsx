@@ -115,6 +115,7 @@ export const SearchFormFieldsType = z.object({
 });
 
 export const NewsletterRegisterFormFieldsType = z.object({
+  firstName: z.string(),
   email: z.string().email("Veuillez entrer une adresse mail valide"),
 });
 
@@ -190,7 +191,16 @@ export const NewLessonsFormFieldsType = z.object({
       }
     )
     .optional(),
-  meetUrl: z.string(),
+  meetUrl: z
+    .string()
+    .refine(
+      (value) =>
+        value.length === 0 || z.string().url().safeParse(value).success,
+      {
+        message: "Veuillez entrer une URL valide ou laisser le champ vide",
+      }
+    )
+    .optional(),
   adress: z.string(),
 });
 

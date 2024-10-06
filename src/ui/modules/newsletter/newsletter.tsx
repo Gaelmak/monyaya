@@ -11,8 +11,6 @@ import { useToast } from "@/components/ui/use-toast";
 import UseLoading from "@/hooks/use-loading";
 import { Buttons } from "@/ui/components/buttons/buttons";
 import { NewsletterRegisterFormFieldsType } from "@/types/forms";
-import Image from "next/image";
-import Mail from "../../../../public/mail.jpg";
 
 export const Newsletter = () => {
   const { toast } = useToast();
@@ -20,6 +18,7 @@ export const Newsletter = () => {
   const form = useForm<z.infer<typeof NewsletterRegisterFormFieldsType>>({
     resolver: zodResolver(NewsletterRegisterFormFieldsType),
     defaultValues: {
+      firstName: "",
       email: "",
     },
   });
@@ -28,15 +27,16 @@ export const Newsletter = () => {
     values: z.infer<typeof NewsletterRegisterFormFieldsType>
   ) {
     startLoading();
-    const { email } = values;
+    const { firstName, email } = values;
 
     const newsletter = await fetch("/api/newsletter", {
-      method: "PATCH",
+      method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        firstName,
         email,
       }),
     });
@@ -82,19 +82,23 @@ export const Newsletter = () => {
               onSubmit={form.handleSubmit(onSubmit)}
               className="flex flex-row justify-center  gap-4 md:gap-2 w-full m-auto"
             >
-              <Container className="flex  md:justify-center items-center md:items-start  flex-col md:flex-row md:px-4 w-full gap-3 md:gap-2 ">
-                <div className="w-full">
-                  <InputField
-                    control={form.control}
-                    name="email"
-                    placeholder="Entrez votre adresse email"
-                    className=" w-full"
-                  />
-                </div>
+              <Container className="w-10/12 flex flex-col md:flex-row gap-2">
+                <InputField
+                  control={form.control}
+                  name="firstName"
+                  placeholder="Prénom"
+                  className="w-full text-black"
+                />
+                <InputField
+                  control={form.control}
+                  name="email"
+                  placeholder="Entrez votre adresse email"
+                  className="w-full text-black"
+                />
                 <Buttons
                   type="submit"
                   isLoading={isLoading}
-                  className="w-[14vh] md:w-auto"
+                  className="w-full md:w-auto"
                 >
                   S&apos;abonner
                 </Buttons>

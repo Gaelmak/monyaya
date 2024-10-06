@@ -2,20 +2,14 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Buttons } from "../buttons/buttons";
 import { InputField } from "../input-field/input-field";
+import { useMutation } from "@tanstack/react-query";
+import { Loader } from "@/components/ui/loader";
+import { Typography } from "../typography/typography";
+import { toast } from "@/components/ui/use-toast";
 
 // Types pour le formulaire
 type ContactFormData = {
@@ -26,7 +20,7 @@ type ContactFormData = {
 };
 
 const formSchema = z.object({
-  username: z
+  name: z
     .string()
     .min(2, "Veuillez entrer un nom valide.")
     .max(20, "Trop de lettre pou un nom"),
@@ -44,15 +38,51 @@ export default function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      name: "",
       email: "",
       message: "",
-      phone: "", //
+      phone: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  const { mutateAsync: sendEmail, isPending } = useMutation({
+    mutationKey: ["sendEmail"],
+    mutationFn: async (values: z.infer<typeof formSchema>) => {
+      return await fetch(`/api/send-email`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          title: `Nouveau message de ${values.name}`,
+          content: `Téléphone : ${values.phone}, <br /><br />Message : ${values.message}`,
+        }),
+      });
+    },
+    onSuccess: (data) => {
+      toast({
+        variant: "success",
+        title: "Message envoyé",
+        description: "Votre message a bien été envoyé.",
+      });
+    },
+    onError: (error) => {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: (
+          <Typography component="p" variant="body-sm">
+            Une erreur est survenue. Veuillez réessayer.
+          </Typography>
+        ),
+      });
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await sendEmail(values);
   }
 
   return (
@@ -66,7 +96,7 @@ export default function ContactForm() {
                   <span>Nom</span>
                   <InputField
                     control={form.control}
-                    name="username"
+                    name="name"
                     placeholder="Votre nom"
                     className="w-full "
                   />
@@ -108,7 +138,9 @@ export default function ContactForm() {
             </div>
           </CardContent>
           <CardFooter>
-            <Buttons type="submit">Envoyer</Buttons>
+            <Buttons type="submit">
+              {isPending ? <Loader /> : "Envoyer"}
+            </Buttons>
           </CardFooter>
         </Card>
       </form>
