@@ -135,7 +135,6 @@ function isLessonCompleted(lesson: Lessons, userLessons: UserLesson[]) {
   const findLesson = userLessons?.find(
     (userLesson) => userLesson.lessonId === lesson.id
   );
-  console.log(findLesson);
 
   if (!findLesson) {
     return false;

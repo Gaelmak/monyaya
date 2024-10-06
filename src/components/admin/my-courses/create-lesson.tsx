@@ -192,7 +192,7 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
                           component="h4"
                           className="text-sm text-secondary-400 mb-2"
                         >
-                          Video où suivre la leçon
+                          Lien google meet ou zoom pour une séance de coaching.
                         </Typography>
                         <InputField
                           control={form.control}

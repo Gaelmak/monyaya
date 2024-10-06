@@ -10,6 +10,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { OrderFilter } from "./order-filter";
 import { SearchCourses } from "../search/search-courses";
 import { TypeFilter } from "./type-filter";
+import { Suspense } from "react";
 
 export const FrontCoursesList = () => {
   const pathname = usePathname();
@@ -62,7 +63,9 @@ export const FrontCoursesList = () => {
             <div className="bg-green-100 p-4 rounded-lg shadow-sm space-y-2">
               <Typography className="text-lg font-bold">Catégories</Typography>
               <hr className="border-primary-900/50 border-1" />
-              <CategoryFilter />
+              <Suspense fallback={<Loader />}>
+                <CategoryFilter />
+              </Suspense>
             </div>
             <div className="bg-red-100 p-4 rounded-lg shadow-sm space-y-2">
               <Typography className="text-lg font-bold">Type</Typography>
