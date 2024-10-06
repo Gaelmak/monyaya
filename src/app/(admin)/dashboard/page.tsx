@@ -32,7 +32,8 @@ import UserStats from "@/components/admin/dashboard/user-stats";
 import YayaStats from "@/components/admin/dashboard/yaya-stats";
 import ProgressionCourses from "@/components/admin/dashboard/progression-courses";
 import YayaUsersList from "@/components/admin/dashboard/yaya-ursers-list";
-import AdminStats from "@/components/admin/dashboard/admin";
+import AdminStats from "@/components/admin/dashboard/admin-stats";
+import { LessonsAdminChart } from "@/components/admin/dashboard/lessons-admin";
 
 export default async function Home() {
   const userConnected = await userAuth();
@@ -90,11 +91,9 @@ export default async function Home() {
           {dayjs().format("DD/MM/YYYY")}
         </p>
       </div>
-      {user?.role === "USER" && <UserStats userId={user?.id} />}
-      {user?.role === "TRAINER" && <YayaStats yayaId={user?.yaya?.id} />}
-      {user?.role === "ADMIN" && <AdminStats yayaId={user?.yaya?.id} />}
       {user?.role === "USER" && (
         <>
+          <UserStats userId={user?.id} />
           <div className="w-full px-4 md:px-8 pt-8">
             <LessonsCompletedChart userId={user?.id} />
           </div>
@@ -113,32 +112,41 @@ export default async function Home() {
         </>
       )}
       {user?.role === "TRAINER" && (
-        <div className="w-full p-4 md:px-8">
-          <Card className="bg-white">
-            <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-              <div className="grid flex-1 gap-1 text-center sm:text-left">
-                <CardTitle>Vos souscripteurs</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0">
-              <YayaUsersList yayaId={user?.yaya?.id} />
-            </CardContent>
-          </Card>
-        </div>
+        <>
+          <YayaStats yayaId={user?.yaya?.id} />
+          <div className="w-full p-4 md:px-8">
+            <Card className="bg-white">
+              <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
+                <div className="grid flex-1 gap-1 text-center sm:text-left">
+                  <CardTitle>Vos souscripteurs</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="p-0">
+                <YayaUsersList yayaId={user?.yaya?.id} />
+              </CardContent>
+            </Card>
+          </div>
+        </>
       )}
       {user?.role === "ADMIN" && (
-        <div className="w-full p-4 md:px-8 mt-40">
-          <Card className="bg-white">
-            <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-              <div className="grid flex-1 gap-1 text-center sm:text-left">
-                <CardTitle>Vos souscripteurs</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0">
-              <YayaUsersList yayaId={user?.yaya?.id} />
-            </CardContent>
-          </Card>
-        </div>
+        <>
+          <AdminStats yayaId={user?.yaya?.id} />
+          <div className="w-full px-4 md:px-8 pt-8">
+            <LessonsAdminChart />
+          </div>
+          <div className="w-full p-4 md:px-8 mt-0">
+            <Card className="bg-white">
+              <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
+                <div className="grid flex-1 gap-1 text-center sm:text-left">
+                  <CardTitle>Vos souscripteurs</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="p-0">
+                <YayaUsersList yayaId={user?.yaya?.id} />
+              </CardContent>
+            </Card>
+          </div>
+        </>
       )}
     </main>
   );

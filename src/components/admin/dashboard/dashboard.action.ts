@@ -36,3 +36,15 @@ export const getYayaUsersList = async (yayaId: string) => {
     );
   }
 };
+
+export const getAdminUserLessons = async () => {
+  try {
+    const courses = await prisma.userLesson.findMany();
+    return courses;
+  } catch (error) {
+    console.error("Error retrieving lesson:", error);
+    throw new Error(
+      "An unexpected error occurred while processing your request."
+    );
+  }
+};
