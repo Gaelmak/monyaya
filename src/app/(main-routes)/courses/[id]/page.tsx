@@ -14,6 +14,7 @@ export default async function SingleCoursePage({
     },
     select: {
       id: true,
+      firstName: true,
     },
   });
   const courseUrl = getServerUrl() + `/api/courses/${params.id}`;

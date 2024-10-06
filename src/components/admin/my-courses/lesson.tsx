@@ -12,12 +12,14 @@ import {
 } from "@/components/ui/card";
 import { Loader } from "@/components/ui/loader";
 import { toast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
 import { Buttons } from "@/ui/components/buttons/buttons";
 import { Typography } from "@/ui/components/typography/typography";
 import { Courses, Lessons } from "@prisma/client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   ArrowBigLeft,
+  CheckCheckIcon,
   ChevronLeft,
   ChevronRight,
   Link2Icon,
@@ -50,13 +52,28 @@ export default function LessonContent({
 }: LessonProps) {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const router = useRouter();
+  const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
     setIsPlayerReady(true);
   }, []);
 
-  const handleNextLesson = useMutation({
-    mutationKey: ["handleNextLesson"],
+  const userLesson = useQuery({
+    queryKey: ["userLesson", refetch],
+    queryFn: async () => {
+      const response = await fetch(
+        `/api/lessons/${lessonId}/complete?userId=${user?.id}`
+      );
+      if (!response.ok) {
+        return null;
+      }
+      setRefetch(false);
+      return await response.json();
+    },
+  });
+
+  const handleCompleteLesson = useMutation({
+    mutationKey: ["handleCompleteLesson"],
     mutationFn: async () => {
       return await fetch(`/api/lessons/${lessonId}/complete`, {
         method: "PATCH",
@@ -79,6 +96,8 @@ export default function LessonContent({
           </Typography>
         ),
       });
+      setRefetch(true);
+      router.refresh();
     },
     onError: (error) => {
       toast({
@@ -167,14 +186,32 @@ export default function LessonContent({
             <ChevronLeft size={18} />
             Precedent
           </Button>
-          {user?.yaya?.id != lesson.course.yayaID && (
-            <Button
-              className="w-7/12 h-12 items-center bg-green-600 hover:bg-green-700 text-white/90 transition-all"
-              onClick={() => handleNextLesson.mutateAsync()}
-            >
-              Completer et suivant
-              <ChevronRight size={18} />
-            </Button>
+          {userLesson.isLoading ? (
+            <div className="w-full h-12 bg-gray-50 rounded flex items-center justify-center animate-pulse"></div>
+          ) : (
+            user?.yaya?.id != lesson.course.yayaID && (
+              <Button
+                className={cn(
+                  "w-7/12 h-12 items-center transition-all text-white/90",
+                  userLesson.data
+                    ? "bg-green-600 hover:bg-green-600 hover:cursor-default pointer-events-none"
+                    : "bg-blue-600 hover:bg-blue-700"
+                )}
+                onClick={() => handleCompleteLesson.mutateAsync()}
+              >
+                {userLesson.data ? (
+                  <div className="flex items-center gap-2">
+                    <CheckCheckIcon />
+                    Déjà terminé
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    {handleCompleteLesson.isPending && <Loader />}
+                    Terminer la leçon
+                  </div>
+                )}
+              </Button>
+            )
           )}
         </div>
       </div>

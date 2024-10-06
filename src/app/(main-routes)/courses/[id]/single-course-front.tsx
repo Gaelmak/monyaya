@@ -1,7 +1,13 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { Share2Icon, CheckIcon, CopyIcon, Layers3Icon } from "lucide-react";
+import {
+  Share2Icon,
+  CheckIcon,
+  CopyIcon,
+  Layers3Icon,
+  ChevronRightIcon,
+} from "lucide-react";
 import {
   Card,
   CardContent,
@@ -18,28 +24,28 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Avatar } from "@radix-ui/react-avatar";
-import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AvatarImage } from "@/components/ui/avatar";
 import { useParams } from "next/navigation";
 import { TitapParser } from "@/components/minimal-tiptap";
 import Image from "next/image";
 import Link from "next/link";
-import { BanknoteIcon, ChevronLeft, Clock2, Library, User } from "lucide-react";
+import { BanknoteIcon, ChevronLeft, Clock2, Library } from "lucide-react";
 import ReactPlayer from "react-player";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { Input } from "@/components/ui/input";
 import { Loader } from "@/components/ui/loader";
 import BeforeBuy from "./before-buy";
-import { User as UserType } from "@prisma/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import dayjs from "dayjs";
+import { toast } from "@/components/ui/use-toast";
 
 export default function SingleCourseFront({
   user,
   courseUrl,
 }: {
-  user: { id: string } | null;
+  user: { id: string; firstName: string } | null;
   courseUrl: string;
 }) {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
@@ -63,6 +69,15 @@ export default function SingleCourseFront({
     },
   });
 
+  function handleCopied() {
+    copyToClipboard(courseUrl);
+    toast({
+      variant: "success",
+      title: "Lien copié",
+      description: "Le lien a bien été copié dans le presse-papier.",
+    });
+  }
+
   if (isLoading) {
     return (
       <div className="w-full h-80 flex justify-center items-center">
@@ -74,7 +89,7 @@ export default function SingleCourseFront({
   return (
     <main className="w-full px-4 lg:px-[7vw] mb-20 space-y-4">
       <div className="flex justify-between gap-4">
-        <h1 className="text-2xl font-bold flex gap-2 items-center">
+        <h1 className="text-lg md:text-2xl leading-5 md:leading-6 font-bold flex gap-2 items-center">
           <Link href="/my-courses">
             <ChevronLeft
               size={20}
@@ -84,7 +99,7 @@ export default function SingleCourseFront({
           {course.title}
         </h1>
       </div>
-      <div className="w-full flex flex-col md:flex-row gap-4">
+      <div className="w-full flex flex-col md:flex-row gap-4 md:gap-8">
         <div className="w-full md:w-8/12 space-y-6">
           {(course.videoUrl || course.cover) && (
             <Card className="w-full aspect-video overflow-hidden">
@@ -119,7 +134,7 @@ export default function SingleCourseFront({
               </Badge>
             )}
             <Badge className="rounded-md bg-red-100 text-black/80 px-4 py-2 flex gap-1 items-center">
-              <Library size={14} /> {course.lesson ? course.lesson.length : 0}{" "}
+              <Library size={14} /> {course.lessons ? course.lessons.length : 0}{" "}
               leçons
             </Badge>
             {course.category && (
@@ -136,11 +151,14 @@ export default function SingleCourseFront({
                 <PopoverContent className="bg-white">
                   <h6 className="text-sm font-bold mb-2">Partager</h6>
                   <div className="relative">
-                    <Input className="w-full pr-8" value={courseUrl} />
+                    <Input
+                      className="w-full pr-8 border focus-visible:ring-0"
+                      value={courseUrl}
+                    />
                     <button
                       disabled={hasCopiedText}
                       className="link absolute top-3 right-2"
-                      onClick={() => copyToClipboard(pathname)}
+                      onClick={() => handleCopied()}
                     >
                       {hasCopiedText ? (
                         <CheckIcon size={16} />
@@ -179,32 +197,42 @@ export default function SingleCourseFront({
                 <div>{course.monthlyPrice}$/mois</div>
               </CardTitle>
               <hr />
-              <CardDescription className="flex flex-col justify-center items-center gap-2 text-center px-4">
-                <Avatar>
-                  <AvatarImage
-                    src={course.yaya.user.image ?? "/default_avatar.jpg"}
-                    className="rounded-full w-24 h-24 overflow-hidden hi"
-                  />
-                </Avatar>
-                <div>
-                  <h3 className="font-semibold">
-                    {course.yaya.user.firstName} {course.yaya.user.lastName}
-                  </h3>
-                  <p className="opacity-70">
-                    {course.yaya.user.bio ?? "Pas encore de bio"}
-                  </p>
+              <div className="flex flex-col gap-2">
+                <div className="flex gap-2 items-center w-full">
+                  <Avatar>
+                    <AvatarImage
+                      src={course.yaya.user.image ?? "/default_avatar.jpg"}
+                      className="rounded-full w-12 h-12 overflow-hidden"
+                    />
+                  </Avatar>
+                  <div>
+                    <h3 className="font-semibold text-base">
+                      {course.yaya.user.firstName} {course.yaya.user.lastName}
+                    </h3>
+                    <p className="text-xs">
+                      Yaya depuis le{" "}
+                      {dayjs(course?.yaya?.createdAt).format("DD/MM/YYYY")}
+                    </p>
+                  </div>
                 </div>
-              </CardDescription>
+                <div className="opacity-70 text-sm text-left">
+                  {course.yaya.user.bio ?? "Pas encore de bio"}
+                </div>
+              </div>
             </CardHeader>
 
             <CardContent>
-              <h4 className="mb-2">Programmes</h4>
               {course.lessons.length > 0 ? (
-                <ul className="p-3 pl-6 bg-blue-100 rounded space-y-2 text-sm list-disc">
-                  {course?.lessons?.map((lesson, index) => (
-                    <li key={index}>{lesson.title}</li>
-                  ))}
-                </ul>
+                <div className="p-3 bg-blue-100 rounded">
+                  <h4 className="mb-2 font-semibold">Programmes</h4>
+                  <ul className="space-y-2 text-sm list-none">
+                    {course?.lessons?.map((lesson, index) => (
+                      <li key={index} className="flex gap-2 items-center">
+                        <ChevronRightIcon size={10} /> {lesson.title}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ) : (
                 <div className="flex flex-col gap-2">
                   <Skeleton className="h-6 bg-gray-50 w-full" />
@@ -217,6 +245,8 @@ export default function SingleCourseFront({
             <CardFooter>
               <BeforeBuy
                 userId={user?.id}
+                yayaEmail={course.yaya.user.email}
+                userName={user?.firstName}
                 course={course}
                 courseUrl={courseUrl}
               />

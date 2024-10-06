@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Loader } from "@/components/ui/loader";
 import { toast } from "@/components/ui/use-toast";
+import { onCourseJoined } from "@/lib/notification/course-join";
 import { cn } from "@/lib/utils";
 import { Typography } from "@/ui/components/typography/typography";
 import { Courses } from "@prisma/client";
@@ -21,6 +22,8 @@ import { useState } from "react";
 
 export type BeforeBuyProps = {
   userId: string | null;
+  yayaEmail: string;
+  userName: string;
   course: Courses;
   courseUrl: string;
 };
@@ -57,7 +60,8 @@ export default function BeforeBuy(props: BeforeBuyProps) {
         }),
       }).then((res) => res.json());
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
+      await onCourseJoined(props.yayaEmail, props.userName, props.course.title);
       toast({
         variant: "success",
         title: "Formation ajoutée !",
@@ -95,9 +99,9 @@ export default function BeforeBuy(props: BeforeBuyProps) {
     }
   }
 
-  if (isLoading || abonneCourse.isPending) {
-    <Button className="px-4 py-8 text-base text-white w-full bg-primary-600 hover:bg-primary-700 cursor-pointer">
-      {isLoading ? <Loader /> : "Commencer maintenant"}
+  if (isLoading) {
+    <Button className="px-4 py-8 text-base text-white w-full bg-primary-600 hover:bg-primary-600 cursor-pointer pointer-events-none">
+      <Loader />
     </Button>;
   }
 
@@ -122,7 +126,7 @@ export default function BeforeBuy(props: BeforeBuyProps) {
             "px-4 py-8 text-base text-white w-full bg-primary-600 hover:bg-primary-700 cursor-pointer"
           )}
         >
-          Commencer maintenant
+          {abonneCourse.isPending ? <Loader /> : "Commencer maintenant"}
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-white">
