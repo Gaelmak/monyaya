@@ -96,7 +96,7 @@ export default async function Home() {
       {user?.role === "USER" && (
         <>
           <div className="w-full px-4 md:px-8 pt-8">
-            <LessonsCompletedChart />
+            <LessonsCompletedChart userId={user?.id} />
           </div>
           <div className="w-full p-4 md:px-8">
             <Card className="bg-white">

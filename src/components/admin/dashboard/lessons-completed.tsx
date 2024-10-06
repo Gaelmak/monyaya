@@ -25,67 +25,75 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useQuery } from "@tanstack/react-query";
+import { UserLesson } from "@prisma/client";
 
 export const description = "An interactive area chart";
-
-const chartData = [
-  { date: "2024-10-01", desktop: 222 },
-  { date: "2024-10-02", desktop: 97 },
-  { date: "2024-10-03", desktop: 167 },
-  { date: "2024-10-04", desktop: 242 },
-  { date: "2024-10-05", desktop: 373 },
-  { date: "2024-10-06", desktop: 301 },
-  { date: "2024-10-07", desktop: 245 },
-  { date: "2024-10-08", desktop: 409 },
-  { date: "2024-10-09", desktop: 59 },
-  { date: "2024-10-10", desktop: 261 },
-  { date: "2024-10-11", desktop: 327 },
-  { date: "2024-10-12", desktop: 292 },
-  { date: "2024-10-13", desktop: 342 },
-  { date: "2024-10-14", desktop: 137 },
-  { date: "2024-10-15", desktop: 120 },
-  { date: "2024-10-16", desktop: 138 },
-  { date: "2024-10-17", desktop: 446 },
-  { date: "2024-10-18", desktop: 364 },
-  { date: "2024-10-19", desktop: 243 },
-  { date: "2024-10-20", desktop: 89 },
-  { date: "2024-10-21", desktop: 137 },
-  { date: "2024-10-22", desktop: 224 },
-  { date: "2024-10-23", desktop: 138 },
-  { date: "2024-10-24", desktop: 387 },
-  { date: "2024-10-25", desktop: 215 },
-  { date: "2024-10-26", desktop: 75 },
-  { date: "2024-10-27", desktop: 383 },
-  { date: "2024-10-28", desktop: 122 },
-  { date: "2024-10-29", desktop: 315 },
-  { date: "2024-10-30", desktop: 454 },
-];
 
 const chartConfig = {
   visitors: {
     label: "Visitors",
   },
-  desktop: {
-    label: "Desktop",
+  count: {
+    label: "Compléter",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
 
-export function LessonsCompletedChart() {
+export function LessonsCompletedChart({ userId }: { userId: string | null }) {
   const [timeRange, setTimeRange] = React.useState("30d");
+  const [filteredData, setFilteredData] = React.useState(null);
 
-  const filteredData = chartData.filter((item) => {
-    const date = new Date(item.date);
-    const now = new Date();
-    let daysToSubtract = 90;
-    if (timeRange === "30d") {
-      daysToSubtract = 30;
-    } else if (timeRange === "7d") {
-      daysToSubtract = 7;
-    }
-    now.setDate(now.getDate() - daysToSubtract);
-    return date >= now;
+  const { data, isLoading } = useQuery({
+    queryKey: ["completedLessons"],
+    queryFn: async () => {
+      const response = await fetch(
+        `/api/user-lesson?userId=${userId}&completed=1`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    },
   });
+
+  React.useEffect(() => {
+    if (data) {
+      const groupedData = data.reduce(
+        (acc: Record<string, number>, item: UserLesson) => {
+          const date = new Date(item.completedAt).toISOString().split("T")[0]; // Format date to YYYY-MM-DD
+          acc[date] = (acc[date] || 0) + 1; // Count completed lessons per date
+          return acc;
+        },
+        {}
+      );
+
+      const formattedData = Object.entries(groupedData).map(
+        ([date, count]) => ({
+          date,
+          count: count,
+        })
+      );
+
+      const filtered = formattedData.filter((item) => {
+        const date = new Date(item.date);
+        const now = new Date();
+        let daysToSubtract = 90;
+        if (timeRange === "30d") {
+          daysToSubtract = 30;
+        } else if (timeRange === "7d") {
+          daysToSubtract = 7;
+        }
+        now.setDate(now.getDate() - daysToSubtract);
+        return date >= now;
+      });
+      setFilteredData(filtered);
+    }
+  }, [data, timeRange]);
+
+  if (isLoading) {
+    return;
+  }
 
   return (
     <Card className="bg-white">
@@ -123,12 +131,12 @@ export function LessonsCompletedChart() {
               <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
-                  stopColor="var(--color-desktop)"
+                  stopColor="var(--color-count)"
                   stopOpacity={0.8}
                 />
                 <stop
                   offset="95%"
-                  stopColor="var(--color-desktop)"
+                  stopColor="var(--color-count)"
                   stopOpacity={0.1}
                 />
               </linearGradient>
@@ -182,10 +190,10 @@ export function LessonsCompletedChart() {
               stackId="a"
             />
             <Area
-              dataKey="desktop"
+              dataKey="count"
               type="natural"
               fill="url(#fillDesktop)"
-              stroke="var(--color-desktop)"
+              stroke="var(--color-count)"
               stackId="a"
             />
             <ChartLegend content={<ChartLegendContent />} />
