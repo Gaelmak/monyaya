@@ -45,9 +45,8 @@ export default async function MyTrainingsPage() {
         )}
       </Container>
       {role === "TRAINER" && <YayaCoursesList yayaId={yaya?.id} />}
-      {role === "USER" ? (
-        <UserCoursesList user={user} />
-      ) : (
+      {role === "USER" && <UserCoursesList user={user} />}
+      {role === "TRAINER" && (
         <div className="p-4 bg-green-50 border border-green-100 rounded-lg mt-4 md:mt-8">
           <Typography
             component="h3"
