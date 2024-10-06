@@ -2,15 +2,15 @@ import { OptionsTypes } from "@/types/options";
 
 export const TypeCourses: OptionsTypes[] = [
   {
-    id: "home",
-    name: "A Domicile",
+    id: "domicile",
+    name: "À domicile",
   },
   {
     id: "online",
-    name: "En Ligne",
+    name: "En ligne",
   },
   {
-    id: "onsite",
-    name: "Sur Place",
+    id: "mobile",
+    name: "Mobile",
   },
 ];

@@ -111,7 +111,7 @@ export const TitapParser = (props: { value: any }) => {
   return (
     <EditorContent
       editor={editor}
-      className={cn("minimal-tiptap-editor", "pointer-events-none select-none")}
+      className={cn("minimal-tiptap-editor", "select-none")}
     />
   );
 };

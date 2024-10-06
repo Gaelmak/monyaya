@@ -14,7 +14,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import getYayas, { confirmYaya } from "./yaya.action";
 import { User } from "@prisma/client";
 import dayjs from "dayjs";
-import { Phone, Text } from "lucide-react";
+import { CheckIcon, Phone, PhoneIcon, Text } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -27,9 +27,21 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "@/components/ui/use-toast";
 import { Typography } from "@/ui/components/typography/typography";
+import { onYayaConfirm } from "@/lib/notification/yaya-confirm";
+import { getDicebearImage } from "@/utils/dicebearImage";
+import Link from "next/link";
+import { Loader } from "@/components/ui/loader";
 
 export default function YayaToValidate() {
   const { data: yayas, isLoading } = useQuery({
@@ -39,16 +51,17 @@ export default function YayaToValidate() {
     },
   });
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationKey: ["yaya"],
     mutationFn: async (name: string) => {
       return await confirmYaya(name, "APPROVED");
     },
   });
 
-  async function handleConfirm(name: string) {
+  async function handleConfirm(name: string, email: string) {
     const res = await mutateAsync(name);
     if (res) {
+      await onYayaConfirm(email, name);
       toast({
         variant: "success",
         title: "Yaya confirmée",
@@ -58,6 +71,7 @@ export default function YayaToValidate() {
           </Typography>
         ),
       });
+      window.location.reload();
     } else {
       toast({
         variant: "destructive",
@@ -91,8 +105,8 @@ export default function YayaToValidate() {
                         <div className="flex flex-col md:flex-row gap-2 items-start md:items-center">
                           <Avatar className="w-24 h-24 border border-gray-100">
                             <AvatarImage
-                              src={yaya?.image ?? ""}
-                              alt="@shadcn"
+                              src={yaya?.image ?? getDicebearImage(yaya?.email)}
+                              alt="yaya"
                             />
                             <AvatarFallback className="border-gray-900">
                               Y
@@ -116,15 +130,7 @@ export default function YayaToValidate() {
                             </p>
                           </div>
                         </div>
-                        <div className="flex gap-2">
-                          <span>
-                            <Text
-                              size={16}
-                              className="mt-[2px] text-green-700"
-                            />
-                          </span>
-                          <p className="line-clamp-4">{yaya?.bio}</p>
-                        </div>
+
                         <div className="flex gap-2 items-center justify-between">
                           <div className="flex gap-2">
                             <span>
@@ -135,34 +141,60 @@ export default function YayaToValidate() {
                             </span>
                             <p>{yaya?.phoneNumber}</p>
                           </div>
-                          <AlertDialog>
-                            <AlertDialogTrigger asChild>
-                              <Button className="bg-green-700">Valider</Button>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent className="bg-white">
-                              <AlertDialogHeader>
-                                <AlertDialogTitle>
-                                  Êtes-vous sûr de vouloir confirmer ce yaya sur
-                                  le site ?
-                                </AlertDialogTitle>
-                                <AlertDialogDescription>
-                                  Cette action est irréversible et marquera le
-                                  yaya comme validé. Assurez-vous que toutes les
-                                  informations sont correctes avant de
-                                  continuer.
-                                </AlertDialogDescription>
-                              </AlertDialogHeader>
-                              <AlertDialogFooter>
-                                <AlertDialogCancel>Annuler</AlertDialogCancel>
-                                <AlertDialogAction
-                                  className="bg-primary-700"
-                                  onClick={() => handleConfirm(yaya?.name)}
-                                >
-                                  Continuer
-                                </AlertDialogAction>
-                              </AlertDialogFooter>
-                            </AlertDialogContent>
-                          </AlertDialog>
+
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button className="bg-green-700">
+                                Consulter
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="bg-white">
+                              <DialogHeader>
+                                <DialogTitle>
+                                  <h3 className="text-lg font-bold text-primary-700">{`${yaya?.firstName} ${yaya?.lastName}`}</h3>
+                                </DialogTitle>
+                                <DialogDescription>
+                                  <div className="flex gap-2">
+                                    <span>
+                                      <Text
+                                        size={16}
+                                        className="mt-[2px] text-green-700"
+                                      />
+                                    </span>
+                                    <p>{yaya?.bio}</p>
+                                  </div>
+                                  <div className="pt-4 flex gap-2 justify-between">
+                                    <Link href={`tel:${yaya?.phoneNumber}`}>
+                                      <Button className="bg-blue-700">
+                                        <PhoneIcon
+                                          size={16}
+                                          className="mt-[2px] text-white mr-2"
+                                        />
+                                        {yaya?.phoneNumber}
+                                      </Button>
+                                    </Link>
+
+                                    <Button
+                                      className="bg-green-700"
+                                      onClick={() =>
+                                        handleConfirm(yaya?.name, yaya?.email)
+                                      }
+                                    >
+                                      {isPending ? (
+                                        <Loader />
+                                      ) : (
+                                        <CheckIcon
+                                          size={16}
+                                          className="mt-[2px] text-white mr-2"
+                                        />
+                                      )}
+                                      Valider
+                                    </Button>
+                                  </div>
+                                </DialogDescription>
+                              </DialogHeader>
+                            </DialogContent>
+                          </Dialog>
                         </div>
                       </CardContent>
                     </Card>

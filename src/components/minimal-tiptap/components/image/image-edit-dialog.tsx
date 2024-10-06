@@ -36,13 +36,17 @@ const ImageEditDialog = ({ editor, size, variant }: ImageEditDialogProps) => {
         </ToolbarButton>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg bg-white">
-        <DialogHeader>
+        <DialogHeader className="blur-sm">
           <DialogTitle>Select image</DialogTitle>
           <DialogDescription className="sr-only">
             Upload an image from your computer
           </DialogDescription>
         </DialogHeader>
-        <ImageEditBlock editor={editor} close={() => setOpen(false)} />
+        <ImageEditBlock
+          editor={editor}
+          close={() => setOpen(false)}
+          className="pointer-events-none blur-sm"
+        />
       </DialogContent>
     </Dialog>
   );

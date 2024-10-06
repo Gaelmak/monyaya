@@ -24,6 +24,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loader } from "@/components/ui/loader";
 import Link from "next/link";
+import { getDicebearImage } from "@/utils/dicebearImage";
 
 type TrainingsViewProps = {
   className?: string;
@@ -96,7 +97,12 @@ export const TrainingsView = ({
                 </p>
                 <div className="flex items-center gap-2">
                   <Avatar className="w-6 h-6 rounded-full border border-muted">
-                    <AvatarImage src={course.yaya.user.image || ""} />
+                    <AvatarImage
+                      src={
+                        course.yaya.user.image ||
+                        getDicebearImage(course.yaya.user.name)
+                      }
+                    />
                     <AvatarFallback className="text-xs">
                       <User size={12} />
                     </AvatarFallback>
@@ -114,7 +120,7 @@ export const TrainingsView = ({
   if (courses?.length === 0) {
     return (
       <div className="w-full flex flex-col items-center justify-center overflow-hidden">
-        Aucun cours trouvé
+        Aucun cours actif pour le moment
       </div>
     );
   }

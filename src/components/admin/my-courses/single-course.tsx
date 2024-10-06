@@ -20,6 +20,24 @@ import ReactPlayer from "react-player";
 import { useEffect, useState } from "react";
 import { TitapParser } from "@/components/minimal-tiptap";
 import { usePathname } from "next/navigation";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "@/components/ui/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { Loader } from "@/components/ui/loader";
+import { cn } from "@/lib/utils";
+import { onCourseRequest } from "@/lib/notification/course-request";
+import { onCourseConfirm } from "@/lib/notification/course-confirm";
 
 export type SingleCourseProps = {
   course: Courses & {
@@ -30,6 +48,8 @@ export type SingleCourseProps = {
   user: {
     id: string;
     role: string;
+    email: string;
+    name: string;
   };
   yayaId: string | undefined;
 };
@@ -41,10 +61,79 @@ export default function SingleCourse({
 }: SingleCourseProps) {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     setIsPlayerReady(true);
   }, []);
+
+  const { mutateAsync: updateCourse, isPending } = useMutation({
+    mutationKey: ["postCourseToValidate"],
+    mutationFn: async () => {
+      const res = await fetch(`/api/courses/${course.id}/pended`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: user?.id,
+          status: "PENDING",
+        }),
+      });
+      if (res.ok) {
+        await onCourseRequest(user?.email, user?.name);
+        toast({
+          variant: "success",
+          title: "Action réussie",
+          description: "Votre cours a bien été soumis pour validation.",
+        });
+        router.push(`/my-courses`);
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Erreur",
+          description:
+            "Une erreur est survenue lors de l'enregistrement du cours.",
+        });
+      }
+    },
+  });
+
+  const { mutateAsync: pubishCourse, isPending: isPubishPending } = useMutation(
+    {
+      mutationKey: ["pubishCourse"],
+      mutationFn: async () => {
+        const res = await fetch(`/api/courses/${course.id}/publish`, {
+          method: "PATCH",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            status: "APPROVED",
+          }),
+        });
+        if (res.ok) {
+          await onCourseConfirm(user?.email, user?.name, course.id);
+          toast({
+            variant: "success",
+            title: "Action réussie",
+            description: "Le cours a bien été publié.",
+          });
+          router.push(`/to-review`);
+          router.refresh();
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Erreur",
+            description:
+              "Une erreur est survenue lors de l'enregistrement du cours.",
+          });
+        }
+      },
+    }
+  );
 
   return (
     <div className="space-y-6">
@@ -56,7 +145,12 @@ export default function SingleCourse({
               className="text-primary-600 hover:text-primary-700"
             />
           </Link>
-          {course.title}
+          {course.title}{" "}
+          {course.status === "DRAFT" && (
+            <Badge variant="destructive" className="text-white">
+              Brouillon
+            </Badge>
+          )}
         </h1>
         {yayaId === course.yayaID && (
           <Link href={`${pathname}/edit`}>
@@ -125,13 +219,80 @@ export default function SingleCourse({
         </Tabs>
       </div>
 
-      <div className="w-full" id="ltimeline">
+      <div className="w-full pb-10" id="ltimeline">
         <LessonsTimelineLayout
           userId={user.id}
           yayaId={yayaId}
           course={course}
         />
       </div>
+
+      {course.status === "DRAFT" && yayaId === course.yayaID && (
+        <AlertDialog>
+          <AlertDialogTrigger
+            className={cn(
+              "w-full h-12 bg-blue-700 text-sm text-white rounded hover:bg-blue-800",
+              isPending && "pointer-events-none"
+            )}
+          >
+            {isPending ? "Enregistrement..." : "Publier le cours"}
+          </AlertDialogTrigger>
+          <AlertDialogContent className="bg-primary-50">
+            <AlertDialogHeader>
+              <AlertDialogTitle>
+                Le cours sera envoyé pour validation.
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                Nous devons verifier le cours que vous avez ajouté. Assurez-vous
+                que toutes les informations sont correctes avant de continuer.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+
+            <AlertDialogFooter>
+              <AlertDialogCancel>Annuler</AlertDialogCancel>
+              <AlertDialogAction
+                className="bg-primary-600 hover:bg-primary-400"
+                onClick={() => updateCourse()}
+              >
+                Envoyer
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
+
+      {course.status === "PENDING" &&
+        (user.role === "ADMIN" || user.role === "MANAGER") && (
+          <AlertDialog>
+            <AlertDialogTrigger
+              className={cn(
+                "w-full h-12 bg-blue-700 text-sm text-white rounded hover:bg-blue-800",
+                isPubishPending && "pointer-events-none"
+              )}
+            >
+              {isPubishPending ? "Enregistrement..." : "Valider ce cours"}
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-primary-50">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Le cours sera publié</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Ce cours sera publié sur le site et sera visible par tous les
+                  utilisateurs.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annuler</AlertDialogCancel>
+                <AlertDialogAction
+                  className="bg-primary-600 hover:bg-primary-400"
+                  onClick={() => pubishCourse()}
+                >
+                  Publier
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
     </div>
   );
 }

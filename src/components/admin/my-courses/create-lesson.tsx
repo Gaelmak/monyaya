@@ -104,6 +104,14 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
 
   const onSubmit = async (values: z.infer<typeof NewLessonsFormFieldsType>) => {
     values.content = contentFromEditor;
+    if (!values.content) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Veuillez ajouter du contenu à votre leçon.",
+      });
+      return;
+    }
     await postLesson(values);
   };
 
@@ -239,7 +247,7 @@ export const AddCourLesson = ({ yaya, course, lesson }: Props) => {
 
             <div className="text-right bg-pr">
               <Buttons type="submit">
-                {lesson ? "Modifier la formation" : "Créer la formation"}
+                {lesson ? "Modifier la leçon" : "Créer la leçon"}
               </Buttons>
             </div>
           </div>

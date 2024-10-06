@@ -55,7 +55,7 @@ export const AsideNav = async ({ className }: Props) => {
                   ? `${user?.firstName} ${user?.lastName}`
                   : user?.name}
               </Typography>
-              <div className="flex flex-row gap-2 justify-between w-full items-center">
+              <div className="flex flex-row gap-2 justify-between w-full items-center text-sm -mt-1">
                 <Typography variant="body-sm">@{user?.name}</Typography>
                 {user?.role === "TRAINER" && (
                   <Typography className="py-1 px-2 rounded-full bg-primary-600 text-white text-[10px]">

@@ -19,7 +19,7 @@
 }
 
 .minimal-tiptap-editor .ProseMirror a.link {
-  @apply cursor-pointer;
+  @apply cursor-pointer underline text-primary-700 hover:text-black;
 }
 
 .minimal-tiptap-editor .ProseMirror a.link:hover {

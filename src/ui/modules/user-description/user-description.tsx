@@ -14,12 +14,14 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import UseLoading from "@/hooks/use-loading";
 import { Buttons } from "@/ui/components/buttons/buttons";
+import { onYayaRequest } from "@/lib/notification/yaya-request";
 
 interface Props {
   name: string;
+  email: string;
 }
 
-export const UserDescription = ({ name }: Props) => {
+export const UserDescription = ({ name, email }: Props) => {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, startLoading, stopLoading] = UseLoading();
@@ -50,6 +52,8 @@ export const UserDescription = ({ name }: Props) => {
     });
 
     if (userToTrainer.status === 200) {
+      // notify user
+      await onYayaRequest(email, name);
       toast({
         variant: "success",
         title: "En attente",
@@ -61,6 +65,7 @@ export const UserDescription = ({ name }: Props) => {
       });
       stopLoading();
       router.push("/my-courses");
+      router.refresh();
     } else {
       toast({
         variant: "destructive",
@@ -130,7 +135,7 @@ export const UserDescription = ({ name }: Props) => {
             />
           </Container>
         </Container>
-        <Container className="flex flex-row justify-between items-center">
+        <Container className="flex flex-row justify-between items-center px-4">
           <Buttons type="submit" isLoading={isLoading}>
             Devenir YAYA
           </Buttons>

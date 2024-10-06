@@ -223,5 +223,5 @@ export const Buttons = ({
     </>
   );
 
-  return <>{buttonElement}</>;
+  return buttonElement;
 };

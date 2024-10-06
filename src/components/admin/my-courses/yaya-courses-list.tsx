@@ -21,6 +21,7 @@ export default function YayaCoursesList(props: CoursesListProps) {
   const [approvedCourses, setApprovedCourses] = useState<coursesPropos[]>([]);
   const [pendingCourses, setPendingCourses] = useState<coursesPropos[]>([]);
   const [rejectedCourses, setRejectedCourses] = useState<coursesPropos[]>([]);
+  const [draftCourses, setDraftCourses] = useState<coursesPropos[]>([]);
 
   const { data: courses, isLoading } = useQuery({
     queryKey: ["courses"],
@@ -38,6 +39,9 @@ export default function YayaCoursesList(props: CoursesListProps) {
       courses?.filter(
         (course: coursesPropos) => course.status === "APPROVED"
       ) ?? []
+    );
+    setDraftCourses(
+      courses?.filter((course: coursesPropos) => course.status === "DRAFT")
     );
     setPendingCourses(
       courses?.filter((course: coursesPropos) => course.status === "PENDING")
@@ -65,6 +69,19 @@ export default function YayaCoursesList(props: CoursesListProps) {
           data={approvedCourses}
           env="back"
         />
+
+        {draftCourses?.length > 0 && (
+          <div className="mt-8 flex flex-col gap-4 bg-gray-50 border border-gray-100 p-4 rounded-lg">
+            <Typography component="h4" className="text-lg md:text-xl font-bold">
+              Brouillons
+            </Typography>
+            <TrainingsView
+              className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-4 opacity-80"
+              data={draftCourses}
+              env="back"
+            />
+          </div>
+        )}
 
         {pendingCourses?.length > 0 && (
           <div className="mt-8 flex flex-col gap-4 bg-orange-50 border border-orange-100 p-4 rounded-lg">

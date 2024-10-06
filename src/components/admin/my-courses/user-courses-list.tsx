@@ -6,6 +6,7 @@ import { Typography } from "@/ui/components/typography/typography";
 import { Courses, User as UserProps, Yaya } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { Frown } from "lucide-react";
+import Link from "next/link";
 
 export type CoursesListProps = {
   user: {
@@ -48,10 +49,24 @@ export default function UserCoursesList(props: CoursesListProps) {
   }
 
   return (
-    <div>
-      <div className="text-center p-4 w-full flex flex-col items-center justify-center">
-        <Frown size={80} strokeWidth={0.8} className="mb-2 opacity-60" />
-        <Typography>Il n&apos;y a pas de cours pour le moment.</Typography>
+    <div className="w-full flex flex-col items-center justify-center">
+      <div className="w-full md:w-[300px] text-center p-4 flex flex-col items-center justify-center">
+        <Frown
+          size={80}
+          strokeWidth={0.5}
+          className="mb-2 opacity-60 text-primary-700"
+        />
+        <Typography className="text-sm">
+          Il n&apos;y a pas de cours pour le moment. Découvrez nos formations
+          disponibles et commencez à apprendre dès maintenant en cliquant{" "}
+          <Link
+            href="/courses"
+            className="text-primary-600 hover:text-primary-700"
+          >
+            ici
+          </Link>{" "}
+          ou sur le menu Nouvele formation
+        </Typography>
       </div>
     </div>
   );

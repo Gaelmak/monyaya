@@ -131,7 +131,10 @@ export const BecomeATrainerFormFieldsType = z.object({
     .min(10, {
       message: "Votre description doit avoir au moins 10 caracteres.",
     })
-    .max(500),
+    .max(500, {
+      message:
+        "Vous avez dépassé la limite de 500 caractères pour votre description.",
+    }),
   terms_and_conditions: z
     .boolean()
     .refine((value) => value === true, {
@@ -148,26 +151,45 @@ export const NewCourseFormFieldsType = z.object({
   type: z.string().min(1, {
     message: "Au moins un chapitre est requis.",
   }),
-  price: z.number().min(1, {
-    message: "Le montant doit commencer à partir de 1$",
+  price: z.string().regex(/^[1-9]\d*$/, {
+    message:
+      "Le montant doit être un nombre positif et commencer à partir de 1$",
   }),
-  duration: z.number().min(1, {
-    message: "Ne doit pas être zéro",
+  duration: z.string().regex(/^[1-9]\d*$/, {
+    message: "La durée doit être un nombre positif et ne doit pas être zéro",
   }),
   category: z.string().min(1, {
     message: "Veuillez choisir une catégorie pour votre formation",
   }),
-  videoUrl: z.string(),
+  videoUrl: z
+    .string()
+    .refine(
+      (value) =>
+        value.length === 0 || z.string().url().safeParse(value).success,
+      {
+        message: "Veuillez entrer une URL valide ou laisser le champ vide",
+      }
+    )
+    .optional(),
   cover: z.string(),
 });
 
 export const NewLessonsFormFieldsType = z.object({
   title: z.string().min(1, {
-    message: "Le nom de la formation est requis.",
+    message: "Le nom de la leçon est requis.",
   }),
   description: z.string(),
   content: z.string(),
-  videoUrl: z.string(),
+  videoUrl: z
+    .string()
+    .refine(
+      (value) =>
+        value.length === 0 || z.string().url().safeParse(value).success,
+      {
+        message: "Veuillez entrer une URL valide ou laisser le champ vide",
+      }
+    )
+    .optional(),
   meetUrl: z.string(),
   adress: z.string(),
 });

@@ -5,7 +5,13 @@ import { BadgeCheckIcon, Library, LoaderIcon, User } from "lucide-react";
 import { truncateText } from "@/lib/truncate-text";
 import RekreationPaysage from "../../../../public/rekreatioonPaysage.jpg";
 import Image from "next/image";
-import { Courses, UserCourse, User as UserProps, Yaya } from "@prisma/client";
+import {
+  Courses,
+  Lessons,
+  UserCourse,
+  User as UserProps,
+  Yaya,
+} from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { Container } from "../container/container";
 import {
@@ -18,11 +24,12 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loader } from "@/components/ui/loader";
 import Link from "next/link";
+import { getDicebearImage } from "@/utils/dicebearImage";
 
 type TrainingsViewProps = {
   className?: string;
   data: (UserCourse & {
-    course: Courses & { yaya: Yaya & { user: UserProps } };
+    course: Courses & { yaya: Yaya & { user: UserProps }; lessons: Lessons[] };
   })[];
   env?: "back" | "front";
 };
@@ -55,7 +62,7 @@ export const UserTrainingsView = ({
                     {userCourse.course.type}
                   </Badge>
                   <Badge className="py-1 rounded-lg bg-primary-600 text-white/80">
-                    6 mois
+                    {userCourse.course.duration} mois
                   </Badge>
                 </div>
                 <div className="pr-4 md:pr-16">
@@ -65,10 +72,11 @@ export const UserTrainingsView = ({
                 </div>
                 <div className="flex gap-2 items-center text-black/80 text-sm">
                   <div className="flex gap-1 items-center">
-                    <Library size={18} className="text-primary-800" /> 16 lecons
-                  </div>
-                  <div className="flex gap-1 items-center">
-                    <User size={18} className="text-primary-800" /> 16 lecons
+                    <Library size={14} />{" "}
+                    {userCourse.course.lessons
+                      ? userCourse.course.lessons.length
+                      : 0}{" "}
+                    leçons
                   </div>
                 </div>
               </CardContent>
@@ -89,7 +97,10 @@ export const UserTrainingsView = ({
                 <div className="flex items-center gap-2">
                   <Avatar className="w-6 h-6 rounded-full border border-muted">
                     <AvatarImage
-                      src={userCourse.course.yaya.user.image || ""}
+                      src={
+                        userCourse.course.yaya.user.image ||
+                        getDicebearImage(userCourse.course.yaya.user.name)
+                      }
                     />
                     <AvatarFallback className="text-xs">
                       <User size={12} />

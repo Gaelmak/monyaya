@@ -12,9 +12,8 @@ import { Typography } from "@/ui/components/typography/typography";
 import { Buttons } from "@/ui/components/buttons/buttons";
 import { InputFieldSelect } from "@/ui/components/input-field-select/input-field-select";
 import { OptionsTypes } from "@/types/options";
-import { useState, ChangeEvent, useEffect, use } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import Image from "next/image";
-import DefaultAvatar from "../../../../public/default_avatar.jpg";
 import { TypeCourses } from "@/lib/types-courses/types-courses";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -48,7 +47,6 @@ interface Props {
 export const AddCours = ({ categories, userId, course }: Props) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [coverImage, setCoverImage] = useState<string | null>(null);
   const [descFromEditor, setDescFromEditor] = useState<any>(null);
   const [confirmPop, setConfirmPop] = useState(false);
   const router = useRouter();
@@ -68,8 +66,8 @@ export const AddCours = ({ categories, userId, course }: Props) => {
     defaultValues: {
       title: course?.title ?? "",
       description: descFromEditor ?? "",
-      price: course?.monthlyPrice ?? 0,
-      duration: course?.duration ?? 0,
+      price: course?.monthlyPrice.toString() ?? "",
+      duration: course?.duration.toString() ?? "",
       type: course?.type.toLowerCase() ?? "online",
       category: course?.category ? course?.category?.name : "none",
       videoUrl: course?.videoUrl ?? "",
@@ -79,6 +77,20 @@ export const AddCours = ({ categories, userId, course }: Props) => {
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
+
+    if (file.size > 2 * 1024 * 1024) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: (
+          <Typography component="p" variant="body-sm">
+            La taille de l&apos;image est trop grande. La taille maximale est de
+            2Mo.
+          </Typography>
+        ),
+      });
+      return;
+    }
     if (file) {
       setSelectedImage(file);
       const reader = new FileReader();
@@ -97,11 +109,38 @@ export const AddCours = ({ categories, userId, course }: Props) => {
   const { mutateAsync: postCourse, isPending } = useMutation({
     mutationKey: ["postCourse"],
     mutationFn: async (values: z.infer<typeof NewCourseFormFieldsType>) => {
+      if (selectedImage) {
+        const file = await fetch(
+          `/api/upload/?filename=/courses/${userId}/${selectedImage.name}`,
+          {
+            method: "POST",
+            body: selectedImage,
+            headers: {
+              "Content-Type": "application/octet-stream",
+            },
+          }
+        );
+        const { url } = await file.json();
+        if (!url) {
+          toast({
+            variant: "destructive",
+            title: "Erreur",
+            description: (
+              <Typography component="p" variant="body-sm">
+                Une erreur est survenue lors de la mise en ligne de l&apos;image
+                du cours
+              </Typography>
+            ),
+          });
+        }
+        values.cover = url;
+      }
+
       const data = {
         title: values.title,
         description: values.description,
-        monthlyPrice: values.price,
-        duration: values.duration,
+        monthlyPrice: Number(values.price),
+        duration: Number(values.duration),
         category: values.category,
         videoUrl: values.videoUrl,
         cover: values.cover,
@@ -126,23 +165,25 @@ export const AddCours = ({ categories, userId, course }: Props) => {
             },
             body: JSON.stringify({
               userID: userId,
-              status: "PENDING",
+              status: "DRAFT",
               type: values.type,
               ...data,
             }),
           });
       if (res.ok) {
-        toast({
-          variant: "success",
-          title: "Création réussie",
-          description: "Votre cours a bien été créé.",
-        });
-        router.push("/my-courses");
+        // toast({
+        //   variant: "success",
+        //   title: "Création réussie",
+        //   description: "Votre cours a bien été créé.",
+        // });
+        const course = await res.json();
+        router.push(`/my-courses/${course.id}`);
       } else {
         toast({
           variant: "destructive",
           title: "Erreur",
-          description: "Une erreur est survenue lors de la création du cours.",
+          description:
+            "Une erreur est survenue lors de l'enregistrement du cours.",
         });
       }
     },
@@ -167,7 +208,6 @@ export const AddCours = ({ categories, userId, course }: Props) => {
 
   const handlePostCourse = async () => {
     const values = form.getValues();
-    values.cover = coverImage ?? "";
     values.description = descFromEditor;
     setConfirmPop(false);
     await postCourse(values);
@@ -194,7 +234,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                 <Image
                   width={100}
                   height={100}
-                  src={preview ? preview : DefaultAvatar}
+                  src={preview ? preview : "/default-cover.webp"}
                   alt="Course cover image"
                   className="h-full w-full object-cover"
                 />
@@ -280,7 +320,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                         control={form.control}
                         name="price"
                         placeholder="Ajouter le prix de votre formation"
-                        type="number"
+                        type="text"
                         className="w-full pr-16 h-12"
                       />
                       <span className="absolute right-2 top-0 text-gray-500 h-12 flex items-center justify-center text-sm">
@@ -301,7 +341,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                         control={form.control}
                         name="duration"
                         placeholder="La durée de votre formation"
-                        type="number"
+                        type="text"
                         className="w-full pr-16 h-12"
                       />
                       <span className="absolute right-2 top-0 text-gray-500 h-12 flex items-center justify-center text-sm">
@@ -356,27 +396,32 @@ export const AddCours = ({ categories, userId, course }: Props) => {
               <AlertDialog open={confirmPop}>
                 <AlertDialogTrigger asChild>
                   <Buttons type="submit">
-                    {course ? "Modifier la formation" : "Créer la formation"}
+                    {course ? "Modifier la formation" : "Ajouter des leçons"}
                   </Buttons>
                 </AlertDialogTrigger>
                 <AlertDialogContent className="bg-primary-50">
                   {course ? (
                     <AlertDialogHeader>
                       <AlertDialogTitle>
-                        Etes vous sur de modifier ce cours ?
+                        Êtes-vous sûr de vouloir modifier ce cours ?
                       </AlertDialogTitle>
                       <AlertDialogDescription>
-                        La modification du cours ent
+                        La modification du cours est irréversible. Assurez-vous
+                        que toutes les informations sont correctes avant de
+                        continuer.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                   ) : (
                     <AlertDialogHeader>
                       <AlertDialogTitle>
-                        Etes vous sur de creer ce cours ?
+                        Le cours sera enregistrer en brouillon.
                       </AlertDialogTitle>
                       <AlertDialogDescription>
-                        En créant ce cours, vous acceptez toutes nos conditions
-                        et règles..
+                        Vous pouvez ajouter des sections, des leçons et des
+                        éléments à votre cours. Ensuite, publiez-le pour
+                        l&apos;activer. <br />
+                        Vous acceptez toutes les conditions et règles de la
+                        plateforme.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                   )}
@@ -389,7 +434,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                       className="bg-primary-600 hover:bg-primary-400"
                       onClick={() => handlePostCourse()}
                     >
-                      {course ? "Modifier la formation" : "Créer la formation"}
+                      {course ? "Modifier la formation" : "Ajouter des leçons"}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
