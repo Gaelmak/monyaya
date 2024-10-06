@@ -143,6 +143,7 @@ model UserCourse {
   userId    String
   courseId  String
   completed Boolean     @default(false) // Indique si le cours a été suivi
+  completedAt   DateTime?   @updatedAt
 
   user      User        @relation(fields: [userId], references: [id])
   course    Courses     @relation(fields: [courseId], references: [id])
@@ -151,13 +152,14 @@ model UserCourse {
 }
 
 model UserLesson {
-  id        String      @id @default(cuid())
-  userId    String
-  lessonId  String
-  completed Boolean     @default(false) // Indique si la leçon a été suivie
+  id            String      @id @default(cuid())
+  userId        String
+  lessonId      String
+  completed     Boolean     @default(false) // Indique si la leçon a été suivie
+  completedAt   DateTime?   @updatedAt
 
-  user      User        @relation(fields: [userId], references: [id])
-  lesson    Lessons     @relation(fields: [lessonId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
+  lesson        Lessons     @relation(fields: [lessonId], references: [id])
 
   @@unique([userId, lessonId]) // Assure qu'un utilisateur ne peut pas suivre la même leçon plusieurs fois
 }
