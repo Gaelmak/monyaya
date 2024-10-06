@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     const { data, error } = await resend.emails.send({
       from: `Mon Yaya <${EmailFrom}>`,
       to: Array.isArray(body.email) ? body.email : [body.email],
-      subject: "Hello world",
+      subject: body.title,
       react: EmailTemplate({
         preview: body.preview ?? null,
         title: body.title,

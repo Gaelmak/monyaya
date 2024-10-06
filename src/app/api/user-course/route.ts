@@ -51,6 +51,7 @@ export async function GET(req: Request & NextRequest) {
                 },
               },
             },
+            lessons: true,
           },
         },
       },

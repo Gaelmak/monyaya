@@ -30,10 +30,10 @@ export async function POST(req: Request) {
         type:
           data.type === "domicile"
             ? "DOMICILE"
-            : data.type === "onsite"
-            ? "ONSITE"
+            : data.type === "mobile"
+            ? "MOBILE"
             : "ONLINE",
-        status: "PENDING",
+        status: "DRAFT",
         title: data.title,
         description: data.description,
         cover: data.cover,
