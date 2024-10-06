@@ -101,7 +101,7 @@ export function LessonsCompletedChart({ userId }: { userId: string | null }) {
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>Complétion des cours</CardTitle>
           <CardDescription>
-            Affichage du total des cours complétés par date
+            Affichage du total des leçons complétées par date
           </CardDescription>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
@@ -162,7 +162,7 @@ export function LessonsCompletedChart({ userId }: { userId: string | null }) {
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value);
-                return date.toLocaleDateString("en-US", {
+                return date.toLocaleDateString("fr-FR", {
                   month: "short",
                   day: "numeric",
                 });
@@ -173,7 +173,7 @@ export function LessonsCompletedChart({ userId }: { userId: string | null }) {
               content={
                 <ChartTooltipContent
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
+                    return new Date(value).toLocaleDateString("fr-FR", {
                       month: "short",
                       day: "numeric",
                     });
