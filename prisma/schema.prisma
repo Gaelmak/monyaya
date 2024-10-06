@@ -80,7 +80,7 @@ model Yaya {
   status     Status       @default(PENDING)
   createdAt  DateTime     @default(now())
   approvedAt DateTime?
-  user       User         @relation(fields: [userId], references: [id])
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   courses    Courses[]
 }
@@ -104,7 +104,7 @@ model Courses {
   UserCourse    UserCourse[]
   
   category      Category?   @relation(fields: [categoryId], references: [id])
-  yaya          Yaya?       @relation(fields: [yayaID], references: [id])
+  yaya          Yaya?       @relation(fields: [yayaID], references: [id], onDelete: Cascade)
 }
 
 model Lessons {
@@ -121,8 +121,8 @@ model Lessons {
   sectionId     String?
   UserLesson    UserLesson[]
   
-  course        Courses?   @relation(fields: [courseId], references: [id])
-  section       Sections?  @relation(fields: [sectionId], references: [id])
+  course        Courses?   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  section       Sections?  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 }
 
 model Sections {
@@ -134,7 +134,7 @@ model Sections {
   createAt      DateTime    @default(now())
   updateAt      DateTime?   @updatedAt
   
-  course        Courses?     @relation(fields: [courseId], references: [id])
+  course        Courses?     @relation(fields: [courseId], references: [id], onDelete: Cascade)
   lessons       Lessons[]
 }
 
@@ -183,6 +183,7 @@ enum Role {
 }
 
 enum Status {
+  DRAFT
   PENDING
   APPROVED
   REJECTED
@@ -192,5 +193,6 @@ enum Status {
 enum CourseType {
   ONLINE
   DOMICILE
-  ONSITE
+  MOBILE
+  ONSITE  // not used
 }
