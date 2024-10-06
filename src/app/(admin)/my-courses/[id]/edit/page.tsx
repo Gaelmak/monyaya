@@ -38,14 +38,8 @@ export default async function CourseEditPage({ params }: PageProps) {
   });
 
   return (
-    <main className="w-full min-h-[100vh] pt-24 md:pt-2 pb-8 flex flex-col p-4 gap-4">
-      <Container className="w-full h-full py-2 px-4 flex flex-col gap-4  rounded">
-        <AddCours
-          userId={userData?.id}
-          categories={categories}
-          course={course}
-        />
-      </Container>
-    </main>
+    <Container className="w-full h-full py-2 px-4 flex flex-col gap-4 rounded">
+      <AddCours userId={userData?.id} categories={categories} course={course} />
+    </Container>
   );
 }

@@ -25,7 +25,7 @@ export default async function CreateLessonPage({
   }
 
   return (
-    <Container className="w-full h-full py-2 px-4 flex flex-col gap-4  rounded">
+    <Container className="w-full h-full py-2 px-4 flex flex-col gap-4 rounded">
       <AddCourLesson yaya={yaya} course={course} />
     </Container>
   );

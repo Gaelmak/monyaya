@@ -26,8 +26,8 @@ export default async function MyTrainingsPage() {
   }
 
   return (
-    <main className="w-full min-h-[100dvh] pt-24 md:pt-0 pb-8 flex flex-col p-4">
-      <Container className="w-full py-4 md:py-10 flex flex-col md:flex-row justify-between gap-4 rounded">
+    <>
+      <Container className="w-full pb-4 md:pb-10 flex flex-col md:flex-row justify-between gap-4 rounded">
         <div>
           <Typography component="h3" className="text-xl md:text-2xl font-bold">
             Mes formations
@@ -45,7 +45,19 @@ export default async function MyTrainingsPage() {
         )}
       </Container>
       {role === "TRAINER" && <YayaCoursesList yayaId={yaya?.id} />}
-      {role === "USER" && <UserCoursesList user={user} />}
-    </main>
+      {role === "USER" ? (
+        <UserCoursesList user={user} />
+      ) : (
+        <div className="p-4 bg-green-50 border border-green-100 rounded-lg mt-4 md:mt-8">
+          <Typography
+            component="h3"
+            className="text-xl md:text-2xl font-bold mb-4"
+          >
+            Les cours que vous avez rejoints
+          </Typography>
+          <UserCoursesList user={user} />
+        </div>
+      )}
+    </>
   );
 }

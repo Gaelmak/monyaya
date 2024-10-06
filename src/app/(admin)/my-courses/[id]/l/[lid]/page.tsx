@@ -1,14 +1,6 @@
 import LessonContent from "@/components/admin/my-courses/lesson";
 import { Container } from "@/ui/components/container/container";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Progress } from "@/components/ui/progress";
 import { BookAIcon } from "lucide-react";
 import Link from "next/link";
@@ -46,7 +38,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
 
     return (
       <Container>
-        <div className="border-b mt-16 md:mt-0">
+        <div className="border-b">
           <Table>
             <TableBody>
               <TableRow className="*:w-full">
@@ -85,7 +77,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
     );
   } catch (error) {
     return (
-      <div className="mt-16 md:mt-0 p-4">
+      <div className="mt-16 md:mt-2 p-4">
         <div className="p-4 bg-red-200 border border-red-300 rounded-lg">
           Erreur lors de la récupération de la leçon
         </div>

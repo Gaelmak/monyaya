@@ -21,6 +21,8 @@ export default async function Page(props: PageProps) {
     select: {
       id: true,
       role: true,
+      email: true,
+      name: true,
     },
   });
   const yayaId = await userAuthYaya().then((res) => res?.id);
@@ -45,10 +47,8 @@ export default async function Page(props: PageProps) {
   const course = await courseResponse.json();
 
   return (
-    <Container className="w-full flex flex-col gap-4 p-4 items-center">
-      <div className="w-full md:w-10/12 flex flex-col gap-4">
-        <SingleCourse course={course} user={user} yayaId={yayaId} />
-      </div>
-    </Container>
+    <div className="w-full md:w-10/12 flex flex-col gap-4">
+      <SingleCourse course={course} user={user} yayaId={yayaId} />
+    </div>
   );
 }
