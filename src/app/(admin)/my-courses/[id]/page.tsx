@@ -46,6 +46,19 @@ export default async function Page(props: PageProps) {
 
   const course = await courseResponse.json();
 
+  // Check if user is enrolled in the course
+  if (user.role === "USER" || course.yaya.user.id != user.id) {
+    const userCourse = await fetch(
+      `${apiUrl()}/api/courses/${id}/user-course?userId=${user.id}`
+    );
+    if (userCourse.ok) {
+      const data = await userCourse.json();
+      if (!data) {
+        redirect(`/courses/${id}`);
+      }
+    }
+  }
+
   return (
     <div className="w-full md:w-10/12 flex flex-col gap-4">
       <SingleCourse course={course} user={user} yayaId={yayaId} />
