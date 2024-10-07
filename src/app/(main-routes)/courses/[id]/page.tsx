@@ -1,6 +1,7 @@
 import { userAuth } from "@/lib/helper";
 import SingleCourseFront from "./single-course-front";
 import { getServerUrl } from "@/lib/server-url";
+import prisma from "@/lib/prisma";
 
 export default async function SingleCoursePage({
   params,

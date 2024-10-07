@@ -35,22 +35,19 @@ export const SearchCourses = (props: {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-2 md:space-y-4"
         >
-          <Container className="grid grid-cols-2 md:flex md:flex-row gap-2 md:justify-between md:items-end">
-            <Container className="col-span-2 md:basis-5/6">
-              <InputField
-                control={form.control}
-                name="formation_or_name"
-                placeholder={props.placeholder}
-              />
-            </Container>
-            <Container className="col-span-2 md:w-auto flex flex-row gap-4">
-              <Buttons
-                Icon={Search}
-                variant="primary"
-                className="mb-2 w-10 h-10 rounded"
-                type="submit"
-              ></Buttons>
-            </Container>
+          <Container className="w-full flex gap-2 justify-center items-center">
+            <InputField
+              control={form.control}
+              name="formation_or_name"
+              placeholder={props.placeholder}
+              className="w-60 md:w-80"
+            />
+            <Buttons
+              Icon={Search}
+              variant="primary"
+              className="mb-2 w-10 h-10 rounded"
+              type="submit"
+            ></Buttons>
           </Container>
         </form>
       </Form>
