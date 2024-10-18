@@ -57,7 +57,7 @@ export default function ContactForm() {
         body: JSON.stringify({
           email: values.email,
           title: `Nouveau message de ${values.name}`,
-          content: `Téléphone : ${values.phone}, <br /><br />Message : ${values.message}`,
+          content: `Téléphone : ${values.phone}, Message : ${values.message}`,
         }),
       });
     },
@@ -104,7 +104,7 @@ export default function ContactForm() {
               </div>
               <div className="w-1/2">
                 <div>
-                  <span>téléphone</span>
+                  <span>Téléphone</span>
                   <InputField
                     control={form.control}
                     name="phone"

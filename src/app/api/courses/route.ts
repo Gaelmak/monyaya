@@ -71,7 +71,14 @@ export async function GET(req: Request & NextRequest) {
         ...(categoryId ? { categoryId: categoryId } : {}),
         ...(yayaId ? { yaya: { id: yayaId } } : {}),
         ...(status
-          ? { status: status === "pending" ? "PENDING" : "APPROVED" }
+          ? {
+              status:
+                status === "pending"
+                  ? "PENDING"
+                  : status === "draft"
+                  ? "DRAFT"
+                  : "APPROVED",
+            }
           : {}),
         ...(search ? { title: { contains: search, mode: "insensitive" } } : {}),
         ...(type

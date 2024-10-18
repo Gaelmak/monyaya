@@ -30,7 +30,7 @@ export const BecomeATrainer = async () => {
         <Container className="flex flex-col items-start gap-2 text-center md:text-left">
           <Typography className="text-center md:text-left text-2xl md:text-3xl font-semibold">
             Vous êtes prêt à transmettre vos connaissances ? <br />
-            <span className="text-primary-Default"> devenez formateur</span>.
+            <span className="text-primary-Default"> Devenez formateur</span>.
           </Typography>
           <Typography className="text-base md:w-4/5">
             Partagez votre expertise et enrichissez votre parcours professionnel

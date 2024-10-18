@@ -85,13 +85,17 @@ export const AsideNav = async ({ className }: Props) => {
                 <Presentation className="h-5 w-5" />
                 Tableau de bord
               </AsideActiveLink>
-              <AsideActiveLink
-                href="/my-courses"
-                className="flex flex-row items-center gap-2"
-              >
-                <Book className="h-5 w-5" />
-                {user?.role === "TRAINER" ? "Mes formations" : "Mes cours"}
-              </AsideActiveLink>
+
+              {user?.role != "ADMIN" && (
+                <AsideActiveLink
+                  href="/my-courses"
+                  className="flex flex-row items-center gap-2"
+                >
+                  <Book className="h-5 w-5" />
+                  {user?.role === "TRAINER" ? "Mes formations" : "Mes cours"}
+                </AsideActiveLink>
+              )}
+
               {user?.role === "USER" && (
                 <AsideActiveLink
                   href="/courses"
@@ -101,13 +105,23 @@ export const AsideNav = async ({ className }: Props) => {
                   Nouvelle formation
                 </AsideActiveLink>
               )}
+
               {user?.role === "ADMIN" && (
-                <AsideActiveLink
-                  href="/to-review"
-                  className="flex flex-row items-center gap-2"
-                >
-                  <Plus className="h-5 w-5" />A valider
-                </AsideActiveLink>
+                <>
+                  <AsideActiveLink
+                    href="/admin-courses"
+                    className="flex flex-row items-center gap-2"
+                  >
+                    <Book className="h-5 w-5" />
+                    Cours
+                  </AsideActiveLink>
+                  <AsideActiveLink
+                    href="/to-review"
+                    className="flex flex-row items-center gap-2"
+                  >
+                    <Plus className="h-5 w-5" />A valider
+                  </AsideActiveLink>
+                </>
               )}
             </Typography>
           </Container>

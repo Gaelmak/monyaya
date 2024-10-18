@@ -70,7 +70,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
       pricePer: course?.pricePer ?? "MONTH",
       duration: course?.duration.toString() ?? "",
       type: course?.type.toLowerCase() ?? "online",
-      category: course?.category ? course?.category?.name : "none",
+      category: course?.category ? course?.category?.id : "none",
       videoUrl: course?.videoUrl ?? "",
       cover: course?.cover ?? "",
     },
@@ -227,7 +227,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
           <div className="flex flex-col gap-5">
             {course && (
               <div className="py-2 px-4 bg-orange-100 rounded-lg text-sm">
-                Vous modifier un cours actuelement
+                Vous modifiez actuellement ce cours
               </div>
             )}
 
@@ -434,11 +434,16 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                         Le cours sera enregistrer en brouillon.
                       </AlertDialogTitle>
                       <AlertDialogDescription>
-                        Vous pouvez ajouter des sections, des leçons et des
-                        éléments à votre cours. Ensuite, publiez-le pour
-                        l&apos;activer. <br />
-                        Vous acceptez toutes les conditions et règles de la
-                        plateforme.
+                        Vous êtes sur le point de finaliser la création de votre
+                        formation. Afin de l’enrichir davantage, vous avez la
+                        possibilité d’ajouter des leçons, chacune pouvant
+                        contenir des cours. Si vous souhaitez procéder à cette
+                        étape, cliquez sur le bouton{" "}
+                        <span className="font-semibold text-primary-600">
+                          Ajouter des leçons
+                        </span>
+                        . Votre formation sera enregistrée en tant que brouillon
+                        jusqu’à ce que vous ayez terminé l’ajout des leçons.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                   )}

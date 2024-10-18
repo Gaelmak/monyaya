@@ -23,6 +23,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
     },
     select: {
       id: true,
+      role: true,
       yaya: {
         select: {
           id: true,

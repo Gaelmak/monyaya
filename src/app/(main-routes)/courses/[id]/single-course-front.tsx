@@ -25,7 +25,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Avatar } from "@radix-ui/react-avatar";
 import { AvatarImage } from "@/components/ui/avatar";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { TitapParser } from "@/components/minimal-tiptap";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,7 +45,7 @@ export default function SingleCourseFront({
   user,
   courseUrl,
 }: {
-  user: { id: string; firstName: string } | null;
+  user: { id: string; firstName: string; role: string } | null;
   courseUrl: string;
 }) {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
@@ -58,10 +58,11 @@ export default function SingleCourseFront({
   const params = useParams<{ id: string; item: string }>();
   const [copiedText, copyToClipboard] = useCopyToClipboard();
   const hasCopiedText = Boolean(copiedText);
+
   const { data: course, isLoading } = useQuery({
     queryKey: ["frontSingleCourse"],
     queryFn: async () => {
-      const response = await fetch(`/api/courses/${params.id}`);
+      const response = await fetch(`/api/courses/${params.id}?status=approved`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -85,6 +86,12 @@ export default function SingleCourseFront({
       </div>
     );
   }
+
+  if (!course) {
+    notFound();
+  }
+
+  console.log(course);
 
   return (
     <main className="w-full px-4 lg:px-[7vw] mb-20 space-y-4">

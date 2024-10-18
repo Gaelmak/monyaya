@@ -47,7 +47,7 @@ export default async function Page(props: PageProps) {
   const course = await courseResponse.json();
 
   // Check if user is enrolled in the course
-  if (user.role === "USER" || course.yaya.user.id != user.id) {
+  if (user.role != "ADMIN" && course.yaya.user.id != user.id) {
     const userCourse = await fetch(
       `${apiUrl()}/api/courses/${id}/user-course?userId=${user.id}`
     );

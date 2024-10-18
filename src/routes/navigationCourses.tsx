@@ -24,13 +24,13 @@ export default function NavigationCourse() {
 
   return (
     <div>
-      <NavigationMenu className="">
+      <NavigationMenu className="w-full">
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-2 py-2 hover:bg-primary-400 focus:bg-primary-300 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+            <NavigationMenuTrigger className="px-4 md:px-2 py-2 hover:bg-primary-400 focus:bg-primary-300 data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
               {"Formations"}
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="bg-white text-sm p-4 flex flex-col gap-2 w-11/12 md:w-[250px]">
+            <NavigationMenuContent className="bg-white text-sm p-4 flex flex-col gap-2 w-[60vw] md:w-[250px]">
               <NavigationMenuLink
                 href="/courses"
                 className="w-full px-4 py-2 bg-primary-100 hover:bg-primary-200 rounded"

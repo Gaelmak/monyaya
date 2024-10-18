@@ -34,6 +34,7 @@ export type LessonProps = {
   user:
     | {
         id: string;
+        role: string;
         yaya: {
           id: string;
         };
@@ -189,7 +190,8 @@ export default function LessonContent({
           {userLesson.isLoading ? (
             <div className="w-full h-12 bg-gray-50 rounded flex items-center justify-center animate-pulse"></div>
           ) : (
-            user?.yaya?.id != lesson.course.yayaID && (
+            user?.yaya?.id != lesson.course.yayaID &&
+            user?.role != "ADMIN" && (
               <Button
                 className={cn(
                   "w-7/12 h-12 items-center transition-all text-white/90",

@@ -33,7 +33,7 @@ export default async function MyTrainingsPage() {
             Mes formations
           </Typography>
           {role === "TRAINER" ? (
-            <p>Créez votre propre cours en ligne, en domicile ou en personne</p>
+            <p>Créez votre propre cours en ligne, à domicile ou en personne</p>
           ) : (
             <p>Consultez les cours que vous avez rejoints</p>
           )}

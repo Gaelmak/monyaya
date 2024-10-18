@@ -51,7 +51,7 @@ export default function YayaStats(props: UserStatsProps) {
       <Card className="bg-white p-0 flex flex-col justify-between overflow-hidden">
         <CardContent className="p-6 flex gap-2 justify-between items-center">
           <div>
-            <p className="text">Total de élèves</p>
+            <p className="text">Total des élèves</p>
             <p className="text-5xl font-bold">
               {isLoading ? <Loader /> : stats?.etudiants}
             </p>

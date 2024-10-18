@@ -1,15 +1,27 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // READ
 export async function GET(
-  req: Request,
+  req: Request & NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const searchParams = req.nextUrl.searchParams;
+  const status = searchParams.get("status");
   try {
     const course = await prisma.courses.findUnique({
       where: {
         id: params.id,
+        ...(status
+          ? {
+              status:
+                status === "pending"
+                  ? "PENDING"
+                  : status === "draft"
+                  ? "DRAFT"
+                  : "APPROVED",
+            }
+          : {}),
       },
       include: {
         yaya: {
