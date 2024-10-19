@@ -8,6 +8,7 @@ import { Container } from "@/ui/components/container/container";
 import { ProfileButton, SignInButton } from "./auth-buttons";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetTrigger,
@@ -55,29 +56,35 @@ export const MobileNavigation = async ({ className }: Props) => {
           />
         </Link>
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger asChild>
             <Menu />
           </SheetTrigger>
           <SheetContent className="w-[90vw] bg-white">
             <SheetDescription className="h-full">
               <nav className=" h-full pt-8 text-left justify-between flex flex-col">
                 <div className="flex flex-col justify-start items-start gap-3 ">
-                  <Link href={"/"}>
-                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
-                      {"Accueil"}
-                    </div>
-                  </Link>
+                  <SheetClose asChild>
+                    <Link href={"/"}>
+                      <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                        {"Accueil"}
+                      </div>
+                    </Link>
+                  </SheetClose>
                   <NavigationCourse />
-                  <Link href={"/about"}>
-                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
-                      {"À propos"}
-                    </div>
-                  </Link>
-                  <Link href={"/contact"}>
-                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
-                      {"Contact"}
-                    </div>
-                  </Link>
+                  <SheetClose asChild>
+                    <Link href={"/about"}>
+                      <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                        {"À propos"}
+                      </div>
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link href={"/contact"}>
+                      <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
+                        {"Contact"}
+                      </div>
+                    </Link>
+                  </SheetClose>
                 </div>
                 <Container className="w-full flex flex-col gap-2 my-4">
                   {session ? (
