@@ -7,9 +7,15 @@ export const termOfUse = [
   },
   {
     id: "article2",
-    title: "Définitions",
+    title: "Définitions Utilisateur",
     content:
-      "Utilisateur : Toute personne visitant ou utilisant la plateforme pour bénéficier des services d'apprentissage à domicile fournis par les Formateurs.\n- **Formateur ou yaya** : Les prestataires de services d'apprentissage inscrits sur la plateforme pour enseigner diverses disciplines.",
+      "Utilisateur : Toute personne visitant ou utilisant la plateforme pour bénéficier des services d'apprentissage à domicile fournis par les Formateurs.",
+  },
+  {
+    id: "article2.1",
+    title: "Définitions Yaya",
+    content:
+      "Formateur ou yaya : Les prestataires de services d'apprentissage inscrits sur la plateforme pour enseigner diverses disciplines.",
   },
   {
     id: "article3",
@@ -27,13 +33,13 @@ export const termOfUse = [
     id: "article5",
     title: "Obligations des Utilisateurs",
     content:
-      "Les utilisateurs s'engagent à :\n\n- Fournir des informations exactes lors de l'inscription.\n- Respecter les conditions établies entre le formateur et lui.\n- Collaborer de manière active durant le processus d'apprentissage.\n\nToute violation de ces conditions peut entraîner la suspension ou la résiliation de l'accès à nos services.",
+      "Les utilisateurs s'engagent à : 👉Fournir des informations exactes lors de l'inscription. 👉Respecter les conditions établies entre le formateur et lui. 👉Collaborer de manière active durant le processus d'apprentissage. 🚫 Toute violation de ces conditions peut entraîner la suspension ou la résiliation de l'accès à nos services.",
   },
   {
     id: "article6",
     title: "Paiement et Tarification",
     content:
-      "Les services proposés par les formateurs sont facturés aux utilisateurs selon les tarifs indiqués au moment de l'inscription à un cours. Le paiement peut s'effectuer via les modes disponibles sur la plateforme. Les prix sont fixés par les formateurs eux-mêmes, et Monyaya peut prélève une commission pour l'utilisation de la plateforme une fois le service réalisée.\n\nPour ce qui est de la sécurité de paiement, Monyaya ne transfère pas directement la somme de paiement au prestataire. Les fonds sont conservés sur un compte bloqué et seront libérés progressivement en fonction de l'avancement de la formation. Si un client prouve que le prestataire ne respecte pas les normes de qualité ou les conditions d'apprentissage, et que les paiements ont déjà été effectués, le client pourra obtenir un remboursement proportionnel à l'avancement de la formation, sur présentation des preuves.",
+      "Les services proposés par les formateurs sont facturés aux utilisateurs selon les tarifs indiqués au moment de l'inscription à un cours. Le paiement peut s'effectuer via les modes disponibles sur la plateforme. Les prix sont fixés par les formateurs eux-mêmes, et Monyaya peut prélève une commission pour l’utilisation de la plateforme une fois le service réalisée. Pour ce qui est de la sécurité de paiement, Monyaya ne transfère pas directement la somme de paiement au prestataire. Les fonds sont conservés sur un compte bloqué et seront libérés progressivement en fonction de l'avancement de la formation. Si un client prouve que le prestataire ne respecte pas les normes de qualité ou les conditions d'apprentissage, et que les paiements ont déjà été effectués, le client pourra obtenir un remboursement proportionnel à l'avancement de la formation, sur présentation des preuves.",
   },
   {
     id: "article7",

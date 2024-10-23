@@ -21,31 +21,9 @@ export default function TermOfUse() {
               component="h5"
               variant="title-sm"
             >
-              Pour Clients,
-            </Typography>
-            <Typography
-              component="p"
-              className="flex flex-col leading-relaxed"
-              variant="body-base"
-            >
-              Contrat de service d&apos;apprentissage à domicile Entre
-              <br />
-              <Typography component="span" variant="body-lg">
-                MonYaya
-              </Typography>
-              <br />
-              société par actions simplifiée dont le siège social est situé a
-              [adresse],représentée par [nom du représentant légal],en qualité
-              de [fonction],
-              <span className="font-semibold">{"D'une part,"}</span>
-              <br />
-              Et [Nom du client], [qualité du client], demeurant [adresse],
-              <br />
-              <span className="font-semibold">{"D'autre part,"}</span>
-              <br />
-              il a été conclu le présent contrat de service d&apos;apprentissage
-              à domicile, ci- après dénommé{" "}
-              <span className="font-semibold">{`"Contrat"`}</span>
+              {
+                "Bienvenue sur Monyaya. En utilisant notre plateforme, vous acceptez les présentes conditions générales d'utilisation. Veuillez les lire attentivement avant d'utiliser nos services."
+              }
             </Typography>
           </Container>
           {termOfUse.map((section, index) => (
