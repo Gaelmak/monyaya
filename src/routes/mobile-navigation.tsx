@@ -70,7 +70,9 @@ export const MobileNavigation = async ({ className }: Props) => {
                       </div>
                     </Link>
                   </SheetClose>
-                  <NavigationCourse />
+                  <SheetClose>
+                    <NavigationCourse />
+                  </SheetClose>
                   <SheetClose asChild>
                     <Link href={"/about"}>
                       <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
