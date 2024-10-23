@@ -3,7 +3,6 @@ import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import { termOfUseForYaya } from "@/lib/terme-of-use-data/term-of-use";
-import { userAuth } from "@/lib/helper";
 
 interface Props {
   className?: string;
