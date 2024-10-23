@@ -9,12 +9,12 @@ export default function TermOfUse() {
     <main className="flex max-w-full select-none w-full px-4 md:px-8 lg:px-[7vw]">
       <Container className="flex justify-between items-start relative">
         <Container className="flex flex-col md:w-2/3 lg:w-3/4 md:mr-4">
-          <Container className="leading-relaxed mb-6 flex flex-col gap-4">
+          <Container className="leading-relaxed mb-6 flex flex-col gap-4 md:pt-5">
             <Typography
-              className="leading-relaxed text-[#39ae44] text-5xl font-semibold"
+              className="leading-relaxed text-[#39ae44] text-3xl lg:text-5xl font-semibold "
               component="h3"
             >
-              Contrats
+              {"Conditions d'utilisation"}
             </Typography>
             <Typography
               className="text-[#424242] text-xl"

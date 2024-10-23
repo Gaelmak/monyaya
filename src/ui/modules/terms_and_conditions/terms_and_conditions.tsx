@@ -1,10 +1,14 @@
-/* eslint-disable react/no-unescaped-entities */
+// "use client";
 import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import { termOfUseForYaya } from "@/lib/terme-of-use-data/term-of-use";
+import { userAuth } from "@/lib/helper";
 
-export const TermsAndConditions = () => {
+interface Props {
+  className?: string;
+}
+export async function TermsAndConditions() {
   return (
     <SheetContent
       side={"bottom"}
@@ -16,31 +20,9 @@ export const TermsAndConditions = () => {
             {"Termes et conditions d'utilisation du yaya"}
           </Typography>
         </SheetTitle>
-        <Typography component="h5" variant="title-sm">
-          Contrat de prestation de services d'apprentissage à domicile
-        </Typography>
       </SheetHeader>
       <Container>
         <Container className="overflow-y">
-          <span className="font-semibold">Entre :</span>
-          <br />
-          <p>
-            Monyaya, société par actions simplifiée dont le siège social est
-            situé [adresse], représentée par [nom du représentant légal], en
-            qualité de [fonction]
-          </p>
-          <br />
-          <span className="font-semibold pt-2">D'une part,</span>
-          <br />
-          et <br />
-          [Nom du prestataire], [qualité du prestataire], demeurant [adresse],
-          <br />
-          <span className="font-semibold pt-2">D'autre part,</span>
-          <p>
-            il a été conclu le présent contrat de prestation de services
-            d'apprentissage à domicile, ci-après dénommé le{" "}
-            <span className="font-semibold pt-2">"Contrat"</span>
-          </p>
           {termOfUseForYaya.map((article) => (
             <Container key={article.id}>
               <Typography
@@ -76,4 +58,4 @@ export const TermsAndConditions = () => {
       </Container>
     </SheetContent>
   );
-};
+}
