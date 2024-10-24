@@ -8,6 +8,11 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import Image from "next/image";
 import yaya from "../../../../public/yayaMonyaya.png";
 
@@ -42,9 +47,9 @@ export const BecomeATrainer = async () => {
         <Typography className="text-center md:text-left text-xl md:text-3xl font-semibold">
           Bénéficiez de nombreux avantages
         </Typography>
-        <Container className="grid grid-cols-2  gap-2 ">
+        <Container className="grid-cols-2  gap-2 hidden xl:grid">
           {OurBenefitsForTrainers.map(({ Icon, title, description }) => (
-            <HoverCard key={title}>
+            <HoverCard key={title} openDelay={300}>
               <Container className="">
                 <HoverCardTrigger className="flex flex-row md:flex-row gap-2 md:gap-4 py-3 cursor-pointer">
                   <Container className="">
@@ -67,6 +72,31 @@ export const BecomeATrainer = async () => {
                 </HoverCardContent>
               </Container>
             </HoverCard>
+          ))}
+        </Container>
+        <Container className="grid grid-cols-2  gap-2 xl:hidden">
+          {OurBenefitsForTrainers.map(({ Icon, title, description }, index) => (
+            <>
+              <Popover key={index}>
+                <PopoverTrigger className="flex flex-row md:flex-row gap-2 md:gap-4 py-3 cursor-pointer text-left">
+                  <Container className="">
+                    <Icon
+                      className="text-primary-50 bg-primary-Default rounded-full p-1"
+                      size={30}
+                      strokeWidth={1}
+                    />
+                  </Container>
+                  <Typography className="text-sm font-semibold">
+                    {title}
+                  </Typography>
+                </PopoverTrigger>
+                <PopoverContent className="bg-primary-50 rounded-xl -mt-5 -mb-5">
+                  <Typography className="text-black  leading-relaxed">
+                    {description}
+                  </Typography>
+                </PopoverContent>
+              </Popover>
+            </>
           ))}
         </Container>
         {!user && (
