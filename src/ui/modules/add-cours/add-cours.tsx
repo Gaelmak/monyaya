@@ -308,6 +308,13 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                       placeholder="Type de votre formation"
                       className={cn(course && "pointer-events-none opacity-50")}
                     />
+                    <div className="text-xs font-light text-secondary-400">
+                      {form.watch("type") === "mobile"
+                        ? "Un yaya mobile est celui qui s’adapte aux exigences du client"
+                        : form.watch("type") === "online"
+                        ? "Le cours sera présenté en ligne à l'aide d'outils tels que Google Meet, Zoom, etc."
+                        : "Le yaya se deplacera toujours vers le domicile du client"}
+                    </div>
                   </div>
                   <div>
                     <Typography
@@ -317,19 +324,20 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                     >
                       Prix
                     </Typography>
-                    <div className="flex gap-2">
+                    <div className="">
                       <div className="relative">
                         <InputField
                           control={form.control}
                           name="price"
                           placeholder="Taper le prix du cours"
                           type="text"
-                          className="w-full pr-8 h-12"
+                          className="w-full pr-16 h-12"
                         />
                         <span className="absolute right-2 top-0 text-gray-500 h-12 flex items-center justify-center text-sm">
-                          $/
+                          $/mois
                         </span>
                       </div>
+                      {/** Disbale price month or section: ;ake default to month */}
                       <InputFieldSelect
                         control={form.control}
                         name="pricePer"
@@ -339,7 +347,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                         ]}
                         placeholder="Prix par"
                         className={cn(
-                          "p-0 w-[150px]",
+                          "p-0 w-[150px] hidden",
                           course && "pointer-events-none opacity-50"
                         )}
                       />
