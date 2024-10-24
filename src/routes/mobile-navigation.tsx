@@ -1,9 +1,8 @@
-import { Typography } from "@/ui/components/typography/typography";
+"use client";
+
 import Link from "next/link";
-import { ActiveLink } from "./active-link";
 import clsx from "clsx";
 import Image from "next/image";
-import { MainRoutes } from "@/lib/page-routes/page-routes";
 import { Container } from "@/ui/components/container/container";
 import { ProfileButton, SignInButton } from "./auth-buttons";
 import {
@@ -13,29 +12,22 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import prisma from "@/lib/prisma";
-import { userAuth } from "@/lib/helper";
 import NavigationCourse from "./navigationCourses";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface Props {
   className: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    image: string;
+  } | null;
 }
 
-export const MobileNavigation = async ({ className }: Props) => {
-  const session = await userAuth();
-
-  const user = session
-    ? await prisma?.user.findUnique({
-        where: {
-          name: session!.name!,
-        },
-        select: {
-          firstName: true,
-          lastName: true,
-          image: true,
-        },
-      })
-    : null;
+export const MobileNavigation = ({ className, user }: Props) => {
+  const [open, setOpen] = useState(false);
 
   return (
     <header
@@ -54,7 +46,7 @@ export const MobileNavigation = async ({ className }: Props) => {
             className="h-12 w-auto"
           />
         </Link>
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger>
             <Menu />
           </SheetTrigger>
@@ -62,33 +54,23 @@ export const MobileNavigation = async ({ className }: Props) => {
             <SheetDescription className="h-full">
               <nav className=" h-full pt-8 text-left justify-between flex flex-col">
                 <div className="flex flex-col justify-start items-start gap-3 ">
-                  <Link href={"/"}>
-                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
-                      {"Accueil"}
-                    </div>
-                  </Link>
+                  <NavLink href="/" onClick={() => setOpen(false)}>
+                    Accueil
+                  </NavLink>
                   <NavigationCourse />
-                  <Link href={"/about"}>
-                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
-                      {"À propos"}
-                    </div>
-                  </Link>
-                  <Link href={"/contact"}>
-                    <div className="px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50   data-[active]:bg-primary-300 data-[state=open]:bg-primary-300">
-                      {"Contact"}
-                    </div>
-                  </Link>
+                  <NavLink href="/about" onClick={() => setOpen(false)}>
+                    À propos
+                  </NavLink>
+                  <NavLink href="/contact" onClick={() => setOpen(false)}>
+                    Contact
+                  </NavLink>
                 </div>
                 <Container className="w-full flex flex-col gap-2 my-4">
-                  {session ? (
-                    user ? (
-                      <ProfileButton
-                        profileImg={user.image ? user.image : undefined}
-                        name={user!.firstName! + " " + "" + user!.lastName!}
-                      />
-                    ) : (
-                      <SignInButton />
-                    )
+                  {user ? (
+                    <ProfileButton
+                      profileImg={user.image ? user.image : undefined}
+                      name={user!.firstName! + " " + "" + user!.lastName!}
+                    />
                   ) : (
                     <SignInButton />
                   )}
@@ -99,5 +81,26 @@ export const MobileNavigation = async ({ className }: Props) => {
         </Sheet>
       </Container>
     </header>
+  );
+};
+
+const NavLink = ({ href, children, ...props }) => {
+  const pathname = usePathname();
+
+  function isCurrentPath(path: string) {
+    return pathname === path;
+  }
+
+  return (
+    <Link href={href} {...props}>
+      <div
+        className={cn(
+          "px-4 py-2 rounded text-sm font-medium hover:bg-primary-400 focus:bg-primary-300 hover:text-primary-50 focus:text-primary-50",
+          isCurrentPath(href) && "bg-primary-300"
+        )}
+      >
+        {children}
+      </div>
+    </Link>
   );
 };

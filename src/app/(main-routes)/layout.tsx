@@ -11,10 +11,24 @@ export default async function MainRoutesLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await userAuth();
+  const user = session
+    ? await prisma?.user.findUnique({
+        where: {
+          name: session!.name!,
+        },
+        select: {
+          firstName: true,
+          lastName: true,
+          image: true,
+        },
+      })
+    : null;
+
   return (
     <div className="mt-16 md:mt-16">
       <Navigation className="hidden md:block" />
-      <MobileNavigation className="md:hidden" />
+      <MobileNavigation className="md:hidden" user={user} />
       {children}
       <Footer />
       <Toaster />
