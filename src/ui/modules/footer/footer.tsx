@@ -14,7 +14,7 @@ import { CopyrightIcon } from "lucide-react";
 export const Footer = () => {
   return (
     <footer className=" bg-primary-400 text-white z-10 flex flex-col items-center w-full">
-      <Container className="w-11/12 flex flex-wrap gap-6 md:flex-row justify-between items-center md:py-16">
+      <Container className="w-11/12 flex flex-wrap gap-6 md:flex-row justify-between items-center  md:py-16">
         <div className="w-full md:w-[20vw] pb-3 md:pb-0">
           <Image
             src="/img/monyaya-favicon.webp"
@@ -53,8 +53,11 @@ export const Footer = () => {
             <Typography className="text-lg">Contact</Typography>
             <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-1">
-                <Typography>+243 997 724 968</Typography>
-                <Typography>+243 821 611 703</Typography>
+                <a href="tel:+243821611703">+243 821 611 703</a>
+                <a href="tel:+243997724968">+243 997 724 968</a>
+                <a href="mailto:monyayaofficiel@gmail.com">
+                  monyayaofficiel@gmail.com
+                </a>
               </div>
               <div className="flex flex-row gap-4 pb-6 ">
                 {SocialNetworks.map(({ CustomIcon, baseUrl, title }) => (

@@ -1,48 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Container } from "@/ui/components/container/container";
 import { termOfUse } from "@/lib/terme-of-use-data/term-of-use";
 import { Typography } from "@/ui/components/typography/typography";
 
 export default function TermOfUse() {
-  const [activeSection, setActiveSection] = useState<string>(termOfUse[0].id);
-
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY;
-    const offset = 150;
-
-    termOfUse.forEach((article) => {
-      const element = document.getElementById(article.id);
-      if (element) {
-        const elementPosition = element.offsetTop;
-        const elementHeight = element.clientHeight;
-        if (
-          scrollPosition >= elementPosition - offset &&
-          scrollPosition < elementPosition + elementHeight - offset
-        ) {
-          setActiveSection(article.id);
-        }
-      }
-    });
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleClick = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 150,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <main className="flex justify-center max-w-full select-none w-full lg:px-[7vw] py-8 md:py-12 px-4">
       <Container className="flex flex-col md:w-2/3 lg:w-4/6">

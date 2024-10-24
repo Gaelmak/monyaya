@@ -21,18 +21,24 @@ export default function ContactSection() {
               <li className="flex flex-row gap-3 items-center">
                 <Phone size={20} />
                 <div className="flex flex-col">
-                  <span className="text-sm">+243 821 611 703</span>
-                  <span className="text-sm">+243 997 724 968</span>
+                  <a href="tel:+243821611703" className="text-sm">
+                    +243 821 611 703
+                  </a>
+                  <a href="tel:+243997724968" className="text-sm">
+                    +243 997 724 968
+                  </a>
                 </div>
               </li>
               <li className="flex flex-row gap-3 items-center">
                 <Mail size={20} />
-                <span className="text-sm">ceo@monyaya.com </span>
+                <a href="mailto:monyayaofficiel@gmail.com" className="text-sm">
+                  monyayaofficiel@gmail.com
+                </a>
               </li>
-              <li className="flex flex-row gap-3 items-center">
+              {/* <li className="flex flex-row gap-3 items-center">
                 <MapPin size={20} />
                 <span className="text-sm">Mont Ngafula</span>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

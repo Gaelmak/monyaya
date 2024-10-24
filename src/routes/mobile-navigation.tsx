@@ -7,6 +7,7 @@ import { Container } from "@/ui/components/container/container";
 import { ProfileButton, SignInButton } from "./auth-buttons";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetTrigger,
