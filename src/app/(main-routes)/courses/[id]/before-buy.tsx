@@ -14,17 +14,19 @@ import { toast } from "@/components/ui/use-toast";
 import { onCourseJoined } from "@/lib/notification/course-join";
 import { cn } from "@/lib/utils";
 import { Typography } from "@/ui/components/typography/typography";
-import { Courses } from "@prisma/client";
+import { Courses, Yaya } from "@prisma/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export type BeforeBuyProps = {
   userId: string | null;
   yayaEmail: string;
   userName: string;
-  course: Courses;
+  course: Courses & {
+    yaya: Yaya;
+  };
   courseUrl: string;
 };
 
@@ -105,11 +107,24 @@ export default function BeforeBuy(props: BeforeBuyProps) {
     </Button>;
   }
 
+  if (props.userId === props.course.yaya.userId) {
+    return (
+      <Button
+        className={cn(
+          "text-sm font-normal text-white w-full bg-gray-600 hover:bg-gray-700 cursor-pointer"
+        )}
+        asChild
+      >
+        <Link href={`/my-courses/${props.course.id}`}>Gerer ma formation</Link>
+      </Button>
+    );
+  }
+
   if (userCourse) {
     return (
       <Button
         className={cn(
-          "text-base text-white w-full bg-blue-600 hover:bg-blue-700 cursor-pointer"
+          "text-sm font-normal text-white w-full bg-blue-600 hover:bg-blue-700 cursor-pointer"
         )}
         asChild
       >

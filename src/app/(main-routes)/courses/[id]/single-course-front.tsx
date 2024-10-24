@@ -91,8 +91,6 @@ export default function SingleCourseFront({
     notFound();
   }
 
-  console.log(course);
-
   return (
     <main className="w-full px-4 lg:px-[7vw] mb-20 space-y-4">
       <div className="flex justify-between gap-4">
