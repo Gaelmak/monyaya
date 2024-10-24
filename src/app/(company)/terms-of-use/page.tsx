@@ -44,92 +44,43 @@ export default function TermOfUse() {
   };
 
   return (
-    <main className="flex max-w-full select-none w-full lg:px-[7vw]">
-      <Container className="flex justify-between items-start relative">
-        <Container
-          className={`hidden lg:w-1/4 md:w-1/3 md:flex sticky left-0 top-0 pt-8 bg-gray-100 p-4 h-[calc(115vh-65px)]`}
+    <main className="flex justify-center max-w-full select-none w-full lg:px-[7vw] py-8 md:py-12 px-4">
+      <Container className="flex flex-col md:w-2/3 lg:w-4/6">
+        <div className="leading-relaxed mb-6 flex flex-col gap-4">
+          <Typography
+            className="leading-relaxed text-[#39ae44] text-2xl md:text-4xl font-bold"
+            component="h1"
+          >
+            Termes et Conditions d&apos;Utilisation de Monyaya
+          </Typography>
+          <Typography
+            component="p"
+            className="flex flex-col leading-relaxed"
+            variant="body-base"
+          >
+            Bienvenue sur Monyaya. En utilisant notre plateforme, vous acceptez
+            les présentes conditions générales d&apos;utilisation. Veuillez les
+            lire attentivement avant d&apos;utiliser nos services.
+          </Typography>
+        </div>
+        {termOfUse.map((section, index) => (
+          <div id={section.id} key={index} className="mb-10">
+            <Typography className="mb-4 text-[#39ae44] text-xl font-semibold">
+              {section.title}
+            </Typography>
+            <Typography className="leading-relaxed" variant="body-base">
+              {section.content}
+            </Typography>
+          </div>
+        ))}
+        <Typography
+          component="p"
+          className="flex flex-col leading-relaxed"
+          variant="body-base"
         >
-          <ul className="w-full pt-10">
-            {termOfUse.map((article, index) => (
-              <Container
-                key={index}
-                className="flex justify-start gap-6 items-center"
-              >
-                <li>
-                  <Link
-                    href={`#${article.id}`}
-                    className="text-lg text-slate-400"
-                  >
-                    {article.id}
-                  </Link>
-                </li>
-                <li>
-                  <span
-                    onClick={() => handleClick(article.id)}
-                    className={`block px-2 py-2 cursor-pointer ${
-                      activeSection === article.id
-                        ? "font-semibold text-[#39ae44]"
-                        : "text-gray-700"
-                    }`}
-                  >
-                    {article.title}
-                  </span>
-                </li>
-              </Container>
-            ))}
-          </ul>
-        </Container>
-        <Container className="flex flex-col ml-4 md:w-2/3 lg:w-3/4 md:mr-4">
-          <Container className="leading-relaxed mb-6 flex flex-col gap-4">
-            <Typography
-              className="leading-relaxed text-[#39ae44] text-5xl font-semibold"
-              component="h3"
-            >
-              Contrats
-            </Typography>
-            <Typography
-              className="text-[#424242] text-xl"
-              component="h5"
-              variant="title-sm"
-            >
-              Pour Clients,
-            </Typography>
-            <Typography
-              component="p"
-              className="flex flex-col leading-relaxed"
-              variant="body-base"
-            >
-              Contrat de service d&apos;apprentissage à domicile Entre
-              <br />
-              <Typography component="span" variant="body-lg">
-                MonYaya
-              </Typography>
-              <br />
-              société par actions simplifiée dont le siège social est situé a
-              [adresse],représentée par [nom du représentant légal],en qualité
-              de [fonction],
-              <span className="font-semibold">{"D'une part,"}</span>
-              <br />
-              Et [Nom du client], [qualité du client], demeurant [adresse],
-              <br />
-              <span className="font-semibold">{"D'autre part,"}</span>
-              <br />
-              il a été conclu le présent contrat de service d&apos;apprentissage
-              à domicile, ci- après dénommé{" "}
-              <span className="font-semibold">{`"Contrat"`}</span>
-            </Typography>
-          </Container>
-          {termOfUse.map((section, index) => (
-            <div id={section.id} key={index} className="mb-10">
-              <Typography className="mb-4 text-[#39ae44] text-2xl font-semibold">
-                {section.title}
-              </Typography>
-              <Typography className="leading-relaxed" variant="body-base">
-                {section.content}
-              </Typography>
-            </div>
-          ))}
-        </Container>
+          En utilisant la plateforme Monyaya, vous reconnaissez avoir lu et
+          accepté les présentes conditions.
+        </Typography>
       </Container>
     </main>
   );

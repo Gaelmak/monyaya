@@ -21,9 +21,8 @@ export default function CompanyOverview() {
         </Typography>
         <Container>
           <Typography
-            className="py-4 text-justify md:text-left text-sm md:text-base tracking-wide leading-relaxed"
+            className="py-4 text-justify md:text-left text-base md:text-lg"
             component="p"
-            variant="body-base"
           >
             Monyaya est bien plus qu&apos;une simple plateforme de mise en
             relation. C&apos;est une communauté dynamique qui connecte les
@@ -35,9 +34,8 @@ export default function CompanyOverview() {
             service personnalisé répondant à leurs besoins réels.
           </Typography>
           <Typography
-            className="py-4 text-justify md:text-left text-sm md:text-base tracking-wide leading-relaxed"
+            className="py-4 text-justify md:text-left text-base md:text-lg"
             component="p"
-            variant="body-base"
           >
             <span>Alors, Apprenez ce que vous aimez et où vous voulez </span>:
             Que vous rêviez d&apos;apprendre un instrument de musique, de

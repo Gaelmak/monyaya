@@ -26,7 +26,7 @@ export default function VisionSection() {
           Notre Vision
         </Typography>
         <Typography
-          className="leading-relaxed text-base md:text-lg text-justify md:text-left"
+          className="text-base md:text-lg text-justify md:text-left"
           component="p"
           variant="body-base"
         >
