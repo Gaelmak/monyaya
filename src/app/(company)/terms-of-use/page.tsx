@@ -27,12 +27,10 @@ export default function TermOfUse() {
         </div>
         {termOfUse.map((section, index) => (
           <div id={section.id} key={index} className="mb-10">
-            <Typography className="mb-4 text-[#39ae44] text-xl font-semibold">
+            <div className="mb-4 text-[#39ae44] text-xl font-semibold">
               {section.title}
-            </Typography>
-            <Typography className="leading-relaxed" variant="body-base">
-              {section.content}
-            </Typography>
+            </div>
+            <div className="leading-relaxed">{section.content}</div>
           </div>
         ))}
         <Typography
