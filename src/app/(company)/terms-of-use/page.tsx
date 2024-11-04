@@ -1,5 +1,3 @@
-"use client";
-
 import { Container } from "@/ui/components/container/container";
 import { termOfUse } from "@/lib/terme-of-use-data/term-of-use";
 import { Typography } from "@/ui/components/typography/typography";
@@ -7,7 +5,7 @@ import { Typography } from "@/ui/components/typography/typography";
 export default function TermOfUse() {
   return (
     <main className="flex justify-center max-w-full select-none w-full lg:px-[7vw] py-8 md:py-12 px-4">
-      <Container className="flex flex-col md:w-2/3 lg:w-4/6">
+      <div className="flex flex-col md:w-2/3 lg:w-4/6">
         <div className="leading-relaxed mb-6 flex flex-col gap-4">
           <Typography
             className="leading-relaxed text-[#39ae44] text-2xl md:text-4xl font-bold"
@@ -41,7 +39,7 @@ export default function TermOfUse() {
           En utilisant la plateforme Monyaya, vous reconnaissez avoir lu et
           accepté les présentes conditions.
         </Typography>
-      </Container>
+      </div>
     </main>
   );
 }
