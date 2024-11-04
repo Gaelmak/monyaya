@@ -2,6 +2,7 @@ import { Typography } from "@/ui/components/typography/typography";
 import clsx from "clsx";
 import DefaultAvatar from "../../public/default_avatar.jpg";
 import Image from "next/image";
+import prisma from "@/lib/prisma";
 
 interface Props {
   className?: string;

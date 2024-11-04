@@ -1,4 +1,3 @@
-import { Container } from "@/ui/components/container/container";
 import { termOfUse } from "@/lib/terme-of-use-data/term-of-use";
 import { Typography } from "@/ui/components/typography/typography";
 

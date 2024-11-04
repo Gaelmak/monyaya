@@ -4,6 +4,7 @@ import { BackButton } from "@/ui/components/back-button/back-button";
 import { PasswordChangeForm } from "../password-change-form";
 import { SirenIcon } from "lucide-react";
 import Link from "next/link";
+import prisma from "@/lib/prisma";
 
 export default async function SignIn({
   searchParams,

@@ -3,6 +3,7 @@ import { MobileNavigation } from "@/routes/mobile-navigation";
 import { Toaster } from "@/components/ui/toaster";
 import { Footer } from "@/ui/modules/footer/footer";
 import { userAuth } from "@/lib/helper";
+import prisma from "@/lib/prisma";
 
 export default async function MainRoutesLayout({
   children,
