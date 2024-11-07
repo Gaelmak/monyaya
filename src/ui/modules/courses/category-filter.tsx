@@ -1,30 +1,24 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import useFilterTypeStore from "@/store/filter-type-store";
-import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "@/components/ui/loader";
+import { Category } from "@prisma/client";
 
-export const CategoryFilter = () => {
-  // const categories = [
-  //   { id: "all", name: "Tous" },
-  //   { id: "wrw08204", name: "Anglais" },
-  //   { id: "297wr294", name: "Français" },
-  //   { id: "2992we04", name: "Guitare" },
-  //   { id: "20024hdd", name: "Piano" },
-  //   { id: "20828hsd", name: "Coach sportif" },
-  // ];
-
+export const CategoryFilter = ({
+  setCatDesc,
+}: {
+  setCatDesc: (value: ReactNode | null) => void;
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [filter, setFilter] = useState("Tous");
 
   const { data: categories, isLoading } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["categoriesList"],
     queryFn: async () => {
       const response = await fetch(`/api/courses/categories`);
       if (!response.ok) {
@@ -38,10 +32,20 @@ export const CategoryFilter = () => {
     const categoryParam = searchParams.get("category");
     if (categoryParam) {
       setFilter(categoryParam);
+      const cat = categories?.find(
+        (item: Category) => item.id === categoryParam
+      );
+      const catDesc = (
+        <p>
+          <span className="font-semibold">{cat?.name}:</span> {cat?.description}
+        </p>
+      );
+      setCatDesc(catDesc);
     } else {
       setFilter("Tous");
+      setCatDesc(null);
     }
-  }, [searchParams, setFilter]);
+  }, [searchParams, setFilter]); // eslint-disable-line
 
   const handleClick = (categoryId: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -74,7 +78,7 @@ export const CategoryFilter = () => {
       >
         <Typography>Tous</Typography>
       </div>
-      {categories?.map((item, index) => {
+      {categories?.map((item: Category, index: string) => {
         if (!item || !item.name) return null;
         return (
           <div

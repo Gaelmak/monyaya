@@ -10,7 +10,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { OrderFilter } from "./order-filter";
 import { SearchCourses } from "../search/search-courses";
 import { TypeFilter } from "./type-filter";
-import { Suspense } from "react";
+import { ReactNode, Suspense, useState } from "react";
 
 export const FrontCoursesList = () => {
   const pathname = usePathname();
@@ -20,6 +20,8 @@ export const FrontCoursesList = () => {
   const search = searchParams.get("s");
   const type = searchParams.get("type");
   const order = searchParams.get("order");
+  const [catDesc, setCatDesc] = useState<ReactNode | null>(null);
+  const [typeDesc, setTypeDesc] = useState<ReactNode | null>(null);
 
   const params = new URLSearchParams();
   params.set("status", "APPROVED");
@@ -64,13 +66,13 @@ export const FrontCoursesList = () => {
               <Typography className="text-lg font-bold">Catégories</Typography>
               <hr className="border-primary-900/50 border-1" />
               <Suspense fallback={<Loader />}>
-                <CategoryFilter />
+                <CategoryFilter setCatDesc={setCatDesc} />
               </Suspense>
             </div>
             <div className="bg-red-100 p-4 rounded-lg shadow-sm space-y-2">
               <Typography className="text-lg font-bold">Type</Typography>
               <hr className="border-primary-900/50 border-1" />
-              <TypeFilter />
+              <TypeFilter setTypeDesc={setTypeDesc} />
             </div>
             <div className="bg-blue-100 p-4 rounded-lg shadow-sm space-y-2">
               <Typography className="text-lg font-bold">Ordre</Typography>
@@ -94,10 +96,18 @@ export const FrontCoursesList = () => {
                 <Loader />
               </div>
             ) : (
-              <TrainingsView
-                className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                data={courses}
-              />
+              <>
+                {(catDesc || typeDesc) && (
+                  <div className="bg-orange-50 p-2 rounded-sm mb-2 text-sm space-y-1">
+                    {catDesc}
+                    {typeDesc}
+                  </div>
+                )}
+                <TrainingsView
+                  className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                  data={courses}
+                />
+              </>
             )}
           </div>
         </div>
