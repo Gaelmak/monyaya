@@ -2,9 +2,11 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import { verifyPassword } from "@/lib/password-to-salt";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  adapter: PrismaAdapter(prisma),
   providers: [
     Google,
     Credentials({
@@ -40,5 +42,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  session: { strategy: "jwt" },
+  callbacks: {
+    jwt({ token, trigger, session, account }) {
+      if (trigger === "update") token.name = session.user.name;
+      return token;
+    },
+    async session({ session, token }: { session: any; token: any }) {
+      if (token?.accessToken) session.accessToken = token.accessToken;
+
+      return session;
+    },
+  },
   trustHost: true,
 });

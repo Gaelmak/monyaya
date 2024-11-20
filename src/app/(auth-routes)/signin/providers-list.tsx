@@ -17,9 +17,9 @@ interface Props {
 export const ProvidersList = ({ providers }: Props) => {
   const [isLoading, startLoading, stopLoading] = UseLoading();
 
-  const filteredProviders = providers!.filter(
-    (provider) => provider.name !== "Credentials"
-  );
+  const filteredProviders = providers?.filter((provider) => {
+    return provider.name !== "Credentials";
+  });
 
   const signInWithProvider = async (provider: string) => {
     startLoading();
@@ -29,7 +29,7 @@ export const ProvidersList = ({ providers }: Props) => {
 
   return (
     <Container className="flex flex-col gap-4">
-      {filteredProviders!.map((provider) => (
+      {filteredProviders?.map((provider) => (
         <Container key={provider.name}>
           <Buttons
             className="w-full"

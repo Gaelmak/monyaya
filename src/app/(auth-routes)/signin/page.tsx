@@ -19,7 +19,7 @@ export default function SignIn() {
   useEffect(() => {
     const getProvidersList = async () => {
       const providers = await getProviders();
-      setProvidersList(providers);
+      setProvidersList(Object.values(providers));
     };
     getProvidersList();
   }, []);
@@ -55,7 +55,7 @@ export default function SignIn() {
           {providerslist.length > 0 && (
             <>
               <Container className="w-full">
-                <ProvidersList providers={Object.values(providerslist!)} />
+                <ProvidersList providers={providerslist} />
               </Container>
               <Container className="w-full flex items-center after:basis-1/2 after:content-[''] after:p-[0.5px] after:m-2 after:bg-secondary-100 before:basis-1/2 before:content-[''] before:p-[0.5px] before:m-2 before:bg-secondary-100">
                 <Typography
