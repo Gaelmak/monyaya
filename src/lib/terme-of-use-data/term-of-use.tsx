@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export const termOfUse = [
   {
     id: "article1",
@@ -73,7 +75,11 @@ export const termOfUse = [
   },
 ];
 
-export const termOfUseForYaya = [
+export const termOfUseForYaya: {
+  id: string;
+  title: string;
+  content: ReactNode;
+}[] = [
   {
     id: "article1",
     title: "Objet des Termes et Conditions",
@@ -83,8 +89,23 @@ export const termOfUseForYaya = [
   {
     id: "article2",
     title: "Définitions",
-    content:
-      "-  Client : désigne tout bénéficiaire des services d'apprentissage à domicile mis en relation avec le prestataire via Monyaya.\n-  Monyaya : désigne la société Monyaya, opératrice de la plateforme de mise en relation entre prestataires et clients.\n-  Prestataire  ou  yaya : désigne le prestataire inscrit sur la plateforme pour fournir des services d'apprentissage à domicile.",
+    content: (
+      <ol className="list-disc ml-4">
+        <li>
+          <b>Client</b> : désigne tout bénéficiaire des services
+          d&apos;apprentissage à domicile mis en relation avec le prestataire
+          via Monyaya.
+        </li>
+        <li>
+          <b>Monyaya</b> : désigne la société Monyaya, opératrice de la
+          plateforme de mise en relation entre prestataires et clients.
+        </li>
+        <li>
+          <b>Prestataire ou yaya</b> : désigne le prestataire inscrit sur la
+          plateforme pour fournir des services d&apos;apprentissage à domicile.
+        </li>
+      </ol>
+    ),
   },
   {
     id: "article3",
@@ -95,8 +116,26 @@ export const termOfUseForYaya = [
   {
     id: "article4",
     title: "Obligations du Prestataire",
-    content:
-      "Le prestataire s'engage à :\n\n- Fournir des services d'apprentissage à domicile de qualité, conformément aux attentes des clients et aux standards définis par Monyaya.\n- Respecter les directives de Monyaya et collaborer pour garantir la satisfaction des clients.\n\nTout manquement à ces obligations peut entraîner une résiliation du contrat par Monyaya.",
+    content: (
+      <div>
+        <p>Le prestataire s&apos;engage à :</p>
+        <ul>
+          <li>
+            Fournir des services d&apos;apprentissage à domicile de qualité,
+            conformément aux attentes des clients et aux standards définis par
+            Monyaya.
+          </li>
+          <li>
+            Respecter les directives de Monyaya et collaborer pour garantir la
+            satisfaction des clients.
+          </li>
+        </ul>
+        <p>
+          Tout manquement à ces obligations peut entraîner une résiliation du
+          contrat par Monyaya.
+        </p>
+      </div>
+    ),
   },
   {
     id: "article5",
@@ -126,7 +165,7 @@ export const termOfUseForYaya = [
     id: "article9",
     title: "Litiges",
     content:
-      "Tout litige découlant du présent contrat sera soumis à la compétence exclusive des tribunaux de Kinshasa. Les parties s'efforceront de régler à l'amiable tout différend avant d'engager des procédures judiciaires.",
+      "Tout litige découlant du présent contrat sera soumis à la compétence exclusive des tribunaux de Kinshasa. Les parties s'efforceront de régler à l’amiable tout différend avant d'engager des procédures judiciaires.",
   },
   {
     id: "article10",

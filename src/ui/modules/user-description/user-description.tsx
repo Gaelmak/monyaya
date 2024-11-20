@@ -125,7 +125,7 @@ export const UserDescription = ({ name, email }: Props) => {
                   J&apos;accepte les{" "}
                   <Sheet>
                     <SheetTrigger className="text-primary-Default">
-                      termes et conditions d&apos;utilisation
+                      termes et conditions d&apos;utilisation du yaya
                     </SheetTrigger>
                     <TermsAndConditions />
                   </Sheet>

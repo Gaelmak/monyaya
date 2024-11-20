@@ -21,6 +21,15 @@ export async function TermsAndConditions() {
         </SheetTitle>
       </SheetHeader>
       <Container>
+        <div>
+          <p>
+            Bienvenue sur Monyaya. En tant que prestataire, formateur ou yaya,
+            votre utilisation de notre plateforme et vos relations avec Monyaya
+            sont régies par les présentes conditions. En vous inscrivant et en
+            proposant vos services via notre plateforme, vous acceptez ces
+            termes.
+          </p>
+        </div>
         <Container className="overflow-y">
           {termOfUseForYaya.map((article) => (
             <Container key={article.id}>
@@ -28,20 +37,13 @@ export async function TermsAndConditions() {
                 className="my-4 text-[#39ae44] font-semibold"
                 variant="title-sm"
               >
-                <span className="text-semibold text-[#545454] mr-4">
-                  {article.id.replace("article", "Article ")}
-                </span>
                 {article.title}
               </Typography>
-              <Typography className="leading-relaxed" variant="body-base">
-                {article.content.split("\n").map((line, index) => (
-                  <p key={index}>{line}</p>
-                ))}
-              </Typography>
+              <div className="leading-relaxed text-base">{article.content}</div>
             </Container>
           ))}
         </Container>
-        <Container className=" flex flex-col my-4">
+        <Container className="flex-col my-4 hidden">
           <Typography className="flex flex-col  gap-1 ">
             <span className="font-bold">Fait à Kinshasa, le [date]</span>
             <span className="font-bold">deux exemplaires</span>
