@@ -284,7 +284,7 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                       component="h4"
                       className="text-sm text-secondary-400 mb-2"
                     >
-                      Cathegorie
+                      Catégorie
                     </Typography>
                     <InputFieldSelect
                       control={form.control}
@@ -292,6 +292,13 @@ export const AddCours = ({ categories, userId, course }: Props) => {
                       options={categoriesMerged}
                       placeholder="Cathegorie"
                     />
+                    <div className="text-xs font-light text-secondary-400">
+                      {
+                        categoriesMerged.find(
+                          (category) => category.id === form.watch("category")
+                        )?.description
+                      }
+                    </div>
                   </div>
                   <div>
                     <Typography
