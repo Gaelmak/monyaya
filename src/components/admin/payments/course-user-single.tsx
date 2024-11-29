@@ -31,6 +31,7 @@ import { MoveRightIcon } from "lucide-react";
 import { Loader } from "@/components/ui/loader";
 import { LogosWhatsappIcon } from "@/components/icons/whatsapp";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 type CoursesUserListProps = {
   open: boolean;
@@ -54,8 +55,11 @@ export default function CoursesUserSingle({
   currentUserCourse,
   isAdmin,
 }: CoursesUserListProps) {
+  const searchParams = useSearchParams();
+  const refetch = searchParams.get("refetch");
+
   const { data: coursePayments, isPending } = useQuery({
-    queryKey: ["serCoursePayments", currentUserCourse?.id],
+    queryKey: ["serCoursePayments", currentUserCourse?.id, refetch],
     queryFn: async () => {
       const res = await getUserCoursePayments(
         currentUserCourse?.id,
@@ -99,6 +103,7 @@ export default function CoursesUserSingle({
                   href={`https://wa.me/${parsePhoneNumber(
                     currentUserCourse?.user?.phoneNumber
                   )}?text=${waDefaultText(currentUserCourse?.course?.title)}`}
+                  target="_blank"
                 >
                   <LogosWhatsappIcon className="w-5 h-5" />
                 </Link>
@@ -128,6 +133,7 @@ export default function CoursesUserSingle({
                       )}?text=${waDefaultText(
                         currentUserCourse?.course?.title
                       )}`}
+                      target="_blank"
                     >
                       <LogosWhatsappIcon className="w-5 h-5" />
                     </Link>
@@ -141,6 +147,10 @@ export default function CoursesUserSingle({
           {isPending ? (
             <div className="h-40 w-full flex justify-center items-center">
               <Loader />
+            </div>
+          ) : coursePayments?.length === 0 ? (
+            <div className="h-40 w-full flex justify-center items-center">
+              <p>Aucun paiement pour ce cours</p>
             </div>
           ) : (
             <Table>

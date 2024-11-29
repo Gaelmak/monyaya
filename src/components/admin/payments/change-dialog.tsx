@@ -41,7 +41,7 @@ import { toast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type CoursesUserListProps = {
   open: boolean;
@@ -64,6 +64,8 @@ export default function CoursesUserChangeDialog({
   const [isOpenDialog, setIsOpenDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const refetch = searchParams.get("refetch");
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -75,7 +77,7 @@ export default function CoursesUserChangeDialog({
     onSuccess: (data) => {
       setIsOpenDialog(false);
       setOpen(false);
-      router.refresh();
+      router.push(`/payments?refetch=${Number(refetch ?? 0) + 1}`);
       toast({
         title: "Paiement mis à jour avec succès",
       });

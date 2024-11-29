@@ -160,6 +160,8 @@ export async function getUserCoursePayments(
         "Error 500: An unexpected error occurred while processing your request."
       );
     }
+
+    return [];
   } catch (error) {
     console.error("Error retrieving course:", error);
     throw new Error(
