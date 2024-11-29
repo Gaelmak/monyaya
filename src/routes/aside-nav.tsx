@@ -8,6 +8,7 @@ import DefaultAvatar from "../../public/default_avatar.jpg";
 import {
   Archive,
   Book,
+  CircleDollarSignIcon,
   Home,
   Plus,
   Presentation,
@@ -120,6 +121,13 @@ export const AsideNav = async ({ className }: Props) => {
                     className="flex flex-row items-center gap-2"
                   >
                     <Plus className="h-5 w-5" />A valider
+                  </AsideActiveLink>
+                  <AsideActiveLink
+                    href="/payments"
+                    className="flex flex-row items-center gap-2"
+                  >
+                    <CircleDollarSignIcon className="h-5 w-5" />
+                    Paiements
                   </AsideActiveLink>
                 </>
               )}

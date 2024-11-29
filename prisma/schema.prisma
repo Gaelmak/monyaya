@@ -140,16 +140,34 @@ model Sections {
 }
 
 model UserCourse {
-  id        String      @id @default(cuid())
-  userId    String
-  courseId  String
-  completed Boolean     @default(false) // Indique si le cours a été suivi
-  completedAt   DateTime?   @updatedAt
+  id              String      @id @default(cuid())
+  userId          String
+  courseId        String
+  completed       Boolean     @default(false) // Indique si le cours a été suivi
+  completedAt     DateTime?   @updatedAt
+  createdAt       DateTime    @default(now())
 
-  user      User        @relation(fields: [userId], references: [id])
-  course    Courses     @relation(fields: [courseId], references: [id])
+  payments        Payment[]
+
+  user            User        @relation(fields: [userId], references: [id])
+  course          Courses     @relation(fields: [courseId], references: [id])
 
   @@unique([userId, courseId]) // Assure qu'un utilisateur ne peut pas suivre le même cours plusieurs fois
+}
+
+model Payment {
+  id              String      @id @default(cuid())
+  userCourseId    String
+  price           Float
+  month           Int
+  limitDate       DateTime
+  isPaid          Boolean     @default(false)
+  payBy           String?
+  payAt           DateTime? 
+  reference       String?
+  createdAt       DateTime    @default(now())
+
+  userCourse  UserCourse  @relation(fields: [userCourseId], references: [id], onDelete: Cascade)
 }
 
 model UserLesson {
