@@ -1,10 +1,25 @@
+"use client";
+
+import { getProviders } from "next-auth/react";
 import { Container } from "@/ui/components/container/container";
 import { Aside } from "./aside";
 import { RegisterForm } from "./register-form";
 import { BackButton } from "@/ui/components/back-button/back-button";
 import { Typography } from "@/ui/components/typography/typography";
+import { ProvidersList } from "../signin/providers-list";
+import { useEffect, useState } from "react";
 
-export default async function NewUser() {
+export default function NewUser() {
+  const [providerslist, setProvidersList] = useState<any>([]);
+
+  useEffect(() => {
+    const getProvidersList = async () => {
+      const providers = await getProviders();
+      setProvidersList(Object.values(providers));
+    };
+    getProvidersList();
+  }, []);
+
   return (
     <Container className="bg-white md:h-[100dvh] flex flex-col md:flex-row relative">
       <Container className="absolute top-8 left-8 z-10">
@@ -27,6 +42,9 @@ export default async function NewUser() {
               Inscrivez vous et accédez à une variété de cours proposés sur
               notre plateforme.
             </Typography>
+          </Container>
+          <Container className="w-full">
+            <ProvidersList providers={providerslist} />
           </Container>
           <Container className="w-full">
             <RegisterForm />
