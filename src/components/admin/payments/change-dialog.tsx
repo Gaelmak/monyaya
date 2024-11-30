@@ -42,6 +42,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
+import { usePostHog } from "posthog-js/react";
 
 type CoursesUserListProps = {
   open: boolean;
@@ -66,6 +67,7 @@ export default function CoursesUserChangeDialog({
   const router = useRouter();
   const searchParams = useSearchParams();
   const refetch = searchParams.get("refetch");
+  const posthog = usePostHog();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -80,6 +82,12 @@ export default function CoursesUserChangeDialog({
       router.push(`/payments?refetch=${Number(refetch ?? 0) + 1}`);
       toast({
         title: "Paiement mis à jour avec succès",
+      });
+      posthog.capture("course_user_payment_added", {
+        course_id: payment?.userCourseId,
+        payBy: data?.payBy,
+        price: data?.price,
+        paymentDate: data?.payAt,
       });
     },
   });

@@ -8,6 +8,7 @@ import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import DefaultAvatar from "../../public/default_avatar.jpg";
 import { Typography } from "@/ui/components/typography/typography";
+import { usePostHog } from "posthog-js/react";
 
 interface Props {
   profileImg?: StaticImageData | undefined | string;
@@ -58,12 +59,14 @@ export const SignInButton = () => {
 };
 
 export const SignOutButton = ({ className }: Props) => {
+  const posthog = usePostHog();
   return (
     <Buttons
       variant="primary"
       buttonType="action"
       action={() => {
         signOut({ callbackUrl: "/" });
+        posthog.reset(true);
       }}
       className={className}
     >

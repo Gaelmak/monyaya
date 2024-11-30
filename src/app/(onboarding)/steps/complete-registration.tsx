@@ -23,6 +23,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { signOut } from "next-auth/react";
+import { usePostHog } from "posthog-js/react";
 
 // Schéma de validation Zod
 const CompleteRegisterFormFieldsType = z.object({
@@ -65,6 +66,7 @@ const BackgroundImage = ({ children }: { children: React.ReactNode }) => {
 
 export const CompleteRegistration = ({ data, name }: Props) => {
   const router = useRouter();
+  const posthog = usePostHog();
   const { toast } = useToast();
   const [isLoading, startLoading, stopLoading] = UseLoading();
   const [isFirstFilled, setIsFirstFilled] = useState(false);
@@ -166,6 +168,12 @@ export const CompleteRegistration = ({ data, name }: Props) => {
         ),
       });
       stopLoading();
+      posthog.capture("user_signed_sucess", {
+        $set: {
+          name: `${data?.firstName} ${data?.lastName}`,
+          email: data?.email,
+        },
+      });
       setTimeout(() => {
         signOut({ callbackUrl: "/signin" });
         // window.location.href = "/dashboard";
