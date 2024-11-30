@@ -7,8 +7,6 @@ const EmailFrom = process.env.EMAIL_FROM;
 export async function POST(req: Request) {
   const body = await req.json();
 
-  console.log(body);
-
   if (!body.email) {
     return Response.json(
       { error: "Missing required parameters" },
