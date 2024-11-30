@@ -55,9 +55,7 @@ export const Footer = () => {
               <div className="flex flex-col gap-1">
                 <a href="tel:+243821611703">+243 821 611 703</a>
                 <a href="tel:+243997724968">+243 997 724 968</a>
-                <a href="mailto:monyayaofficiel@gmail.com">
-                  monyayaofficiel@gmail.com
-                </a>
+                <a href="mailto:contact@monyaya.com">contact@monyaya.com</a>
               </div>
               <div className="flex flex-row gap-4 pb-6 ">
                 {SocialNetworks.map(({ CustomIcon, baseUrl, title }) => (

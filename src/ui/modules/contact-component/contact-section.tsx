@@ -31,8 +31,8 @@ export default function ContactSection() {
               </li>
               <li className="flex flex-row gap-3 items-center">
                 <Mail size={20} />
-                <a href="mailto:monyayaofficiel@gmail.com" className="text-sm">
-                  monyayaofficiel@gmail.com
+                <a href="mailto:contact@monyaya.com" className="text-sm">
+                  contact@monyaya.com
                 </a>
               </li>
               {/* <li className="flex flex-row gap-3 items-center">
