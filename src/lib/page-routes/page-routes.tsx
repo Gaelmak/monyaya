@@ -40,6 +40,10 @@ export const SocialNetworks: AppLinks[] = [
 
 export const Company: AppLinks[] = [
   {
+    title: "Politique de confidentialité",
+    baseUrl: "/privacy-policy",
+  },
+  {
     title: "Termes d'utilisation",
     baseUrl: "/terms-of-use",
   },
