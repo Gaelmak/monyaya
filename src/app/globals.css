@@ -161,3 +161,8 @@ input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+.ppolitic li {
+  list-style-type: disc;
+  margin-left: 10px;
+}
