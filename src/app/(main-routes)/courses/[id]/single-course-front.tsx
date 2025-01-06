@@ -45,7 +45,7 @@ export default function SingleCourseFront({
   user,
   courseUrl,
 }: {
-  user: { id: string; firstName: string; role: string } | null;
+  user: { id: string; firstName: string; email: string; role: string } | null;
   courseUrl: string;
 }) {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
@@ -253,6 +253,7 @@ export default function SingleCourseFront({
             <CardFooter>
               <BeforeBuy
                 userId={user?.id}
+                userEmail={user?.email}
                 yayaEmail={course.yaya.user.email}
                 userName={user?.firstName}
                 course={course}

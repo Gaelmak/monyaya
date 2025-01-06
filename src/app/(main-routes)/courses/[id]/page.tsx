@@ -16,6 +16,7 @@ export default async function SingleCoursePage({
     select: {
       id: true,
       firstName: true,
+      email: true,
       role: true,
     },
   });

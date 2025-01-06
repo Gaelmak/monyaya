@@ -1,9 +1,12 @@
 import { getServerUrl } from "../server-url";
+import { AdminEmails } from "./admin-emails";
 
 export async function onCourseJoined(
-  email: string,
+  yayaEmail: string,
+  userEmail: string,
   name: string,
-  courseName: string
+  courseName: string,
+  yayaId: string
 ) {
   const sendToUser = await fetch(`/api/send-email`, {
     method: "POST",
@@ -12,14 +15,37 @@ export async function onCourseJoined(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: email,
-      title: "Nouvel apprenti(e) dans votre cours",
-      content: `Felicitations 🎉. ${name} vient de rejoindre votre cours: ${courseName}.`,
+      email: userEmail,
+      title: `Vous avez rejoint le cours ${courseName}.`,
+      content: `Félicitations 🎉 ! Vous avez rejoint le cours ${courseName}. Nous vous contacterons dans les prochaines heures via votre numéro WhatsApp ou votre adresse e-mail.`,
     }),
   });
-  console.log("res", sendToUser);
+  const sendToYaya = await fetch(`/api/send-email`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: yayaEmail,
+      title: "Nouvel apprenti(e) dans votre cours",
+      content: `Felicitations 🎉. ${name} vient de s’inscrire à votre cours ${courseName}. Nous vous contacterons bientôt via WhatsApp ou email pour convenir de l’heure, du lieu et de la date de début du contrat.`,
+    }),
+  });
+  const sendToAdmin = await fetch(`/api/send-email`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: AdminEmails,
+      title: "Nouvel apprenti(e) dans un cours",
+      content: `${name} vient de rejoindre le cours: ${courseName} de votre yaya ${yayaId}.`,
+    }),
+  });
 
-  if (sendToUser) {
+  if (sendToUser || sendToYaya || sendToAdmin) {
     return true;
   }
   return false;

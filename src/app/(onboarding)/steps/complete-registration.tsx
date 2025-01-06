@@ -334,7 +334,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                             placeholder="0*********"
                             control={form.control}
                             name="phonenumber"
-                            label="Numéro de téléphone"
+                            label="Numéro de téléphone (WhastApp)"
                             className="bg-transparent"
                           >
                             {PhoneIcon()}

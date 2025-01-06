@@ -22,6 +22,7 @@ import { useState } from "react";
 
 export type BeforeBuyProps = {
   userId: string | null;
+  userEmail: string;
   yayaEmail: string;
   userName: string;
   course: Courses & {
@@ -63,7 +64,13 @@ export default function BeforeBuy(props: BeforeBuyProps) {
       }).then((res) => res.json());
     },
     onSuccess: async (data) => {
-      await onCourseJoined(props.yayaEmail, props.userName, props.course.title);
+      await onCourseJoined(
+        props.yayaEmail,
+        props.userEmail,
+        props.userName,
+        props.course.title,
+        props.course.yaya.id
+      );
       toast({
         variant: "success",
         title: "Formation ajoutée !",

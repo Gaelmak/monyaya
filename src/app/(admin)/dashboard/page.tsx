@@ -72,12 +72,12 @@ export default async function Home() {
           </h1>
           {user?.role === "ADMIN" && (
             <Typography className="font-thin">
-              Vous etes Administrateur de la plateforme
+              Vous êtes Administrateur de la plateforme
             </Typography>
           )}
           {user?.role === "TRAINER" && (
             <Typography className="font-thin">
-              Vous etes un &apos;yaya&apos; sur la plateforme
+              Vous êtes un &apos;yaya&apos; sur la plateforme
             </Typography>
           )}
           {user?.role === "USER" && (
