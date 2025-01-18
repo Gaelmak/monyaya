@@ -14,7 +14,7 @@ import { toast } from "@/components/ui/use-toast";
 import { onCourseJoined } from "@/lib/notification/course-join";
 import { cn } from "@/lib/utils";
 import { Typography } from "@/ui/components/typography/typography";
-import { Courses, Yaya } from "@prisma/client";
+import { Courses, User, Yaya } from "@prisma/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -26,7 +26,7 @@ export type BeforeBuyProps = {
   yayaEmail: string;
   userName: string;
   course: Courses & {
-    yaya: Yaya;
+    yaya: Yaya & { user: User };
   };
   courseUrl: string;
 };
@@ -69,7 +69,7 @@ export default function BeforeBuy(props: BeforeBuyProps) {
         props.userEmail,
         props.userName,
         props.course.title,
-        props.course.yaya.id
+        props.course.yaya.user
       );
       toast({
         variant: "success",

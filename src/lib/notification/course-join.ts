@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { getServerUrl } from "../server-url";
 import { AdminEmails } from "./admin-emails";
 
@@ -6,7 +7,7 @@ export async function onCourseJoined(
   userEmail: string,
   name: string,
   courseName: string,
-  yayaId: string
+  yaya: User
 ) {
   const sendToUser = await fetch(`/api/send-email`, {
     method: "POST",
@@ -41,7 +42,7 @@ export async function onCourseJoined(
     body: JSON.stringify({
       email: AdminEmails,
       title: "Nouvel apprenti(e) dans un cours",
-      content: `${name} vient de rejoindre le cours: ${courseName} de votre yaya ${yayaId}.`,
+      content: `${name} vient de rejoindre le cours: ${courseName} de votre yaya ${yaya?.firstName} ${yaya?.lastName}.`,
     }),
   });
 
