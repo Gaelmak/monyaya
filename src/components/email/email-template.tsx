@@ -34,7 +34,7 @@ export default function EmailTemplate(props: EmailTemplateProps) {
             <Img
               src={`https://monyaya.com/img/logo-monyaya.webp`}
               height="32"
-              alt="Mon yaya"
+              alt="Monyaya"
             />
             <Hr style={hr} />
             <Text style={title}>{props.title}</Text>
@@ -51,7 +51,7 @@ export default function EmailTemplate(props: EmailTemplateProps) {
               </>
             )}
             <Hr style={hr} />
-            <Text style={footer}>© 2024 Monyaya. Tous droits réservés.</Text>
+            <Text style={footer}>© 2025 Monyaya. Tous droits réservés.</Text>
           </Section>
         </Container>
       </Body>

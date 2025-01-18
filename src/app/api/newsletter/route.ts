@@ -28,13 +28,13 @@ export async function POST(req: Request) {
     }
 
     const { data, error } = await resend.emails.send({
-      from: `Mon Yaya <${EmailFrom}>`,
+      from: `Monyaya <${EmailFrom}>`,
       to: Array.isArray(body.email) ? body.email : [body.email],
-      subject: "Mon Yaya - Newsletter",
+      subject: "Monyaya - Newsletter",
       react: EmailTemplate({
-        title: "Mon Yaya - Newsletter",
+        title: "Monyaya - Newsletter",
         content:
-          "Bienvenue sur la newsletter de Mon Yaya, nous vous remercions de votre inscription.",
+          "Bienvenue sur la newsletter de Monyaya, nous vous remercions de votre inscription.",
       }),
     });
 

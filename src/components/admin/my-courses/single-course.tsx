@@ -115,7 +115,11 @@ export default function SingleCourse({
           }),
         });
         if (res.ok) {
-          await onCourseConfirm(user?.email, user?.name, course.id);
+          await onCourseConfirm(
+            course?.yaya?.user?.email,
+            user?.name,
+            course.id
+          );
           toast({
             variant: "success",
             title: "Action réussie",
