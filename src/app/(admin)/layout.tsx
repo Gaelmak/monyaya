@@ -30,7 +30,7 @@ export default async function AdminLayout({
     redirect("/signin");
   }
 
-  if (!user.email || user.email === "") {
+  if (!user.email || user.email === "" || !user.firstName) {
     redirect("/onboarding");
   }
 
