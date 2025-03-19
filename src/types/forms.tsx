@@ -4,9 +4,13 @@ export const RegisterFormFieldsType = z.object({
   name: z
     .string()
     .min(2, {
-      message: "Votre nom d'utilisateur doit avoir au moin 2 caracteres.",
+      message: "votre nom d'utilisateur doit avoir au moins 2 caractères.",
     })
-    .max(50),
+    .regex(/^[a-zA-Z0-9]+$/, {
+      message:
+        "le nom d'utilisateur ne peut contenir que des lettres et chiffres, sans espaces ni caractères spéciaux",
+    })
+    .max(30),
   password: z
     .string()
     .min(2, {

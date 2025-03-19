@@ -331,7 +331,7 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                         </div>
                         <div className="lg:basis-1/2">
                           <InputField
-                            placeholder="0*********"
+                            placeholder="+243*********"
                             control={form.control}
                             name="phonenumber"
                             label="Numéro de téléphone (WhastApp)"
