@@ -1,7 +1,6 @@
 import { Container } from "@/ui/components/container/container";
-import { Init } from "../steps/init";
+
 import { ScrollOnboard } from "@/ui/components/scroll-onboard/scroll-onboard";
-import { CompleteRegistration } from "../steps/complete-registration";
 import { userAuth } from "@/lib/helper";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
@@ -41,18 +40,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col h-dvh w-full overflow-hidden relative">
-      <ScrollOnboard
-        data={[
-          {
-            id: "init",
-            element: <Init />,
-          },
-          {
-            id: "init2",
-            element: <CompleteRegistration data={user} name={user?.name} />,
-          },
-        ]}
-      />
+      <ScrollOnboard user={user} />
     </div>
   );
 }

@@ -3,8 +3,8 @@ import * as z from "zod";
 export const RegisterFormFieldsType = z.object({
   name: z
     .string()
-    .min(2, {
-      message: "votre nom d'utilisateur doit avoir au moins 2 caractères.",
+    .min(3, {
+      message: "votre nom d'utilisateur doit avoir au moins 3 caractères.",
     })
     .regex(/^[a-zA-Z0-9]+$/, {
       message:
