@@ -27,13 +27,12 @@ import { Typography } from "@/ui/components/typography/typography";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { signIn } from "next-auth/react";
+import { useMutation } from "@tanstack/react-query";
 
 export const RegisterForm = () => {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, startLoading, stopLoading] = UseLoading();
-  const [isFormFilled, setIsFormFilled] = useState(false);
-  const [isFormAddFilled, setIsFormAddFilled] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<z.infer<typeof RegisterFormFieldsType>>({
@@ -45,25 +44,14 @@ export const RegisterForm = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof RegisterFormFieldsType>) {
-    startLoading();
-
-    const { name, password, confirmpassword } = values;
-    if (password !== confirmpassword) {
-      toast({
-        title: "Mot de passe ne correspondent pas",
-        description: (
-          <Typography component="p" variant="body-sm">
-            Veuillez vous assurer de bien avoir confirmé votre mot de passe
-          </Typography>
-        ),
-      });
-      stopLoading();
-    } else {
+  // Mutation pour l'inscription utilisateur
+  const registerMutation = useMutation({
+    mutationFn: async (values: z.infer<typeof RegisterFormFieldsType>) => {
+      const { name, password } = values;
       const saltedPassword = saltPassword(password);
       const hash = saltedPassword.hash;
       const salt = saltedPassword.salt;
-      const registration = await fetch(`/api/user`, {
+      const res = await fetch(`/api/user`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -75,48 +63,71 @@ export const RegisterForm = () => {
           salt,
         }),
       });
-
-      if (registration.status === 200) {
-        const loginRespose = await signIn("credentials", {
-          name: name,
-          password: password,
-          redirect: false,
+      if (!res.ok) {
+        const error = await res.json().catch(() => ({}));
+        throw new Error(error?.message || "Erreur lors de l'inscription");
+      }
+      return res.json();
+    },
+    onSuccess: async (data, variables) => {
+      // Tentative de connexion automatique après inscription
+      const loginResponse = await signIn("credentials", {
+        name: variables.name,
+        password: variables.password,
+        redirect: false,
+      });
+      if (loginResponse?.status === 200) {
+        toast({
+          variant: "success",
+          title: "Connexion réussie",
+          description: "Content de vous revoir !",
         });
-        if (loginRespose?.status === 200) {
-          toast({
-            variant: "success",
-            title: "Connexion réussie",
-            description: "Content de vous revoir !",
-          });
-          stopLoading();
-          router.push("/dashboard");
-        } else {
-          toast({
-            variant: "destructive",
-            title: "Une erreur est survenue",
-            description: (
-              <Typography component="p" variant="body-sm">
-                &apos;utilisateur ou votre mot de passe a été saisi
-                incorrectement. Si vous n&apos;avez pas de compte, veuillez
-                commencer par vous enregistrer.
-              </Typography>
-            ),
-          });
-          stopLoading();
-        }
+        stopLoading();
+        router.push("/dashboard");
       } else {
         toast({
           variant: "destructive",
-          title: "Utilisateur déjà existant",
+          title: "Une erreur est survenue",
           description: (
             <Typography component="p" variant="body-sm">
-              Veuillez utiliser un autre nom d’utilisateur
+              L&apos;utilisateur ou le mot de passe est incorrect. Si vous
+              n&apos;avez pas de compte, veuillez vous enregistrer.
             </Typography>
           ),
         });
         stopLoading();
       }
+    },
+    onError: (error: any) => {
+      toast({
+        variant: "destructive",
+        title: "Utilisateur déjà existant",
+        description: (
+          <Typography component="p" variant="body-sm">
+            Veuillez utiliser un autre nom d’utilisateur
+          </Typography>
+        ),
+      });
+      stopLoading();
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof RegisterFormFieldsType>) {
+    startLoading();
+    const { password, confirmpassword } = values;
+    if (password !== confirmpassword) {
+      toast({
+        title: "Mot de passe ne correspondent pas",
+        description: (
+          <Typography component="p" variant="body-sm">
+            Veuillez vous assurer de bien avoir confirmé votre mot de passe
+          </Typography>
+        ),
+      });
+      stopLoading();
+      return;
     }
+    await registerMutation.mutateAsync(values);
     stopLoading();
   }
 
@@ -189,7 +200,7 @@ export const RegisterForm = () => {
                         suffisamment unique pour être accepté par notre système.
                       </span>
                       <span>
-                        * Il doit avoir au moins 2 caractères et peut contenir
+                        * Il doit avoir au moins 3 caractères et peut contenir
                         des lettres, des chiffres et des symboles.
                       </span>
                     </span>

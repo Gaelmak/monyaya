@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { InputField } from "@/ui/components/input-field/input-field";
-import { Container } from "@/ui/components/container/container";
 import { Typography } from "@/ui/components/typography/typography";
 import Cover from "../../../../public/form.jpg";
 import Cover_v from "../../../../public/form_v.jpg";
@@ -24,17 +23,22 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { signOut } from "next-auth/react";
 import { usePostHog } from "posthog-js/react";
+import { useMutation } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
 
 // Schéma de validation Zod
 const CompleteRegisterFormFieldsType = z.object({
-  firstname: z.string().nonempty("Le prénom est requis"),
-  lastname: z.string().nonempty("Le nom est requis"),
+  firstname: z.string().min(1, "Le prénom est requis"),
+  lastname: z.string().min(1, "Le nom est requis"),
   email: z.string().email("Veuillez entrer une adresse email valide"),
-  phonenumber: z.string().nonempty("Le numéro de téléphone est requis"),
-  avenue: z.string().nonempty("L'avenue est requise"),
-  district: z.string().nonempty("Le quartier est requis"),
-  municipality: z.string().nonempty("La commune est requise"),
-  number: z.string().nonempty("Le numéro est requis"),
+  phonenumber: z.string().regex(/^\+\d{2,3}\d{9}$/, {
+    message:
+      "Veuillez entrer un numéro de téléphone valide avec l'indicatif du pays (ex: +2438XXXXXXXX ou +336XXXXXXXX)",
+  }),
+  avenue: z.string().min(1, "L'avenue est requise"),
+  district: z.string().min(1, "Le quartier est requis"),
+  municipality: z.string().min(1, "La commune est requise"),
+  number: z.string().min(1, "Le numéro est requis"),
 });
 
 interface Props {
@@ -49,6 +53,8 @@ interface Props {
     number: string | null;
   };
   name: string;
+  onReturn: () => void;
+  onComplete: () => void;
 }
 
 const BackgroundImage = ({ children }: { children: React.ReactNode }) => {
@@ -64,7 +70,7 @@ const BackgroundImage = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const CompleteRegistration = ({ data, name }: Props) => {
+export const CompleteRegistration = ({ data, name, onReturn }: Props) => {
   const router = useRouter();
   const posthog = usePostHog();
   const { toast } = useToast();
@@ -76,20 +82,21 @@ export const CompleteRegistration = ({ data, name }: Props) => {
   const form = useForm<z.infer<typeof CompleteRegisterFormFieldsType>>({
     resolver: zodResolver(CompleteRegisterFormFieldsType),
     defaultValues: {
-      firstname: data.firstName ? data.firstName : "",
-      lastname: data.lastName ? data.lastName : "",
-      email: data.email ? data.email : "",
-      phonenumber: data.phoneNumber ? data.phoneNumber : "",
-      avenue: data.avenue ? data.avenue : "",
-      district: data.district ? data.district : "",
-      municipality: data.municipality ? data.municipality : "",
-      number: data.number ? data.number : "",
+      firstname: data.firstName ?? "",
+      lastname: data.lastName ?? "",
+      email: data.email ?? "",
+      phonenumber: data.phoneNumber ?? "",
+      avenue: data.avenue ?? "",
+      district: data.district ?? "",
+      municipality: data.municipality ?? "",
+      number: data.number ?? "",
     },
   });
 
   // afficher une notification si il y a des erreurs dans les champs
   useEffect(() => {
-    if (Object.keys(form.formState.errors).length > 0) {
+    const errors = Object.keys(form.formState.errors);
+    if (errors.length > 0) {
       toast({
         variant: "destructive",
         description: (
@@ -103,49 +110,46 @@ export const CompleteRegistration = ({ data, name }: Props) => {
   }, [form.formState.isSubmitting]); // eslint-disable-line
 
   useEffect(() => {
-    const { firstname, lastname } = form.getValues();
-    const isFilled = firstname.trim() !== "" && lastname.trim() !== "";
-    setIsFirstFilled(isFilled);
-  }, [form.getValues()]); // eslint-disable-line
+    const subscription = form.watch((values) => {
+      setIsFirstFilled(
+        (values.firstname?.trim() ?? "") !== "" &&
+          (values.lastname?.trim() ?? "") !== ""
+      );
+      setIsSecondFilled(
+        (values.phonenumber?.trim() ?? "") !== "" &&
+          (values.email?.trim() ?? "") !== ""
+      );
+      setIsThirdFilled(
+        (values.avenue?.trim() ?? "") !== "" &&
+          (values.district?.trim() ?? "") !== "" &&
+          (values.municipality?.trim() ?? "") !== "" &&
+          (values.number?.trim() ?? "") !== ""
+      );
+    });
+    // Initial check on mount
+    const initialValues = form.getValues();
+    setIsFirstFilled(
+      (initialValues.firstname?.trim() ?? "") !== "" &&
+        (initialValues.lastname?.trim() ?? "") !== ""
+    );
+    setIsSecondFilled(
+      (initialValues.phonenumber?.trim() ?? "") !== "" &&
+        (initialValues.email?.trim() ?? "") !== ""
+    );
+    setIsThirdFilled(
+      (initialValues.avenue?.trim() ?? "") !== "" &&
+        (initialValues.district?.trim() ?? "") !== "" &&
+        (initialValues.municipality?.trim() ?? "") !== "" &&
+        (initialValues.number?.trim() ?? "") !== ""
+    );
+    return () => subscription.unsubscribe();
+  }, [form]);
 
-  useEffect(() => {
-    const { phonenumber, email } = form.getValues();
-    const isFilled = phonenumber.trim() !== "" && email.trim() !== "";
-    setIsSecondFilled(isFilled);
-  }, [form.getValues()]); // eslint-disable-line
-
-  useEffect(() => {
-    const { avenue, district, municipality, number } = form.getValues();
-    const isFilled =
-      avenue.trim() !== "" &&
-      district.trim() !== "" &&
-      municipality.trim() !== "" &&
-      number.trim() !== "";
-    setIsThirdFilled(isFilled);
-  }, [form.getValues()]); // eslint-disable-line
-
-  async function onSubmit(
-    values: z.infer<typeof CompleteRegisterFormFieldsType>
-  ) {
-    startLoading();
-
-    const {
-      firstname,
-      lastname,
-      email,
-      phonenumber,
-      avenue,
-      district,
-      municipality,
-      number,
-    } = values;
-    const registration = await fetch(`/api/user/${name}/complete`, {
-      method: "PATCH",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+  const completeRegistrationMutation = useMutation({
+    mutationFn: async (
+      values: z.infer<typeof CompleteRegisterFormFieldsType>
+    ) => {
+      const {
         firstname,
         lastname,
         email,
@@ -154,10 +158,37 @@ export const CompleteRegistration = ({ data, name }: Props) => {
         district,
         municipality,
         number,
-      }),
-    });
-
-    if (registration.status === 200) {
+      } = values;
+      const res = await fetch(`/api/user/${name}/complete`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          email,
+          phonenumber,
+          avenue,
+          district,
+          municipality,
+          number,
+        }),
+      });
+      if (!res.ok) {
+        const error = await res.json().catch(() => ({}));
+        throw new Error(error?.message || "Erreur lors de l'inscription");
+      }
+      return res.json();
+    },
+    onSuccess: () => {
+      posthog.capture("user_signed_sucess", {
+        $set: {
+          name: `${data?.firstName} ${data?.lastName}`,
+          email: data?.email,
+        },
+      });
       toast({
         variant: "success",
         title: "Bienvenue !",
@@ -167,74 +198,50 @@ export const CompleteRegistration = ({ data, name }: Props) => {
           </Typography>
         ),
       });
-      stopLoading();
-      posthog.capture("user_signed_sucess", {
-        $set: {
-          name: `${data?.firstName} ${data?.lastName}`,
-          email: data?.email,
-        },
-      });
       setTimeout(() => {
         signOut({ callbackUrl: "/signin" });
-        // window.location.href = "/dashboard";
       }, 1000);
-    } else {
+      stopLoading();
+    },
+    onError: (error) => {
       toast({
         variant: "destructive",
-        title: "Utilisateur déjà existant",
+        title: "Une erreur est survenue",
         description: (
           <Typography component="p" variant="body-sm">
-            Veuillez utiliser un autre nom d’utilisateur
+            {error.message}
           </Typography>
         ),
       });
       stopLoading();
-    }
+    },
+  });
 
+  async function onSubmit(
+    values: z.infer<typeof CompleteRegisterFormFieldsType>
+  ) {
+    startLoading();
+    await completeRegistrationMutation.mutateAsync(values);
     stopLoading();
   }
 
-  const UserIcon = () => {
-    return (
-      <User className="w-5 h-5 absolute left-4 cursor-pointer text-secondary-300" />
-    );
-  };
-
-  const MailIcon = () => {
-    return (
-      <Mail className="w-5 h-5 absolute left-4 cursor-pointer text-secondary-300" />
-    );
-  };
-
-  const PhoneIcon = () => {
-    return (
-      <Phone className="w-5 h-5 absolute left-4 cursor-pointer text-secondary-300" />
-    );
-  };
-
-  const HomeIcon = () => {
-    return (
-      <Home className="w-5 h-5 absolute left-4 cursor-pointer text-secondary-300" />
-    );
-  };
-
   return (
     <BackgroundImage>
-      <div className="bg-[#e7ffb5] lg:bg-transparent h-full w-full flex flex-col p-8 lg:justify-center gap-4">
-        <Typography
-          variant="title-lg"
-          component="h2"
-          className="text-center text-4xl font-bold md:text-left"
-        >
-          Terminer l&apos;inscription
-        </Typography>
-        <div className="w-full lg:w-[50vw]">
+      <div className="bg-[#e7ffb5] lg:bg-transparent h-full overflow-y-scroll w-full flex flex-col p-8 lg:justify-center gap-4">
+        <div className="w-full lg:w-[50vw] my-20">
+          <Typography
+            variant="title-lg"
+            component="h2"
+            className="text-center text-4xl font-bold md:text-left mb-8"
+          >
+            Terminer l&apos;inscription
+          </Typography>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className={clsx("flex flex-col gap-8 ")}
             >
-              <Accordion type="single" collapsible>
+              <Accordion type="multiple">
                 <AccordionItem value="step-1">
                   <AccordionTrigger>
                     <div className="flex flex-row gap-4 justify-center">
@@ -421,7 +428,15 @@ export const CompleteRegistration = ({ data, name }: Props) => {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-              <div className="flex flex-col justify-between items-center lg:items-start gap-2">
+              <div className="flex justify-between items-center lg:items-start gap-2">
+                <Button
+                  variant="link"
+                  type="button"
+                  className="px-0"
+                  onClick={onReturn}
+                >
+                  Précédent
+                </Button>
                 <Buttons
                   type="submit"
                   isLoading={isLoading}
@@ -439,5 +454,29 @@ export const CompleteRegistration = ({ data, name }: Props) => {
         </div>
       </div>
     </BackgroundImage>
+  );
+};
+
+const UserIcon = () => {
+  return (
+    <User className="w-5 h-5 absolute left-4 cursor-pointer text-secondary-300" />
+  );
+};
+
+const MailIcon = () => {
+  return (
+    <Mail className="w-5 h-5 absolute left-4 cursor-pointer text-secondary-300" />
+  );
+};
+
+const PhoneIcon = () => {
+  return (
+    <Phone className="w-5 h-5 absolute left-4 cursor-pointer text-secondary-300" />
+  );
+};
+
+const HomeIcon = () => {
+  return (
+    <Home className="w-5 h-5 absolute left-4 cursor-pointer text-secondary-300" />
   );
 };
